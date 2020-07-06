@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
@@ -21,6 +20,8 @@ import com.alodiga.wallet.common.exception.NullParameterException;
 import com.alodiga.wallet.common.exception.RegisterNotFoundException;
 import com.alodiga.wallet.common.utils.EjbConstants;
 import com.alodiga.wallet.common.utils.MessageFormatHelper;
+
+import javax.persistence.Query;
 
 
 
@@ -279,4 +280,5 @@ public class AbstractWalletEJB {
 
         return entity;
     }
+
 }

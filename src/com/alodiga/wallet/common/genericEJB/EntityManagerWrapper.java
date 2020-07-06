@@ -1,17 +1,16 @@
 package com.alodiga.wallet.common.genericEJB;
+
 import java.util.List;
 import java.util.Map;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.alodiga.wallet.common.utils.QueryConstants;
 import com.alodiga.wallet.common.utils.QueryParam;
 
-
 public class EntityManagerWrapper<T> {
 
-	protected EntityManager entityManager;
+    protected EntityManager entityManager;
 
     public EntityManager getEntityManager() {
         return entityManager;
@@ -148,5 +147,4 @@ public class EntityManagerWrapper<T> {
         return key;
 
     }
-   
 }

@@ -1,14 +1,12 @@
 package com.alodiga.wallet.common.genericEJB;
 
-
+import com.alodiga.wallet.common.model.Audit;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import org.springframework.http.HttpMethod;
 
-import com.alodiga.wallet.common.model.Audit;
 import com.alodiga.wallet.common.utils.WalletWSMediaType;
-
 
 public class EJBRequest implements Serializable {
 
