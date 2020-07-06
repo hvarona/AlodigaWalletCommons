@@ -28,7 +28,7 @@ import com.alodiga.wallet.common.utils.QueryConstants;
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id=:id"),
     @NamedQuery(name = "User.validateUser", query = "SELECT u FROM User u WHERE u.login=:login AND u.password=:password"),
-    @NamedQuery(name = QueryConstants.LOAD_USER_BY_LOGIN, query = "SELECT u FROM User u WHERE u.login=:login"),
+    @NamedQuery(name = "User.loadUserByLogin", query = "SELECT u FROM User u WHERE u.login=:login"),
     @NamedQuery(name = "User.loadUserByEmail", query = "SELECT u FROM User u WHERE u.email=:email")
 })
 public class User extends AbstractWalletEntity implements Serializable {
