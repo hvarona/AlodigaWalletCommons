@@ -2,8 +2,8 @@ package com.alodiga.wallet.common.utils;
 
 public class EjbConstants {
 
-    public static String SERVER = "localhost";
-//    public static String SERVER = "app2.vpn.alodiga.com";
+//    public static String SERVER = "localhost";
+    public static String SERVER = "alodiga.wallet.admin";
     public static String PORT = "3700";
     public static final String ACCESS_CONTROL_EJB = "ejb/wallet/AccessControlEJB";
     public static final String AUDITORY_EJB = "ejb/wallet/AuditoryEJB";
