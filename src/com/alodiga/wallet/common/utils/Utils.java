@@ -1417,7 +1417,7 @@ public class Utils {
      public static Mail getUserRecoveryPasswordMail(User user, String newPassword, Enterprise enterprise) {
 
             String hello = "Hola";
-            String subject = "Alodiga: Recuperación de clave.";
+            String subject = "Alodiga: RecuperaciÃ³n de clave.";
             String text1 = "Nos complace notificarle que su clave de acceso al portal AlodigaWalletAdminWeb ha sido generada automaticamente.";
             String text2 = "Datos de su cuenta:";
             String text3 = "Recuperacion de clave";

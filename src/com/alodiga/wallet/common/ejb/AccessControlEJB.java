@@ -6,6 +6,7 @@ import javax.ejb.Remote;
 import com.alodiga.wallet.common.exception.DisabledUserException;
 import com.alodiga.wallet.common.exception.EmptyListException;
 import com.alodiga.wallet.common.exception.GeneralException;
+import com.alodiga.wallet.common.exception.InvalidPasswordException;
 import com.alodiga.wallet.common.exception.NullParameterException;
 import com.alodiga.wallet.common.exception.RegisterNotFoundException;
 import com.alodiga.wallet.common.genericEJB.EJBRequest;
@@ -41,7 +42,7 @@ public interface AccessControlEJB extends WalletGenericEJB {
 
     public boolean validateLoginPreferences(EJBRequest request) throws NullParameterException, GeneralException, RegisterNotFoundException;
 
-    public User validateUser(String login, String password) throws RegisterNotFoundException, NullParameterException, GeneralException, DisabledUserException;
+    public User validateUser(String login, String password) throws InvalidPasswordException, RegisterNotFoundException, NullParameterException, GeneralException, DisabledUserException;
 
     public List<PermissionGroup> getPermissionGroups() throws EmptyListException, NullParameterException, GeneralException;
 
