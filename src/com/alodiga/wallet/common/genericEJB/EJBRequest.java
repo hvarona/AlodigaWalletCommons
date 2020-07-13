@@ -4,7 +4,6 @@ import com.alodiga.wallet.common.model.Audit;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import org.springframework.http.HttpMethod;
 
 import com.alodiga.wallet.common.utils.WalletWSMediaType;
 
@@ -17,7 +16,6 @@ public class EJBRequest implements Serializable {
     private List<Audit> auditData;
     private String url;
     private WalletWSMediaType mediaType;
-    private HttpMethod method;
 
     public EJBRequest() {
         super();
@@ -141,11 +139,4 @@ public class EJBRequest implements Serializable {
         this.mediaType = mediaType;
     }
 
-    public HttpMethod getMethod() {
-        return method;
-    }
-
-    public void setMethod(HttpMethod method) {
-        this.method = method;
-    }
 }
