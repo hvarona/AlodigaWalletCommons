@@ -71,14 +71,14 @@ public class TopUpResponseConstants {
         aMap.put("6024", "Another transaction with same data exists, wait a few minutes to try again");
         aMap.put("6025", "Zip Code and Store ID data required");
         aMap.put("6026", "We can not permit transactions from this zip code");
-        aMap.put("6027", "Boss Revolution -­�? product not loaded");
-        aMap.put("6028", "Boss Revolution -­�? provider cannot create the account");
-        aMap.put("6029", "Boss Revolution -­�? invalid language");
-        aMap.put("6030", "Boss Revolution -­�? invalid PIN");
-        aMap.put("6031", "Boss Revolution -­�? invalid Caller ID");
-        aMap.put("6032", "Boss Revolution -­�? invalid Transaction Type");
-        aMap.put("6033", "Boss Revolution -­�? transaction cannot be made");
-        aMap.put("6034", "Boss Revolution -­�? invalid Phone Number");
+        aMap.put("6027", "Boss Revolution -­? product not loaded");
+        aMap.put("6028", "Boss Revolution -­? provider cannot create the account");
+        aMap.put("6029", "Boss Revolution -­? invalid language");
+        aMap.put("6030", "Boss Revolution -­? invalid PIN");
+        aMap.put("6031", "Boss Revolution -­? invalid Caller ID");
+        aMap.put("6032", "Boss Revolution -­? invalid Transaction Type");
+        aMap.put("6033", "Boss Revolution -­? transaction cannot be made");
+        aMap.put("6034", "Boss Revolution -­? invalid Phone Number");
 
         EASY_CALL_CODES = Collections.unmodifiableMap(aMap);
     }
