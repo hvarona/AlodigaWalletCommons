@@ -20,9 +20,9 @@ public class Constante {
 	public static final String sNombreAlobenefit = "jdbc/AlobenefitDataSource";
 	public static final String sNombreAuthpos = "jdbc/AuthposDataSource";
 
-	public static final String sNombreAuthposTransaccional = "jdbc/AuthposTransaccionalDataSource";
+	public static final String sNombreAuthposTransaccional = "jdbc/AuthposTransaccionalDataSource";	
 
-	// constante modulo
+        // constante modulo
 	public static final String sALOCASH = "ALOCASH";
 	public static final String sAUTHPOS = "AUTHPOS";
 	public static final String sALOBENEFIT = "ALOBENEFIT";
