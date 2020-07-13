@@ -22,6 +22,13 @@ public class Constants {
 
     public static final String sNombreAuthposTransaccional = "jdbc/AuthposTransaccionalDataSource";
 
+    //Mensajes en casos de flujos alternos en los EBJ
+    public static String REGISTER_NOT_FOUND_EXCEPTION = "E-01";
+    public static String GENERAL_EXCEPTION = "E-02";
+    public static String INVALID_PASSWORD_EXCEPTION = "E-03";
+    public static String DISABLED_USER_EXCEPTION = "E-04";
+    public static String INVALID_QUESTION_EXCEPTION = "E-05";
+        
     // constante modulo
     public static final String sALOCASH = "ALOCASH";
     public static final String sAUTHPOS = "AUTHPOS";
