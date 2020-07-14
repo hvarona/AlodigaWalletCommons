@@ -14,6 +14,7 @@ import com.alodiga.wallet.common.model.Country;
 import com.alodiga.wallet.common.model.County;
 import com.alodiga.wallet.common.model.Currency;
 import com.alodiga.wallet.common.model.Enterprise;
+import com.alodiga.wallet.common.model.ExchangeRate;
 import com.alodiga.wallet.common.model.Language;
 import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.Sms;
@@ -100,6 +101,12 @@ public interface UtilsEJB extends WalletGenericEJB {
     public Bank loadBank(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     public Bank saveBank(Bank bank) throws RegisterNotFoundException, NullParameterException, GeneralException;
-//    public Bank saveBank(EJBRequest request) throws NullParameterException, GeneralException;
+
+    //ExchangeRate
+    public List<ExchangeRate> getExchangeRate(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public ExchangeRate loadExchangeRate(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public ExchangeRate saveExchangeRate(ExchangeRate exchangeRate) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
 }
