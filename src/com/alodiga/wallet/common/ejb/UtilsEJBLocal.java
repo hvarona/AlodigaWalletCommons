@@ -47,7 +47,7 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
 
     public Country searchCountry(String name) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
-    public Country saveCountry(Country country) throws NullParameterException, GeneralException;
+    public Country saveCountry(Country country) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public Country loadCountryByShortName(String referenceCode) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
