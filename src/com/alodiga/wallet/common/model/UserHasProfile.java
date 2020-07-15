@@ -24,8 +24,8 @@ import com.alodiga.wallet.common.model.User;
  * 
  */
 @Entity
-@Table(name="user_has_profile_has_enterprise")
-public class UserHasProfileHasEnterprise extends AbstractWalletEntity implements Serializable {
+@Table(name="user_has_profile")
+public class UserHasProfile extends AbstractWalletEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -46,12 +46,8 @@ public class UserHasProfileHasEnterprise extends AbstractWalletEntity implements
 	@JoinColumn(name="profileId")
 	private Profile profile;
 
-	//bi-directional many-to-one association to Enterprise
-    @ManyToOne
-	@JoinColumn(name="enterpriseId")
-	private Enterprise enterprise;
 
-    public UserHasProfileHasEnterprise() {
+    public UserHasProfile() {
     }
 
 	public Long getId() {
@@ -84,14 +80,6 @@ public class UserHasProfileHasEnterprise extends AbstractWalletEntity implements
 
 	public void setProfile(Profile profile) {
 		this.profile = profile;
-	}
-	
-	public Enterprise getEnterprise() {
-		return this.enterprise;
-	}
-
-	public void setEnterprise(Enterprise enterprise) {
-		this.enterprise = enterprise;
 	}
 
 	public User getUser() {
