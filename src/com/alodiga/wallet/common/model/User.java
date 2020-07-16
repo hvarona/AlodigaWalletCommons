@@ -19,7 +19,7 @@ import javax.persistence.Table;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Profile;
-import com.alodiga.wallet.common.model.UserHasProfileHasEnterprise;
+import com.alodiga.wallet.common.model.UserHasProfile;
 import com.alodiga.wallet.common.utils.QueryConstants;
 
 @Entity
@@ -48,7 +48,7 @@ public class User extends AbstractWalletEntity implements Serializable {
     private String phoneNumber;
     //bi-directional many-to-one association to UserHasProfileHasEnterprise
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    private List<UserHasProfileHasEnterprise> userHasProfileHasEnterprises;
+    private List<UserHasProfile> userHasProfile;
 
     public User() {
     }
@@ -125,12 +125,12 @@ public class User extends AbstractWalletEntity implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<UserHasProfileHasEnterprise> getUserHasProfileHasEnterprises() {
-        return this.userHasProfileHasEnterprises;
+    public List<UserHasProfile> getUserHasProfile() {
+        return this.userHasProfile;
     }
 
-    public void setUserHasProfileHasEnterprises(List<UserHasProfileHasEnterprise> userHasProfileHasEnterprises) {
-        this.userHasProfileHasEnterprises = userHasProfileHasEnterprises;
+    public void setUserHasProfile(List<UserHasProfile> userHasProfile) {
+        this.userHasProfile = userHasProfile;
     }
 
     public boolean getReceiveTopUpNotification() {
@@ -141,10 +141,10 @@ public class User extends AbstractWalletEntity implements Serializable {
         this.receiveTopUpNotification = receiveTopUpNotification;
     }
 
-    public Profile getCurrentProfile(Long enterpriseId) {
+    public Profile getCurrentProfile() {
         Profile profile = null;
-        for (UserHasProfileHasEnterprise uhp : this.userHasProfileHasEnterprises) {
-            if (uhp.getEndingDate() == null && uhp.getEnterprise().getId().equals(enterpriseId)) {
+        for (UserHasProfile uhp : this.userHasProfile) {
+            if (uhp.getEndingDate() == null ) {
                 profile = uhp.getProfile();
             }
         }

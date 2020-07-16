@@ -84,8 +84,6 @@ public class Enterprise extends AbstractWalletEntity implements Serializable {
     private boolean enabled;
     @Column(name = "infoEmail")
     private String infoEmail;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enterpriseId")
-    private Collection<PreferenceValue> preferenceValueCollection;
     @JoinColumn(name = "currencyId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Currency currencyId;
@@ -185,15 +183,6 @@ public class Enterprise extends AbstractWalletEntity implements Serializable {
         this.infoEmail = infoEmail;
     }
 
-    @XmlTransient
-    public Collection<PreferenceValue> getPreferenceValueCollection() {
-        return preferenceValueCollection;
-    }
-
-    public void setPreferenceValueCollection(Collection<PreferenceValue> preferenceValueCollection) {
-        this.preferenceValueCollection = preferenceValueCollection;
-    }
-
     public Currency getCurrencyId() {
         return currencyId;
     }
@@ -219,7 +208,7 @@ public class Enterprise extends AbstractWalletEntity implements Serializable {
         this.productCollection = productCollection;
     }
 
-    @Override
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

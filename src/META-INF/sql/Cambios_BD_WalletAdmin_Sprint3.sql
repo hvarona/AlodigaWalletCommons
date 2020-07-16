@@ -1,7 +1,3 @@
--- Ajustes en Esquema de Preferencias
--- author: yamelis Almea
--- Fecha: 15/07/2020
-
 DROP TABLE IF EXISTS `alodigaWallet`.`preference_control`;
 DROP TABLE IF EXISTS `alodigaWallet`.`preference_value`;
 DROP TABLE IF EXISTS `alodigaWallet`.`preference_field_data`;
@@ -152,13 +148,26 @@ INSERT INTO `alodigaWallet`.`preference_value` VALUES (1,'20',1,NULL,NULL,1,NULL
 (4,'1',8,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
 (5,'1',9,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
 (6,'1500000',10,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(7,'1',12,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(7,'2',12,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
 (8,'100',19,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
 (9,'2500000',20,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
 (10,'25000000',21,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
 (11,'10',22,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
 (12,'50',23,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(13,'200',24,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1);
+(13,'200',24,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(14,'20',1,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(15,'500000',4,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(16,'5',7,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(17,'1',8,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(18,'1',9,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(19,'1500000',10,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(20,'2',12,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(21,'100',19,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(22,'2500000',20,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(23,'25000000',21,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(24,'10',22,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(25,'50',23,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
+(26,'200',24,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1);
 
 
 CREATE TABLE `alodigaWallet`.`preference_control` (
@@ -177,8 +186,11 @@ CREATE TABLE `alodigaWallet`.`preference_control` (
 
 INSERT INTO `alodigawallet`.`provider` (`id`, `name`, `url`, `isSMSProvider`, `enabled`, `aditionalPercent`) VALUES ('2', 'Twilio', 'www', '1', '1', '0');
 
--- Agregar campo en tabla product
--- author: Jesús Gómez
--- Fecha: 15/07/2020
-ALTER TABLE `alodigaWallet`.`product` 
-ADD COLUMN `indHasAssociatedBank` TINYINT(1) NULL AFTER `isPaymentInfo`;
+ALTER TABLE `alodigaWallet`.`user_has_profile_has_enterprise` 
+DROP FOREIGN KEY `fk_user_has_profile_has_enterprise_enterprise1`;
+ALTER TABLE `alodigaWallet`.`user_has_profile_has_enterprise` 
+DROP COLUMN `enterpriseId`,
+DROP INDEX `fk_user_has_profile_has_enterprise_enterprise1` ;
+;
+ALTER TABLE `alodigaWallet`.`user_has_profile_has_enterprise` 
+RENAME TO  `alodigaWallet`.`user_has_profile` ;

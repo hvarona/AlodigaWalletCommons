@@ -9,6 +9,8 @@ import com.alodiga.wallet.common.exception.NullParameterException;
 import com.alodiga.wallet.common.exception.RegisterNotFoundException;
 import com.alodiga.wallet.common.genericEJB.EJBRequest;
 import com.alodiga.wallet.common.genericEJB.WalletGenericEJB;
+import com.alodiga.wallet.common.model.PreferenceClassification;
+import com.alodiga.wallet.common.model.PreferenceControl;
 import com.alodiga.wallet.common.model.PreferenceField;
 import com.alodiga.wallet.common.model.PreferenceType;
 import com.alodiga.wallet.common.model.PreferenceValue;
@@ -31,9 +33,9 @@ public interface PreferencesEJB extends WalletGenericEJB {
 
     public List<PreferenceValue> getPreferenceValues(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
 
-    public List<PreferenceValue> getPreferenceValuesByEnterpriseIdAndFieldId(Long enterpriseId, Long fieldId) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
+    public List<PreferenceValue> getPreferenceValuesByClassificationIdAndFieldId(Long classificationId,Long fieldId) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
 
-    public PreferenceValue loadActivePreferenceValuesByEnterpriseIdAndFieldId(Long enterpriseId, Long fieldId) throws GeneralException, RegisterNotFoundException, NullParameterException;
+    public PreferenceValue loadActivePreferenceValuesByClassificationIdAndFieldId(Long classificationId, Long fieldId) throws GeneralException, RegisterNotFoundException, NullParameterException;
 
     public PreferenceField loadPreferenceField(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException;
 
@@ -47,5 +49,7 @@ public interface PreferencesEJB extends WalletGenericEJB {
 
     public PreferenceValue savePreferenceValue(EJBRequest request) throws GeneralException, NullParameterException;
 
-    public List<PreferenceValue> savePreferenceValues(EJBRequest request) throws GeneralException, NullParameterException;
+    public List<PreferenceValue> savePreferenceValues(List<PreferenceValue> preferenceValues,List<PreferenceControl> preferenceControls) throws GeneralException, NullParameterException;
+    
+    public List<PreferenceClassification> getPreferenceClassifications(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
 }

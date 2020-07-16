@@ -7,18 +7,14 @@ package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,15 +30,14 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
  * @author usuario
  */
 @Entity
-@Table(name = "preference_field")
+@Table(name = "preference_classification")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PreferenceField.findAll", query = "SELECT p FROM PreferenceField p"),
-    @NamedQuery(name = "PreferenceField.findById", query = "SELECT p FROM PreferenceField p WHERE p.id = :id"),
-    @NamedQuery(name = "PreferenceField.findByName", query = "SELECT p FROM PreferenceField p WHERE p.name = :name"),
-    @NamedQuery(name = "PreferenceField.findByPreference", query = "SELECT p FROM PreferenceField p WHERE p.preferenceId.id = :preferenceId"),
-    @NamedQuery(name = "PreferenceField.findByEnabled", query = "SELECT p FROM PreferenceField p WHERE p.enabled = :enabled")})
-public class PreferenceField extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "PreferenceClassification.findAll", query = "SELECT p FROM PreferenceClassification p"),
+    @NamedQuery(name = "PreferenceClassification.findById", query = "SELECT p FROM PreferenceClassification p WHERE p.id = :id"),
+    @NamedQuery(name = "PreferenceClassification.findByName", query = "SELECT p FROM PreferenceClassification p WHERE p.name = :name"),
+    @NamedQuery(name = "PreferenceClassification.findByEnabled", query = "SELECT p FROM PreferenceClassification p WHERE p.enabled = :enabled"),})
+public class PreferenceClassification extends AbstractWalletEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,26 +49,18 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
     private String name;
     @Basic(optional = false)
     @Column(name = "enabled")
-    private short enabled;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "preferenceFieldId")
+    private boolean enabled;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "preferenceClassficationId")
     private Collection<PreferenceValue> preferenceValueCollection;
-    @JoinColumn(name = "preferenceTypeId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private PreferenceType preferenceTypeId;
-    @JoinColumn(name = "preferenceId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Preference preferenceId;
-    @OneToMany(mappedBy = "preferenceField", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    private List<PreferenceFieldData> preferenceFieldData;
 
-    public PreferenceField() {
+    public PreferenceClassification() {
     }
 
-    public PreferenceField(Long id) {
+    public PreferenceClassification(Long id) {
         this.id = id;
     }
 
-    public PreferenceField(Long id, String name, short enabled) {
+    public PreferenceClassification(Long id, String name, boolean enabled) {
         this.id = id;
         this.name = name;
         this.enabled = enabled;
@@ -95,64 +82,40 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
         this.name = name;
     }
 
-    public short getEnabled() {
+    public boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(short enabled) {
+    public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
+
     @XmlTransient
     public Collection<PreferenceValue> getPreferenceValueCollection() {
-        return preferenceValueCollection;
-    }
-
-    public void setPreferenceValueCollection(Collection<PreferenceValue> preferenceValueCollection) {
-        this.preferenceValueCollection = preferenceValueCollection;
-    }
-
-    public PreferenceType getPreferenceTypeId() {
-        return preferenceTypeId;
-    }
-
-    public void setPreferenceTypeId(PreferenceType preferenceTypeId) {
-        this.preferenceTypeId = preferenceTypeId;
-    }
-
-    public Preference getPreferenceId() {
-        return preferenceId;
-    }
-
-    public void setPreferenceId(Preference preferenceId) {
-        this.preferenceId = preferenceId;
-    }
-
-    public PreferenceFieldData getPreferenceFieldDataByLanguageId(Long languageId) {
-    	PreferenceFieldData pd = null;
-        for (PreferenceFieldData pData : this.preferenceFieldData) {
-            if (pData.getLanguage().getId().equals(languageId)) {
-                pd = pData;
-                break;
-            }
-        }
-        return pd;
+    	return preferenceValueCollection;
     }
     
-	@Override
+    public void setPreferenceValueCollection(Collection<PreferenceValue> preferenceValueCollection) {
+    	this.preferenceValueCollection = preferenceValueCollection;
+    }
+    
+
+    @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
-    @Override
+
+	@Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PreferenceField)) {
+        if (!(object instanceof PreferenceClassification)) {
             return false;
         }
-        PreferenceField other = (PreferenceField) object;
+        PreferenceClassification other = (PreferenceClassification) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -161,7 +124,7 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
 
     @Override
     public String toString() {
-        return "dto.PreferenceField[ id=" + id + " ]";
+        return "dto.Preference[ id=" + id + " ]";
     }
 
     @Override
