@@ -1,3 +1,7 @@
+-- Ajustes en Esquema de Preferencias
+-- author: yamelis Almea
+-- Fecha: 15/07/2020
+
 DROP TABLE IF EXISTS `alodigaWallet`.`preference_control`;
 DROP TABLE IF EXISTS `alodigaWallet`.`preference_value`;
 DROP TABLE IF EXISTS `alodigaWallet`.`preference_field_data`;
@@ -194,3 +198,9 @@ DROP INDEX `fk_user_has_profile_has_enterprise_enterprise1` ;
 ;
 ALTER TABLE `alodigaWallet`.`user_has_profile_has_enterprise` 
 RENAME TO  `alodigaWallet`.`user_has_profile` ;
+
+-- Agregar campo en tabla product
+-- author: Jesús Gómez
+-- Fecha: 15/07/2020
+ALTER TABLE `alodigaWallet`.`product` 
+ADD COLUMN `indHasAssociatedBank` TINYINT(1) NULL AFTER `isPaymentInfo`;
