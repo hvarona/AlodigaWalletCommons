@@ -8,6 +8,7 @@ package com.alodiga.wallet.common.model;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,8 +26,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.PreferenceControl;
-import com.alodiga.wallet.common.model.PreferenceField;
 
 /**
  *
@@ -38,12 +37,10 @@ import com.alodiga.wallet.common.model.PreferenceField;
 @NamedQueries({
     @NamedQuery(name = "PreferenceControl.findAll", query = "SELECT p FROM PreferenceControl p"),
     @NamedQuery(name = "PreferenceControl.findById", query = "SELECT p FROM PreferenceControl p WHERE p.id = :id"),
-    @NamedQuery(name = "PreferenceControl.findByPreferenceId", query = "SELECT p FROM PreferenceControl p WHERE p.preferenceId = :preferenceId"),
-    @NamedQuery(name = "PreferenceControl.findByCustomerId", query = "SELECT p FROM PreferenceControl p WHERE p.customerId = :customerId"),
+    @NamedQuery(name = "PreferenceControl.findByPreferenceValueId", query = "SELECT p FROM PreferenceControl p WHERE p.preferenceValueId = :preferenceValueId"),
     @NamedQuery(name = "PreferenceControl.findByUserId", query = "SELECT p FROM PreferenceControl p WHERE p.userId = :userId"),
-    @NamedQuery(name = "PreferenceControl.findByParamValue", query = "SELECT p FROM PreferenceControl p WHERE p.paramValue = :paramValue"),
-    @NamedQuery(name = "PreferenceControl.findByCreationDate", query = "SELECT p FROM PreferenceControl p WHERE p.creationDate = :creationDate"),
-    @NamedQuery(name = "PreferenceControl.findByAccessCounter", query = "SELECT p FROM PreferenceControl p WHERE p.accessCounter = :accessCounter")})
+    @NamedQuery(name = "PreferenceControl.findByParamOld", query = "SELECT p FROM PreferenceControl p WHERE p.paramOld = :paramOld"),
+    @NamedQuery(name = "PreferenceControl.findByCreationDate", query = "SELECT p FROM PreferenceControl p WHERE p.creationDate = :creationDate")})
 public class PreferenceControl extends AbstractWalletEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -51,25 +48,18 @@ public class PreferenceControl extends AbstractWalletEntity implements Serializa
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Column(name = "preferenceId")
-    private BigInteger preferenceId;
-    @Column(name = "customerId")
-    private BigInteger customerId;
     @Column(name = "userId")
-    private BigInteger userId;
+    private Long userId;
     @Basic(optional = false)
-    @Column(name = "paramValue")
-    private String paramValue;
+    @Column(name = "paramOld")
+    private String paramOld;
     @Basic(optional = false)
     @Column(name = "creationDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
-    @Basic(optional = false)
-    @Column(name = "accessCounter")
-    private long accessCounter;
-    @JoinColumn(name = "preferenceFieldId", referencedColumnName = "id")
+    @JoinColumn(name = "preferenceValueId", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private PreferenceField preferenceFieldId;
+    private PreferenceValue preferenceValueId;
 
     public PreferenceControl() {
     }
@@ -78,11 +68,10 @@ public class PreferenceControl extends AbstractWalletEntity implements Serializa
         this.id = id;
     }
 
-    public PreferenceControl(Long id, String paramValue, Date creationDate, long accessCounter) {
+    public PreferenceControl(Long id, String paramOld,Date creationDate) {
         this.id = id;
-        this.paramValue = paramValue;
         this.creationDate = creationDate;
-        this.accessCounter = accessCounter;
+        this.paramOld = paramOld;
     }
 
     public Long getId() {
@@ -93,63 +82,41 @@ public class PreferenceControl extends AbstractWalletEntity implements Serializa
         this.id = id;
     }
 
-    public BigInteger getPreferenceId() {
-        return preferenceId;
-    }
 
-    public void setPreferenceId(BigInteger preferenceId) {
-        this.preferenceId = preferenceId;
-    }
-
-    public BigInteger getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(BigInteger customerId) {
-        this.customerId = customerId;
-    }
-
-    public BigInteger getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(BigInteger userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
+  
+    public String getParamOld() {
+		return paramOld;
+	}
 
-    public String getParamValue() {
-        return paramValue;
-    }
+	public void setParamOld(String paramOld) {
+		this.paramOld = paramOld;
+	}
 
-    public void setParamValue(String paramValue) {
-        this.paramValue = paramValue;
-    }
+	public Date getCreationDate() {
+		return creationDate;
+	}
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
 
-    public long getAccessCounter() {
-        return accessCounter;
-    }
+	public PreferenceValue getPreferenceValueId() {
+		return preferenceValueId;
+	}
 
-    public void setAccessCounter(long accessCounter) {
-        this.accessCounter = accessCounter;
-    }
+	public void setPreferenceValueId(PreferenceValue preferenceValueId) {
+		this.preferenceValueId = preferenceValueId;
+	}
 
-    public PreferenceField getPreferenceFieldId() {
-        return preferenceFieldId;
-    }
-
-    public void setPreferenceFieldId(PreferenceField preferenceFieldId) {
-        this.preferenceFieldId = preferenceFieldId;
-    }
-
-    @Override
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
