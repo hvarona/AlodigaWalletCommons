@@ -9,6 +9,7 @@ import com.alodiga.wallet.common.genericEJB.EJBRequest;
 import com.alodiga.wallet.common.genericEJB.WalletGenericEJB;
 import com.alodiga.wallet.common.model.Bank;
 import com.alodiga.wallet.common.model.City;
+import com.alodiga.wallet.common.model.Close;
 import com.alodiga.wallet.common.model.Country;
 import com.alodiga.wallet.common.model.County;
 import com.alodiga.wallet.common.model.Currency;
@@ -18,6 +19,8 @@ import com.alodiga.wallet.common.model.Language;
 import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.Sms;
 import com.alodiga.wallet.common.model.State;
+import com.alodiga.wallet.common.model.Transaction;
+import java.util.Date;
 import javax.ejb.Local;
 
 @SuppressWarnings(value = {"all"})
@@ -109,5 +112,21 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     
     public ExchangeRate saveExchangeRate(ExchangeRate exchangeRate) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
-     
+    //Transaction
+    public List<Transaction> getTransaction(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<Transaction> getTransactionByDates(Date beginningDate, Date endingDate) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
+    
+    public List<Transaction> getTransactionByBeginningDate(Date beginningDate) throws EmptyListException, GeneralException, NullParameterException;
+
+    public Transaction loadTransaction(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public Transaction saveTransaction(Transaction transaction) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    //Close
+    public List<Close> getClose(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public Close loadClose(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public Close saveClose(Close close) throws RegisterNotFoundException, NullParameterException, GeneralException;
 }
