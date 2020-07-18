@@ -82,6 +82,7 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long VIEW_EXCHANGE_RATE = 49L;
     public static Long LIST_OPERATION_BANK = 50L;
     public static Long VIEW_OPERATION_BANK = 51L;
+    public static Long LIST_TRANSACTION = 52L;
 
     
     private static final long serialVersionUID = 1L;

@@ -27,12 +27,8 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.ExchangeDetail;
-import com.alodiga.wallet.common.model.ExchangeRate;
-import com.alodiga.wallet.common.model.Product;
 
 /**
  *
