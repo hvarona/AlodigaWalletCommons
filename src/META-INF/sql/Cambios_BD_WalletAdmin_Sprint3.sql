@@ -204,3 +204,24 @@ RENAME TO  `alodigaWallet`.`user_has_profile` ;
 -- Fecha: 15/07/2020
 ALTER TABLE `alodigaWallet`.`product` 
 ADD COLUMN `indHasAssociatedBank` TINYINT(1) NULL AFTER `isPaymentInfo`;
+
+
+-- Agregar opciones al menu de commission
+-- author: Lulymar Gutierrez
+-- Fecha: 20/07/2020
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('1', 'ListCommission', 'Commission', 'ListCommission', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('1', 'AddCommission', 'Commission', 'AddCommission', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('1', 'EditCommission', 'Commission', 'EditCommission', '1');
+
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('53', '1', 'Commission List', 'Commission List');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('53', '2', 'Lista de Comisiones', 'Lista de Comisiones');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('54', '1', 'Add Commission', 'Add Commission');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('54', '2', 'Agregar Commission', 'Agregar Commission');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('55', '1', 'Edit Commission', 'Edit Commission');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('55', '2', 'Editar Comision', 'Editar Comision');
+
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('', '53', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('54', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('55', '1');
