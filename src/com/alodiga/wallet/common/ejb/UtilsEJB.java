@@ -11,6 +11,7 @@ import com.alodiga.wallet.common.genericEJB.WalletGenericEJB;
 import com.alodiga.wallet.common.model.Bank;
 import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.Close;
+import com.alodiga.wallet.common.model.Commission;
 import com.alodiga.wallet.common.model.Country;
 import com.alodiga.wallet.common.model.County;
 import com.alodiga.wallet.common.model.Currency;
@@ -21,6 +22,7 @@ import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.Sms;
 import com.alodiga.wallet.common.model.State;
 import com.alodiga.wallet.common.model.Transaction;
+import com.alodiga.wallet.common.model.TransactionType;
 import java.util.Date;
 
 @SuppressWarnings(value = {"all"})
@@ -129,5 +131,18 @@ public interface UtilsEJB extends WalletGenericEJB {
     public Close loadClose(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     public Close saveClose(Close close) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    //Commission
+    public List<Commission> getCommission(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
+    public Commission loadCommission(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public Commission saveCommission(Commission commission) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    //TransactionType
+    public List<TransactionType> getTransactionType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public TransactionType loadTransactionType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public TransactionType saveTransactionType(TransactionType transactionType) throws RegisterNotFoundException, NullParameterException, GeneralException;
 }
