@@ -124,6 +124,8 @@ public class Product extends AbstractWalletEntity implements Serializable {
     private Collection<Commission> commissionCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private Collection<ProductData> productDataCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    private Collection<PreferenceValue> preferenceValueCollection;
     @JoinColumn(name = "categoryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Category categoryId;
@@ -267,11 +269,16 @@ public class Product extends AbstractWalletEntity implements Serializable {
         this.isPaymentInfo = isPaymentInfo;
     }
     
-    
-    
-    
-    
     @XmlTransient
+    public Collection<PreferenceValue> getPreferenceValueCollection() {
+		return preferenceValueCollection;
+	}
+
+	public void setPreferenceValueCollection(Collection<PreferenceValue> preferenceValueCollection) {
+		this.preferenceValueCollection = preferenceValueCollection;
+	}
+
+	@XmlTransient
     public Collection<Transaction> getTransactionCollection() {
         return transactionCollection;
     }

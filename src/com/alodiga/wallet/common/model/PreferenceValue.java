@@ -7,6 +7,7 @@ package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,9 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.Enterprise;
-import com.alodiga.wallet.common.model.PreferenceField;
-import com.alodiga.wallet.common.model.PreferenceValue;
 
 /**
  *
@@ -38,10 +36,10 @@ import com.alodiga.wallet.common.model.PreferenceValue;
 @NamedQueries({
     @NamedQuery(name = "PreferenceValue.findAll", query = "SELECT p FROM PreferenceValue p"),
     @NamedQuery(name = "PreferenceValue.findById", query = "SELECT p FROM PreferenceValue p WHERE p.id = :id"),
-    @NamedQuery(name = "PreferenceValue.findByPreferenceFieldId", query = "SELECT p FROM PreferenceValue p WHERE p.preferenceFieldId.id = :preferenceFieldId and p.endingDate is null and p.enterpriseId.id = 1"),
+    @NamedQuery(name = "PreferenceValue.findByPreferenceFieldId", query = "SELECT p FROM PreferenceValue p WHERE p.preferenceFieldId.id = :preferenceFieldId and p.preferenceClassficationId.id = :preferenceClassficationId"),
     @NamedQuery(name = "PreferenceValue.findByValue", query = "SELECT p FROM PreferenceValue p WHERE p.value = :value"),
-    @NamedQuery(name = "PreferenceValue.findByBeginningDate", query = "SELECT p FROM PreferenceValue p WHERE p.beginningDate = :beginningDate"),
-    @NamedQuery(name = "PreferenceValue.findByEndingDate", query = "SELECT p FROM PreferenceValue p WHERE p.endingDate = :endingDate")})
+    @NamedQuery(name = "PreferenceValue.findByCreateDate", query = "SELECT p FROM PreferenceValue p WHERE p.createDate = :createDate"),
+    @NamedQuery(name = "PreferenceValue.findByUpdateDate", query = "SELECT p FROM PreferenceValue p WHERE p.updateDate = :updateDate")})
 public class PreferenceValue extends AbstractWalletEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,18 +51,31 @@ public class PreferenceValue extends AbstractWalletEntity implements Serializabl
     @Column(name = "value")
     private String value;
     @Basic(optional = false)
-    @Column(name = "beginningDate")
+    @Column(name = "createDate")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date beginningDate;
-    @Column(name = "endingDate")
+    private Date createDate;
+    @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date endingDate;
+    private Date updateDate;
     @JoinColumn(name = "preferenceFieldId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private PreferenceField preferenceFieldId;
-    @JoinColumn(name = "enterpriseId", referencedColumnName = "id")
+    @JoinColumn(name = "productId", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Enterprise enterpriseId;
+    private Product productId;
+    @JoinColumn(name = "transactionTypeId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private TransactionType transactionTypeId;
+    @JoinColumn(name = "preferenceClassficationId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private PreferenceClassification preferenceClassficationId;
+    @JoinColumn(name = "preferenceValueParentId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private PreferenceValue preferenceValueParentId;
+    private Long bussinessId;
+    @Basic(optional = false)
+    @Column(name = "enabled")
+    private boolean enabled;
 
     public PreferenceValue() {
     }
@@ -73,10 +84,11 @@ public class PreferenceValue extends AbstractWalletEntity implements Serializabl
         this.id = id;
     }
 
-    public PreferenceValue(Long id, String value, Date beginningDate) {
+    public PreferenceValue(Long id, String value, Date createDate, Date updateDate) {
         this.id = id;
         this.value = value;
-        this.beginningDate = beginningDate;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 
     public Long getId() {
@@ -95,22 +107,6 @@ public class PreferenceValue extends AbstractWalletEntity implements Serializabl
         this.value = value;
     }
 
-    public Date getBeginningDate() {
-        return beginningDate;
-    }
-
-    public void setBeginningDate(Date beginningDate) {
-        this.beginningDate = beginningDate;
-    }
-
-    public Date getEndingDate() {
-        return endingDate;
-    }
-
-    public void setEndingDate(Date endingDate) {
-        this.endingDate = endingDate;
-    }
-
     public PreferenceField getPreferenceFieldId() {
         return preferenceFieldId;
     }
@@ -119,15 +115,71 @@ public class PreferenceValue extends AbstractWalletEntity implements Serializabl
         this.preferenceFieldId = preferenceFieldId;
     }
 
-    public Enterprise getEnterpriseId() {
-        return enterpriseId;
-    }
+    public Date getCreateDate() {
+		return createDate;
+	}
 
-    public void setEnterpriseId(Enterprise enterpriseId) {
-        this.enterpriseId = enterpriseId;
-    }
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 
-    @Override
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public Product getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Product productId) {
+		this.productId = productId;
+	}
+
+	public TransactionType getTransactionTypeId() {
+		return transactionTypeId;
+	}
+
+	public void setTransactionTypeId(TransactionType transactionTypeId) {
+		this.transactionTypeId = transactionTypeId;
+	}
+
+	public PreferenceClassification getPreferenceClassficationId() {
+		return preferenceClassficationId;
+	}
+
+	public void setPreferenceClassficationId(PreferenceClassification preferenceClassficationId) {
+		this.preferenceClassficationId = preferenceClassficationId;
+	}
+
+	public PreferenceValue getPreferenceValueParentId() {
+		return preferenceValueParentId;
+	}
+
+	public void setPreferenceValueParentId(PreferenceValue preferenceValueParentId) {
+		this.preferenceValueParentId = preferenceValueParentId;
+	}
+
+	public Long getBussinessId() {
+		return bussinessId;
+	}
+
+	public void setBussinessId(Long bussinessId) {
+		this.bussinessId = bussinessId;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

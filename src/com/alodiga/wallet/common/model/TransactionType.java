@@ -55,6 +55,8 @@ public class TransactionType extends AbstractWalletEntity implements Serializabl
     private Collection<Promotion> promotionCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionTypeId")
     private Collection<Commission> commissionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionTypeId")
+    private Collection<PreferenceValue> preferenceValueCollection;
 
     public TransactionType() {
     }
@@ -111,7 +113,16 @@ public class TransactionType extends AbstractWalletEntity implements Serializabl
         this.commissionCollection = commissionCollection;
     }
 
-    @Override
+    @XmlTransient
+    public Collection<PreferenceValue> getPreferenceValueCollection() {
+		return preferenceValueCollection;
+	}
+
+	public void setPreferenceValueCollection(Collection<PreferenceValue> preferenceValueCollection) {
+		this.preferenceValueCollection = preferenceValueCollection;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
