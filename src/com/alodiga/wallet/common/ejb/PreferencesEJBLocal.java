@@ -15,6 +15,7 @@ import com.alodiga.wallet.common.model.PreferenceControl;
 import com.alodiga.wallet.common.model.PreferenceField;
 import com.alodiga.wallet.common.model.PreferenceType;
 import com.alodiga.wallet.common.model.PreferenceValue;
+import com.alodiga.wallet.common.model.TransactionType;
 
 
 @SuppressWarnings("all")
@@ -54,4 +55,15 @@ public interface PreferencesEJBLocal extends WalletGenericEJBLocal {
     public List<PreferenceValue> savePreferenceValues(List<PreferenceValue> preferenceValues,List<PreferenceControl> preferenceControls) throws GeneralException, NullParameterException;
     
     public List<PreferenceClassification> getPreferenceClassifications(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
+    
+    public List<PreferenceValue> getPreferenceValuesGroupByBussinessId(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;
+    
+    public List<TransactionType> getTransactionTypes(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<PreferenceValue> getPreferenceValuesByParam(Long classificationId, Long productId, Long transactionTypeId, Long bussinessId) throws GeneralException, NullParameterException, EmptyListException;
+    
+    public List<PreferenceValue> getPreferenceValuesByClassificationIdAndBussinessId(Long classificationId, Long bussinessId) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
+    
+    public boolean validatePreferencesValues(Long classificationId,Long productId,Long transactionTypeId, Long bussinessId)throws GeneralException, NullParameterException, EmptyListException;
+
 }

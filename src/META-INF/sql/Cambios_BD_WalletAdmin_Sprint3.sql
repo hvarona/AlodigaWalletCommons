@@ -204,3 +204,30 @@ RENAME TO  `alodigaWallet`.`user_has_profile` ;
 -- Fecha: 15/07/2020
 ALTER TABLE `alodigaWallet`.`product` 
 ADD COLUMN `indHasAssociatedBank` TINYINT(1) NULL AFTER `isPaymentInfo`;
+
+
+-- Agregar permisos para las preferencias especificas
+-- author: Yamelis Almea
+-- Fecha: 20/07/2020
+INSERT INTO `alodigaWallet`.`permission` VALUES (53,3,'ListPreferences','preference_value','List Preferences',1),
+(54,2,'AddPreferences','preference_value','Add Preferences',1),
+(55,2,'EditPreferences','preference_value','Edit Preferences',1),
+(56,2,'ViewPreferences','preference_value','View Preferences',1),
+(57,2,'ChangePreferencesStatus','preference_value','Change Preferences Status',1);
+
+INSERT INTO `alodigaWallet`.`permission_data` VALUES (105,53,2,'Listar Perfiles','Listar Perfiles'),
+(106,53,1,'List Preferences','List Preferences'),
+(107,54,2,'Agregar Preferencias','Agregar Preferencias'),
+(108,54,1,'Add Preferences','Add Preferences'),
+(109,55,2,'Editar Preferencias','Editar Preferencias'),
+(110,55,1,'Edit Preferences','Edit Preferences'),
+(111,56,2,'Ver Perfil','Ver Preferencias'),
+(112,56,1,'View Preferences','View Preferences'),
+(113,57,2,'Cambiar status de Preferencias','Cambiar status de Preferencias'),
+(114,57,1,'Change Preferences Status','Change Preferences Status');
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` VALUES (53,53,1),
+(54,54,1),
+(55,55,1),
+(56,56,1),
+(57,57,1);
