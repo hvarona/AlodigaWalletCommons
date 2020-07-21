@@ -24,7 +24,7 @@ INSERT INTO `alodigaWallet`.`preference` VALUES (1,'session',1,'Values relaciona
 (3,'transaction',1,'All related to transaction.'),
 (4,'commission',1,'Value relacionados con la session');
 
-CREATE TABLE `preference_type` (
+CREATE TABLE `alodigaWallet`.`preference_type` (
   `id` bigint(3) NOT NULL AUTO_INCREMENT,
   `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -68,7 +68,7 @@ INSERT INTO `alodigaWallet`.`preference_field` VALUES (1,'TIMEOUT_INACTIVE_SESSI
 
 
 
-CREATE TABLE `preference_field_data` (
+CREATE TABLE `alodigaWallet`.`preference_field_data` (
   `id` bigint(3) NOT NULL AUTO_INCREMENT,
   `preferenceFieldId` bigint(20) NOT NULL,
   `languageId` bigint(3) NOT NULL,
@@ -188,7 +188,7 @@ CREATE TABLE `alodigaWallet`.`preference_control` (
 ) ENGINE=InnoDB;
 
 
-INSERT INTO `alodigawallet`.`provider` (`id`, `name`, `url`, `isSMSProvider`, `enabled`, `aditionalPercent`) VALUES ('2', 'Twilio', 'www', '1', '1', '0');
+INSERT INTO `alodigaWallet`.`provider` (`id`, `name`, `url`, `isSMSProvider`, `enabled`, `aditionalPercent`) VALUES ('2', 'Twilio', 'www', '1', '1', '0');
 
 ALTER TABLE `alodigaWallet`.`user_has_profile_has_enterprise` 
 DROP FOREIGN KEY `fk_user_has_profile_has_enterprise_enterprise1`;
@@ -231,3 +231,23 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` VALUES (53,53,1),
 (55,55,1),
 (56,56,1),
 (57,57,1);
+
+-- Agregar opciones al menu de commission
+-- author: Lulymar Gutierrez
+-- Fecha: 20/07/2020
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('1', 'ListCommission', 'Commission', 'ListCommission', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('1', 'AddCommission', 'Commission', 'AddCommission', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('1', 'EditCommission', 'Commission', 'EditCommission', '1');
+
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('58', '1', 'Commission List', 'Commission List');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('58', '2', 'Lista de Comisiones', 'Lista de Comisiones');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('59', '1', 'Add Commission', 'Add Commission');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('59', '2', 'Agregar Commission', 'Agregar Commission');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('60', '1', 'Edit Commission', 'Edit Commission');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('60', '2', 'Editar Comision', 'Editar Comision');
+
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('58', '58', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('59','59', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('60','60', '1');

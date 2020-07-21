@@ -64,7 +64,7 @@ import com.alodiga.wallet.common.model.Transaction;
     @NamedQuery(name = "Product.findByIsExchangeProduct", query = "SELECT p FROM Product p WHERE p.isExchangeProduct = :isExchangeProduct")})
 public class Product extends AbstractWalletEntity implements Serializable {
 
-	public static final String NAME = "name";
+    public static final String NAME = "name";
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private Collection<BankOperation> bankOperationCollection;
@@ -137,6 +137,8 @@ public class Product extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "enterpriseId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Enterprise enterpriseId;
+    @Column(name = "indHasAssociatedBank")
+    private Boolean indHasAssociatedBank;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private Collection<BalanceHistory> balanceHistoryCollection;
     @Transient
@@ -445,7 +447,13 @@ public class Product extends AbstractWalletEntity implements Serializable {
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
-    
-    
+
+    public Boolean getIndHasAssociatedBank() {
+        return indHasAssociatedBank;
     }
+
+    public void setIndHasAssociatedBank(Boolean indHasAssociatedBank) {
+        this.indHasAssociatedBank = indHasAssociatedBank;
+    }
+}
 
