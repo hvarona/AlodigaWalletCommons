@@ -64,7 +64,7 @@ import com.alodiga.wallet.common.model.Transaction;
     @NamedQuery(name = "Product.findByIsExchangeProduct", query = "SELECT p FROM Product p WHERE p.isExchangeProduct = :isExchangeProduct")})
 public class Product extends AbstractWalletEntity implements Serializable {
 
-	public static final String NAME = "name";
+    public static final String NAME = "name";
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private Collection<BankOperation> bankOperationCollection;
@@ -116,6 +116,8 @@ public class Product extends AbstractWalletEntity implements Serializable {
     private boolean isRemettence;
     @Column(name = "isPaymentInfo")
     private boolean isPaymentInfo;
+    @Column(name = "indHasAssociatedBank")
+    private boolean indHasAssociatedBank;
     @OneToMany(mappedBy = "productId")
     private Collection<Transaction> transactionCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
@@ -149,7 +151,7 @@ public class Product extends AbstractWalletEntity implements Serializable {
         this.id = id;
     }
 
-    public Product(Long id, String name, boolean taxInclude, boolean enabled, String referenceCode, boolean isFree, boolean isAlocashProduct,String symbol, boolean isPayTopUp, boolean isExchangeProduct,boolean isRemettence_, boolean  isPaymentInfo) {
+    public Product(Long id, String name, boolean taxInclude, boolean enabled, String referenceCode, boolean isFree, boolean isAlocashProduct,String symbol, boolean isPayTopUp, boolean isExchangeProduct,boolean isRemettence_, boolean  isPaymentInfo, boolean  indHasAssociatedBank) {
         this.id = id;
         this.name = name;
         this.taxInclude = taxInclude;
@@ -162,6 +164,7 @@ public class Product extends AbstractWalletEntity implements Serializable {
         this.isExchangeProduct = isExchangeProduct;
         this.isRemettence = isRemettence_;
         this.isPaymentInfo = isPaymentInfo;
+        this.indHasAssociatedBank= indHasAssociatedBank;
     }
 
     public Long getId() {
@@ -268,6 +271,15 @@ public class Product extends AbstractWalletEntity implements Serializable {
     public void setIsPaymentInfo(boolean isPaymentInfo) {
         this.isPaymentInfo = isPaymentInfo;
     }
+    
+    public boolean isIndHasAssociatedBank() {
+        return indHasAssociatedBank;
+    }
+
+    public void setIndHasAssociatedBank(boolean indHasAssociatedBank) {
+        this.isPaymentInfo = indHasAssociatedBank;
+    }
+    
     
     @XmlTransient
     public Collection<PreferenceValue> getPreferenceValueCollection() {

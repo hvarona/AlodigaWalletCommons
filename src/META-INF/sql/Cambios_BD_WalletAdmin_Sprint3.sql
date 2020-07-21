@@ -24,7 +24,7 @@ INSERT INTO `alodigaWallet`.`preference` VALUES (1,'session',1,'Values relaciona
 (3,'transaction',1,'All related to transaction.'),
 (4,'commission',1,'Value relacionados con la session');
 
-CREATE TABLE `preference_type` (
+CREATE TABLE `alodigaWallet`.`preference_type` (
   `id` bigint(3) NOT NULL AUTO_INCREMENT,
   `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -68,7 +68,7 @@ INSERT INTO `alodigaWallet`.`preference_field` VALUES (1,'TIMEOUT_INACTIVE_SESSI
 
 
 
-CREATE TABLE `preference_field_data` (
+CREATE TABLE `alodigaWallet`.`preference_field_data` (
   `id` bigint(3) NOT NULL AUTO_INCREMENT,
   `preferenceFieldId` bigint(20) NOT NULL,
   `languageId` bigint(3) NOT NULL,
@@ -188,7 +188,7 @@ CREATE TABLE `alodigaWallet`.`preference_control` (
 ) ENGINE=InnoDB;
 
 
-INSERT INTO `alodigawallet`.`provider` (`id`, `name`, `url`, `isSMSProvider`, `enabled`, `aditionalPercent`) VALUES ('2', 'Twilio', 'www', '1', '1', '0');
+INSERT INTO `alodigaWallet`.`provider` (`id`, `name`, `url`, `isSMSProvider`, `enabled`, `aditionalPercent`) VALUES ('2', 'Twilio', 'www', '1', '1', '0');
 
 ALTER TABLE `alodigaWallet`.`user_has_profile_has_enterprise` 
 DROP FOREIGN KEY `fk_user_has_profile_has_enterprise_enterprise1`;
