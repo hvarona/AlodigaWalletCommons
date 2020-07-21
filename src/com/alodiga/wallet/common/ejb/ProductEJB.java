@@ -9,6 +9,7 @@ import com.alodiga.wallet.common.exception.NullParameterException;
 import com.alodiga.wallet.common.exception.RegisterNotFoundException;
 import com.alodiga.wallet.common.genericEJB.EJBRequest;
 import com.alodiga.wallet.common.genericEJB.WalletGenericEJB;
+import com.alodiga.wallet.common.model.BankHasProduct;
 import com.alodiga.wallet.common.model.Category;
 import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.Product;
@@ -71,5 +72,9 @@ public interface ProductEJB extends WalletGenericEJB {
     //ProductIntegrationType
     public List<ProductIntegrationType> getProductIntegrationType(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
  
+   //BankHasProduct
+   public List<BankHasProduct> getBankHasProduct(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
+   public BankHasProduct saveBankHasProduct(BankHasProduct bankHasProduct) throws GeneralException, NullParameterException;
+   public List<BankHasProduct> getBankHasProductByID(BankHasProduct bankHasProduct) throws GeneralException, EmptyListException, NullParameterException;
 
 }
