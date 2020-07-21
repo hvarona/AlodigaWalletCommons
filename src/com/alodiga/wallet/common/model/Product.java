@@ -137,8 +137,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "enterpriseId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Enterprise enterpriseId;
-    @Column(name = "indHasAssociatedBank")
-    private Boolean indHasAssociatedBank;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private Collection<BalanceHistory> balanceHistoryCollection;
     @Transient
@@ -446,14 +444,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
     @Override
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
-    }
-
-    public Boolean getIndHasAssociatedBank() {
-        return indHasAssociatedBank;
-    }
-
-    public void setIndHasAssociatedBank(Boolean indHasAssociatedBank) {
-        this.indHasAssociatedBank = indHasAssociatedBank;
     }
 }
 
