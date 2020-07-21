@@ -43,5 +43,7 @@ public class EjbConstants {
     public static final String ERR_NORESULTEXCEPTION = "E041";
 
     public static final int ENTERPRISE_ID_USA = 1;
+    
+    public static final String PARAM_PRODUCT_ID = "productId";
 
 }
