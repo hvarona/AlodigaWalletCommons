@@ -21,6 +21,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.BankHasProduct;
+import com.ericsson.alodiga.ws.Banco;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -43,14 +46,12 @@ public class BankHasProduct extends AbstractWalletEntity implements Serializable
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "productId")
-    private long productId;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "bankId")
-    private long bankId;
+    @JoinColumn(name = "productId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Product productId;
+    @JoinColumn(name = "bankId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Bank bankId;
 
     public BankHasProduct() {
     }
@@ -59,7 +60,7 @@ public class BankHasProduct extends AbstractWalletEntity implements Serializable
         this.id = id;
     }
 
-    public BankHasProduct(Long id, long productId, long bankId) {
+    public BankHasProduct(Long id, Product productId, Bank bankId) {
         this.id = id;
         this.productId = productId;
         this.bankId = bankId;
@@ -73,19 +74,19 @@ public class BankHasProduct extends AbstractWalletEntity implements Serializable
         this.id = id;
     }
 
-    public long getProductId() {
+    public Product getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(Product productId) {
         this.productId = productId;
     }
 
-    public long getBankId() {
+    public Bank getBankId() {
         return bankId;
     }
 
-    public void setBankId(long bankId) {
+    public void setBankId(Bank bankId) {
         this.bankId = bankId;
     }
 
