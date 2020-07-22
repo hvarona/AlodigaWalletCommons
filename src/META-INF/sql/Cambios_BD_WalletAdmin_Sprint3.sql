@@ -205,49 +205,100 @@ RENAME TO  `alodigaWallet`.`user_has_profile` ;
 ALTER TABLE `alodigaWallet`.`product` 
 ADD COLUMN `indHasAssociatedBank` TINYINT(1) NULL AFTER `isPaymentInfo`;
 
+-- Agregar tabla collection_type
+-- author: Jesús Gómez
+-- Fecha: 21/07/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`collection_type` (
+  `id` INT NOT NULL,
+  `description` VARCHAR(50) NOT NULL,
+  `countryId` BIGINT(3) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_collectionType_country1_idx` (`countryId` ASC),
+  CONSTRAINT `fk_collectionType_country1`
+    FOREIGN KEY (`countryId`)
+    REFERENCES `alodigaWallet`.`country` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
--- Agregar permisos para las preferencias especificas
--- author: Yamelis Almea
+-- Agregar tabla person_type
+-- author: Jesús Gómez
+-- Fecha: 21/07/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`person_type` (
+  `id` INT NOT NULL,
+  `description` VARCHAR(50) NULL,
+  `countryId` BIGINT(3) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_personType_country1_idx` (`countryId` ASC),
+  CONSTRAINT `fk_personType_country1`
+    FOREIGN KEY (`countryId`)
+    REFERENCES `alodigaWallet`.`country` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- Agregar tabla documents_person_type
+-- author: Jesús Gómez
+-- Fecha: 21/07/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`documents_person_type` (
+  `id` INT NOT NULL,
+  `description` VARCHAR(50) NULL,
+  `personTypeId` INT NOT NULL,
+  `codeIdentification` VARCHAR(10) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_documentsPersonType_personType1_idx` (`personTypeId` ASC),
+  CONSTRAINT `fk_documentsPersonType_personType1`
+    FOREIGN KEY (`personTypeId`)
+    REFERENCES `alodigaWallet`.`person_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- Agregar tabla collections_request
+-- author: Jesús Gómez
+-- Fecha: 21/07/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`collections_request` (
+  `id` INT NOT NULL,
+  `collectionTypeId` INT NOT NULL,
+  `categoryId` BIGINT(3) NOT NULL,
+  `personTypeId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_collectionsRequest_collectionType1_idx` (`collectionTypeId` ASC),
+  INDEX `fk_collectionsRequest_category1_idx` (`categoryId` ASC),
+  INDEX `fk_collectionsRequest_personType1_idx` (`personTypeId` ASC),
+  CONSTRAINT `fk_collectionsRequest_collectionType1`
+    FOREIGN KEY (`collectionTypeId`)
+    REFERENCES `alodigaWallet`.`collection_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_collectionsRequest_category1`
+    FOREIGN KEY (`categoryId`)
+    REFERENCES `alodigaWallet`.`category` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_collectionsRequest_personType1`
+    FOREIGN KEY (`personTypeId`)
+    REFERENCES `alodigaWallet`.`person_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- Agregar FKs bank_has_product
+-- author: Adira Quintero
 -- Fecha: 20/07/2020
-INSERT INTO `alodigaWallet`.`permission` VALUES (53,3,'ListPreferences','preference_value','List Preferences',1),
-(54,2,'AddPreferences','preference_value','Add Preferences',1),
-(55,2,'EditPreferences','preference_value','Edit Preferences',1),
-(56,2,'ViewPreferences','preference_value','View Preferences',1),
-(57,2,'ChangePreferencesStatus','preference_value','Change Preferences Status',1);
-
-INSERT INTO `alodigaWallet`.`permission_data` VALUES (105,53,2,'Listar Perfiles','Listar Perfiles'),
-(106,53,1,'List Preferences','List Preferences'),
-(107,54,2,'Agregar Preferencias','Agregar Preferencias'),
-(108,54,1,'Add Preferences','Add Preferences'),
-(109,55,2,'Editar Preferencias','Editar Preferencias'),
-(110,55,1,'Edit Preferences','Edit Preferences'),
-(111,56,2,'Ver Perfil','Ver Preferencias'),
-(112,56,1,'View Preferences','View Preferences'),
-(113,57,2,'Cambiar status de Preferencias','Cambiar status de Preferencias'),
-(114,57,1,'Change Preferences Status','Change Preferences Status');
-
-INSERT INTO `alodigaWallet`.`permission_has_profile` VALUES (53,53,1),
-(54,54,1),
-(55,55,1),
-(56,56,1),
-(57,57,1);
-
--- Agregar opciones al menu de commission
--- author: Lulymar Gutierrez
--- Fecha: 20/07/2020
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('1', 'ListCommission', 'Commission', 'ListCommission', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('1', 'AddCommission', 'Commission', 'AddCommission', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('1', 'EditCommission', 'Commission', 'EditCommission', '1');
+ALTER TABLE `alodigaWallet`.`bank_has_product`
+ADD INDEX `fk_bank_has_product_1_idx` (`productId` ASC),
+ADD INDEX `fk_bank_has_product_2_idx` (`bankId` ASC);
+ALTER TABLE `alodigaWallet`.`bank_has_product`
+ADD CONSTRAINT `fk_bank_has_product_1`
+ FOREIGN KEY (`productId`)
+ REFERENCES `alodigaWallet`.`product` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_bank_has_product_2`
+ FOREIGN KEY (`bankId`)
+ REFERENCES `alodigaWallet`.`bank` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
 
 
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('58', '1', 'Commission List', 'Commission List');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('58', '2', 'Lista de Comisiones', 'Lista de Comisiones');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('59', '1', 'Add Commission', 'Add Commission');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('59', '2', 'Agregar Commission', 'Agregar Commission');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('60', '1', 'Edit Commission', 'Edit Commission');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('60', '2', 'Editar Comision', 'Editar Comision');
-
-
-INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('58', '58', '1');
-INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('59','59', '1');
-INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('60','60', '1');
