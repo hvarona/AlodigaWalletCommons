@@ -205,3 +205,100 @@ RENAME TO  `alodigaWallet`.`user_has_profile` ;
 ALTER TABLE `alodigaWallet`.`product` 
 ADD COLUMN `indHasAssociatedBank` TINYINT(1) NULL AFTER `isPaymentInfo`;
 
+-- Agregar tabla collection_type
+-- author: Jesús Gómez
+-- Fecha: 21/07/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`collection_type` (
+  `id` INT NOT NULL,
+  `description` VARCHAR(50) NOT NULL,
+  `countryId` BIGINT(3) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_collectionType_country1_idx` (`countryId` ASC),
+  CONSTRAINT `fk_collectionType_country1`
+    FOREIGN KEY (`countryId`)
+    REFERENCES `alodigaWallet`.`country` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- Agregar tabla person_type
+-- author: Jesús Gómez
+-- Fecha: 21/07/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`person_type` (
+  `id` INT NOT NULL,
+  `description` VARCHAR(50) NULL,
+  `countryId` BIGINT(3) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_personType_country1_idx` (`countryId` ASC),
+  CONSTRAINT `fk_personType_country1`
+    FOREIGN KEY (`countryId`)
+    REFERENCES `alodigaWallet`.`country` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- Agregar tabla documents_person_type
+-- author: Jesús Gómez
+-- Fecha: 21/07/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`documents_person_type` (
+  `id` INT NOT NULL,
+  `description` VARCHAR(50) NULL,
+  `personTypeId` INT NOT NULL,
+  `codeIdentification` VARCHAR(10) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_documentsPersonType_personType1_idx` (`personTypeId` ASC),
+  CONSTRAINT `fk_documentsPersonType_personType1`
+    FOREIGN KEY (`personTypeId`)
+    REFERENCES `alodigaWallet`.`person_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- Agregar tabla collections_request
+-- author: Jesús Gómez
+-- Fecha: 21/07/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`collections_request` (
+  `id` INT NOT NULL,
+  `collectionTypeId` INT NOT NULL,
+  `categoryId` BIGINT(3) NOT NULL,
+  `personTypeId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_collectionsRequest_collectionType1_idx` (`collectionTypeId` ASC),
+  INDEX `fk_collectionsRequest_category1_idx` (`categoryId` ASC),
+  INDEX `fk_collectionsRequest_personType1_idx` (`personTypeId` ASC),
+  CONSTRAINT `fk_collectionsRequest_collectionType1`
+    FOREIGN KEY (`collectionTypeId`)
+    REFERENCES `alodigaWallet`.`collection_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_collectionsRequest_category1`
+    FOREIGN KEY (`categoryId`)
+    REFERENCES `alodigaWallet`.`category` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_collectionsRequest_personType1`
+    FOREIGN KEY (`personTypeId`)
+    REFERENCES `alodigaWallet`.`person_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- Agregar FKs bank_has_product
+-- author: Adira Quintero
+-- Fecha: 20/07/2020
+ALTER TABLE `alodigaWallet`.`bank_has_product`
+ADD INDEX `fk_bank_has_product_1_idx` (`productId` ASC),
+ADD INDEX `fk_bank_has_product_2_idx` (`bankId` ASC);
+ALTER TABLE `alodigaWallet`.`bank_has_product`
+ADD CONSTRAINT `fk_bank_has_product_1`
+ FOREIGN KEY (`productId`)
+ REFERENCES `alodigaWallet`.`product` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_bank_has_product_2`
+ FOREIGN KEY (`bankId`)
+ REFERENCES `alodigaWallet`.`bank` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+
+
