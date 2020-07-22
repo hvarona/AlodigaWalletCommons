@@ -74,7 +74,7 @@ public interface ProductEJB extends WalletGenericEJB {
  
    //BankHasProduct
    public List<BankHasProduct> getBankHasProduct(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
-   public BankHasProduct saveBankHasProduct(BankHasProduct bankHasProduct) throws GeneralException, NullParameterException;
+   public BankHasProduct saveBankHasProduct(BankHasProduct bankHasProduct) throws RegisterNotFoundException, NullParameterException, GeneralException;
    public List<BankHasProduct> getBankHasProductByID(BankHasProduct bankHasProduct) throws GeneralException, EmptyListException, NullParameterException;
 
 }
