@@ -243,5 +243,5 @@ public class Constants {
     public static final int MAX_PASSWORD_DIGITS = 4;
     public static String DEV_REPORT = "dev-reports@interaxmedia.com";
 
-    public static final String COMMISSION_KEY = "commissionId";
+    public static final String PRODUCT_KEY = "productId";
 }
