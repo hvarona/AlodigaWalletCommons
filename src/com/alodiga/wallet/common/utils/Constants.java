@@ -28,7 +28,7 @@ public class Constants {
     public static String INVALID_PASSWORD_EXCEPTION = "E-03";
     public static String DISABLED_USER_EXCEPTION = "E-04";
     public static String INVALID_QUESTION_EXCEPTION = "E-05";
-        
+
     // constante modulo
     public static final String sALOCASH = "ALOCASH";
     public static final String sAUTHPOS = "AUTHPOS";
@@ -140,7 +140,7 @@ public class Constants {
     public static final int SEND_TYPE_EMAIL_TRASNFER_CARD_TO_CARD = 11;
     public static final int SEND_TYPE_EMAIL_TRASNFER_CARD_TO_CARD_RECIBER = 12;
     public static final int SEND_TYPE_EMAIL_RECOVER_PASSWORD = 13;
-    
+
     // constantes SendTypeSMS
     public static final int SEND_TYPE_SMS_REGISTER = 20;
     public static final int SEND_TYPE_SMS_RECHARGE = 21;
@@ -152,11 +152,10 @@ public class Constants {
     public static final int SEND_TYPE_SMS_TRANSFER_ACCOUNT = 27;
     public static final int SEND_TYPE_SMS_TRANSFER_ACCOUNT_RECIBER = 28;
     public static final int SEND_TYPE_SMS_EXCHANGE_PRODUCT = 29;
-    public static final int SEND_TYPE_SMS_TRASNFER_CARD_TO_CARD= 30;
+    public static final int SEND_TYPE_SMS_TRASNFER_CARD_TO_CARD = 30;
     public static final int SEND_TYPE_SMS_TRASNFER_CARD_TO_CARD_RECIBER = 31;
     public static final int SEND_TYPE_SMS_TEST = 32;
-    
-    
+
     //internat Access Api Operation
     public static final String USER_API = "usuarioWS";
     public static final String PASSWORD_API = "passwordWS";
@@ -203,7 +202,7 @@ public class Constants {
 
     //Transferencias CARD TO CARD SOURCE
     public static final Long TRANSFER_CARD_TO_CARD_SOURCE = 5L;
-    
+
     //Remettence
     public static final String COMMENTARY_REMETTENCE = "REMESA";
     public static final Boolean SENDING_OPTION_SMS_REMETTENCE = true;
@@ -221,17 +220,16 @@ public class Constants {
     public static final String POINT_REMITTANCE = "1";
     public static final Long PRODUCT_REMITTANCE = 2L;
     public static final String CORRESPONDENT_REMITTANCE = "1";
-    
-    
+
     //AFINITAS
     public static final Long PRODUCT_AFINITAS = 2L;
-    
+
     //PAYMENT INFO
     public static final Long PAYMENT_PATNER = 2L;
     public static final Long PAYMENT_TYPE = 2L;
-    
+
     public static final int USA_CODE = 1;
-    
+
     public static final String PROPERTIES_PACKAGE = "com.alodiga.wallet.utils.";
     public static final String ERROR_FILE_NAME = PROPERTIES_PACKAGE + "system_error";
     public static final String MESSAGE_FILE_NAME = PROPERTIES_PACKAGE + "system_message";
@@ -240,8 +238,10 @@ public class Constants {
     public static final String ERR_INCORRECT_PARAMETER = "E002";
     public static final String ERR_EMPTY_LIST_EXCEPTION = "E003";
     public static final String ERR_REGISTER_NOT_FOUND_EXCEPTION = "E004";
-    
+
     public static final int MAX_LOGIN_DIGITS = 8;
     public static final int MAX_PASSWORD_DIGITS = 4;
     public static String DEV_REPORT = "dev-reports@interaxmedia.com";
+
+    public static final String COMMISSION_KEY = "commissionId";
 }

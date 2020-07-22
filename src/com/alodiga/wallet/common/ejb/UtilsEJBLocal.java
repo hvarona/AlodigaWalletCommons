@@ -134,6 +134,8 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     
     //Commission
     public List<Commission> getCommission(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<Commission> getCommissionByProduct(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public Commission loadCommission(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
