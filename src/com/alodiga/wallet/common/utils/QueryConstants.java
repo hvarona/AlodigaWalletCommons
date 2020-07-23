@@ -156,4 +156,7 @@ public class QueryConstants {
     public static final String LIST_PRODUCT = "listProduct";
     public static final String LOAD_CONTROL_BY_INSTRUMENT = "loadControlByInstrument";
     public static final String PARAM_CONTROL = "metrologicalControlId";
+    public static final String PARAM_BANK_OPERATION_TYPE_ID = "bankOperationTypeId";
+    public static final String PARAM_BANK_OPERATION_MODE_ID = "bankOperationModeId";
+    public static final String PARAM_BANK_ID = "bankId";
 }
