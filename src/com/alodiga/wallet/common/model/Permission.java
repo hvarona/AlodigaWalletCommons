@@ -91,6 +91,7 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long LIST_COMMISSION = 58L;
     public static Long ADD_COMMISSION = 59L;
     public static Long EDIT_COMMISSION = 60L;
+    public static Long LIST_BANK_HAS_PRODUCT = 61L;
 
     
     private static final long serialVersionUID = 1L;
