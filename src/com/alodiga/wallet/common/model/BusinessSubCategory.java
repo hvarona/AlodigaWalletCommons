@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -25,12 +25,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author jose
  */
 @Entity
-@Table(name = "collections_request")
+@Table(name = "business_sub_category")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CollectionsRequest.findAll", query = "SELECT c FROM CollectionsRequest c")
-    , @NamedQuery(name = "CollectionsRequest.findById", query = "SELECT c FROM CollectionsRequest c WHERE c.id = :id")})
-public class CollectionsRequest implements Serializable {
+    @NamedQuery(name = "BusinessSubCategory.findAll", query = "SELECT b FROM BusinessSubCategory b")
+    , @NamedQuery(name = "BusinessSubCategory.findById", query = "SELECT b FROM BusinessSubCategory b WHERE b.id = :id")
+    , @NamedQuery(name = "BusinessSubCategory.findByDescription", query = "SELECT b FROM BusinessSubCategory b WHERE b.description = :description")
+    , @NamedQuery(name = "BusinessSubCategory.findByMccCode", query = "SELECT b FROM BusinessSubCategory b WHERE b.mccCode = :mccCode")})
+public class BusinessSubCategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,20 +40,20 @@ public class CollectionsRequest implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "categoryId", referencedColumnName = "id")
+    @Size(max = 80)
+    @Column(name = "description")
+    private String description;
+    @Size(max = 10)
+    @Column(name = "mccCode")
+    private String mccCode;
+    @JoinColumn(name = "businessCategoryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Category categoryId;
-    @JoinColumn(name = "collectionTypeId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private CollectionType collectionTypeId;
-    @JoinColumn(name = "personTypeId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private PersonType personTypeId;
+    private BusinessCategory businessCategoryId;
 
-    public CollectionsRequest() {
+    public BusinessSubCategory() {
     }
 
-    public CollectionsRequest(Integer id) {
+    public BusinessSubCategory(Integer id) {
         this.id = id;
     }
 
@@ -63,28 +65,28 @@ public class CollectionsRequest implements Serializable {
         this.id = id;
     }
 
-    public Category getCategoryId() {
-        return categoryId;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCategoryId(Category categoryId) {
-        this.categoryId = categoryId;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public CollectionType getCollectionTypeId() {
-        return collectionTypeId;
+    public String getMccCode() {
+        return mccCode;
     }
 
-    public void setCollectionTypeId(CollectionType collectionTypeId) {
-        this.collectionTypeId = collectionTypeId;
+    public void setMccCode(String mccCode) {
+        this.mccCode = mccCode;
     }
 
-    public PersonType getPersonTypeId() {
-        return personTypeId;
+    public BusinessCategory getBusinessCategoryId() {
+        return businessCategoryId;
     }
 
-    public void setPersonTypeId(PersonType personTypeId) {
-        this.personTypeId = personTypeId;
+    public void setBusinessCategoryId(BusinessCategory businessCategoryId) {
+        this.businessCategoryId = businessCategoryId;
     }
 
     @Override
@@ -97,10 +99,10 @@ public class CollectionsRequest implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CollectionsRequest)) {
+        if (!(object instanceof BusinessSubCategory)) {
             return false;
         }
-        CollectionsRequest other = (CollectionsRequest) object;
+        BusinessSubCategory other = (BusinessSubCategory) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -109,7 +111,7 @@ public class CollectionsRequest implements Serializable {
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.CollectionsRequest[ id=" + id + " ]";
+        return "com.alodiga.wallet.common.model.BusinessSubCategory[ id=" + id + " ]";
     }
     
 }
