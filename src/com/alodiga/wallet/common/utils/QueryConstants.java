@@ -161,4 +161,7 @@ public class QueryConstants {
     public static final String PARAM_BANK_OPERATION_MODE_ID = "bankOperationModeId";
     public static final String PARAM_BANK_ID = "bankId";
     public static final String PERSON_TYPE_BY_COUNTRY = "personTypeByCountry";
+    public static final String COLLECTION_TYPE_BY_COUNTRY = "CollectionTypeByCountry";
+
+    
 }
