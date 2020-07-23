@@ -8,6 +8,9 @@ import com.alodiga.wallet.common.exception.RegisterNotFoundException;
 import com.alodiga.wallet.common.genericEJB.EJBRequest;
 import com.alodiga.wallet.common.genericEJB.WalletGenericEJB;
 import com.alodiga.wallet.common.model.Bank;
+import com.alodiga.wallet.common.model.BankOperation;
+import com.alodiga.wallet.common.model.BankOperationMode;
+import com.alodiga.wallet.common.model.BankOperationType;
 import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.Close;
 import com.alodiga.wallet.common.model.Commission;
@@ -131,6 +134,15 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public Close loadClose(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     public Close saveClose(Close close) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    //BankOperation
+    public List<BankOperation> getBankOperationsByParams(EJBRequest request) throws NullParameterException, GeneralException, EmptyListException;
+    
+    public List<BankOperationType> getBankOperationTypes(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<BankOperationMode> getBankOperationModes(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<BankOperation> getBankOperations(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
     //Commission
     public List<Commission> getCommission(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
