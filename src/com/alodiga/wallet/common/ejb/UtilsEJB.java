@@ -159,5 +159,5 @@ public interface UtilsEJB extends WalletGenericEJB {
     public TransactionType loadTransactionType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     public TransactionType saveTransactionType(TransactionType transactionType) throws RegisterNotFoundException, NullParameterException, GeneralException;
->>>>>>> refs/heads/DEV
+
 }
