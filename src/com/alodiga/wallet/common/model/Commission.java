@@ -26,14 +26,9 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
-
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.BankOperation;
-import com.alodiga.wallet.common.model.Commission;
-import com.alodiga.wallet.common.model.CommissionItem;
-import com.alodiga.wallet.common.model.Product;
-import com.alodiga.wallet.common.model.TransactionType;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.utils.QueryConstants;
 
 /**
  *
@@ -49,7 +44,8 @@ import com.alodiga.wallet.common.exception.TableNotFoundException;
     @NamedQuery(name = "Commission.findByEndingDate", query = "SELECT c FROM Commission c WHERE c.endingDate = :endingDate"),
     @NamedQuery(name = "Commission.findByIsPercentCommision", query = "SELECT c FROM Commission c WHERE c.isPercentCommision = :isPercentCommision"),
     @NamedQuery(name = "Commission.findByProductTransactionType", query = "SELECT c FROM Commission c WHERE c.productId.id = :productId AND c.transactionTypeId.id = :transactionTypeId AND c.endingDate is null"),
-    @NamedQuery(name = "Commission.findByValue", query = "SELECT c FROM Commission c WHERE c.value = :value")})
+    @NamedQuery(name = "Commission.findByValue", query = "SELECT c FROM Commission c WHERE c.value = :value"),
+    @NamedQuery(name = QueryConstants.COMMISSION_BY_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id= :productId")})
 public class Commission extends AbstractWalletEntity implements Serializable {
 
     @OneToMany(mappedBy = "commisionId")
@@ -195,7 +191,7 @@ public class Commission extends AbstractWalletEntity implements Serializable {
     public void setBankOperationCollection(Collection<BankOperation> bankOperationCollection) {
         this.bankOperationCollection = bankOperationCollection;
     }
-    
+
     @Override
     public Object getPk() {
         return getId();
@@ -205,5 +201,5 @@ public class Commission extends AbstractWalletEntity implements Serializable {
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
-    
+
 }

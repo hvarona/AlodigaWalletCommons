@@ -88,6 +88,13 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long EDIT_PREFERENCES = 55L;
     public static Long VIEW_PREFERENCES = 56L;
     public static Long CHANGE_PREFERENCES_STATUS = 57L;
+    public static Long LIST_COMMISSION = 58L;
+    public static Long ADD_COMMISSION = 59L;
+    public static Long EDIT_COMMISSION = 60L;
+    public static Long LIST_DOCUMENTS_PERSON_TYPE = 61L;
+    public static Long ADD_DOCUMENTS_PERSON_TYPE = 62L;
+    public static Long EDIT_DOCUMENTS_PERSON_TYPE = 63L;
+    public static Long VIEW_DOCUMENTS_PERSON_TYPE = 64L;
 
     
     private static final long serialVersionUID = 1L;

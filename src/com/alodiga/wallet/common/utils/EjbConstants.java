@@ -14,6 +14,7 @@ public class EjbConstants {
     public static final String TRANSACTION_EJB = "ejb/wallet/TransactionEJB";
     public static final String USER_EJB = "ejb/wallet/UserEJB";
     public static final String UTILS_EJB = "ejb/wallet/UtilsEJB";
+    public static final String PERSON_EJB = "ejb/wallet/PersonEJB";
     
     public static final String PROPERTIES_PACKAGE = "com.alodiga.wallet.common.utils.";
     public static final String ERROR_FILE_NAME = PROPERTIES_PACKAGE + "system_error";
@@ -43,5 +44,8 @@ public class EjbConstants {
     public static final String ERR_NORESULTEXCEPTION = "E041";
 
     public static final int ENTERPRISE_ID_USA = 1;
+    
+    public static final String PARAM_PRODUCT_ID = "productId";
+    public static final String PARAM_COUNTRY_ID = "countryId";
 
 }

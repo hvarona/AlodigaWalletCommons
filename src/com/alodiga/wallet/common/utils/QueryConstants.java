@@ -34,6 +34,7 @@ public class QueryConstants {
     public static final String SOLICITUDES_BY_DISTRIBUTOR = "solicitudesByDistributor";
     public static final String SOLICITUDES_BY_USER_RESPONDER = "solicitudesByUserResponder";
     public static final String SOLICITUDES_BY_DISTRIBUTOR_RESPONDER = "solicitudesByDistributorResponder";
+    public static final String COMMISSION_BY_PRODUCT = "commissionByProduct";
     public static final String TRANSACTION_BY_DISTRIBUTOR = "transactionByDistributor";
     public static final String TRANSACTION_BY_CUSTOMER = "transactionByCostumer";
     public static final String REPORT_BY_PROFILE = "reportByProfile";
@@ -159,4 +160,5 @@ public class QueryConstants {
     public static final String PARAM_BANK_OPERATION_TYPE_ID = "bankOperationTypeId";
     public static final String PARAM_BANK_OPERATION_MODE_ID = "bankOperationModeId";
     public static final String PARAM_BANK_ID = "bankId";
+    public static final String PERSON_TYPE_BY_COUNTRY = "personTypeByCountry";
 }
