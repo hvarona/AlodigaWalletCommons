@@ -14,6 +14,7 @@ import com.alodiga.wallet.common.model.BankOperationMode;
 import com.alodiga.wallet.common.model.BankOperationType;
 import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.Close;
+import com.alodiga.wallet.common.model.CollectionType;
 import com.alodiga.wallet.common.model.Commission;
 import com.alodiga.wallet.common.model.Country;
 import com.alodiga.wallet.common.model.County;
@@ -159,5 +160,15 @@ public interface UtilsEJB extends WalletGenericEJB {
     public TransactionType loadTransactionType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     public TransactionType saveTransactionType(TransactionType transactionType) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+   //CollectionType
+    public List<CollectionType> getCollectionType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public List<CollectionType> getCollectionTypeByCountry(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public CollectionType loadCollectionType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public CollectionType saveCollectionType(CollectionType collectionType) throws NullParameterException, GeneralException;
+
+    
+    public CollectionType searchCollectionType(String description) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<CollectionType> getSearchCollectionType(String name) throws EmptyListException, GeneralException, NullParameterException;
 
 }
