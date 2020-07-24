@@ -103,8 +103,13 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long ADD_BUSINESS_SUB_CATEGORY = 70L;
     public static Long EDIT_BUSINESS_SUB_CATEGORY = 71L;
     public static Long VIEW_BUSINESS_SUB_CATEGORY = 72L;
-
+    public static Long LIST_COLLECTIONS_TYPE= 73L;
+    public static Long ADD_TYPE_OF_COLLECTIONS = 74L;
+    public static Long EDIT_TYPE_OF_COLLECTIONS = 75L;
+    public static Long VIEW_TYPE_OF_COLLECTIONS = 76L;
     
+
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
