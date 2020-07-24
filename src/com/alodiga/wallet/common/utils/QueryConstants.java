@@ -38,6 +38,7 @@ public class QueryConstants {
     public static final String TRANSACTION_BY_DISTRIBUTOR = "transactionByDistributor";
     public static final String TRANSACTION_BY_CUSTOMER = "transactionByCostumer";
     public static final String REPORT_BY_PROFILE = "reportByProfile";
+    public static final String BUSINESS_SUB_CATEGORY_BY_CATEGORY = "businessSubCategoryByCategory";
     public static final String DELETE_PERMISSION_HAS_PROFILE = "deletePermissionHasProfile";
     public static final String LOAD_USER_BY_LOGIN = "loadUserByLogin";
     public static final String LOAD_USER_BY_EMAIL = "loadUserByEmail";
