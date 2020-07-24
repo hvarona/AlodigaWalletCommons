@@ -244,4 +244,5 @@ public class Constants {
     public static String DEV_REPORT = "dev-reports@interaxmedia.com";
 
     public static final String PRODUCT_KEY = "productId";
+    public static final String BUSINESS_CATEGORY_ID = "businessCategoryId";
 }
