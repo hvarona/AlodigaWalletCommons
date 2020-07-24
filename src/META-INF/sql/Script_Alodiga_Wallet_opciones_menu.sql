@@ -491,3 +491,72 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('64', '1');
 
 
+
+
+
+
+-- Agregar opciones del menu Categorias de Comercio y Sub Categorias de Comercio
+-- author: Lulymar Gutierrez
+-- Fecha: 23/07/2020
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('1', 'ListBusinnesCategory', 'businnes_category', 'ListBusinnesCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('1', 'AddBusinnesCategory', 'businnes_category', 'AddBusinnesCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('1', 'EditBusinnesCategory', 'businnes_category', 'EditBusinnesCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('1', 'ViewBusinnesCategory', 'businnes_category', 'ViewBusinnesCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('1', 'ListBusinnesSubCategory', 'businnes_sub_category', 'ListBusinnesSubCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('1', 'AddtBusinnesSubCategory', 'businnes_sub_category', 'AddtBusinnesSubCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('1', 'EditBusinnesSubCategory', 'businnes_sub_category', 'EditBusinnesSubCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('1', 'ViewBusinnesSubCategory', 'businnes_sub_category', 'ViewBusinnesSubCategory', '1');
+
+
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('65', '1', 'List Businnes Category', 'List Businnes Category');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('65', '2', 'Listar Categorias de Comercio', 'Listar Categorias de Comercio');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('66', '1', 'Add Businnes Category', 'Add Businnes Category');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('66', '2', 'Agregar Categorias de Comercio', 'Agregar Categorias de Comercio');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('67', '1', 'Edit Businnes Category', 'Edit Businnes Category');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('67', '2', 'Editar Categorias de Comercio', 'Editar Categorias de Comercio');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('68', '1', 'View Businnes Category', 'View Businnes Category');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('68', '2', 'Ver Categorias de Comercio', 'Ver Categorias de Comercio');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('69', '1', 'List Businnes Sub Category', 'List Businnes Sub Category');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('69', '2', 'Listar Sub Categorias de Comercio', 'Listar Sub Categorias de Comercio');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('70', '1', 'Add Businnes Sub Category', 'Add Businnes Sub Category');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('70', '2', 'Agregar Sub Categorias de Comercio', 'Agregar Sub Categorias de Comercio');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('71', '1', 'Edit Businnes Sub Category', 'Edit Businnes Sub Category');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('71', '2', 'Editar Sub Categorias de Comercio', 'Editar Sub Categorias de Comercio');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('72', '1', 'View Businnes Sub Category', 'View Businnes Sub Category');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('72', '2', 'Ver Sub Categorias de Comercio', 'Ver Sub Categorias de Comercio');
+
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('65', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('66', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('67', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('68', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('69', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('70', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('71', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('72', '1');
+
