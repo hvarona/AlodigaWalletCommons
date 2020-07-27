@@ -5,6 +5,9 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -36,8 +39,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "CollectionType.findAll", query = "SELECT c FROM CollectionType c")
     , @NamedQuery(name = "CollectionType.findById", query = "SELECT c FROM CollectionType c WHERE c.id = :id")
-    , @NamedQuery(name = "CollectionType.findByDescription", query = "SELECT c FROM CollectionType c WHERE c.description = :description")})
-public class CollectionType implements Serializable {
+    , @NamedQuery(name = "CollectionType.findByDescription", query = "SELECT c FROM CollectionType c WHERE c.description = :description"),
+      @NamedQuery(name = QueryConstants.COLLECTION_TYPE_BY_COUNTRY, query = "SELECT c FROM CollectionType c WHERE c.countryId.id=:countryId")})
+public class CollectionType extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -125,6 +129,16 @@ public class CollectionType implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.CollectionType[ id=" + id + " ]";
+    }
+
+     @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }
