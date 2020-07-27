@@ -301,4 +301,166 @@ ADD CONSTRAINT `fk_bank_has_product_2`
  ON DELETE NO ACTION
  ON UPDATE NO ACTION;
 
+-- Generar los auto increment en varias tablas
+-- author: Jesús Gómez
+-- Fecha: 22/07/2020
+SET FOREIGN_KEY_CHECKS=0;
+ALTER TABLE `alodigaWallet`.`collection_type` 
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `alodigaWallet`.`collections_request` 
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `alodigaWallet`.`person_type` 
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `alodigaWallet`.`documents_person_type` 
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+SET FOREIGN_KEY_CHECKS=1;
+
+-- Agregar tabla business_category
+-- author: Jesús Gómez
+-- Fecha: 22/07/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`business_category` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(80) NOT NULL,
+  `mccCode` VARCHAR(10) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+-- Agregar tabla business_sub_category
+-- author: Jesús Gómez
+-- Fecha: 22/07/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`business_sub_category` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(80) NULL,
+  `mccCode` VARCHAR(10) NULL,
+  `businessCategoryId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_business_sub_category_business_category1_idx` (`businessCategoryId` ASC),
+  CONSTRAINT `fk_business_sub_category_business_category1`
+    FOREIGN KEY (`businessCategoryId`)
+    REFERENCES `alodigaWallet`.`business_category` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- Esquema Solicitudes de Aprobación de Transacciones
+-- author: Jesús Gómez
+-- Fecha: 27/07/2020
+
+ALTER TABLE `alodigaWallet`.`transaction` 
+ADD COLUMN `transactionNumber` VARCHAR(40) NOT NULL AFTER `id`;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`account_type_bank` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_account_bank` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(40) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`account_bank` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `UnifiedRegistryId` BIGINT UNIQUE NOT NULL,
+  `accountNumber` VARCHAR(40) NOT NULL,
+  `bankId` BIGINT(3) NOT NULL,
+  `updateDate` TIMESTAMP NULL,
+  `statusAccountBankId` INT NOT NULL,
+  `accountTypeBankId` INT NOT NULL,
+  `createDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `fk_account_bank_bank1_idx` (`bankId` ASC),
+  INDEX `fk_account_bank_status_account_bank1_idx` (`statusAccountBankId` ASC),
+  INDEX `fk_account_bank_account_type_bank1_idx` (`accountTypeBankId` ASC),
+  CONSTRAINT `fk_account_bank_bank1`
+    FOREIGN KEY (`bankId`)
+    REFERENCES `alodigaWallet`.`bank` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_account_bank_status_account_bank1`
+    FOREIGN KEY (`statusAccountBankId`)
+    REFERENCES `alodigaWallet`.`status_account_bank` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_account_bank_account_type_bank1`
+    FOREIGN KEY (`accountTypeBankId`)
+    REFERENCES `alodigaWallet`.`account_type_bank` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `alodigaWallet`.`bank_operation` 
+ADD COLUMN `bankOperationDate` DATE NULL AFTER `bankOperationNumber`,
+ADD COLUMN `bankOperationAmount` FLOAT NOT NULL AFTER `bankOperationDate`,
+ADD COLUMN `accountBankId` BIGINT NULL AFTER `bankId`,
+ADD COLUMN `paymentTypeId` BIGINT(3) NULL AFTER `bankOperationAmount`;
+ALTER TABLE `alodigaWallet`.`bank_operation` 
+ADD CONSTRAINT `fk_bank_operation_account_bank1` 
+FOREIGN KEY (`accountBankId`)
+    REFERENCES `alodigaWallet`.`account_bank` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+ALTER TABLE `alodigaWallet`.`bank_operation` 
+ADD CONSTRAINT `fk_bank_operation_payment_type1` 
+FOREIGN KEY (`paymentTypeId`)
+    REFERENCES `alodigaWallet`.`payment_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_transaction_approve_request` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(40) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`transaction_approve_request` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `createDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  `requestNumber` VARCHAR(40) NOT NULL,
+  `requestDate` DATE NOT NULL,
+  `productId` BIGINT(3) NOT NULL,
+  `transactionId` BIGINT(20) NOT NULL,
+  `statusTransactionApproveRequestId` INT NOT NULL,
+  `indApproveRequest` TINYINT(1) NULL,
+  `approvedRequestDate` DATE NULL,
+  `observations` VARCHAR(1000) NULL,
+  `userApprovedRequestId` BIGINT(10) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_transaction_approve_request_transaction1_idx` (`transactionId` ASC),
+  INDEX `fk_transaction_approve_request_user1_idx` (`userApprovedRequestId` ASC),
+  INDEX `fk_transaction_approve_request_status_transaction_approve_r_idx` (`statusTransactionApproveRequestId` ASC),
+  INDEX `fk_transaction_approve_request_product1_idx` (`productId` ASC),
+  CONSTRAINT `fk_transaction_approve_request_transaction1`
+    FOREIGN KEY (`transactionId`)
+    REFERENCES `alodigaWallet`.`transaction` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transaction_approve_request_user1`
+    FOREIGN KEY (`userApprovedRequestId`)
+    REFERENCES `alodigaWallet`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transaction_approve_request_status_transaction_approve_req1`
+    FOREIGN KEY (`statusTransactionApproveRequestId`)
+    REFERENCES `alodigaWallet`.`status_transaction_approve_request` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transaction_approve_request_product1`
+    FOREIGN KEY (`productId`)
+    REFERENCES `alodigaWallet`.`product` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+
+
+
+
 

@@ -64,6 +64,11 @@ import com.alodiga.wallet.common.model.Transaction;
     @NamedQuery(name = "Product.findByIsExchangeProduct", query = "SELECT p FROM Product p WHERE p.isExchangeProduct = :isExchangeProduct")})
 public class Product extends AbstractWalletEntity implements Serializable {
 
+    @Column(name = "indHasAssociatedBank")
+    private Boolean indHasAssociatedBank;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    private Collection<TransactionApproveRequest> transactionApproveRequestCollection;
+
     public static final String NAME = "name";
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
@@ -116,8 +121,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
     private boolean isRemettence;
     @Column(name = "isPaymentInfo")
     private boolean isPaymentInfo;
-    @Column(name = "indHasAssociatedBank")
-    private boolean indHasAssociatedBank;
     @OneToMany(mappedBy = "productId")
     private Collection<Transaction> transactionCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
@@ -272,13 +275,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
         this.isPaymentInfo = isPaymentInfo;
     }
     
-    public boolean isIndHasAssociatedBank() {
-        return indHasAssociatedBank;
-    }
-
-    public void setIndHasAssociatedBank(boolean indHasAssociatedBank) {
-        this.isPaymentInfo = indHasAssociatedBank;
-    }
     
     
     @XmlTransient
@@ -444,6 +440,24 @@ public class Product extends AbstractWalletEntity implements Serializable {
     @Override
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
+    }
+
+    public Boolean getIndHasAssociatedBank() {
+        return indHasAssociatedBank;
+    }
+
+    public void setIndHasAssociatedBank(Boolean indHasAssociatedBank) {
+        this.indHasAssociatedBank = indHasAssociatedBank;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<TransactionApproveRequest> getTransactionApproveRequestCollection() {
+        return transactionApproveRequestCollection;
+    }
+
+    public void setTransactionApproveRequestCollection(Collection<TransactionApproveRequest> transactionApproveRequestCollection) {
+        this.transactionApproveRequestCollection = transactionApproveRequestCollection;
     }
 }
 

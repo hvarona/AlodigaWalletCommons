@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -58,13 +59,19 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
     @NamedQuery(name = "Transaction.findByAdditional2", query = "SELECT t FROM Transaction t WHERE t.additional2 = :additional2")})
 public class Transaction extends AbstractWalletEntity implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 40)
+    @Column(name = "transactionNumber")
+    private String transactionNumber;
+    @Column(name = "totalAmount")
+    private Float totalAmount;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionId")
+    private Collection<TransactionApproveRequest> transactionApproveRequestCollection;
+
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "totalTax")
     private Float totalTax;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "totalAmount")
-    private float totalAmount;
     @Column(name = "promotionAmount")
     private Float promotionAmount;
     @Column(name = "totalAlopointsUsed")
@@ -377,13 +384,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
         this.totalTax = totalTax;
     }
 
-    public float getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(float totalAmount) {
-        this.totalAmount = totalAmount;
-    }
 
     public Float getPromotionAmount() {
         return promotionAmount;
@@ -419,6 +419,32 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     @Override
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
+    }
+
+    public String getTransactionNumber() {
+        return transactionNumber;
+    }
+
+    public void setTransactionNumber(String transactionNumber) {
+        this.transactionNumber = transactionNumber;
+    }
+
+    public Float getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Float totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<TransactionApproveRequest> getTransactionApproveRequestCollection() {
+        return transactionApproveRequestCollection;
+    }
+
+    public void setTransactionApproveRequestCollection(Collection<TransactionApproveRequest> transactionApproveRequestCollection) {
+        this.transactionApproveRequestCollection = transactionApproveRequestCollection;
     }
     
 }
