@@ -5,9 +5,6 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -17,8 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,14 +29,13 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author jose
  */
 @Entity
-@Table(name = "collection_type")
+@Table(name = "account_type_bank")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CollectionType.findAll", query = "SELECT c FROM CollectionType c")
-    , @NamedQuery(name = "CollectionType.findById", query = "SELECT c FROM CollectionType c WHERE c.id = :id")
-    , @NamedQuery(name = "CollectionType.findByDescription", query = "SELECT c FROM CollectionType c WHERE c.description = :description"),
-      @NamedQuery(name = QueryConstants.COLLECTION_TYPE_BY_COUNTRY, query = "SELECT c FROM CollectionType c WHERE c.countryId.id=:countryId")})
-public class CollectionType extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "AccountTypeBank.findAll", query = "SELECT a FROM AccountTypeBank a")
+    , @NamedQuery(name = "AccountTypeBank.findById", query = "SELECT a FROM AccountTypeBank a WHERE a.id = :id")
+    , @NamedQuery(name = "AccountTypeBank.findByDescription", query = "SELECT a FROM AccountTypeBank a WHERE a.description = :description")})
+public class AccountTypeBank implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -54,20 +48,17 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
     @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "collectionTypeId")
-    private Collection<CollectionsRequest> collectionsRequestCollection;
-    @JoinColumn(name = "countryId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Country countryId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountTypeBankId")
+    private Collection<AccountBank> accountBankCollection;
 
-    public CollectionType() {
+    public AccountTypeBank() {
     }
 
-    public CollectionType(Integer id) {
+    public AccountTypeBank(Integer id) {
         this.id = id;
     }
 
-    public CollectionType(Integer id, String description) {
+    public AccountTypeBank(Integer id, String description) {
         this.id = id;
         this.description = description;
     }
@@ -90,20 +81,12 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
 
     @XmlTransient
     @JsonIgnore
-    public Collection<CollectionsRequest> getCollectionsRequestCollection() {
-        return collectionsRequestCollection;
+    public Collection<AccountBank> getAccountBankCollection() {
+        return accountBankCollection;
     }
 
-    public void setCollectionsRequestCollection(Collection<CollectionsRequest> collectionsRequestCollection) {
-        this.collectionsRequestCollection = collectionsRequestCollection;
-    }
-
-    public Country getCountryId() {
-        return countryId;
-    }
-
-    public void setCountryId(Country countryId) {
-        this.countryId = countryId;
+    public void setAccountBankCollection(Collection<AccountBank> accountBankCollection) {
+        this.accountBankCollection = accountBankCollection;
     }
 
     @Override
@@ -116,10 +99,10 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CollectionType)) {
+        if (!(object instanceof AccountTypeBank)) {
             return false;
         }
-        CollectionType other = (CollectionType) object;
+        AccountTypeBank other = (AccountTypeBank) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -128,17 +111,7 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.CollectionType[ id=" + id + " ]";
-    }
-
-     @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
+        return "com.alodiga.wallet.common.model.AccountTypeBank[ id=" + id + " ]";
     }
     
 }

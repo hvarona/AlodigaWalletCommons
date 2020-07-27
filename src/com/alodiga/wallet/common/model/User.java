@@ -21,6 +21,16 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Profile;
 import com.alodiga.wallet.common.model.UserHasProfile;
 import com.alodiga.wallet.common.utils.QueryConstants;
+import java.util.Collection;
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 @Table(name = "user")
@@ -36,16 +46,53 @@ public class User extends AbstractWalletEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
     private Long id;
-    private Timestamp creationDate;
-    private String email;
-    private boolean enabled;
-    private boolean receiveTopUpNotification;
-    private String firstName;
-    private String lastName;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "login")
     private String login;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "password")
     private String password;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "firstName")
+    private String firstName;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "lastName")
+    private String lastName;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "creationDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationDate;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Correo electrónico no válido")//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "email")
+    private String email;
+    @Size(max = 45)
+    @Column(name = "phoneNumber")
     private String phoneNumber;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "receiveTopUpNotification")
+    private boolean receiveTopUpNotification;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "enabled")
+    private boolean enabled;
+    @OneToMany(mappedBy = "userApprovedRequestId")
+    private Collection<TransactionApproveRequest> transactionApproveRequestCollection;
     //bi-directional many-to-one association to UserHasProfileHasEnterprise
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<UserHasProfile> userHasProfile;
@@ -59,14 +106,6 @@ public class User extends AbstractWalletEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Timestamp getCreationDate() {
-        return this.creationDate;
-    }
-
-    public void setCreationDate(Timestamp creationDate) {
-        this.creationDate = creationDate;
     }
 
     public String getEmail() {
@@ -196,4 +235,51 @@ public class User extends AbstractWalletEntity implements Serializable {
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+
+    public User(Long id) {
+        this.id = id;
+    }
+
+    public User(Long id, String login, String password, String firstName, String lastName, Date creationDate, String email, boolean receiveTopUpNotification, boolean enabled) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.creationDate = creationDate;
+        this.email = email;
+        this.receiveTopUpNotification = receiveTopUpNotification;
+        this.enabled = enabled;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<TransactionApproveRequest> getTransactionApproveRequestCollection() {
+        return transactionApproveRequestCollection;
+    }
+
+    public void setTransactionApproveRequestCollection(Collection<TransactionApproveRequest> transactionApproveRequestCollection) {
+        this.transactionApproveRequestCollection = transactionApproveRequestCollection;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof User)) {
+            return false;
+        }
+        User other = (User) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
 }
