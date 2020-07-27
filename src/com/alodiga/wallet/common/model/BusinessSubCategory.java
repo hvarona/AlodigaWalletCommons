@@ -5,6 +5,9 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -28,11 +31,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "business_sub_category")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BusinessSubCategory.findAll", query = "SELECT b FROM BusinessSubCategory b")
-    , @NamedQuery(name = "BusinessSubCategory.findById", query = "SELECT b FROM BusinessSubCategory b WHERE b.id = :id")
-    , @NamedQuery(name = "BusinessSubCategory.findByDescription", query = "SELECT b FROM BusinessSubCategory b WHERE b.description = :description")
-    , @NamedQuery(name = "BusinessSubCategory.findByMccCode", query = "SELECT b FROM BusinessSubCategory b WHERE b.mccCode = :mccCode")})
-public class BusinessSubCategory implements Serializable {
+    @NamedQuery(name = "BusinessSubCategory.findAll", query = "SELECT b FROM BusinessSubCategory b"),
+    @NamedQuery(name = "BusinessSubCategory.findById", query = "SELECT b FROM BusinessSubCategory b WHERE b.id = :id"),
+    @NamedQuery(name = "BusinessSubCategory.findByDescription", query = "SELECT b FROM BusinessSubCategory b WHERE b.description = :description"),
+    @NamedQuery(name = "BusinessSubCategory.findByMccCode", query = "SELECT b FROM BusinessSubCategory b WHERE b.mccCode = :mccCode"),
+    @NamedQuery(name = QueryConstants.BUSINESS_SUB_CATEGORY_BY_CATEGORY, query = "SELECT b FROM BusinessSubCategory b WHERE b.businessCategoryId.id= :businessCategoryId")})
+public class BusinessSubCategory extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -113,5 +117,15 @@ public class BusinessSubCategory implements Serializable {
     public String toString() {
         return "com.alodiga.wallet.common.model.BusinessSubCategory[ id=" + id + " ]";
     }
-    
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
+
 }
