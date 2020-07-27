@@ -30,6 +30,10 @@ import com.alodiga.wallet.common.model.BankOperationType;
 import com.alodiga.wallet.common.model.Commission;
 import com.alodiga.wallet.common.model.Product;
 import com.alodiga.wallet.common.model.Transaction;
+import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -47,6 +51,20 @@ import com.alodiga.wallet.common.model.Transaction;
     @NamedQuery(name = "BankOperation.findByAdditional2", query = "SELECT b FROM BankOperation b WHERE b.additional2 = :additional2")})
 
 public class BankOperation extends AbstractWalletEntity implements Serializable {
+
+    @Column(name = "bankOperationDate")
+    @Temporal(TemporalType.DATE)
+    private Date bankOperationDate;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "bankOperationAmount")
+    private float bankOperationAmount;
+    @JoinColumn(name = "accountBankId", referencedColumnName = "id")
+    @ManyToOne
+    private AccountBank accountBankId;
+    @JoinColumn(name = "paymentTypeId", referencedColumnName = "id")
+    @ManyToOne
+    private PaymentType paymentTypeId;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -211,6 +229,38 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     @Override
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
+    }
+
+    public Date getBankOperationDate() {
+        return bankOperationDate;
+    }
+
+    public void setBankOperationDate(Date bankOperationDate) {
+        this.bankOperationDate = bankOperationDate;
+    }
+
+    public float getBankOperationAmount() {
+        return bankOperationAmount;
+    }
+
+    public void setBankOperationAmount(float bankOperationAmount) {
+        this.bankOperationAmount = bankOperationAmount;
+    }
+
+    public AccountBank getAccountBankId() {
+        return accountBankId;
+    }
+
+    public void setAccountBankId(AccountBank accountBankId) {
+        this.accountBankId = accountBankId;
+    }
+
+    public PaymentType getPaymentTypeId() {
+        return paymentTypeId;
+    }
+
+    public void setPaymentTypeId(PaymentType paymentTypeId) {
+        this.paymentTypeId = paymentTypeId;
     }
     
 }
