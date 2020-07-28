@@ -458,6 +458,15 @@ CREATE TABLE IF NOT EXISTS `alodigaWallet`.`transaction_approve_request` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+ALTER TABLE `alodigaWallet`.`account_type_bank` 
+ADD COLUMN `code` VARCHAR(10) NOT NULL AFTER `description`;
+
+ALTER TABLE `alodigaWallet`.`status_account_bank` 
+ADD COLUMN `code` VARCHAR(10) NOT NULL AFTER `description`;
+
+ALTER TABLE `alodigaWallet`.`status_transaction_approve_request` 
+ADD COLUMN `code` VARCHAR(10) NOT NULL AFTER `description`;
+
 
 
 
