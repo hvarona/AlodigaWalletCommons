@@ -131,6 +131,15 @@ public class StatusTransactionApproveRequest extends AbstractWalletEntity implem
         return "com.alodiga.wallet.common.model.StatusTransactionApproveRequest[ id=" + id + " ]";
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+    
+
     @Override
     public Object getPk() {
         return getId();

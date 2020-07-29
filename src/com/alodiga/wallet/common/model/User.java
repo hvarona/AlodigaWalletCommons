@@ -165,6 +165,14 @@ public class User extends AbstractWalletEntity implements Serializable {
         this.password = password;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }   
+    
     public String getPhoneNumber() {
         return this.phoneNumber;
     }
