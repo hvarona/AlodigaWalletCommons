@@ -245,4 +245,5 @@ public class Constants {
 
     public static final String PRODUCT_KEY = "productId";
     public static final String BUSINESS_CATEGORY_ID = "businessCategoryId";
+    public static final String STATUS_TRANSACTIONS_CODE = "PEND";
 }
