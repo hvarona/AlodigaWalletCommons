@@ -270,14 +270,6 @@ public class User extends AbstractWalletEntity implements Serializable {
         this.transactionApproveRequestCollection = transactionApproveRequestCollection;
     }
 
-    
-    public Date getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
 
 	@Override
     public int hashCode() {
