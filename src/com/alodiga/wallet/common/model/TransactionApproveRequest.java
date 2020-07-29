@@ -87,6 +87,13 @@ public class TransactionApproveRequest implements Serializable {
     @JoinColumn(name = "userApprovedRequestId", referencedColumnName = "id")
     @ManyToOne
     private User userApprovedRequestId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "UnifiedRegistryUserId")
+    private long unifiedRegistryUserId;
+    @JoinColumn(name = "bankOperationId", referencedColumnName = "id")
+    @ManyToOne
+    private BankOperation bankOperationId;
 
     public TransactionApproveRequest() {
     }
@@ -221,6 +228,22 @@ public class TransactionApproveRequest implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.TransactionApproveRequest[ id=" + id + " ]";
+    }
+
+    public long getUnifiedRegistryUserId() {
+        return unifiedRegistryUserId;
+    }
+
+    public void setUnifiedRegistryUserId(long unifiedRegistryUserId) {
+        this.unifiedRegistryUserId = unifiedRegistryUserId;
+    }
+
+    public BankOperation getBankOperationId() {
+        return bankOperationId;
+    }
+
+    public void setBankOperationId(BankOperation bankOperationId) {
+        this.bankOperationId = bankOperationId;
     }
     
 }
