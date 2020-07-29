@@ -524,3 +524,47 @@ INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`)
 INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('15', 'COSNTANCIA DE RESIDENCIA', '2');
 INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('16', 'CEDULA EXTRANJEROS', '1');
 INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('17', 'REGISTRO DE INFORMACION FISCAL GOBIERNO', '1');
+
+
+-- Tabla y data de document_type, origin_application y secuences
+-- author: Yamelis Almea
+-- Fecha: 28/07/2020
+
+CREATE TABLE `alodigaWallet`.`origin_application` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+INSERT INTO `alodigaWallet`.`origin_application` (`id`, `name`) VALUES ('1', 'AlodigaWallet App');
+INSERT INTO `alodigaWallet`.`origin_application` (`id`, `name`) VALUES ('2', 'Alodiga Wallet Admin Web');
+
+CREATE TABLE `alodigaWallet`.`document_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) DEFAULT NULL,
+  `acronym` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('1', 'Manual Recharge Approval Request', 'MRAR');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('2', 'Manual Withdrawal Approval Request', 'MWAR');
+
+
+CREATE TABLE `alodigaWallet`.`sequences` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `initialValue` int(11) DEFAULT NULL,
+  `currentValue` int(11) DEFAULT NULL,
+  `documentTypeId` int(11) NOT NULL,
+  `originApplicationId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_sequences_documentType1_idx` (`documentTypeId`),
+  KEY `fk_sequences_originApplication1` (`originApplicationId`),
+  CONSTRAINT `fk_sequences_documentType1` FOREIGN KEY (`documentTypeId`) REFERENCES `document_type` (`id`),
+  CONSTRAINT `fk_sequences_originApplication1` FOREIGN KEY (`originApplicationId`) REFERENCES `origin_application` (`id`)
+) ENGINE=InnoDB;
+
+INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '1', '1', '1');
+INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('2', '1', '1', '1', '2');
+INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('3', '1', '1', '2', '1');
+
+

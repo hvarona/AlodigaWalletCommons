@@ -1,5 +1,6 @@
 package com.alodiga.wallet.common.ejb;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -16,6 +17,8 @@ import com.alodiga.wallet.common.model.Product;
 import com.alodiga.wallet.common.model.ProductData;
 import com.alodiga.wallet.common.model.ProductIntegrationType;
 import com.alodiga.wallet.common.model.Provider;
+import com.alodiga.wallet.common.model.StatusTransactionApproveRequest;
+import com.alodiga.wallet.common.model.TransactionApproveRequest;
 
 @SuppressWarnings("all")
 @Local
@@ -76,5 +79,14 @@ public interface ProductEJBLocal extends WalletGenericEJBLocal {
     public List<BankHasProduct> getBankHasProduct(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
     public BankHasProduct saveBankHasProduct(BankHasProduct bankHasProduct) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public List<BankHasProduct> getBankHasProductByID(BankHasProduct bankHasProduct) throws GeneralException, EmptyListException, NullParameterException;
+ 
+    //TransactionApproveRequest
+    
+    public List<TransactionApproveRequest> getTransactionApproveRequestByParams(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;    
+    
+    public TransactionApproveRequest loadTransactionApproveRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public TransactionApproveRequest saveTransactionApproveRequest(TransactionApproveRequest transactionApproveRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
+    public List<StatusTransactionApproveRequest> getStatusTransactionApproveRequests(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
 }
