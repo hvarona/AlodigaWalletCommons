@@ -37,6 +37,12 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     , @NamedQuery(name = "StatusAccountBank.findByDescription", query = "SELECT s FROM StatusAccountBank s WHERE s.description = :description")})
 public class StatusAccountBank implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "code")
+    private String code;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -112,6 +118,14 @@ public class StatusAccountBank implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.StatusAccountBank[ id=" + id + " ]";
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
     
 }

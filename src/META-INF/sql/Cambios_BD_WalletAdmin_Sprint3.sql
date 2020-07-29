@@ -458,6 +458,32 @@ CREATE TABLE IF NOT EXISTS `alodigaWallet`.`transaction_approve_request` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+ALTER TABLE `alodigaWallet`.`account_type_bank` 
+ADD COLUMN `code` VARCHAR(10) NOT NULL AFTER `description`;
+
+ALTER TABLE `alodigaWallet`.`status_account_bank` 
+ADD COLUMN `code` VARCHAR(10) NOT NULL AFTER `description`;
+
+ALTER TABLE `alodigaWallet`.`status_transaction_approve_request` 
+ADD COLUMN `code` VARCHAR(10) NOT NULL AFTER `description`;
+
+-- Cambios en esquema Solicitudes de Aprobación de Transacciones
+-- author: Jesús Gómez
+-- Fecha: 28/07/2020
+ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
+ADD COLUMN `bankOperationId` BIGINT(20) NULL AFTER `transactionId`;
+ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
+ADD CONSTRAINT `fk_transaction_approve_request_bank_operation1` 
+FOREIGN KEY (`bankOperationId`)
+    REFERENCES `alodigaWallet`.`bank_operation` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
+ADD COLUMN `UnifiedRegistryUserId` BIGINT NOT NULL AFTER `id`; 
+
+ALTER TABLE `alodigaWallet`.`commission` 
+ADD COLUMN `indApplicationCommission` INT NOT NULL AFTER `endingDate`;  
 
 
 
@@ -465,44 +491,11 @@ ENGINE = InnoDB;
 
 
 
--- Agregar Menu de collection_type
--- author: Adira Quintero
--- Fecha: 23/07/2020
-
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'ListCollectionsType', 'collection_type', 'ListCollectionsType', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'AddCollectionsType', 'collection_type', 'AddCollectionsType', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'EditCollectionsType', 'collection_type', 'EditCollectionsType', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'ViewCollectionsType', 'collection_type', 'ViewCollectionsType', '1');
- 
-
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('73', '1', 'List Collections Type', 'List Collections Type');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('73', '2', 'Listar Tipo de Recaudo', 'Listar Tipo de Recaudo');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('74', '1', 'Add Collections Type', 'Add Collections Type');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('74', '2', 'Agregar Tipo de Recaudo', 'Agregar Tipo de Recaudo');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('75', '1', 'Edit Collections Type', 'Edit Collections Type');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('75', '2', 'Editar Tipo de Recaudo', 'Editar Tipo de Recaudo');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('76', '1', 'View Collections Type', 'View Collections Type');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('76', '2', 'Ver Tipo de Recaudo', 'Ver Tipo de Recaudo');
 
 
 
-INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('73', '1');
-INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('74', '1');
-INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('75', '1');
-INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('76', '1');
 
+<<<<<<< HEAD
 
 -- Data de collection_type
 -- author: Adira Quintero
@@ -568,3 +561,5 @@ INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `
 INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('3', '1', '1', '2', '1');
 
 
+=======
+>>>>>>> refs/heads/DEV

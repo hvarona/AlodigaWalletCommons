@@ -48,6 +48,11 @@ public class StatusTransactionApproveRequest implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "description")
     private String description;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "code")
+    private String code;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusTransactionApproveRequestId")
     private Collection<TransactionApproveRequest> transactionApproveRequestCollection;
 
@@ -112,6 +117,14 @@ public class StatusTransactionApproveRequest implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.StatusTransactionApproveRequest[ id=" + id + " ]";
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
     
 }
