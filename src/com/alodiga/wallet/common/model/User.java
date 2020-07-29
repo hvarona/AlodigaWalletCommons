@@ -139,6 +139,15 @@ public class User extends AbstractWalletEntity implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
 
     public String getLogin() {
         return this.login;
@@ -281,5 +290,4 @@ public class User extends AbstractWalletEntity implements Serializable {
         }
         return true;
     }
-
 }
