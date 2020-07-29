@@ -5,6 +5,9 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -32,10 +35,11 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "status_transaction_approve_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "StatusTransactionApproveRequest.findAll", query = "SELECT s FROM StatusTransactionApproveRequest s")
-    , @NamedQuery(name = "StatusTransactionApproveRequest.findById", query = "SELECT s FROM StatusTransactionApproveRequest s WHERE s.id = :id")
-    , @NamedQuery(name = "StatusTransactionApproveRequest.findByDescription", query = "SELECT s FROM StatusTransactionApproveRequest s WHERE s.description = :description")})
-public class StatusTransactionApproveRequest implements Serializable {
+    @NamedQuery(name = "StatusTransactionApproveRequest.findAll", query = "SELECT s FROM StatusTransactionApproveRequest s"),
+    @NamedQuery(name = "StatusTransactionApproveRequest.findById", query = "SELECT s FROM StatusTransactionApproveRequest s WHERE s.id = :id"),
+    @NamedQuery(name = "StatusTransactionApproveRequest.findByDescription", query = "SELECT s FROM StatusTransactionApproveRequest s WHERE s.description = :description"),
+    @NamedQuery(name = QueryConstants.CODE_BY_STATUS, query = "SELECT s FROM StatusTransactionApproveRequest s WHERE s.code = :code")})
+public class StatusTransactionApproveRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,6 +52,11 @@ public class StatusTransactionApproveRequest implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "description")
     private String description;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "code")
+    private String code;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusTransactionApproveRequestId")
     private Collection<TransactionApproveRequest> transactionApproveRequestCollection;
 
@@ -77,6 +86,14 @@ public class StatusTransactionApproveRequest implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @XmlTransient
@@ -113,5 +130,14 @@ public class StatusTransactionApproveRequest implements Serializable {
     public String toString() {
         return "com.alodiga.wallet.common.model.StatusTransactionApproveRequest[ id=" + id + " ]";
     }
-    
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }
