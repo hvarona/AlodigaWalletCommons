@@ -486,17 +486,6 @@ ALTER TABLE `alodigaWallet`.`commission`
 ADD COLUMN `indApplicationCommission` INT NOT NULL AFTER `endingDate`;  
 
 
-
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
-
 -- Data de collection_type
 -- author: Adira Quintero
 -- Fecha: 23/07/2020
@@ -560,6 +549,3 @@ INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `
 INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('2', '1', '1', '1', '2');
 INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('3', '1', '1', '2', '1');
 
-
-=======
->>>>>>> refs/heads/DEV
