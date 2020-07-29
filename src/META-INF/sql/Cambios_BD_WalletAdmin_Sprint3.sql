@@ -467,6 +467,23 @@ ADD COLUMN `code` VARCHAR(10) NOT NULL AFTER `description`;
 ALTER TABLE `alodigaWallet`.`status_transaction_approve_request` 
 ADD COLUMN `code` VARCHAR(10) NOT NULL AFTER `description`;
 
+-- Cambios en esquema Solicitudes de Aprobación de Transacciones
+-- author: Jesús Gómez
+-- Fecha: 28/07/2020
+ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
+ADD COLUMN `bankOperationId` BIGINT(20) NULL AFTER `transactionId`;
+ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
+ADD CONSTRAINT `fk_transaction_approve_request_bank_operation1` 
+FOREIGN KEY (`bankOperationId`)
+    REFERENCES `alodigaWallet`.`bank_operation` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
+ADD COLUMN `UnifiedRegistryUserId` BIGINT NOT NULL AFTER `id`; 
+
+ALTER TABLE `alodigaWallet`.`commission` 
+ADD COLUMN `indApplicationCommission` INT NOT NULL AFTER `endingDate`;  
 
 
 
@@ -474,62 +491,7 @@ ADD COLUMN `code` VARCHAR(10) NOT NULL AFTER `description`;
 
 
 
--- Agregar Menu de collection_type
--- author: Adira Quintero
--- Fecha: 23/07/2020
-
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'ListCollectionsType', 'collection_type', 'ListCollectionsType', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'AddCollectionsType', 'collection_type', 'AddCollectionsType', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'EditCollectionsType', 'collection_type', 'EditCollectionsType', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'ViewCollectionsType', 'collection_type', 'ViewCollectionsType', '1');
- 
-
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('73', '1', 'List Collections Type', 'List Collections Type');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('73', '2', 'Listar Tipo de Recaudo', 'Listar Tipo de Recaudo');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('74', '1', 'Add Collections Type', 'Add Collections Type');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('74', '2', 'Agregar Tipo de Recaudo', 'Agregar Tipo de Recaudo');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('75', '1', 'Edit Collections Type', 'Edit Collections Type');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('75', '2', 'Editar Tipo de Recaudo', 'Editar Tipo de Recaudo');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('76', '1', 'View Collections Type', 'View Collections Type');
-INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
-VALUES ('76', '2', 'Ver Tipo de Recaudo', 'Ver Tipo de Recaudo');
 
 
 
-INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('73', '1');
-INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('74', '1');
-INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('75', '1');
-INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('76', '1');
 
-
--- Data de collection_type
--- author: Adira Quintero
--- Fecha: 23/07/2020
-
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('1', 'DOCUMENTO DE IDENTIDAD..', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('3', 'CONSTANCIA DE TRABAJO', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('4', 'REFERENCIA BANCARIA', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('5', 'REGISTRO DE INFORMACIÓN FISCAL', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('6', 'REGISTRO MERCANTIL', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('7', 'ACTA DE CONSTITUCIÓN DE LA EMPRESA', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('8', 'DRIVER LICENSE', '2');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('9', 'DOCUMENTO DE IDENTIFICACION APP', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('10', 'FOTO CON DOCUMENTO DE IDENTIDAD', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('11', 'CEDULA DE IDENTIDAD...', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('12', 'COSNTANCIA DE DOMICILIO RESIDENCIAL', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('13', 'COSNTANCIA DE NACIMIENTO', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('14', 'ANTECEDENTES PENALES', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('15', 'COSNTANCIA DE RESIDENCIA', '2');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('16', 'CEDULA EXTRANJEROS', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('17', 'REGISTRO DE INFORMACION FISCAL GOBIERNO', '1');

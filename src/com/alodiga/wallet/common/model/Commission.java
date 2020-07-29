@@ -29,6 +29,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.utils.QueryConstants;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -75,6 +76,10 @@ public class Commission extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "productId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Product productId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "indApplicationCommission")
+    private int indApplicationCommission;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "commissionId")
     private Collection<CommissionItem> commissionItemCollection;
 
@@ -200,6 +205,14 @@ public class Commission extends AbstractWalletEntity implements Serializable {
     @Override
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
+    }
+
+    public int getIndApplicationCommission() {
+        return indApplicationCommission;
+    }
+
+    public void setIndApplicationCommission(int indApplicationCommission) {
+        this.indApplicationCommission = indApplicationCommission;
     }
 
 }
