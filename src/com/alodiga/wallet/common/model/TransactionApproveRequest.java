@@ -5,6 +5,9 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -32,16 +35,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "transaction_approve_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TransactionApproveRequest.findAll", query = "SELECT t FROM TransactionApproveRequest t")
-    , @NamedQuery(name = "TransactionApproveRequest.findById", query = "SELECT t FROM TransactionApproveRequest t WHERE t.id = :id")
-    , @NamedQuery(name = "TransactionApproveRequest.findByCreateDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.createDate = :createDate")
-    , @NamedQuery(name = "TransactionApproveRequest.findByUpdateDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.updateDate = :updateDate")
-    , @NamedQuery(name = "TransactionApproveRequest.findByRequestNumber", query = "SELECT t FROM TransactionApproveRequest t WHERE t.requestNumber = :requestNumber")
-    , @NamedQuery(name = "TransactionApproveRequest.findByRequestDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.requestDate = :requestDate")
-    , @NamedQuery(name = "TransactionApproveRequest.findByIndApproveRequest", query = "SELECT t FROM TransactionApproveRequest t WHERE t.indApproveRequest = :indApproveRequest")
-    , @NamedQuery(name = "TransactionApproveRequest.findByApprovedRequestDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.approvedRequestDate = :approvedRequestDate")
-    , @NamedQuery(name = "TransactionApproveRequest.findByObservations", query = "SELECT t FROM TransactionApproveRequest t WHERE t.observations = :observations")})
-public class TransactionApproveRequest implements Serializable {
+    @NamedQuery(name = "TransactionApproveRequest.findAll", query = "SELECT t FROM TransactionApproveRequest t"),
+    @NamedQuery(name = "TransactionApproveRequest.findById", query = "SELECT t FROM TransactionApproveRequest t WHERE t.id = :id"),
+    @NamedQuery(name = "TransactionApproveRequest.findByCreateDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.createDate = :createDate"),
+    @NamedQuery(name = "TransactionApproveRequest.findByUpdateDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.updateDate = :updateDate"),
+    @NamedQuery(name = "TransactionApproveRequest.findByRequestNumber", query = "SELECT t FROM TransactionApproveRequest t WHERE t.requestNumber = :requestNumber"),
+    @NamedQuery(name = "TransactionApproveRequest.findByRequestDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.requestDate = :requestDate"),
+    @NamedQuery(name = "TransactionApproveRequest.findByIndApproveRequest", query = "SELECT t FROM TransactionApproveRequest t WHERE t.indApproveRequest = :indApproveRequest"),
+    @NamedQuery(name = "TransactionApproveRequest.findByApprovedRequestDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.approvedRequestDate = :approvedRequestDate"),
+    @NamedQuery(name = "TransactionApproveRequest.findByObservations", query = "SELECT t FROM TransactionApproveRequest t WHERE t.observations = :observations"),
+    @NamedQuery(name = QueryConstants.TRANSACTION_APPROVE_REQUEST_BY_STATUS, query = "SELECT t FROM TransactionApproveRequest t  WHERE t.statusTransactionApproveRequestId.id= :statusTransactionApproveRequestId")})
+public class TransactionApproveRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -246,4 +250,14 @@ public class TransactionApproveRequest implements Serializable {
         this.bankOperationId = bankOperationId;
     }
     
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }
