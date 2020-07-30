@@ -242,8 +242,16 @@ public class Constants {
     public static final int MAX_LOGIN_DIGITS = 8;
     public static final int MAX_PASSWORD_DIGITS = 4;
     public static String DEV_REPORT = "dev-reports@interaxmedia.com";
+    
+    public static final int ORIGIN_APPLICATION_WALLET_ID = 1;
+    public static final int ORIGIN_APPLICATION_ADMIN_ID = 2;
 
+    public static final int ORIGIN_APPLICATION_ID = 1;
     public static final String PRODUCT_KEY = "productId";
+    public static final String DOCUMENT_TYPE_KEY = "documentTypeId";
+    public static final int DOCUMENT_TYPE_MANUAL_WITHDRAWAL_APPROVAL = 2;
     public static final String BUSINESS_CATEGORY_ID = "businessCategoryId";
     public static final String STATUS_TRANSACTIONS_CODE = "PEND";
+    public static final String STATUS_TRANSACTIONS_APPR = "APPR";
+    public static final String STATUS_TRANSACTIONS_REJE = "REJE";
 }

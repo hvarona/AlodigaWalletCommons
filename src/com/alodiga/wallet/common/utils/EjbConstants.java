@@ -50,4 +50,5 @@ public class EjbConstants {
     public static final String PARAM_BUSINESS_CATEGORY_ID = "businessCategoryId";
     public static final String PARAM_STATUS_TRANSACTION_APPROVE_REQUEST_ID = "statusTransactionApproveRequestId";
     public static final String PARAM_CODE = "code";
+    public static final String PARAM_DOCUMENT_TYPE_ID = "documentTypeId";
 }
