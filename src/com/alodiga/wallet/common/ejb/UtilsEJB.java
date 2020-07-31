@@ -25,10 +25,14 @@ import com.alodiga.wallet.common.model.Currency;
 import com.alodiga.wallet.common.model.Enterprise;
 import com.alodiga.wallet.common.model.ExchangeRate;
 import com.alodiga.wallet.common.model.Language;
+import com.alodiga.wallet.common.model.OriginApplication;
 import com.alodiga.wallet.common.model.Period;
+import com.alodiga.wallet.common.model.Sequences;
 import com.alodiga.wallet.common.model.Sms;
 import com.alodiga.wallet.common.model.State;
+import com.alodiga.wallet.common.model.StatusTransactionApproveRequest;
 import com.alodiga.wallet.common.model.Transaction;
+import com.alodiga.wallet.common.model.TransactionApproveRequest;
 import com.alodiga.wallet.common.model.TransactionType;
 import java.util.Date;
 
@@ -58,25 +62,25 @@ public interface UtilsEJB extends WalletGenericEJB {
     public Country loadCountryByName(String name) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public Country searchCountry(String name) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     public Country saveCountry(Country country) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public Country loadCountryByShortName(String referenceCode) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //Currency
     public List<Currency> getCurrency(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
+
     public List<Currency> getCurrencies() throws EmptyListException, GeneralException, NullParameterException;
-    
+
     public List<Currency> getSearchCurrency(String name) throws EmptyListException, GeneralException, NullParameterException;
 
     public Currency loadCurrency(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     public Currency saveCurrency(Currency currency) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //Enterprise
     public List<Enterprise> getEnterprises(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
+
     public List<Enterprise> getEnterprises() throws EmptyListException, GeneralException, NullParameterException;
 
     public Enterprise loadEnterprisebyId(Long enterpriseId) throws GeneralException;
@@ -111,85 +115,131 @@ public interface UtilsEJB extends WalletGenericEJB {
     public List<Bank> getBank(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public Bank loadBank(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     public Bank saveBank(Bank bank) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //ExchangeRate
     public List<ExchangeRate> getExchangeRate(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public ExchangeRate loadExchangeRate(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     public ExchangeRate saveExchangeRate(ExchangeRate exchangeRate) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     //Transaction
     public List<Transaction> getTransaction(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
+
     public List<Transaction> getTransactionByDates(Date beginningDate, Date endingDate) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
-    
+
     public List<Transaction> getTransactionByBeginningDate(Date beginningDate) throws EmptyListException, GeneralException, NullParameterException;
 
     public Transaction loadTransaction(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     public Transaction saveTransaction(Transaction transaction) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     //Close
     public List<Close> getClose(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public Close loadClose(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     public Close saveClose(Close close) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     //BankOperation
     public List<BankOperation> getBankOperationsByParams(EJBRequest request) throws NullParameterException, GeneralException, EmptyListException;
-    
+
     public List<BankOperationType> getBankOperationTypes(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
+
     public List<BankOperationMode> getBankOperationModes(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public List<BankOperation> getBankOperations(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-   
+
     //Commission
     public List<Commission> getCommission(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
+
     public List<Commission> getCommissionByProduct(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
+
     public Commission loadCommission(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     public Commission saveCommission(Commission commission) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     //TransactionType
     public List<TransactionType> getTransactionType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public TransactionType loadTransactionType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     public TransactionType saveTransactionType(TransactionType transactionType) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     public List<CommissionItem> getCommissionItems(Long transactionId) throws EmptyListException, GeneralException, NullParameterException;
 
-   //CollectionType
+    //CollectionType
     public List<CollectionType> getCollectionType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
     public List<CollectionType> getCollectionTypeByCountry(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
     public CollectionType loadCollectionType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
     public CollectionType saveCollectionType(CollectionType collectionType) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
-    
     public CollectionType searchCollectionType(String description) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
     public List<CollectionType> getSearchCollectionType(String name) throws EmptyListException, GeneralException, NullParameterException;
 
-    
     //BusinessCategory
     public List<BusinessCategory> getBusinessCategory(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public BusinessCategory loadBusinessCategory(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     public BusinessCategory saveBusinessCategory(BusinessCategory businessCategory) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     //BusinessCategory
     public List<BusinessSubCategory> getBusinessSubCategory(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
+
     public List<BusinessSubCategory> getBusinessSubCategoryByCategory(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public BusinessSubCategory loadBusinessSubCategory(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+
     public BusinessSubCategory saveBusinessSubCategory(BusinessSubCategory businessSubCategory) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    //TransactionApproveRequest
+    public List<TransactionApproveRequest> getTransactionApproveRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public List<TransactionApproveRequest> getTransactionApproveRequestByStatus(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public TransactionApproveRequest loadTransactionApproveRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    public TransactionApproveRequest saveTransactionApproveRequest(TransactionApproveRequest transactionApproveRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    //StatusTransactionApproveRequest
+    public List<StatusTransactionApproveRequest> getStatusTransactionApproveRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public List<StatusTransactionApproveRequest> getStatusTransactionApproveRequestPending(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public StatusTransactionApproveRequest loadStatusTransactionApproveRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    public StatusTransactionApproveRequest saveStatusTransactionApproveRequest(StatusTransactionApproveRequest statusTransactionApproveRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    //BankOperation
+    public List<BankOperation> getBankOperation(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public BankOperation loadBankOperation(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    public BankOperation saveBankOperation(BankOperation bankOperation) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    //Sequences
+    public List<Sequences> getSequences(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public Sequences loadSequences(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    public Sequences saveSequences(Sequences sequences) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    public List<Sequences> getSequencesByDocumentType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public String generateNumberSequence(List<Sequences> sequence, int originApplication) throws GeneralException, RegisterNotFoundException, NullParameterException;
+
+    //OriginApplication
+    public List<OriginApplication> getOriginApplication(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public OriginApplication loadOriginApplication(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    public OriginApplication saveOriginApplication(OriginApplication originApplication) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
 }

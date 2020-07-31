@@ -39,6 +39,8 @@ public class QueryConstants {
     public static final String TRANSACTION_BY_CUSTOMER = "transactionByCostumer";
     public static final String REPORT_BY_PROFILE = "reportByProfile";
     public static final String BUSINESS_SUB_CATEGORY_BY_CATEGORY = "businessSubCategoryByCategory";
+    public static final String TRANSACTION_APPROVE_REQUEST_BY_STATUS = "transactionApproveRequestByStatus";
+    public static final String CODE_BY_STATUS = "codeByStatus";
     public static final String DELETE_PERMISSION_HAS_PROFILE = "deletePermissionHasProfile";
     public static final String LOAD_USER_BY_LOGIN = "loadUserByLogin";
     public static final String LOAD_USER_BY_EMAIL = "loadUserByEmail";
@@ -140,10 +142,10 @@ public class QueryConstants {
     public static final String PARAM_BONUS_TYPE = "bonusType";
     public static final String SOLICITUDES_BY_ACCOUNT_RESPONDER = "solicitudesByAccountResponder";
     public static final String SOLICITUDES_BY_ACCOUNT = "solicitudesByAccount";
-    public static final String STATUS_ACCOUNT_ALL= "ALL";
-    public static final String STATUS_ACCOUNT_ENABLED= "1";
+    public static final String STATUS_ACCOUNT_ALL = "ALL";
+    public static final String STATUS_ACCOUNT_ENABLED = "1";
     public static final String ACCOUNT_HAS_PRODUCT = "accountHasProduct";
-    public static final String PARAM_WORK_ORDER= "workOrder";
+    public static final String PARAM_WORK_ORDER = "workOrder";
     public static final String MODEL_BY_BRAUND = "modelByBraund";
     public static final String PARAM_BRAUND_ID = "braundId";
     public static final String PARAM_MODEL_ID = "modelId";
@@ -164,8 +166,8 @@ public class QueryConstants {
     public static final String PERSON_TYPE_BY_COUNTRY = "personTypeByCountry";
     public static final String COLLECTION_TYPE_BY_COUNTRY = "CollectionTypeByCountry";
     public static final String PARAM_REQUEST_NUMBER = "requestNumber";
-    public static final String PARAM_STATUS_TRANSACTION_APPOVED_REQUEST = "statusTransactionApproveRequestId";
     public static final String PARAM_CODE = "code";
+    public static final String PARAM_STATUS_TRANSACTION_APPROVE_REQUEST_ID = "statusTransactionApproveRequestId";
+    public static final String SEQUENCES_BY_DOCUMENT_TYPE = "Sequences.findByDocumentType";
 
-    
 }

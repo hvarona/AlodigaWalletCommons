@@ -671,3 +671,39 @@ UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = 
 UPDATE `alodigawallet`.`permission_data` SET `alias` = 'Listar Preferencias Especificas', `description` = 'Listar Preferencias Especificas' WHERE (`id` = '105');
 UPDATE `alodigawallet`.`permission_data` SET `alias` = 'List Specifics Preferences', `description` = 'List Specifics Preferences' WHERE (`id` = '106');
 
+
+
+-- Agregar opciones del menu Aprobación Retiro Manual
+-- author: Lulymar Gutierrez
+-- Fecha: 23/07/2020
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
+VALUES (77,1,'ListManualWithdrawalApproval','transaction_approve_request','ListManualWithdrawalApproval',1);
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
+VALUES (78,1,'AddManualWithdrawalApproval','transaction_approve_request','AddManualWithdrawalApproval',1);
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
+VALUES (79,1,'EditManualWithdrawalApproval','transaction_approve_request','EditManualWithdrawalApproval',1);
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
+VALUES (80,1,'ViewManualWithdrawalApproval','transaction_approve_request','ViewManualWithdrawalApproval',1);
+
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (153,77,1,'List Manual Withdrawal Approval','List Manual Withdrawal Approval');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (154,77,2,'Lista Aprobación Retiro Manual','Lista Aprobación Retiro Manual');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (155,78,1,'Add Manual Withdrawal Approval','Add Manual Withdrawal Approval');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (156,78,2,'Agregar Aprobación Retiro Manual','Agregar Aprobación Retiro Manual');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (157,79,1,'Edit Manual Withdrawal Approval','Edit Manual Withdrawal Approval');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (158,79,2,'Editar Aprobación Retiro Manual','Editar Aprobación Retiro Manual');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (159,80,1,'View Manual Withdrawal Approval','View Manual Withdrawal Approval');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (160,80,2,'Ver Aprobación Retiro Manual','Ver Aprobación Retiro Manual');
+
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (77,77,1);
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (78,78,1);
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (79,79,1);
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (80,80,1);
+
