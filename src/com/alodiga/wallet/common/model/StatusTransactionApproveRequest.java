@@ -34,6 +34,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "StatusTransactionApproveRequest.findAll", query = "SELECT s FROM StatusTransactionApproveRequest s")
     , @NamedQuery(name = "StatusTransactionApproveRequest.findById", query = "SELECT s FROM StatusTransactionApproveRequest s WHERE s.id = :id")
+    , @NamedQuery(name = "StatusTransactionApproveRequest.loadStatusTransactionApproveRequestByCode", query = "SELECT s FROM StatusTransactionApproveRequest s WHERE s.code = :code")
     , @NamedQuery(name = "StatusTransactionApproveRequest.findByDescription", query = "SELECT s FROM StatusTransactionApproveRequest s WHERE s.description = :description")})
 public class StatusTransactionApproveRequest implements Serializable {
 

@@ -165,6 +165,7 @@ public class QueryConstants {
     public static final String COLLECTION_TYPE_BY_COUNTRY = "CollectionTypeByCountry";
     public static final String PARAM_REQUEST_NUMBER = "requestNumber";
     public static final String PARAM_STATUS_TRANSACTION_APPOVED_REQUEST = "statusTransactionApproveRequestId";
+    public static final String PARAM_CODE = "code";
 
     
 }

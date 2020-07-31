@@ -622,7 +622,7 @@ INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`)
 
 --Permisos para Recarga Manual
 -- author: yamelis Almea
--- Fecha: 28/07/2020
+-- Fecha: 30/07/2020
 
 INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('81', '1', 'ListManualRechargesApproval', 'transaction_approve_request', 'ListManualRechargesApproval', '1');
 INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('82', '1', 'AddManualRechargesApproval', 'transaction_approve_request', 'AddManualRechargesApprovalt', '1');
@@ -666,4 +666,8 @@ UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = 
 UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '58');
 UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '59');
 UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '60');
+
+--Modificar la descripcion de las preferencias especificas en el menu
+UPDATE `alodigawallet`.`permission_data` SET `alias` = 'Listar Preferencias Especificas', `description` = 'Listar Preferencias Especificas' WHERE (`id` = '105');
+UPDATE `alodigawallet`.`permission_data` SET `alias` = 'List Specifics Preferences', `description` = 'List Specifics Preferences' WHERE (`id` = '106');
 

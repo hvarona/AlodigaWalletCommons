@@ -510,7 +510,7 @@ INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`)
 
 -- Tabla y data de document_type, origin_application y secuences
 -- author: Yamelis Almea
--- Fecha: 28/07/2020
+-- Fecha: 30/07/2020
 
 CREATE TABLE `alodigaWallet`.`origin_application` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
