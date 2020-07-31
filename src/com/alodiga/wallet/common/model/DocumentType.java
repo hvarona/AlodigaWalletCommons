@@ -107,4 +107,5 @@ public class DocumentType extends AbstractWalletEntity implements Serializable {
         return super.getTableName(this.getClass());
     }
 
+
 }
