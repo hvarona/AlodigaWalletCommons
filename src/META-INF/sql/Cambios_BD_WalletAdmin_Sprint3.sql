@@ -549,3 +549,33 @@ INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `
 INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('2', '1', '1', '1', '2');
 INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('3', '1', '1', '2', '1');
 
+--Cambios en la tabla person_type
+ALTER TABLE `alodigaWallet`.`person_type` 
+ADD COLUMN `originApplicationId` INT(11) NOT NULL AFTER `countryId`,
+ADD COLUMN `indNaturalPerson` TINYINT(1) NULL DEFAULT NULL AFTER `originApplicationId`,
+ADD INDEX `fk_personType_originApplication1` (`originApplicationId` ASC) INVISIBLE;
+;
+
+UPDATE `alodigaWallet`.`person_type` SET `originApplicationId` = '1', `indNaturalPerson` = '1' WHERE (`id` = '1');
+UPDATE `alodigaWallet`.`person_type` SET `originApplicationId` = '1', `indNaturalPerson` = '0' WHERE (`id` = '2');
+UPDATE `alodigaWallet`.`person_type` SET `originApplicationId` = '2', `indNaturalPerson` = '1' WHERE (`id` = '3');
+UPDATE `alodigaWallet`.`person_type` SET `originApplicationId` = '2', `indNaturalPerson` = '1' WHERE (`id` = '4');
+
+ALTER TABLE `alodigaWallet`.`person_type` 
+ADD CONSTRAINT `fk_personType_originApplication1`
+  FOREIGN KEY (`originApplicationId`)
+  REFERENCES `alodigaWallet`.`origin_application` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
+UPDATE `alodigaWallet`.`person_type` SET `description` = 'Persona Natural' WHERE (`id` = '3');
+UPDATE `alodigaWallet`.`person_type` SET `description` = 'Persona Juridica', `indNaturalPerson` = '0' WHERE (`id` = '4'); 
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('5', 'Persona Natural', '1', '2', '1');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('6', 'Persona Juridica', '1', '2', '0');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('7', 'Persona Natural', '47', '1', '1');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('8', 'Persona Juridica', '47', '1', '0');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('9', 'Persona Natural', '85', '1', '1');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('10', 'Persona Juridica', '85', '1', '0');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('11', 'Persona Natural', '85', '2', '1');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('12', 'Persona Juridica', '85', '2', '0');
+
