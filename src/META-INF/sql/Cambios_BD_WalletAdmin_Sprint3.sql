@@ -486,12 +486,96 @@ ALTER TABLE `alodigaWallet`.`commission`
 ADD COLUMN `indApplicationCommission` INT NOT NULL AFTER `endingDate`;  
 
 
+-- Data de collection_type
+-- author: Adira Quintero
+-- Fecha: 23/07/2020
+
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('1', 'DOCUMENTO DE IDENTIDAD..', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('3', 'CONSTANCIA DE TRABAJO', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('4', 'REFERENCIA BANCARIA', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('5', 'REGISTRO DE INFORMACIÓN FISCAL', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('6', 'REGISTRO MERCANTIL', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('7', 'ACTA DE CONSTITUCIÓN DE LA EMPRESA', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('8', 'DRIVER LICENSE', '2');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('9', 'DOCUMENTO DE IDENTIFICACION APP', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('10', 'FOTO CON DOCUMENTO DE IDENTIDAD', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('11', 'CEDULA DE IDENTIDAD...', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('12', 'COSNTANCIA DE DOMICILIO RESIDENCIAL', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('13', 'COSNTANCIA DE NACIMIENTO', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('14', 'ANTECEDENTES PENALES', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('15', 'COSNTANCIA DE RESIDENCIA', '2');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('16', 'CEDULA EXTRANJEROS', '1');
+INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('17', 'REGISTRO DE INFORMACION FISCAL GOBIERNO', '1');
 
 
+-- Tabla y data de document_type, origin_application y secuences
+-- author: Yamelis Almea
+-- Fecha: 30/07/2020
+
+CREATE TABLE `alodigaWallet`.`origin_application` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+INSERT INTO `alodigaWallet`.`origin_application` (`id`, `name`) VALUES ('1', 'AlodigaWallet App');
+INSERT INTO `alodigaWallet`.`origin_application` (`id`, `name`) VALUES ('2', 'Alodiga Wallet Admin Web');
+
+CREATE TABLE `alodigaWallet`.`document_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) DEFAULT NULL,
+  `acronym` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('1', 'Manual Recharge Approval Request', 'MRAR');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('2', 'Manual Withdrawal Approval Request', 'MWAR');
 
 
+CREATE TABLE `alodigaWallet`.`sequences` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `initialValue` int(11) DEFAULT NULL,
+  `currentValue` int(11) DEFAULT NULL,
+  `documentTypeId` int(11) NOT NULL,
+  `originApplicationId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_sequences_documentType1_idx` (`documentTypeId`),
+  KEY `fk_sequences_originApplication1` (`originApplicationId`),
+  CONSTRAINT `fk_sequences_documentType1` FOREIGN KEY (`documentTypeId`) REFERENCES `document_type` (`id`),
+  CONSTRAINT `fk_sequences_originApplication1` FOREIGN KEY (`originApplicationId`) REFERENCES `origin_application` (`id`)
+) ENGINE=InnoDB;
 
+INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '1', '1', '1');
+INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('2', '1', '1', '1', '2');
+INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('3', '1', '1', '2', '1');
 
+--Cambios en la tabla person_type
+ALTER TABLE `alodigaWallet`.`person_type` 
+ADD COLUMN `originApplicationId` INT(11) NOT NULL AFTER `countryId`,
+ADD COLUMN `indNaturalPerson` TINYINT(1) NULL DEFAULT NULL AFTER `originApplicationId`,
+ADD INDEX `fk_personType_originApplication1` (`originApplicationId` ASC) INVISIBLE;
+;
 
+UPDATE `alodigaWallet`.`person_type` SET `originApplicationId` = '1', `indNaturalPerson` = '1' WHERE (`id` = '1');
+UPDATE `alodigaWallet`.`person_type` SET `originApplicationId` = '1', `indNaturalPerson` = '0' WHERE (`id` = '2');
+UPDATE `alodigaWallet`.`person_type` SET `originApplicationId` = '2', `indNaturalPerson` = '1' WHERE (`id` = '3');
+UPDATE `alodigaWallet`.`person_type` SET `originApplicationId` = '2', `indNaturalPerson` = '1' WHERE (`id` = '4');
 
+ALTER TABLE `alodigaWallet`.`person_type` 
+ADD CONSTRAINT `fk_personType_originApplication1`
+  FOREIGN KEY (`originApplicationId`)
+  REFERENCES `alodigaWallet`.`origin_application` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
+UPDATE `alodigaWallet`.`person_type` SET `description` = 'Persona Natural' WHERE (`id` = '3');
+UPDATE `alodigaWallet`.`person_type` SET `description` = 'Persona Juridica', `indNaturalPerson` = '0' WHERE (`id` = '4'); 
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('5', 'Persona Natural', '1', '2', '1');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('6', 'Persona Juridica', '1', '2', '0');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('7', 'Persona Natural', '47', '1', '1');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('8', 'Persona Juridica', '47', '1', '0');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('9', 'Persona Natural', '85', '1', '1');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('10', 'Persona Juridica', '85', '1', '0');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('11', 'Persona Natural', '85', '2', '1');
+INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('12', 'Persona Juridica', '85', '2', '0');
 

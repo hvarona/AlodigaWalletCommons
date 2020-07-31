@@ -59,6 +59,9 @@ public class PersonType extends AbstractWalletEntity implements Serializable {
     private Country countryId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "personTypeId")
     private Collection<CollectionsRequest> collectionsRequestCollection;
+    @JoinColumn(name = "originApplicationId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private OriginApplication originApplicationId;
 
     public PersonType() {
     }
@@ -100,8 +103,17 @@ public class PersonType extends AbstractWalletEntity implements Serializable {
     public void setCountryId(Country countryId) {
         this.countryId = countryId;
     }
+    
 
-    @XmlTransient
+    public OriginApplication getOriginApplicationId() {
+		return originApplicationId;
+	}
+
+	public void setOriginApplicationId(OriginApplication originApplicationId) {
+		this.originApplicationId = originApplicationId;
+	}
+
+	@XmlTransient
     @JsonIgnore
     public Collection<CollectionsRequest> getCollectionsRequestCollection() {
         return collectionsRequestCollection;

@@ -117,4 +117,5 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+
 }

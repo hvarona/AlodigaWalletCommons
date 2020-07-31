@@ -5,6 +5,7 @@
  */
 package com.alodiga.wallet.common.model;
 
+
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
