@@ -25,7 +25,6 @@ INSERT INTO `alodigaWallet`.`documents_person_type` (`id`, `description`, `perso
 VALUES ('6', 'GREEN CARD', '3', 'GC');
 
 
-
 -- Insert en la tabla status_transaction_approve_request
 -- author: Lulymar Gutierrez
 -- Fecha: 28/07/2020
@@ -38,5 +37,46 @@ INSERT INTO `status_transaction_approve_request` (`id`,`description`,`code`) VAL
 -- Insert en la tabla transaction_approve_request
 -- author: Lulymar Gutierrez
 -- Fecha: 28/07/2020
-INSERT INTO `transaction_approve_request` (`id`,`createDate`,`updateDate`,`requestNumber`,`requestDate`,`productId`,`transactionId`,`statusTransactionApproveRequestId`,`indApproveRequest`,`approvedRequestDate`,`observations`,`userApprovedRequestId`) VALUES (1,'2020-07-27 00:00:00',NULL,'MWAR-2020-1','2020-07-27',3,84,1,0,NULL,NULL,1);
-INSERT INTO `transaction_approve_request` (`id`,`createDate`,`updateDate`,`requestNumber`,`requestDate`,`productId`,`transactionId`,`statusTransactionApproveRequestId`,`indApproveRequest`,`approvedRequestDate`,`observations`,`userApprovedRequestId`) VALUES (2,'2020-07-27 00:00:00',NULL,'MWAR-2020-2','2020-07-27',3,85,1,0,NULL,NULL,1);
+INSERT INTO `transaction_approve_request` (`id`,`UnifiedRegistryUserId`,`createDate`,`updateDate`,`requestNumber`,`requestDate`,`productId`,`transactionId`,`bankOperationId`,`statusTransactionApproveRequestId`,`indApproveRequest`,`approvedRequestDate`,`observations`,`userApprovedRequestId`) VALUES (1,379,'2020-07-27 00:00:00',NULL,'MWAR-2020-1','2020-07-27',3,95,1,1,0,NULL,NULL,1);
+INSERT INTO `transaction_approve_request` (`id`,`UnifiedRegistryUserId`,`createDate`,`updateDate`,`requestNumber`,`requestDate`,`productId`,`transactionId`,`bankOperationId`,`statusTransactionApproveRequestId`,`indApproveRequest`,`approvedRequestDate`,`observations`,`userApprovedRequestId`) VALUES (2,379,'2020-07-27 00:00:00',NULL,'MWAR-2020-2','2020-07-27',3,97,2,1,0,NULL,NULL,1);
+
+
+
+-- Insert en la tabla status_account_bank
+-- author: Lulymar Gutierrez
+-- Fecha: 30/07/2020
+INSERT INTO `alodigaWallet`.`status_account_bank` (`id`,`description`,`code`) VALUES (1,'Activa','ACTI');
+
+-- Insert en la tabla account_type_bank
+-- author: Lulymar Gutierrez
+-- Fecha: 30/07/2020
+INSERT INTO `alodigaWallet`.`account_type_bank` (`id`,`description`,`code`) VALUES (1,'Ahorro','A');
+INSERT INTO `alodigaWallet`.`account_type_bank` (`id`,`description`,`code`) VALUES (2,'Corriente','C');
+
+-- Insert en la tabla account_bank
+-- author: Lulymar Gutierrez
+-- Fecha: 30/07/2020
+INSERT INTO `alodigaWallet`.`account_bank` (`id`,`UnifiedRegistryId`,`accountNumber`,`bankId`,`updateDate`,`statusAccountBankId`,`accountTypeBankId`,`createDate`) 
+VALUES (1,0,'123456',1,NULL,1,2,'2020-07-29 00:00:00');
+INSERT INTO `alodigaWallet`.`account_bank` 
+(`id`, `UnifiedRegistryId`, `accountNumber`, `bankId`, `statusAccountBankId`, `accountTypeBankId`, `createDate`) 
+VALUES ('2', '1', '987654', '1', '1', '2', '2020-07-29 00:00:00');
+
+-- Update en la tabla bank_operation
+-- author: Lulymar Gutierrez
+-- Fecha: 30/07/2020
+UPDATE `alodigaWallet`.`bank_operation` SET `accountBankId`='1' WHERE `id`='1';
+UPDATE `alodigaWallet`.`bank_operation` SET `accountBankId`='2' WHERE `id`='2';
+
+-- Update en la tabla transaction_approve_request
+-- author: Lulymar Gutierrez
+-- Fecha: 30/07/2020
+UPDATE `alodigaWallet`.`transaction_approve_request` SET `transactionId`='95' WHERE `id`='1';
+UPDATE `alodigaWallet`.`transaction_approve_request` SET `transactionId`='97' WHERE `id`='2';
+
+-- Insert en la tabla transaction_approve_request
+-- author: Yamelis Almea
+-- Fecha: 30/07/2020
+INSERT INTO `alodigaWallet`.`transaction_approve_request` VALUES (3,1,'2020-07-27 03:00:00',NULL,'MRAR-2020-1','2020-07-27',3,187,32,1,0,NULL,NULL,NULL),
+(4,2,'2020-07-27 03:00:00',NULL,'MRAR-2020-2','2020-07-27',3,188,33,1,0,NULL,NULL,NULL),
+(5,2,'2020-07-27 03:00:00',NULL,'MRAR-2020-3','2020-07-27',3,278,36,1,0,NULL,NULL,NULL);

@@ -6,7 +6,7 @@
 	<property name="BUILD_DIR" value="${PROJECT_HOME}/build" />
 	<property name="JAVA_BUILD_DIR" value="${BUILD_DIR}" />
 	<property name="JAVA_SRC_DIR" value="${PROJECT_HOME}/src" />
-	<property name="SISAC_JAR_DIR" value="${PROJECT_HOME}/build" />
+	<property name="SISAC_JAR_DIR" value="../lib" />
 	
 	<target name="init">
 		<tstamp>

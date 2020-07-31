@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.sql.Timestamp;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +14,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Profile;
@@ -164,14 +162,6 @@ public class User extends AbstractWalletEntity implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }   
     
     public String getPhoneNumber() {
         return this.phoneNumber;
@@ -279,7 +269,8 @@ public class User extends AbstractWalletEntity implements Serializable {
         this.transactionApproveRequestCollection = transactionApproveRequestCollection;
     }
 
-    @Override
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
