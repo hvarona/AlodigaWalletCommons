@@ -20,8 +20,10 @@ import com.alodiga.wallet.common.exception.NullParameterException;
 import com.alodiga.wallet.common.exception.RegisterNotFoundException;
 import com.alodiga.wallet.common.utils.EjbConstants;
 import com.alodiga.wallet.common.utils.MessageFormatHelper;
-
 import javax.persistence.Query;
+import javax.persistence.RollbackException;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 
 
@@ -249,7 +251,7 @@ public class AbstractWalletEJB {
         }
         return object;
     }
-
+    
     //Este metodo se utiliza para que el procesamiento sea mas rapido pero no guardara registro en la bitacora.
     protected Object saveEntity(Object entity) throws GeneralException, NullParameterException {
         if (entity == null) {
@@ -268,8 +270,8 @@ public class AbstractWalletEJB {
                 //processAuditData(EventTypeEnum.CREATE, entity, auditData, entityManagerWrapper);
             }
             transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
+        }   catch (Exception e) {
+                e.printStackTrace();
             try {
                 transaction.rollback();
             } catch (Exception e1) {
@@ -281,4 +283,41 @@ public class AbstractWalletEJB {
         return entity;
     }
 
+    
+      //Este metodo se utiliza para que el procesamiento sea mas rapido pero no guardara registro en la bitacora.
+    protected Object saveEntityObject(Object entity) throws GeneralException, NullParameterException {
+           if (entity == null) {
+            System.out.println("EJB empty");
+            throw new NullParameterException("NullParameterException ");
+        }
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+
+            transaction.begin();
+            if (((WalletGenericEntity) entity).getPk() != null) {
+                //processAuditData(EventTypeEnum.UPDATE, entity, auditData, entityManagerWrapper);
+                entityManagerWrapper.update(entity);
+            } else {
+                entityManagerWrapper.save(entity);
+                //processAuditData(EventTypeEnum.CREATE, entity, auditData, entityManagerWrapper);
+            }
+            transaction.commit();
+        }    catch (RollbackException re) {
+            re.printStackTrace();
+            // <---------------------------------------- hibernate here
+            throw re;
+        } catch (ConstraintViolationException cve) {
+            // <---------------------------------------- eclipselink here
+            transaction.rollback();
+            throw cve;
+        } catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace(System.err);
+            
+        }
+
+        return entity;
+       
+    }
+    
 }
