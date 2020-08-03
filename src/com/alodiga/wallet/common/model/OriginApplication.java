@@ -30,7 +30,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author 
  */
 @Entity
-@Table(name = "originApplication")
+@Table(name = "origin_application")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OriginApplication.findAll", query = "SELECT o FROM OriginApplication o"),
