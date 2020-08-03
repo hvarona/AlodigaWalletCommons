@@ -44,7 +44,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TransactionApproveRequest.findByIndApproveRequest", query = "SELECT t FROM TransactionApproveRequest t WHERE t.indApproveRequest = :indApproveRequest"),
     @NamedQuery(name = "TransactionApproveRequest.findByApprovedRequestDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.approvedRequestDate = :approvedRequestDate"),
     @NamedQuery(name = "TransactionApproveRequest.findByObservations", query = "SELECT t FROM TransactionApproveRequest t WHERE t.observations = :observations"),
-    @NamedQuery(name = QueryConstants.TRANSACTION_APPROVE_REQUEST_BY_STATUS, query = "SELECT t FROM TransactionApproveRequest t  WHERE t.statusTransactionApproveRequestId.id= :statusTransactionApproveRequestId")})
+    @NamedQuery(name = QueryConstants.TRANSACTION_APPROVE_REQUEST_BY_STATUS, query = "SELECT t FROM TransactionApproveRequest t  WHERE t.statusTransactionApproveRequestId.id= :statusTransactionApproveRequestId AND t.requestNumber like CONCAT('%',:requestNumber,'%')")})
 public class TransactionApproveRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
