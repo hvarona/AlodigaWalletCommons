@@ -254,4 +254,5 @@ public class Constants {
     public static final String STATUS_TRANSACTIONS_CODE = "PEND";
     public static final String STATUS_TRANSACTIONS_APPR = "APPR";
     public static final String STATUS_TRANSACTIONS_REJE = "REJE";
+    public static final String REQUEST_NUMBER_MANUAL_WITHDRAWAL = "MW";
 }
