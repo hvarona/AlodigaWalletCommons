@@ -57,11 +57,11 @@ public class PersonType extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "countryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Country countryId;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personTypeId")
-//    private Collection<CollectionsRequest> collectionsRequestCollection;
-//    @JoinColumn(name = "originApplicationId", referencedColumnName = "id")
-//    @ManyToOne(optional = false)
-//    private OriginApplication originApplicationId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personTypeId")
+    private Collection<CollectionsRequest> collectionsRequestCollection;
+    @JoinColumn(name = "originApplicationId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private OriginApplication originApplicationId;
 
     public PersonType() {
     }
@@ -104,23 +104,23 @@ public class PersonType extends AbstractWalletEntity implements Serializable {
         this.countryId = countryId;
     }
 
-//    public OriginApplication getOriginApplicationId() {
-//        return originApplicationId;
-//    }
-//
-//    public void setOriginApplicationId(OriginApplication originApplicationId) {
-//        this.originApplicationId = originApplicationId;
-//    }
-//
-//    @XmlTransient
-//    @JsonIgnore
-//    public Collection<CollectionsRequest> getCollectionsRequestCollection() {
-//        return collectionsRequestCollection;
-//    }
-//
-//    public void setCollectionsRequestCollection(Collection<CollectionsRequest> collectionsRequestCollection) {
-//        this.collectionsRequestCollection = collectionsRequestCollection;
-//    }
+    public OriginApplication getOriginApplicationId() {
+        return originApplicationId;
+    }
+
+    public void setOriginApplicationId(OriginApplication originApplicationId) {
+        this.originApplicationId = originApplicationId;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<CollectionsRequest> getCollectionsRequestCollection() {
+        return collectionsRequestCollection;
+    }
+
+    public void setCollectionsRequestCollection(Collection<CollectionsRequest> collectionsRequestCollection) {
+        this.collectionsRequestCollection = collectionsRequestCollection;
+    }
 
     @Override
     public int hashCode() {

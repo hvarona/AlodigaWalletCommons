@@ -6,10 +6,12 @@ import javax.ejb.Remote;
 
 import com.alodiga.wallet.common.exception.EmptyListException;
 import com.alodiga.wallet.common.exception.GeneralException;
+import com.alodiga.wallet.common.exception.NegativeBalanceException;
 import com.alodiga.wallet.common.exception.NullParameterException;
 import com.alodiga.wallet.common.exception.RegisterNotFoundException;
 import com.alodiga.wallet.common.genericEJB.EJBRequest;
 import com.alodiga.wallet.common.genericEJB.WalletGenericEJB;
+import com.alodiga.wallet.common.model.BalanceHistory;
 import com.alodiga.wallet.common.model.BankHasProduct;
 import com.alodiga.wallet.common.model.Category;
 import com.alodiga.wallet.common.model.Period;
@@ -93,6 +95,8 @@ public interface ProductEJB extends WalletGenericEJB {
    
    public StatusTransactionApproveRequest loadStatusTransactionApproveRequestbyCode(EJBRequest request)throws RegisterNotFoundException, NullParameterException, GeneralException;
    
-   public TransactionApproveRequest updateTransactionApproveRequest(TransactionApproveRequest transactionApproveRequest)throws RegisterNotFoundException, NullParameterException, GeneralException;
+   public TransactionApproveRequest updateTransactionApproveRequest(TransactionApproveRequest transactionApproveRequest)throws RegisterNotFoundException, NullParameterException, GeneralException, NegativeBalanceException;
+   
+   public BalanceHistory saveBalanceHistory(BalanceHistory balancehistory) throws GeneralException, NullParameterException;
 
 }
