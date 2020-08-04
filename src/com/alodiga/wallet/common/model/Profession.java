@@ -8,73 +8,66 @@ package com.alodiga.wallet.common.model;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.Address;
-import com.alodiga.wallet.common.model.County;
-import com.alodiga.wallet.common.model.State;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author usuario
+ * @author jose
  */
 @Entity
-@Table(name = "county")
+@Table(name = "profession")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "County.findAll", query = "SELECT c FROM County c"),
-    @NamedQuery(name = "County.findById", query = "SELECT c FROM County c WHERE c.id = :id"),
-    @NamedQuery(name = "County.findByName", query = "SELECT c FROM County c WHERE c.name = :name"),
-    @NamedQuery(name = "County.findByShortName", query = "SELECT c FROM County c WHERE c.shortName = :shortName")})
-public class County extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "Profession.findAll", query = "SELECT p FROM Profession p")
+    , @NamedQuery(name = "Profession.findById", query = "SELECT p FROM Profession p WHERE p.id = :id")
+    , @NamedQuery(name = "Profession.findByName", query = "SELECT p FROM Profession p WHERE p.name = :name")})
+public class Profession implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "name")
     private String name;
-    @Column(name = "shortName")
-    private String shortName;
-    @JoinColumn(name = "stateId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private State stateId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "professionId")
+    private Collection<NaturalPerson> naturalPersonCollection;
 
-    public County() {
+    public Profession() {
     }
 
-    public County(Long id) {
+    public Profession(Integer id) {
         this.id = id;
     }
 
-    public County(Long id, String name) {
+    public Profession(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -86,20 +79,14 @@ public class County extends AbstractWalletEntity implements Serializable {
         this.name = name;
     }
 
-    public String getShortName() {
-        return shortName;
+    @XmlTransient
+    @JsonIgnore
+    public Collection<NaturalPerson> getNaturalPersonCollection() {
+        return naturalPersonCollection;
     }
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
-    }
-
-    public State getStateId() {
-        return stateId;
-    }
-
-    public void setStateId(State stateId) {
-        this.stateId = stateId;
+    public void setNaturalPersonCollection(Collection<NaturalPerson> naturalPersonCollection) {
+        this.naturalPersonCollection = naturalPersonCollection;
     }
 
     @Override
@@ -112,10 +99,10 @@ public class County extends AbstractWalletEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof County)) {
+        if (!(object instanceof Profession)) {
             return false;
         }
-        County other = (County) object;
+        Profession other = (Profession) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -124,17 +111,7 @@ public class County extends AbstractWalletEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "dto.County[ id=" + id + " ]";
+        return "com.alodiga.wallet.common.model.Profession[ id=" + id + " ]";
     }
     
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
-
 }

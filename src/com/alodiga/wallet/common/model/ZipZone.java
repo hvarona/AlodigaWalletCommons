@@ -5,8 +5,6 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -19,7 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -27,12 +25,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author jose
  */
 @Entity
-@Table(name = "collections_request")
+@Table(name = "zip_zone")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CollectionsRequest.findAll", query = "SELECT c FROM CollectionsRequest c"),
-    @NamedQuery(name = "CollectionsRequest.findById", query = "SELECT c FROM CollectionsRequest c WHERE c.id = :id")})
-public class CollectionsRequest extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "ZipZone.findAll", query = "SELECT z FROM ZipZone z")
+    , @NamedQuery(name = "ZipZone.findById", query = "SELECT z FROM ZipZone z WHERE z.id = :id")
+    , @NamedQuery(name = "ZipZone.findByName", query = "SELECT z FROM ZipZone z WHERE z.name = :name")
+    , @NamedQuery(name = "ZipZone.findByCode", query = "SELECT z FROM ZipZone z WHERE z.code = :code")})
+public class ZipZone implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,17 +40,20 @@ public class CollectionsRequest extends AbstractWalletEntity implements Serializ
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "collectionTypeId", referencedColumnName = "id")
+    @Size(max = 50)
+    @Column(name = "name")
+    private String name;
+    @Size(max = 20)
+    @Column(name = "code")
+    private String code;
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private CollectionType collectionTypeId;
-    @JoinColumn(name = "personTypeId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private PersonType personTypeId;
+    private City cityId;
 
-    public CollectionsRequest() {
+    public ZipZone() {
     }
 
-    public CollectionsRequest(Integer id) {
+    public ZipZone(Integer id) {
         this.id = id;
     }
 
@@ -62,20 +65,28 @@ public class CollectionsRequest extends AbstractWalletEntity implements Serializ
         this.id = id;
     }
 
-    public CollectionType getCollectionTypeId() {
-        return collectionTypeId;
+    public String getName() {
+        return name;
     }
 
-    public void setCollectionTypeId(CollectionType collectionTypeId) {
-        this.collectionTypeId = collectionTypeId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public PersonType getPersonTypeId() {
-        return personTypeId;
+    public String getCode() {
+        return code;
     }
 
-    public void setPersonTypeId(PersonType personTypeId) {
-        this.personTypeId = personTypeId;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public City getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(City cityId) {
+        this.cityId = cityId;
     }
 
     @Override
@@ -88,10 +99,10 @@ public class CollectionsRequest extends AbstractWalletEntity implements Serializ
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CollectionsRequest)) {
+        if (!(object instanceof ZipZone)) {
             return false;
         }
-        CollectionsRequest other = (CollectionsRequest) object;
+        ZipZone other = (ZipZone) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -100,16 +111,7 @@ public class CollectionsRequest extends AbstractWalletEntity implements Serializ
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.CollectionsRequest[ id=" + id + " ]";
+        return "com.alodiga.wallet.common.model.ZipZone[ id=" + id + " ]";
     }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
+    
 }

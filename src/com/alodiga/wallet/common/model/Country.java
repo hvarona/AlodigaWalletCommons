@@ -50,13 +50,6 @@ import com.alodiga.wallet.common.model.ValidationCollection;
     @NamedQuery(name = "Country.findByAlternativeName3", query = "SELECT c FROM Country c WHERE c.alternativeName3 = :alternativeName3")})
 public class Country extends AbstractWalletEntity implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
-    private Collection<ValidationCollection> validationCollectionCollection;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
-    private Collection<SmsProvider> smsProviderCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
-    private Collection<Bank> bankCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,12 +69,6 @@ public class Country extends AbstractWalletEntity implements Serializable {
     private String alternativeName2;
     @Column(name = "alternativeName3")
     private String alternativeName3;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
-    private Collection<State> stateCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
-    private Collection<Enterprise> enterpriseCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
-    private Collection<Address> addressCollection;
 
     public Country() {
     }
@@ -151,33 +138,6 @@ public class Country extends AbstractWalletEntity implements Serializable {
         this.alternativeName3 = alternativeName3;
     }
 
-    @XmlTransient
-    public Collection<State> getStateCollection() {
-        return stateCollection;
-    }
-
-    public void setStateCollection(Collection<State> stateCollection) {
-        this.stateCollection = stateCollection;
-    }
-
-    @XmlTransient
-    public Collection<Enterprise> getEnterpriseCollection() {
-        return enterpriseCollection;
-    }
-
-    public void setEnterpriseCollection(Collection<Enterprise> enterpriseCollection) {
-        this.enterpriseCollection = enterpriseCollection;
-    }
-
-    @XmlTransient
-    public Collection<Address> getAddressCollection() {
-        return addressCollection;
-    }
-
-    public void setAddressCollection(Collection<Address> addressCollection) {
-        this.addressCollection = addressCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -202,36 +162,6 @@ public class Country extends AbstractWalletEntity implements Serializable {
     public String toString() {
         return "dto.Country[ id=" + id + " ]";
     }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<Bank> getBankCollection() {
-        return bankCollection;
-    }
-
-    public void setBankCollection(Collection<Bank> bankCollection) {
-        this.bankCollection = bankCollection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<SmsProvider> getSmsProviderCollection() {
-        return smsProviderCollection;
-    }
-
-    public void setSmsProviderCollection(Collection<SmsProvider> smsProviderCollection) {
-        this.smsProviderCollection = smsProviderCollection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<ValidationCollection> getValidationCollectionCollection() {
-        return validationCollectionCollection;
-    }
-
-    public void setValidationCollectionCollection(Collection<ValidationCollection> validationCollectionCollection) {
-        this.validationCollectionCollection = validationCollectionCollection;
-    }
     
     @Override
     public Object getPk() {
@@ -242,4 +172,5 @@ public class Country extends AbstractWalletEntity implements Serializable {
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+
 }
