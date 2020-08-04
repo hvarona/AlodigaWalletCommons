@@ -5,38 +5,34 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author 
+ * @author jose
  */
 @Entity
-@Table(name = "origin_application")
+@Table(name = "zip_zone")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "OriginApplication.findAll", query = "SELECT o FROM OriginApplication o"),
-    @NamedQuery(name = "OriginApplication.findById", query = "SELECT o FROM OriginApplication o WHERE o.id = :id"),
-    @NamedQuery(name = "OriginApplication.findByName", query = "SELECT o FROM OriginApplication o WHERE o.name = :name")})
-public class OriginApplication extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "ZipZone.findAll", query = "SELECT z FROM ZipZone z")
+    , @NamedQuery(name = "ZipZone.findById", query = "SELECT z FROM ZipZone z WHERE z.id = :id")
+    , @NamedQuery(name = "ZipZone.findByName", query = "SELECT z FROM ZipZone z WHERE z.name = :name")
+    , @NamedQuery(name = "ZipZone.findByCode", query = "SELECT z FROM ZipZone z WHERE z.code = :code")})
+public class ZipZone implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,13 +43,17 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
     @Size(max = 50)
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "originApplicationId")
-    private Collection<PersonType> personTypeCollection;
+    @Size(max = 20)
+    @Column(name = "code")
+    private String code;
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private City cityId;
 
-    public OriginApplication() {
+    public ZipZone() {
     }
 
-    public OriginApplication(Integer id) {
+    public ZipZone(Integer id) {
         this.id = id;
     }
 
@@ -73,14 +73,20 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
         this.name = name;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<PersonType> getPersonTypeCollection() {
-        return personTypeCollection;
+    public String getCode() {
+        return code;
     }
 
-    public void setPersonTypeCollection(Collection<PersonType> personTypeCollection) {
-        this.personTypeCollection = personTypeCollection;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public City getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(City cityId) {
+        this.cityId = cityId;
     }
 
     @Override
@@ -93,10 +99,10 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof OriginApplication)) {
+        if (!(object instanceof ZipZone)) {
             return false;
         }
-        OriginApplication other = (OriginApplication) object;
+        ZipZone other = (ZipZone) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -105,17 +111,7 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.OriginApplication[ id=" + id + " ]";
+        return "com.alodiga.wallet.common.model.ZipZone[ id=" + id + " ]";
     }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
-
+    
 }
