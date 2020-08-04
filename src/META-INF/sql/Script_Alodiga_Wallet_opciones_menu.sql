@@ -707,3 +707,40 @@ INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (7
 INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (79,79,1);
 INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (80,80,1);
 
+
+
+-- Agregar opciones del menu Recaudos de Solicitud
+-- author: Lulymar Gutierrez
+-- Fecha: 3/08/2020
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
+VALUES (85,1,'ListCollectionsRequest','collections_request','ListCollectionsRequest',1);
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
+VALUES (86,1,'AddCollectionsRequest','collections_request','AddCollectionsRequest',1);
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
+VALUES (87,1,'EditCollectionsRequest','collections_request','EditCollectionsRequest',1);
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
+VALUES (88,1,'ViewCollectionsRequest','collections_request','ViewCollectionsRequest',1);
+
+
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (169,85,1,'List Collections Request','List Collections Request');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (170,85,2,'Lista Recaudos de Solicitud','Lista Recaudos de Solicitud');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (171,86,1,'Add Collections Request','Add Collections Request');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (172,86,2,'Agregar Recaudos de Solicitud','Agregar Recaudos de Solicitud');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (173,87,1,'Edit Collections Request','Edit Collections Request');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (174,87,2,'Editar Recaudos de Solicitud','Editar Recaudos de Solicitud');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (175,88,1,'View Collections Request','View Collections Request');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (176,88,2,'Ver Recaudos de Solicitud','Ver Recaudos de Solicitud');
+
+
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (85,85,1);
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (86,86,1);
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (87,87,1);
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (88,88,1);
