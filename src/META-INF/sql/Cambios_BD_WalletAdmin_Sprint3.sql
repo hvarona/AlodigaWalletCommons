@@ -579,3 +579,415 @@ INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `or
 INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('11', 'Persona Natural', '85', '2', '1');
 INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('12', 'Persona Juridica', '85', '2', '0');
 
+-- Eiminar FK en tabla collectionsRequest
+-- author: Jesús Gómez
+-- Fecha: 03/08/2020
+ALTER TABLE `alodigaWallet`.`collectionsRequest`
+DROP FOREIGN KEY `fk_collectionsRequest_category1`;
+ALTER TABLE `alodigaWallet`.`collectionsRequest` 
+DROP INDEX  `fk_collectionsRequest_category1_idx`;
+ALTER TABLE `alodigaWallet`.`collectionsRequest` 
+DROP COLUMN `categoryId`;
+
+
+-- Cambios relacionados con esquema de solicitudes de afiliación del negocio
+-- author: Jesús Gómez
+-- Fecha: 03/08/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`person_classification` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`person` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(50) NULL,
+  `personTypeId` INT NOT NULL,
+  `personClassificationId` INT NOT NULL,
+  `webSite` VARCHAR(50) NULL,
+  `countryId` BIGINT(3) NOT NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_person_person_type1_idx` (`personTypeId` ASC),
+  INDEX `fk_person_person_classification1_idx` (`personClassificationId` ASC),
+  INDEX `fk_person_country1_idx` (`countryId` ASC),
+  CONSTRAINT `fk_person_person_type1`
+    FOREIGN KEY (`personTypeId`)
+    REFERENCES `alodigaWallet`.`person_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_person_person_classification1`
+    FOREIGN KEY (`personClassificationId`)
+    REFERENCES `alodigaWallet`.`person_classification` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_person_country1`
+    FOREIGN KEY (`countryId`)
+    REFERENCES `alodigaWallet`.`country` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`phone_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(40) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`phone_person` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `countryId` BIGINT(3) NOT NULL,
+  `countryCode` VARCHAR(4) NULL,
+  `areaCode` VARCHAR(10) NULL,
+  `numberPhone` VARCHAR(10) NOT NULL,
+  `personId` BIGINT UNIQUE NOT NULL,
+  `phoneTypeId` INT NOT NULL,
+  `extensionPhoneNumber` VARCHAR(10) NULL,
+  `indMainPhone` TINYINT(1) NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_phonePerson_person1_idx` (`personId` ASC),
+  INDEX `fk_phone_person_phone_type1_idx` (`phoneTypeId` ASC),
+  INDEX `fk_phone_person_country1_idx` (`countryId` ASC),
+  CONSTRAINT `fk_phonePerson_person1`
+    FOREIGN KEY (`personId`)
+    REFERENCES `alodigaWallet`.`person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_phone_person_phone_type1`
+    FOREIGN KEY (`phoneTypeId`)
+    REFERENCES `alodigaWallet`.`phone_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_phone_person_country1`
+    FOREIGN KEY (`countryId`)
+    REFERENCES `alodigaWallet`.`country` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`profession` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`civil_status` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NOT NULL,
+  `languageId` BIGINT(3) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_civilStatus_language1_idx` (`languageId` ASC),
+  CONSTRAINT `fk_civilStatus_language1`
+    FOREIGN KEY (`languageId`)
+    REFERENCES `alodigaWallet`.`language` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`natural_person` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `personId` BIGINT UNIQUE NOT NULL,
+  `documentsPersonTypeId` INT NOT NULL,
+  `identificationNumber` VARCHAR(40) NULL,
+  `dueDateDocumentIdentification` DATE NULL,
+  `identificactionNumberOld` VARCHAR(40) NULL,
+  `firstName` VARCHAR(40) NULL,
+  `lastName` VARCHAR(40) NULL,
+  `marriedLastName` VARCHAR(40) NULL,
+  `gender` VARCHAR(1) NULL,
+  `placeBirth` VARCHAR(50) NULL,
+  `dateBirth` DATE NULL,
+  `civilStatusId` INT NOT NULL,
+  `professionId` INT NOT NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_natural_person_person1_idx` (`personId` ASC),
+  INDEX `fk_natural_person_civilStatus1_idx` (`civilStatusId` ASC),
+  INDEX `fk_natural_person_profession1_idx` (`professionId` ASC),
+  INDEX `fk_natural_person_documents_person_type1_idx` (`documentsPersonTypeId` ASC),
+  CONSTRAINT `fk_natural_person_person1`
+    FOREIGN KEY (`personId`)
+    REFERENCES `alodigaWallet`.`person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_natural_person_civilStatus1`
+    FOREIGN KEY (`civilStatusId`)
+    REFERENCES `alodigaWallet`.`civil_status` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_natural_person_profession1`
+    FOREIGN KEY (`professionId`)
+    REFERENCES `alodigaWallet`.`profession` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_natural_person_documents_person_type1`
+    FOREIGN KEY (`documentsPersonTypeId`)
+    REFERENCES `alodigaWallet`.`documents_person_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`legal_person` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  `personId` BIGINT UNIQUE NOT NULL,
+  `documentsPersonTypeId` INT NOT NULL,
+  `identificationNumber` VARCHAR(40) NOT NULL,
+  `tradeName` VARCHAR(60) NULL,
+  `businessName` VARCHAR(80) NOT NULL,
+  `businessCategoryId` INT NOT NULL,
+  `registerNumber` VARCHAR(45) NULL,
+  `dateInscriptionRegister` DATE NULL,
+  `payedCapital` FLOAT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_legal_person_person1_idx` (`personId` ASC),
+  INDEX `fk_legal_person_documents_person_type1_idx` (`documentsPersonTypeId` ASC),
+  INDEX `fk_legal_person_business_category1_idx` (`businessCategoryId` ASC),
+  CONSTRAINT `fk_legal_person_person1`
+    FOREIGN KEY (`personId`)
+    REFERENCES `alodigaWallet`.`person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_legal_person_documents_person_type1`
+    FOREIGN KEY (`documentsPersonTypeId`)
+    REFERENCES `alodigaWallet`.`documents_person_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_legal_person_business_category1`
+    FOREIGN KEY (`businessCategoryId`)
+    REFERENCES `alodigaWallet`.`business_category` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`zip_zone` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NULL,
+  `code` VARCHAR(20) NULL,
+  `city_id` BIGINT(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_zipZone_city1_idx` (`city_id` ASC),
+  CONSTRAINT `fk_zipZone_city1`
+    FOREIGN KEY (`city_id`)
+    REFERENCES `alodigaWallet`.`city` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`edification_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`address_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`street_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE `alodigaWallet`.`address`;
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`address` (
+  `id` BIGINT(10) NOT NULL AUTO_INCREMENT,
+  `countryId` BIGINT(3) NOT NULL,
+  `cityId` BIGINT(10) NULL DEFAULT NULL,
+  `countyId` BIGINT(10) NULL DEFAULT NULL,
+  `zipCode` VARCHAR(45) NOT NULL,
+  `streetTypeId` INT NOT NULL,
+  `nameStreet` VARCHAR(50) NULL,
+  `edificationTypeId` INT NOT NULL,
+  `nameEdification` VARCHAR(50) NULL,
+  `tower` VARCHAR(40) NULL,
+  `floor` INT NULL,
+  `urbanization` VARCHAR(50) NULL,
+  `addressLine1` VARCHAR(255) NOT NULL,
+  `addressLine2` VARCHAR(250) NULL,
+  `addressTypeId` INT NOT NULL,
+  `indMainAddress` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_address_city1` (`cityId` ASC),
+  INDEX `fk_address_county1` (`countyId` ASC),
+  INDEX `fk_address_country1` (`countryId` ASC),
+  INDEX `fk_address_street_type1_idx` (`streetTypeId` ASC),
+  INDEX `fk_address_address_type1_idx` (`addressTypeId` ASC),
+  INDEX `fk_address_building_type1_idx` (`edificationTypeId` ASC),
+  CONSTRAINT `fk_address_city1`
+    FOREIGN KEY (`cityId`)
+    REFERENCES `alodigaWallet`.`city` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_address_country1`
+    FOREIGN KEY (`countryId`)
+    REFERENCES `alodigaWallet`.`country` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_address_county1`
+    FOREIGN KEY (`countyId`)
+    REFERENCES `alodigaWallet`.`county` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_address_street_type1`
+    FOREIGN KEY (`streetTypeId`)
+    REFERENCES `alodigaWallet`.`street_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_address_address_type1`
+    FOREIGN KEY (`addressTypeId`)
+    REFERENCES `alodigaWallet`.`address_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_address_edification_type1`
+    FOREIGN KEY (`edificationTypeId`)
+    REFERENCES `alodigaWallet`.`edification_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB; 
+SET FOREIGN_KEY_CHECKS=1;
+
+ALTER TABLE `alodigaWallet`.`address`
+DROP COLUMN `address`,
+DROP COLUMN `zipCode`,
+DROP COLUMN `stateName`,
+DROP COLUMN `countyName`,
+DROP COLUMN `cityName`,
+ADD COLUMN `zipCode` VARCHAR(45) NULL,
+ADD COLUMN `streetTypeId` INT NOT NULL,
+ADD COLUMN  `nameStreet` VARCHAR(50) NULL,
+ADD COLUMN `edificationTypeId` INT NOT NULL,
+ADD COLUMN `nameEdification` VARCHAR(50) NULL,
+ADD COLUMN `tower` VARCHAR(40) NULL,
+ADD COLUMN `floor` INT NULL,
+ADD COLUMN `urbanization` VARCHAR(50) NULL,
+ADD COLUMN `addressLine1` VARCHAR(255) NOT NULL,
+ADD COLUMN `addressLine2` VARCHAR(250) NULL,
+ADD COLUMN `addressTypeId` INT NOT NULL,
+ADD COLUMN `indMainAddress` TINYINT(1) NULL;
+
+ALTER TABLE `alodigaWallet`.`address`
+ADD INDEX `fk_address_street_type1_idx` (`streetTypeId` ASC),
+ADD INDEX `fk_address_address_type1_idx` (`addressTypeId` ASC),
+ADD INDEX `fk_address_building_type1_idx` (`edificationTypeId` ASC);
+ALTER TABLE `alodigaWallet`.`address`
+ADD CONSTRAINT `fk_address_street_type1`
+    FOREIGN KEY (`streetTypeId`)
+    REFERENCES `alodigaWallet`.`street_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+ALTER TABLE `alodigaWallet`.`address`
+ADD CONSTRAINT `fk_address_address_type1`
+    FOREIGN KEY (`addressTypeId`)
+    REFERENCES `alodigaWallet`.`address_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+ALTER TABLE `alodigaWallet`.`address`
+ADD CONSTRAINT `fk_address_edification_type1`
+    FOREIGN KEY (`edificationTypeId`)
+    REFERENCES `alodigaWallet`.`edification_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_business_affiliation_requets` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`business_affiliation_requets` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `numberRequest` VARCHAR(40) NULL,
+  `dateRequest` DATE NULL,
+  `statusBusinessAffiliationRequetsId` INT NOT NULL,
+  `businessPersonId` BIGINT UNIQUE NOT NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_business_affiliation_requets_status_business_affiliation_idx` (`statusBusinessAffiliationRequetsId` ASC),
+  INDEX `fk_business_affiliation_requets_person1_idx` (`businessPersonId` ASC),
+  CONSTRAINT `fk_business_affiliation_requets_status_business_affiliation_r1`
+    FOREIGN KEY (`statusBusinessAffiliationRequetsId`)
+    REFERENCES `alodigaWallet`.`status_business_affiliation_requets` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_business_affiliation_requets_person1`
+    FOREIGN KEY (`businessPersonId`)
+    REFERENCES `alodigaWallet`.`person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`reviewType` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`review_business_affiliation_request` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `businessAffiliationRequetsId` BIGINT UNIQUE NOT NULL,
+  `userReviewId` BIGINT(10) NOT NULL,
+  `ReviewDate` DATE NULL,
+  `observations` VARCHAR(1000) NULL,
+  `indApproved` TINYINT(1) NULL,
+  `reviewTypeId` INT NOT NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_review_business_affiliation_request_business_affiliation_idx` (`businessAffiliationRequetsId` ASC),
+  INDEX `fk_review_business_affiliation_request_user1_idx` (`userReviewId` ASC),
+  INDEX `fk_review_business_affiliation_request_reviewType1_idx` (`reviewTypeId` ASC),
+  CONSTRAINT `fk_review_business_affiliation_request_business_affiliation_r1`
+    FOREIGN KEY (`businessAffiliationRequetsId`)
+    REFERENCES `alodigaWallet`.`business_affiliation_requets` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_review_business_affiliation_request_user1`
+    FOREIGN KEY (`userReviewId`)
+    REFERENCES `alodigaWallet`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_review_business_affiliation_request_reviewType1`
+    FOREIGN KEY (`reviewTypeId`)
+    REFERENCES `alodigaWallet`.`reviewType` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`request_has_collection_request` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  `collectionsRequestId` INT NOT NULL,
+  `businessAffiliationRequetsId` BIGINT UNIQUE NOT NULL,
+  `imageFileUrl` VARCHAR(250) NULL,
+  `observations` VARCHAR(1000) NULL,
+  `indApproved` VARCHAR(50) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_request_has_collection_request_collections_request1_idx` (`collectionsRequestId` ASC),
+  INDEX `fk_request_has_collection_request_business_affiliation_requ_idx` (`businessAffiliationRequetsId` ASC),
+  CONSTRAINT `fk_request_has_collection_request_collections_request1`
+    FOREIGN KEY (`collectionsRequestId`)
+    REFERENCES `alodigaWallet`.`collections_request` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_request_has_collection_request_business_affiliation_requets1`
+    FOREIGN KEY (`businessAffiliationRequetsId`)
+    REFERENCES `alodigaWallet`.`business_affiliation_requets` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+
+

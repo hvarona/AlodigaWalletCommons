@@ -6,9 +6,7 @@
 package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,46 +16,32 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
-
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.Address;
-import com.alodiga.wallet.common.model.City;
-import com.alodiga.wallet.common.model.Country;
-import com.alodiga.wallet.common.model.County;
-import com.alodiga.wallet.common.model.Cumplimient;
-import com.alodiga.wallet.common.model.PaymentInfo;
-import com.alodiga.wallet.common.model.State;
-
-//test Githubs
 
 /**
  *
- * @author usuario
+ * @author jose
  */
 @Entity
 @Table(name = "address")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
-    @NamedQuery(name = "Address.findById", query = "SELECT a FROM Address a WHERE a.id = :id"),
-    @NamedQuery(name = "Address.findByAddress", query = "SELECT a FROM Address a WHERE a.address = :address"),
-    @NamedQuery(name = "Address.findByZipCode", query = "SELECT a FROM Address a WHERE a.zipCode = :zipCode"),
-    @NamedQuery(name = "Address.findByStateName", query = "SELECT a FROM Address a WHERE a.stateName = :stateName"),
-    @NamedQuery(name = "Address.findByCountyName", query = "SELECT a FROM Address a WHERE a.countyName = :countyName"),
-    @NamedQuery(name = "Address.findByCityName", query = "SELECT a FROM Address a WHERE a.cityName = :cityName")})
-public class Address extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a")
+    , @NamedQuery(name = "Address.findById", query = "SELECT a FROM Address a WHERE a.id = :id")
+    , @NamedQuery(name = "Address.findByZipCode", query = "SELECT a FROM Address a WHERE a.zipCode = :zipCode")
+    , @NamedQuery(name = "Address.findByNameStreet", query = "SELECT a FROM Address a WHERE a.nameStreet = :nameStreet")
+    , @NamedQuery(name = "Address.findByNameEdification", query = "SELECT a FROM Address a WHERE a.nameEdification = :nameEdification")
+    , @NamedQuery(name = "Address.findByTower", query = "SELECT a FROM Address a WHERE a.tower = :tower")
+    , @NamedQuery(name = "Address.findByFloor", query = "SELECT a FROM Address a WHERE a.floor = :floor")
+    , @NamedQuery(name = "Address.findByUrbanization", query = "SELECT a FROM Address a WHERE a.urbanization = :urbanization")
+    , @NamedQuery(name = "Address.findByAddressLine1", query = "SELECT a FROM Address a WHERE a.addressLine1 = :addressLine1")
+    , @NamedQuery(name = "Address.findByAddressLine2", query = "SELECT a FROM Address a WHERE a.addressLine2 = :addressLine2")
+    , @NamedQuery(name = "Address.findByIndMainAddress", query = "SELECT a FROM Address a WHERE a.indMainAddress = :indMainAddress")})
+public class Address implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "addressId")
-    private Collection<Cumplimient> cumplimientCollection;
-    
-
-    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,31 +49,54 @@ public class Address extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @Column(name = "address")
-    private String address;
-    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "zipCode")
     private String zipCode;
-    @Column(name = "stateName")
-    private String stateName;
-    @Column(name = "countyName")
-    private String countyName;
-    @Column(name = "cityName")
-    private String cityName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "billingAddressId")
-    private Collection<PaymentInfo> paymentInfoCollection;
-    @JoinColumn(name = "stateId", referencedColumnName = "id")
-    @ManyToOne
-    private State stateId;
-    @JoinColumn(name = "countyId", referencedColumnName = "id")
-    @ManyToOne
-    private County countyId;
-    @JoinColumn(name = "countryId", referencedColumnName = "id")
+    @Size(max = 50)
+    @Column(name = "nameStreet")
+    private String nameStreet;
+    @Size(max = 50)
+    @Column(name = "nameEdification")
+    private String nameEdification;
+    @Size(max = 40)
+    @Column(name = "tower")
+    private String tower;
+    @Column(name = "floor")
+    private Integer floor;
+    @Size(max = 50)
+    @Column(name = "urbanization")
+    private String urbanization;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "addressLine1")
+    private String addressLine1;
+    @Size(max = 250)
+    @Column(name = "addressLine2")
+    private String addressLine2;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "indMainAddress")
+    private boolean indMainAddress;
+    @JoinColumn(name = "addressTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Country countryId;
+    private AddressType addressTypeId;
     @JoinColumn(name = "cityId", referencedColumnName = "id")
     @ManyToOne
     private City cityId;
+    @JoinColumn(name = "countryId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Country countryId;
+    @JoinColumn(name = "countyId", referencedColumnName = "id")
+    @ManyToOne
+    private County countyId;
+    @JoinColumn(name = "edificationTypeId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private EdificationType edificationTypeId;
+    @JoinColumn(name = "streetTypeId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private StreetType streetTypeId;
 
     public Address() {
     }
@@ -98,10 +105,11 @@ public class Address extends AbstractWalletEntity implements Serializable {
         this.id = id;
     }
 
-    public Address(Long id, String address, String zipCode) {
+    public Address(Long id, String zipCode, String addressLine1, boolean indMainAddress) {
         this.id = id;
-        this.address = address;
         this.zipCode = zipCode;
+        this.addressLine1 = addressLine1;
+        this.indMainAddress = indMainAddress;
     }
 
     public Long getId() {
@@ -112,14 +120,6 @@ public class Address extends AbstractWalletEntity implements Serializable {
         this.id = id;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getZipCode() {
         return zipCode;
     }
@@ -128,53 +128,84 @@ public class Address extends AbstractWalletEntity implements Serializable {
         this.zipCode = zipCode;
     }
 
-    public String getStateName() {
-        return stateName;
+    public String getNameStreet() {
+        return nameStreet;
     }
 
-    public void setStateName(String stateName) {
-        this.stateName = stateName;
+    public void setNameStreet(String nameStreet) {
+        this.nameStreet = nameStreet;
     }
 
-    public String getCountyName() {
-        return countyName;
+    public String getNameEdification() {
+        return nameEdification;
     }
 
-    public void setCountyName(String countyName) {
-        this.countyName = countyName;
+    public void setNameEdification(String nameEdification) {
+        this.nameEdification = nameEdification;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getTower() {
+        return tower;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    public void setTower(String tower) {
+        this.tower = tower;
     }
 
-    @XmlTransient
-    public Collection<PaymentInfo> getPaymentInfoCollection() {
-        return paymentInfoCollection;
+    public Integer getFloor() {
+        return floor;
     }
 
-    public void setPaymentInfoCollection(Collection<PaymentInfo> paymentInfoCollection) {
-        this.paymentInfoCollection = paymentInfoCollection;
+    public void setFloor(Integer floor) {
+        this.floor = floor;
     }
 
-    public State getStateId() {
-        return stateId;
+    public String getUrbanization() {
+        return urbanization;
     }
 
-    public void setStateId(State stateId) {
-        this.stateId = stateId;
+    public void setUrbanization(String urbanization) {
+        this.urbanization = urbanization;
     }
 
-    public County getCountyId() {
-        return countyId;
+    public String getAddressLine1() {
+        return addressLine1;
     }
 
-    public void setCountyId(County countyId) {
-        this.countyId = countyId;
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public boolean getIndMainAddress() {
+        return indMainAddress;
+    }
+
+    public void setIndMainAddress(boolean indMainAddress) {
+        this.indMainAddress = indMainAddress;
+    }
+
+    public AddressType getAddressTypeId() {
+        return addressTypeId;
+    }
+
+    public void setAddressTypeId(AddressType addressTypeId) {
+        this.addressTypeId = addressTypeId;
+    }
+
+    public City getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(City cityId) {
+        this.cityId = cityId;
     }
 
     public Country getCountryId() {
@@ -185,12 +216,28 @@ public class Address extends AbstractWalletEntity implements Serializable {
         this.countryId = countryId;
     }
 
-    public City getCityId() {
-        return cityId;
+    public County getCountyId() {
+        return countyId;
     }
 
-    public void setCityId(City cityId) {
-        this.cityId = cityId;
+    public void setCountyId(County countyId) {
+        this.countyId = countyId;
+    }
+
+    public EdificationType getEdificationTypeId() {
+        return edificationTypeId;
+    }
+
+    public void setEdificationTypeId(EdificationType edificationTypeId) {
+        this.edificationTypeId = edificationTypeId;
+    }
+
+    public StreetType getStreetTypeId() {
+        return streetTypeId;
+    }
+
+    public void setStreetTypeId(StreetType streetTypeId) {
+        this.streetTypeId = streetTypeId;
     }
 
     @Override
@@ -215,27 +262,7 @@ public class Address extends AbstractWalletEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "dto.Address[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<Cumplimient> getCumplimientCollection() {
-        return cumplimientCollection;
-    }
-
-    public void setCumplimientCollection(Collection<Cumplimient> cumplimientCollection) {
-        this.cumplimientCollection = cumplimientCollection;
-    }
-    
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
+        return "com.alodiga.wallet.common.model.Address[ id=" + id + " ]";
     }
     
 }
