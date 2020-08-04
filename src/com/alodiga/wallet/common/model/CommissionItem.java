@@ -21,10 +21,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import com.alodiga.wallet.common.model.Commission;
-import com.alodiga.wallet.common.model.CommissionItem;
-import com.alodiga.wallet.common.model.Transaction;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 

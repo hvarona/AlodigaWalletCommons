@@ -7,6 +7,8 @@ import javax.persistence.Query;
 
 import com.alodiga.wallet.common.utils.QueryConstants;
 import com.alodiga.wallet.common.utils.QueryParam;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 public class EntityManagerWrapper<T> {
 
@@ -27,6 +29,19 @@ public class EntityManagerWrapper<T> {
 
     public T update(T t) {
         return entityManager.merge(t);
+    }
+
+    public T updateObject(T t) {
+
+        try {
+            return getEntityManager().merge(t);
+        } catch (ConstraintViolationException e) {
+            // Aqui tira los errores de constraint
+            for (ConstraintViolation actual : e.getConstraintViolations()) {
+                System.out.println("********************"+actual.toString()+"*******************************************");
+            }
+        }
+        return null;
     }
 
     public void delete(T t) {
