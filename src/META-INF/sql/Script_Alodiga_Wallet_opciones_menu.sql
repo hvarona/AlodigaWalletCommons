@@ -708,3 +708,76 @@ UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = 
 UPDATE `alodigawallet`.`permission_data` SET `alias` = 'Listar Preferencias Especificas', `description` = 'Listar Preferencias Especificas' WHERE (`id` = '105');
 UPDATE `alodigawallet`.`permission_data` SET `alias` = 'List Specifics Preferences', `description` = 'List Specifics Preferences' WHERE (`id` = '106');
 
+
+
+-- Agregar opciones del menu Aprobación Retiro Manual
+-- author: Lulymar Gutierrez
+-- Fecha: 23/07/2020
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
+VALUES (77,1,'ListManualWithdrawalApproval','transaction_approve_request','ListManualWithdrawalApproval',1);
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
+VALUES (78,1,'AddManualWithdrawalApproval','transaction_approve_request','AddManualWithdrawalApproval',1);
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
+VALUES (79,1,'EditManualWithdrawalApproval','transaction_approve_request','EditManualWithdrawalApproval',1);
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
+VALUES (80,1,'ViewManualWithdrawalApproval','transaction_approve_request','ViewManualWithdrawalApproval',1);
+
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (153,77,1,'List Manual Withdrawal Approval','List Manual Withdrawal Approval');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (154,77,2,'Lista Aprobación Retiro Manual','Lista Aprobación Retiro Manual');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (155,78,1,'Add Manual Withdrawal Approval','Add Manual Withdrawal Approval');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (156,78,2,'Agregar Aprobación Retiro Manual','Agregar Aprobación Retiro Manual');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (157,79,1,'Edit Manual Withdrawal Approval','Edit Manual Withdrawal Approval');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (158,79,2,'Editar Aprobación Retiro Manual','Editar Aprobación Retiro Manual');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (159,80,1,'View Manual Withdrawal Approval','View Manual Withdrawal Approval');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (160,80,2,'Ver Aprobación Retiro Manual','Ver Aprobación Retiro Manual');
+
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (77,77,1);
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (78,78,1);
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (79,79,1);
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (80,80,1);
+
+
+
+-- Agregar opciones del menu Recaudos de Solicitud
+-- author: Lulymar Gutierrez
+-- Fecha: 3/08/2020
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
+VALUES (85,1,'ListCollectionsRequest','collections_request','ListCollectionsRequest',1);
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
+VALUES (86,1,'AddCollectionsRequest','collections_request','AddCollectionsRequest',1);
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
+VALUES (87,1,'EditCollectionsRequest','collections_request','EditCollectionsRequest',1);
+INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
+VALUES (88,1,'ViewCollectionsRequest','collections_request','ViewCollectionsRequest',1);
+
+
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (169,85,1,'List Collections Request','List Collections Request');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (170,85,2,'Lista Recaudos de Solicitud','Lista Recaudos de Solicitud');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (171,86,1,'Add Collections Request','Add Collections Request');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (172,86,2,'Agregar Recaudos de Solicitud','Agregar Recaudos de Solicitud');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (173,87,1,'Edit Collections Request','Edit Collections Request');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (174,87,2,'Editar Recaudos de Solicitud','Editar Recaudos de Solicitud');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (175,88,1,'View Collections Request','View Collections Request');
+INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (176,88,2,'Ver Recaudos de Solicitud','Ver Recaudos de Solicitud');
+
+
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (85,85,1);
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (86,86,1);
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (87,87,1);
+INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (88,88,1);

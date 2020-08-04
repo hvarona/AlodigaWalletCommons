@@ -37,10 +37,10 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "collection_type")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CollectionType.findAll", query = "SELECT c FROM CollectionType c")
-    , @NamedQuery(name = "CollectionType.findById", query = "SELECT c FROM CollectionType c WHERE c.id = :id")
-    , @NamedQuery(name = "CollectionType.findByDescription", query = "SELECT c FROM CollectionType c WHERE c.description = :description"),
-      @NamedQuery(name = QueryConstants.COLLECTION_TYPE_BY_COUNTRY, query = "SELECT c FROM CollectionType c WHERE c.countryId.id=:countryId")})
+    @NamedQuery(name = "CollectionType.findAll", query = "SELECT c FROM CollectionType c"),
+    @NamedQuery(name = "CollectionType.findById", query = "SELECT c FROM CollectionType c WHERE c.id = :id"),
+    @NamedQuery(name = "CollectionType.findByDescription", query = "SELECT c FROM CollectionType c WHERE c.description = :description"),
+    @NamedQuery(name = QueryConstants.COLLECTION_TYPE_BY_COUNTRY, query = "SELECT c FROM CollectionType c WHERE c.countryId.id=:countryId")})
 public class CollectionType extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -131,7 +131,7 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
         return "com.alodiga.wallet.common.model.CollectionType[ id=" + id + " ]";
     }
 
-     @Override
+    @Override
     public Object getPk() {
         return getId();
     }
@@ -140,5 +140,5 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
-    
+
 }

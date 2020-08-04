@@ -5,6 +5,8 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -28,9 +30,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "collections_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CollectionsRequest.findAll", query = "SELECT c FROM CollectionsRequest c")
-    , @NamedQuery(name = "CollectionsRequest.findById", query = "SELECT c FROM CollectionsRequest c WHERE c.id = :id")})
-public class CollectionsRequest implements Serializable {
+    @NamedQuery(name = "CollectionsRequest.findAll", query = "SELECT c FROM CollectionsRequest c"),
+    @NamedQuery(name = "CollectionsRequest.findById", query = "SELECT c FROM CollectionsRequest c WHERE c.id = :id")})
+public class CollectionsRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,9 +40,6 @@ public class CollectionsRequest implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "categoryId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Category categoryId;
     @JoinColumn(name = "collectionTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private CollectionType collectionTypeId;
@@ -61,14 +60,6 @@ public class CollectionsRequest implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Category getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Category categoryId) {
-        this.categoryId = categoryId;
     }
 
     public CollectionType getCollectionTypeId() {
@@ -111,5 +102,14 @@ public class CollectionsRequest implements Serializable {
     public String toString() {
         return "com.alodiga.wallet.common.model.CollectionsRequest[ id=" + id + " ]";
     }
-    
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }
