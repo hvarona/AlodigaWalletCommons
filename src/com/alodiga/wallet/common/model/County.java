@@ -27,6 +27,7 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Address;
 import com.alodiga.wallet.common.model.County;
 import com.alodiga.wallet.common.model.State;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -41,6 +42,7 @@ import com.alodiga.wallet.common.model.State;
     @NamedQuery(name = "County.findByName", query = "SELECT c FROM County c WHERE c.name = :name"),
     @NamedQuery(name = "County.findByShortName", query = "SELECT c FROM County c WHERE c.shortName = :shortName")})
 public class County extends AbstractWalletEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,8 +54,6 @@ public class County extends AbstractWalletEntity implements Serializable {
     private String name;
     @Column(name = "shortName")
     private String shortName;
-    @OneToMany(mappedBy = "countyId")
-    private Collection<Address> addressCollection;
     @JoinColumn(name = "stateId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private State stateId;
@@ -92,15 +92,6 @@ public class County extends AbstractWalletEntity implements Serializable {
 
     public void setShortName(String shortName) {
         this.shortName = shortName;
-    }
-
-    @XmlTransient
-    public Collection<Address> getAddressCollection() {
-        return addressCollection;
-    }
-
-    public void setAddressCollection(Collection<Address> addressCollection) {
-        this.addressCollection = addressCollection;
     }
 
     public State getStateId() {
@@ -145,4 +136,5 @@ public class County extends AbstractWalletEntity implements Serializable {
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+
 }

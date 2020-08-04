@@ -5,8 +5,6 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -27,16 +25,16 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author 
+ * @author jose
  */
 @Entity
-@Table(name = "origin_application")
+@Table(name = "address_type")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "OriginApplication.findAll", query = "SELECT o FROM OriginApplication o"),
-    @NamedQuery(name = "OriginApplication.findById", query = "SELECT o FROM OriginApplication o WHERE o.id = :id"),
-    @NamedQuery(name = "OriginApplication.findByName", query = "SELECT o FROM OriginApplication o WHERE o.name = :name")})
-public class OriginApplication extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "AddressType.findAll", query = "SELECT a FROM AddressType a")
+    , @NamedQuery(name = "AddressType.findById", query = "SELECT a FROM AddressType a WHERE a.id = :id")
+    , @NamedQuery(name = "AddressType.findByDescription", query = "SELECT a FROM AddressType a WHERE a.description = :description")})
+public class AddressType implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,15 +43,13 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
     @Column(name = "id")
     private Integer id;
     @Size(max = 50)
-    @Column(name = "name")
-    private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "originApplicationId")
-    private Collection<PersonType> personTypeCollection;
+    @Column(name = "description")
+    private String description;
 
-    public OriginApplication() {
+    public AddressType() {
     }
 
-    public OriginApplication(Integer id) {
+    public AddressType(Integer id) {
         this.id = id;
     }
 
@@ -65,22 +61,12 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<PersonType> getPersonTypeCollection() {
-        return personTypeCollection;
-    }
-
-    public void setPersonTypeCollection(Collection<PersonType> personTypeCollection) {
-        this.personTypeCollection = personTypeCollection;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -93,10 +79,10 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof OriginApplication)) {
+        if (!(object instanceof AddressType)) {
             return false;
         }
-        OriginApplication other = (OriginApplication) object;
+        AddressType other = (AddressType) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -105,17 +91,7 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.OriginApplication[ id=" + id + " ]";
+        return "com.alodiga.wallet.common.model.AddressType[ id=" + id + " ]";
     }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
-
+    
 }

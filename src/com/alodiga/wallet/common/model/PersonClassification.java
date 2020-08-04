@@ -5,8 +5,6 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -20,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -27,16 +26,16 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
- * @author 
+ * @author jose
  */
 @Entity
-@Table(name = "origin_application")
+@Table(name = "person_classification")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "OriginApplication.findAll", query = "SELECT o FROM OriginApplication o"),
-    @NamedQuery(name = "OriginApplication.findById", query = "SELECT o FROM OriginApplication o WHERE o.id = :id"),
-    @NamedQuery(name = "OriginApplication.findByName", query = "SELECT o FROM OriginApplication o WHERE o.name = :name")})
-public class OriginApplication extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "PersonClassification.findAll", query = "SELECT p FROM PersonClassification p")
+    , @NamedQuery(name = "PersonClassification.findById", query = "SELECT p FROM PersonClassification p WHERE p.id = :id")
+    , @NamedQuery(name = "PersonClassification.findByDescription", query = "SELECT p FROM PersonClassification p WHERE p.description = :description")})
+public class PersonClassification implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,17 +43,24 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 50)
-    @Column(name = "name")
-    private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "originApplicationId")
-    private Collection<PersonType> personTypeCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "description")
+    private String description;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personClassificationId")
+    private Collection<Person> personCollection;
 
-    public OriginApplication() {
+    public PersonClassification() {
     }
 
-    public OriginApplication(Integer id) {
+    public PersonClassification(Integer id) {
         this.id = id;
+    }
+
+    public PersonClassification(Integer id, String description) {
+        this.id = id;
+        this.description = description;
     }
 
     public Integer getId() {
@@ -65,22 +71,22 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @XmlTransient
     @JsonIgnore
-    public Collection<PersonType> getPersonTypeCollection() {
-        return personTypeCollection;
+    public Collection<Person> getPersonCollection() {
+        return personCollection;
     }
 
-    public void setPersonTypeCollection(Collection<PersonType> personTypeCollection) {
-        this.personTypeCollection = personTypeCollection;
+    public void setPersonCollection(Collection<Person> personCollection) {
+        this.personCollection = personCollection;
     }
 
     @Override
@@ -93,10 +99,10 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof OriginApplication)) {
+        if (!(object instanceof PersonClassification)) {
             return false;
         }
-        OriginApplication other = (OriginApplication) object;
+        PersonClassification other = (PersonClassification) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -105,17 +111,7 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.OriginApplication[ id=" + id + " ]";
+        return "com.alodiga.wallet.common.model.PersonClassification[ id=" + id + " ]";
     }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
-
+    
 }
