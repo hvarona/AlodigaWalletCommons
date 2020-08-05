@@ -80,3 +80,74 @@ UPDATE `alodigaWallet`.`transaction_approve_request` SET `transactionId`='97' WH
 INSERT INTO `alodigaWallet`.`transaction_approve_request` VALUES (3,1,'2020-07-27 03:00:00',NULL,'MRAR-2020-1','2020-07-27',3,187,32,1,0,NULL,NULL,NULL),
 (4,2,'2020-07-27 03:00:00',NULL,'MRAR-2020-2','2020-07-27',3,188,33,1,0,NULL,NULL,NULL),
 (5,2,'2020-07-27 03:00:00',NULL,'MRAR-2020-3','2020-07-27',3,278,36,1,0,NULL,NULL,NULL);
+
+
+
+
+-- Insert en la tabla status_business_affiliation_requets
+-- author: Lulymar Gutierrez
+-- Fecha: 4/08/2020
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`) VALUES ('Pendiente');
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`) VALUES ('Aprobada');
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`) VALUES ('Rechazada');
+
+-- Insert en la tabla personClassification
+-- author: Lulymar Gutierrez
+-- Fecha: 4/08/2020
+INSERT INTO `alodigaWallet`.`person_classification` (`id`,`description`) VALUES ('1','Emisor');
+INSERT INTO `alodigaWallet`.`person_classification` (`id`,`description`) VALUES ('2','Solicitante');
+
+-- Insert en la tabla civil_status
+-- author: Lulymar Gutierrez
+-- Fecha: 4/08/2020
+INSERT INTO `alodigaWallet`.`civil_status` (`id`,`description`,`languageId`) VALUES ('1','Casada',2);
+INSERT INTO `alodigaWallet`.`civil_status` (`id`,`description`,`languageId`) VALUES ('2','Soltera',2);
+
+-- Insert en la tabla profession
+-- author: Lulymar Gutierrez
+-- Fecha: 4/08/2020
+INSERT INTO `alodigaWallet`.`profession` (`name`) VALUES ('Administrador');
+INSERT INTO `alodigaWallet`.`profession` (`name`) VALUES ('Contador');
+INSERT INTO `alodigaWallet`.`profession` (`name`) VALUES ('Ingeniero');
+INSERT INTO `alodigaWallet`.`profession` (`name`) VALUES ('Estudiante');
+
+-- Insert en la tabla phone_type
+-- author: Lulymar Gutierrez
+-- Fecha: 4/08/2020
+INSERT INTO `alodigaWallet`.`phone_type` (`id`, `description`) VALUES ('1', 'Local');
+INSERT INTO `alodigaWallet`.`phone_type` (`id`, `description`) VALUES ('2', 'Movil');
+
+-- Insert en la tabla phone_person
+-- author: Lulymar Gutierrez
+-- Fecha: 4/08/2020
+INSERT INTO `alodigaWallet`.`phone_person` (`countryId`, `countryCode`, `areaCode`, `numberPhone`, `personId`, `phoneTypeId`, `createDate`) VALUES ('1', '58', '0212', '1112233', '1', '1', '2020-08-05');
+INSERT INTO `alodigaWallet`.`phone_person` (`countryId`, `countryCode`, `areaCode`, `numberPhone`, `personId`, `phoneTypeId`, `createDate`) VALUES ('1', '58', '0212', '1234455', '2', '1', '2020-08-05');
+
+-- Insert en la tabla person
+-- author: Lulymar Gutierrez
+-- Fecha: 4/08/2020
+INSERT INTO `alodigaWallet`.`person` (`id`,`email`, `personTypeId`, `personClassificationId`, `webSite`, `countryId`, `createDate`) 
+VALUES ('1', 'll@correo.com', '1', '1', 'www', '1', '2020-08-04 00:00:00');
+INSERT INTO `alodigaWallet`.`person` (`id`,`email`, `personTypeId`, `personClassificationId`, `webSite`, `countryId`, `createDate`) 
+VALUES ('2', 'no@posee.com', '2', '2', 'www', '1', '2020-08-05 00:00:00');
+
+
+-- Insert en la tabla natural_person
+-- author: Lulymar Gutierrez
+-- Fecha: 4/08/2020
+INSERT INTO `alodigaWallet`.`natural_person` (`personId`, `documentsPersonTypeId`, `identificationNumber`, `dueDateDocumentIdentification`, `identificactionNumberOld`, `firstName`, `lastName`, `gender`, `placeBirth`, `dateBirth`, `civilStatusId`, `professionId`, `createDate`) 
+VALUES ('1', '1', '12747804', '2028-08-05', '', 'Lulymar', 'Gutierrez', 'F', 'CCS', '1980-08-05', '1', '2', '2020-08-05');
+
+-- Insert en la tabla legal_person
+-- author: Lulymar Gutierrez
+-- Fecha: 4/08/2020
+INSERT INTO `alodigaWallet`.`legal_person` (`createDate`, `personId`, `documentsPersonTypeId`, `identificationNumber`, `tradeName`, `businessName`, `businessCategoryId`, `registerNumber`, `dateInscriptionRegister`, `payedCapital`) 
+VALUES ('2020-08-05', '2', '3', '123456', 'Puerto Azul', 'Puerto Azul', '1', '123456', '1980-08-05', '10000');
+
+-- Insert en la tabla business_affiliation_requets
+-- author: Lulymar Gutierrez
+-- Fecha: 4/08/2020
+INSERT INTO `alodigaWallet`.`business_affiliation_requets` (`id`, `numberRequest`, `dateRequest`, `statusBusinessAffiliationRequestId`, `businessPersonId`, `createDate`) 
+VALUES ('1', '1', '2020-08-04', '1', '1', '2020-08-04');
+INSERT INTO `alodigaWallet`.`business_affiliation_requets` (`id`, `numberRequest`, `dateRequest`, `statusBusinessAffiliationRequestId`, `businessPersonId`, `createDate`) 
+VALUES ('2', '2', '2020-08-05', '1', '2', '2020-08-04');

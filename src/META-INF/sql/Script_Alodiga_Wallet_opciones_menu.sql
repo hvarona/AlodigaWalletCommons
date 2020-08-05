@@ -498,22 +498,22 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId
 -- Agregar opciones del menu Categorias de Comercio y Sub Categorias de Comercio
 -- author: Lulymar Gutierrez
 -- Fecha: 23/07/2020
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'ListBusinnesCategory', 'businnes_category', 'ListBusinnesCategory', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'AddBusinnesCategory', 'businnes_category', 'AddBusinnesCategory', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'EditBusinnesCategory', 'businnes_category', 'EditBusinnesCategory', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'ViewBusinnesCategory', 'businnes_category', 'ViewBusinnesCategory', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'ListBusinnesSubCategory', 'businnes_sub_category', 'ListBusinnesSubCategory', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'AddtBusinnesSubCategory', 'businnes_sub_category', 'AddtBusinnesSubCategory', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'EditBusinnesSubCategory', 'businnes_sub_category', 'EditBusinnesSubCategory', '1');
-INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
-VALUES ('1', 'ViewBusinnesSubCategory', 'businnes_sub_category', 'ViewBusinnesSubCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('65', '1', 'ListBusinnesCategory', 'businnes_category', 'ListBusinnesCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('66', '1', 'AddBusinnesCategory', 'businnes_category', 'AddBusinnesCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('67', '1', 'EditBusinnesCategory', 'businnes_category', 'EditBusinnesCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('68', '1', 'ViewBusinnesCategory', 'businnes_category', 'ViewBusinnesCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('69', '1', 'ListBusinnesSubCategory', 'businnes_sub_category', 'ListBusinnesSubCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('70', '1', 'AddtBusinnesSubCategory', 'businnes_sub_category', 'AddtBusinnesSubCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('71', '1', 'EditBusinnesSubCategory', 'businnes_sub_category', 'EditBusinnesSubCategory', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('72', '1', 'ViewBusinnesSubCategory', 'businnes_sub_category', 'ViewBusinnesSubCategory', '1');
 
 
 
@@ -781,3 +781,40 @@ INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (8
 INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (86,86,1);
 INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (87,87,1);
 INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (88,88,1);
+
+
+-- Agregar opciones del menu Solicitudes de Afiliacion
+-- author: Lulymar Gutierrez
+-- Fecha: 4/08/2020
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('1', 'ListBusinessAffiliationRequests', 'business_affiliation_requests', 'ListBusinessAffiliationRequests', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('1', 'AddBusinessAffiliationRequests', 'business_affiliation_requests', 'AddBusinessAffiliationRequests', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('1', 'EditBusinessAffiliationRequests', 'business_affiliation_requests', 'EditBusinessAffiliationRequests', '1');
+INSERT INTO `alodigaWallet`.`permission` (`permissionGroupId`, `action`, `entity`, `name`, `enabled`) 
+VALUES ('1', 'ViewBusinessAffiliationRequests', 'business_affiliation_requests', 'ViewBusinessAffiliationRequests', '1');
+
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('89', '1', 'List Business Affiliation Requests', 'List Business Affiliation Requests');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('89', '2', 'Lista de Solicitudes de Afiliacion', 'Lista de Solicitudes de Afiliacion');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('90', '1', 'Add Business Affiliation Requests', 'Add Business Affiliation Requests');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('90', '2', 'Agregar Solicitudes de Afiliacion', 'Agregar Solicitudes de Afiliacion');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('91', '1', 'Edit Business Affiliation Requests', 'Edit Business Affiliation Requests');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('91', '2', 'Editar Solicitudes de Afiliacion', 'Editar Solicitudes de Afiliacion');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('92', '1', 'View Business Affiliation Requests', 'View Business Affiliation Requests');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) 
+VALUES ('92', '2', 'Ver Solicitudes de Afiliacion', 'Ver Solicitudes de Afiliacion');
+
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('89', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('90', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('91', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('92', '1');
