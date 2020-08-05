@@ -170,4 +170,5 @@ public class QueryConstants {
     public static final String PARAM_STATUS_TRANSACTION_APPROVE_REQUEST_ID = "statusTransactionApproveRequestId";
     public static final String SEQUENCES_BY_DOCUMENT_TYPE = "Sequences.findByDocumentType";
     public static final String PARAM_ORIGIN_APPLICATION_ID = "originApplicationId";
+    public static final String PHONES_BY_PERSON = "phonesByPerson";
 }
