@@ -9,6 +9,7 @@ import com.alodiga.wallet.common.genericEJB.EJBRequest;
 import com.alodiga.wallet.common.genericEJB.WalletGenericEJB;
 import com.alodiga.wallet.common.model.DocumentsPersonType;
 import com.alodiga.wallet.common.model.PersonType;
+import com.alodiga.wallet.common.model.PhonePerson;
 import javax.ejb.Local;
 
 @SuppressWarnings(value = {"all"})
@@ -30,4 +31,15 @@ public interface PersonEJBLocal extends WalletGenericEJB {
     public PersonType loadPersonType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public PersonType savePersonType(PersonType personType) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    //Tabla de PhonePerson
+    public List<PhonePerson> getPhonePerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<PhonePerson> getPhoneByPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public PhonePerson loadPhonePerson(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    public PhonePerson savePhonePerson(PhonePerson phonePerson) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+
 }

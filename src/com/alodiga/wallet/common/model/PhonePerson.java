@@ -5,6 +5,9 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -33,16 +36,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "phone_person")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PhonePerson.findAll", query = "SELECT p FROM PhonePerson p")
-    , @NamedQuery(name = "PhonePerson.findById", query = "SELECT p FROM PhonePerson p WHERE p.id = :id")
-    , @NamedQuery(name = "PhonePerson.findByCountryCode", query = "SELECT p FROM PhonePerson p WHERE p.countryCode = :countryCode")
-    , @NamedQuery(name = "PhonePerson.findByAreaCode", query = "SELECT p FROM PhonePerson p WHERE p.areaCode = :areaCode")
-    , @NamedQuery(name = "PhonePerson.findByNumberPhone", query = "SELECT p FROM PhonePerson p WHERE p.numberPhone = :numberPhone")
-    , @NamedQuery(name = "PhonePerson.findByExtensionPhoneNumber", query = "SELECT p FROM PhonePerson p WHERE p.extensionPhoneNumber = :extensionPhoneNumber")
-    , @NamedQuery(name = "PhonePerson.findByIndMainPhone", query = "SELECT p FROM PhonePerson p WHERE p.indMainPhone = :indMainPhone")
-    , @NamedQuery(name = "PhonePerson.findByCreateDate", query = "SELECT p FROM PhonePerson p WHERE p.createDate = :createDate")
-    , @NamedQuery(name = "PhonePerson.findByUpdateDate", query = "SELECT p FROM PhonePerson p WHERE p.updateDate = :updateDate")})
-public class PhonePerson implements Serializable {
+    @NamedQuery(name = "PhonePerson.findAll", query = "SELECT p FROM PhonePerson p"),
+    @NamedQuery(name = "PhonePerson.findById", query = "SELECT p FROM PhonePerson p WHERE p.id = :id"),
+    @NamedQuery(name = "PhonePerson.findByCountryCode", query = "SELECT p FROM PhonePerson p WHERE p.countryCode = :countryCode"),
+    @NamedQuery(name = "PhonePerson.findByAreaCode", query = "SELECT p FROM PhonePerson p WHERE p.areaCode = :areaCode"),
+    @NamedQuery(name = "PhonePerson.findByNumberPhone", query = "SELECT p FROM PhonePerson p WHERE p.numberPhone = :numberPhone"),
+    @NamedQuery(name = "PhonePerson.findByExtensionPhoneNumber", query = "SELECT p FROM PhonePerson p WHERE p.extensionPhoneNumber = :extensionPhoneNumber"),
+    @NamedQuery(name = "PhonePerson.findByIndMainPhone", query = "SELECT p FROM PhonePerson p WHERE p.indMainPhone = :indMainPhone"),
+    @NamedQuery(name = "PhonePerson.findByCreateDate", query = "SELECT p FROM PhonePerson p WHERE p.createDate = :createDate"),
+    @NamedQuery(name = "PhonePerson.findByUpdateDate", query = "SELECT p FROM PhonePerson p WHERE p.updateDate = :updateDate"),
+    @NamedQuery(name = QueryConstants.PHONES_BY_PERSON, query = "SELECT p FROM PhonePerson p WHERE p.personId.id = :personId")})
+public class PhonePerson extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -206,5 +210,14 @@ public class PhonePerson implements Serializable {
     public String toString() {
         return "com.alodiga.wallet.common.model.PhonePerson[ id=" + id + " ]";
     }
-    
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }
