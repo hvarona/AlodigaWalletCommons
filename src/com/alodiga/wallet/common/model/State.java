@@ -57,10 +57,10 @@ public class State extends AbstractWalletEntity implements Serializable {
     private Country countryId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stateId")
     private Collection<City> cityCollection;
-    @OneToMany(mappedBy = "stateId")
-    private Collection<Address> addressCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stateId")
-    private Collection<County> countyCollection;
+//    @OneToMany(mappedBy = "stateId")
+//    private Collection<Address> addressCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stateId")
+//    private Collection<County> countyCollection;
 
     public State() {
     }
@@ -107,23 +107,23 @@ public class State extends AbstractWalletEntity implements Serializable {
         this.cityCollection = cityCollection;
     }
 
-    @XmlTransient
-    public Collection<Address> getAddressCollection() {
-        return addressCollection;
-    }
-
-    public void setAddressCollection(Collection<Address> addressCollection) {
-        this.addressCollection = addressCollection;
-    }
-
-    @XmlTransient
-    public Collection<County> getCountyCollection() {
-        return countyCollection;
-    }
-
-    public void setCountyCollection(Collection<County> countyCollection) {
-        this.countyCollection = countyCollection;
-    }
+//    @XmlTransient
+//    public Collection<Address> getAddressCollection() {
+//        return addressCollection;
+//    }
+//
+//    public void setAddressCollection(Collection<Address> addressCollection) {
+//        this.addressCollection = addressCollection;
+//    }
+//
+//    @XmlTransient
+//    public Collection<County> getCountyCollection() {
+//        return countyCollection;
+//    }
+//
+//    public void setCountyCollection(Collection<County> countyCollection) {
+//        this.countyCollection = countyCollection;
+//    }
 
     @Override
     public int hashCode() {
