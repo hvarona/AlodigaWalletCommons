@@ -1,7 +1,10 @@
 package com.alodiga.wallet.common.genericEJB;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -9,6 +12,9 @@ import com.alodiga.wallet.common.utils.QueryConstants;
 import com.alodiga.wallet.common.utils.QueryParam;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 public class EntityManagerWrapper<T> {
 
@@ -28,7 +34,7 @@ public class EntityManagerWrapper<T> {
     }
 
     public T update(T t) {
-        return entityManager.merge(t);
+		return entityManager.merge(t);
     }
 
     public T updateObject(T t) {

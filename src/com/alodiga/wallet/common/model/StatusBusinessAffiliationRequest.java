@@ -29,13 +29,13 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author jose
  */
 @Entity
-@Table(name = "status_business_affiliation_requets")
+@Table(name = "status_business_affiliation_request")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "StatusBusinessAffiliationRequets.findAll", query = "SELECT s FROM StatusBusinessAffiliationRequets s")
     , @NamedQuery(name = "StatusBusinessAffiliationRequets.findById", query = "SELECT s FROM StatusBusinessAffiliationRequets s WHERE s.id = :id")
     , @NamedQuery(name = "StatusBusinessAffiliationRequets.findByDescription", query = "SELECT s FROM StatusBusinessAffiliationRequets s WHERE s.description = :description")})
-public class StatusBusinessAffiliationRequets implements Serializable {
+public class StatusBusinessAffiliationRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,17 +48,24 @@ public class StatusBusinessAffiliationRequets implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
+    @Size(max = 10)
+    @Column(name = "code")
+    private String code;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusBusinessAffiliationRequetsId")
+    private Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "finalStateId")
+    private Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusBusinessAffiliationRequetsId")
     private Collection<BusinessAffiliationRequets> businessAffiliationRequetsCollection;
 
-    public StatusBusinessAffiliationRequets() {
+    public StatusBusinessAffiliationRequest() {
     }
 
-    public StatusBusinessAffiliationRequets(Integer id) {
+    public StatusBusinessAffiliationRequest(Integer id) {
         this.id = id;
     }
 
-    public StatusBusinessAffiliationRequets(Integer id, String description) {
+    public StatusBusinessAffiliationRequest(Integer id, String description) {
         this.id = id;
         this.description = description;
     }
@@ -99,10 +106,10 @@ public class StatusBusinessAffiliationRequets implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof StatusBusinessAffiliationRequets)) {
+        if (!(object instanceof StatusBusinessAffiliationRequest)) {
             return false;
         }
-        StatusBusinessAffiliationRequets other = (StatusBusinessAffiliationRequets) object;
+        StatusBusinessAffiliationRequest other = (StatusBusinessAffiliationRequest) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -112,6 +119,34 @@ public class StatusBusinessAffiliationRequets implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.StatusBusinessAffiliationRequets[ id=" + id + " ]";
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<StatusBusinessAffiliationHasFinalState> getStatusBusinessAffiliationHasFinalStateCollection() {
+        return statusBusinessAffiliationHasFinalStateCollection;
+    }
+
+    public void setStatusBusinessAffiliationHasFinalStateCollection(Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection) {
+        this.statusBusinessAffiliationHasFinalStateCollection = statusBusinessAffiliationHasFinalStateCollection;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<StatusBusinessAffiliationHasFinalState> getStatusBusinessAffiliationHasFinalStateCollection1() {
+        return statusBusinessAffiliationHasFinalStateCollection1;
+    }
+
+    public void setStatusBusinessAffiliationHasFinalStateCollection1(Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection1) {
+        this.statusBusinessAffiliationHasFinalStateCollection1 = statusBusinessAffiliationHasFinalStateCollection1;
     }
     
 }

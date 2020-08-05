@@ -68,9 +68,9 @@ public class BusinessAffiliationRequets extends AbstractWalletEntity implements 
     @JoinColumn(name = "businessPersonId", referencedColumnName = "id")
     @OneToOne(optional = false)
     private Person businessPersonId;
-    @JoinColumn(name = "statusBusinessAffiliationRequetsId", referencedColumnName = "id")
+    @JoinColumn(name = "statusBusinessAffiliationRequestId", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private StatusBusinessAffiliationRequets statusBusinessAffiliationRequetsId;
+    private StatusBusinessAffiliationRequest statusBusinessAffiliationRequestId;
 
     public BusinessAffiliationRequets() {
     }
@@ -143,12 +143,12 @@ public class BusinessAffiliationRequets extends AbstractWalletEntity implements 
         this.businessPersonId = businessPersonId;
     }
 
-    public StatusBusinessAffiliationRequets getStatusBusinessAffiliationRequetsId() {
-        return statusBusinessAffiliationRequetsId;
+    public StatusBusinessAffiliationRequest getStatusBusinessAffiliationRequestId() {
+        return statusBusinessAffiliationRequestId;
     }
 
-    public void setStatusBusinessAffiliationRequetsId(StatusBusinessAffiliationRequets statusBusinessAffiliationRequetsId) {
-        this.statusBusinessAffiliationRequetsId = statusBusinessAffiliationRequetsId;
+    public void setStatusBusinessAffiliationRequestId(StatusBusinessAffiliationRequest statusBusinessAffiliationRequestId) {
+        this.statusBusinessAffiliationRequestId = statusBusinessAffiliationRequestId;
     }
 
     @Override
