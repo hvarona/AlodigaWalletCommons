@@ -5,6 +5,8 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -33,13 +35,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "business_affiliation_requets")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BusinessAffiliationRequets.findAll", query = "SELECT b FROM BusinessAffiliationRequets b")
-    , @NamedQuery(name = "BusinessAffiliationRequets.findById", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.id = :id")
-    , @NamedQuery(name = "BusinessAffiliationRequets.findByNumberRequest", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.numberRequest = :numberRequest")
-    , @NamedQuery(name = "BusinessAffiliationRequets.findByDateRequest", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.dateRequest = :dateRequest")
-    , @NamedQuery(name = "BusinessAffiliationRequets.findByCreateDate", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.createDate = :createDate")
-    , @NamedQuery(name = "BusinessAffiliationRequets.findByUpdateDate", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.updateDate = :updateDate")})
-public class BusinessAffiliationRequets implements Serializable {
+    @NamedQuery(name = "BusinessAffiliationRequets.findAll", query = "SELECT b FROM BusinessAffiliationRequets b"),
+    @NamedQuery(name = "BusinessAffiliationRequets.findById", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.id = :id"),
+    @NamedQuery(name = "BusinessAffiliationRequets.findByNumberRequest", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.numberRequest = :numberRequest"),
+    @NamedQuery(name = "BusinessAffiliationRequets.findByDateRequest", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.dateRequest = :dateRequest"),
+    @NamedQuery(name = "BusinessAffiliationRequets.findByCreateDate", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.createDate = :createDate"),
+    @NamedQuery(name = "BusinessAffiliationRequets.findByUpdateDate", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.updateDate = :updateDate")})
+public class BusinessAffiliationRequets extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -173,5 +175,14 @@ public class BusinessAffiliationRequets implements Serializable {
     public String toString() {
         return "com.alodiga.wallet.common.model.BusinessAffiliationRequets[ id=" + id + " ]";
     }
-    
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }
