@@ -40,6 +40,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "PersonType.findAll", query = "SELECT p FROM PersonType p"),
     @NamedQuery(name = "PersonType.findById", query = "SELECT p FROM PersonType p WHERE p.id = :id"),
     @NamedQuery(name = "PersonType.findByDescription", query = "SELECT p FROM PersonType p WHERE p.description = :description"),
+//    @NamedQuery(name = QueryConstants.PERSON_TYPE_BY_COUNTRY, query = "SELECT p FROM PersonType p WHERE p.countryId.id=:countryId AND p.originApplicationId.id=:originApplicationId"),
     @NamedQuery(name = QueryConstants.PERSON_TYPE_BY_COUNTRY, query = "SELECT p FROM PersonType p WHERE p.countryId.id=:countryId")})
 public class PersonType extends AbstractWalletEntity implements Serializable {
 
@@ -57,11 +58,11 @@ public class PersonType extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "countryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Country countryId;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personTypeId")
-//    private Collection<CollectionsRequest> collectionsRequestCollection;
-//    @JoinColumn(name = "originApplicationId", referencedColumnName = "id")
-//    @ManyToOne(optional = false)
-//    private OriginApplication originApplicationId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personTypeId")
+    private Collection<CollectionsRequest> collectionsRequestCollection;
+    @JoinColumn(name = "originApplicationId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private OriginApplication originApplicationId;
 
     public PersonType() {
     }
@@ -104,23 +105,23 @@ public class PersonType extends AbstractWalletEntity implements Serializable {
         this.countryId = countryId;
     }
 
-//    public OriginApplication getOriginApplicationId() {
-//        return originApplicationId;
-//    }
-//
-//    public void setOriginApplicationId(OriginApplication originApplicationId) {
-//        this.originApplicationId = originApplicationId;
-//    }
-//
-//    @XmlTransient
-//    @JsonIgnore
-//    public Collection<CollectionsRequest> getCollectionsRequestCollection() {
-//        return collectionsRequestCollection;
-//    }
-//
-//    public void setCollectionsRequestCollection(Collection<CollectionsRequest> collectionsRequestCollection) {
-//        this.collectionsRequestCollection = collectionsRequestCollection;
-//    }
+    public OriginApplication getOriginApplicationId() {
+        return originApplicationId;
+    }
+
+    public void setOriginApplicationId(OriginApplication originApplicationId) {
+        this.originApplicationId = originApplicationId;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<CollectionsRequest> getCollectionsRequestCollection() {
+        return collectionsRequestCollection;
+    }
+
+    public void setCollectionsRequestCollection(Collection<CollectionsRequest> collectionsRequestCollection) {
+        this.collectionsRequestCollection = collectionsRequestCollection;
+    }
 
     @Override
     public int hashCode() {

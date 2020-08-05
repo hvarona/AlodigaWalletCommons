@@ -163,10 +163,12 @@ public class QueryConstants {
     public static final String PARAM_BANK_OPERATION_TYPE_ID = "bankOperationTypeId";
     public static final String PARAM_BANK_OPERATION_MODE_ID = "bankOperationModeId";
     public static final String PARAM_BANK_ID = "bankId";
+    public static final String PARAM_BUSSINESS_ID = "bussinessId";
     public static final String PERSON_TYPE_BY_COUNTRY = "personTypeByCountry";
     public static final String COLLECTION_TYPE_BY_COUNTRY = "CollectionTypeByCountry";
     public static final String PARAM_REQUEST_NUMBER = "requestNumber";
     public static final String PARAM_CODE = "code";
     public static final String PARAM_STATUS_TRANSACTION_APPROVE_REQUEST_ID = "statusTransactionApproveRequestId";
     public static final String SEQUENCES_BY_DOCUMENT_TYPE = "Sequences.findByDocumentType";
+    public static final String PARAM_ORIGIN_APPLICATION_ID = "originApplicationId";
 }
