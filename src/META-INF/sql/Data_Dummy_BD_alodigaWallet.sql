@@ -80,3 +80,37 @@ UPDATE `alodigaWallet`.`transaction_approve_request` SET `transactionId`='97' WH
 INSERT INTO `alodigaWallet`.`transaction_approve_request` VALUES (3,1,'2020-07-27 03:00:00',NULL,'MRAR-2020-1','2020-07-27',3,187,32,1,0,NULL,NULL,NULL),
 (4,2,'2020-07-27 03:00:00',NULL,'MRAR-2020-2','2020-07-27',3,188,33,1,0,NULL,NULL,NULL),
 (5,2,'2020-07-27 03:00:00',NULL,'MRAR-2020-3','2020-07-27',3,278,36,1,0,NULL,NULL,NULL);
+
+-- Modificar data del campo indApplicationCommission para pruebas de recarga manual
+-- author: Yamelis Almea
+-- Fecha: 04/08/2020
+UPDATE `alodigawallet`.`commission` SET `indApplicationCommission` = '1' WHERE (`id` = '11');
+
+UPDATE `alodigawallet`.`transaction_approve_request` SET `UnifiedRegistryUserId` = '379' WHERE (`id` = '3');
+UPDATE `alodigawallet`.`transaction_approve_request` SET `UnifiedRegistryUserId` = '379' WHERE (`id` = '4');
+UPDATE `alodigawallet`.`transaction_approve_request` SET `UnifiedRegistryUserId` = '379' WHERE (`id` = '5');
+
+UPDATE `alodigawallet`.`bank_operation` SET `accountBankId` = '2' WHERE (`id` = '32');
+UPDATE `alodigawallet`.`bank_operation` SET `accountBankId` = '2' WHERE (`id` = '33');
+UPDATE `alodigawallet`.`bank_operation` SET `accountBankId` = '2' WHERE (`id` = '36');
+
+UPDATE `alodigawallet`.`transaction_approve_request` SET `UnifiedRegistryUserId` = '2' WHERE (`id` = '3');
+UPDATE `alodigawallet`.`transaction_approve_request` SET `UnifiedRegistryUserId` = '2' WHERE (`id` = '4');
+UPDATE `alodigawallet`.`transaction_approve_request` SET `UnifiedRegistryUserId` = '2' WHERE (`id` = '5');
+
+UPDATE `alodigawallet`.`bank_operation` SET `userSourceId` = '2' WHERE (`id` = '32');
+UPDATE `alodigawallet`.`bank_operation` SET `userSourceId` = '2' WHERE (`id` = '33');
+UPDATE `alodigawallet`.`bank_operation` SET `userSourceId` = '2' WHERE (`id` = '36');
+
+
+UPDATE `alodigawallet`.`transaction` SET `transactionNumber` = 'MRAR-2020-1', `totalTax` = '0.00' WHERE (`id` = '187');
+UPDATE `alodigawallet`.`transaction` SET `transactionNumber` = 'MRAR-2020-2', `totalTax` = '0.00' WHERE (`id` = '188');
+UPDATE `alodigawallet`.`transaction` SET `transactionNumber` = 'MRAR-2020-3', `totalTax` = '0.00' WHERE (`id` = '278');
+
+UPDATE `alodigawallet`.`transaction` SET `userSourceId` = '2' WHERE (`id` = '187');
+UPDATE `alodigawallet`.`transaction` SET `userSourceId` = '2' WHERE (`id` = '188');
+UPDATE `alodigawallet`.`transaction` SET `userSourceId` = '2' WHERE (`id` = '278');
+
+UPDATE `alodigawallet`.`account_bank` SET `UnifiedRegistryId` = '379' WHERE (`id` = '2');
+
+
