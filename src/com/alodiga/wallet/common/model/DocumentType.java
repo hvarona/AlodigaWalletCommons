@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author 
  */
 @Entity
-@Table(name = "documentType")
+@Table(name = "document_type")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "DocumentType.findAll", query = "SELECT d FROM DocumentType d"),
