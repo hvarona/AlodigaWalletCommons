@@ -38,6 +38,7 @@ import com.alodiga.wallet.common.model.State;
 @NamedQueries({
     @NamedQuery(name = "City.findAll", query = "SELECT c FROM City c"),
     @NamedQuery(name = "City.findById", query = "SELECT c FROM City c WHERE c.id = :id"),
+    @NamedQuery(name = "City.findBystateId", query = "SELECT c FROM City c WHERE c.stateId.id = :stateId"),
     @NamedQuery(name = "City.findByName", query = "SELECT c FROM City c WHERE c.name = :name")})
 public class City extends AbstractWalletEntity implements Serializable {
     private static final long serialVersionUID = 1L;

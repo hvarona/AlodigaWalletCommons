@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Sequences.findById", query = "SELECT s FROM Sequences s WHERE s.id = :id"),
     @NamedQuery(name = "Sequences.findByInitialValue", query = "SELECT s FROM Sequences s WHERE s.initialValue = :initialValue"),
     @NamedQuery(name = "Sequences.findByCurrentValue", query = "SELECT s FROM Sequences s WHERE s.currentValue = :currentValue"),
+    @NamedQuery(name = "Sequences.findBydocumentType_idByoriginApplicationId", query = "SELECT s FROM Sequences s WHERE s.documentTypeId.id = :documentTypeId AND s.originApplicationId.id = :originApplicationId"),
     @NamedQuery(name = "Sequences.findByDocumentType", query = "SELECT s FROM Sequences s WHERE s.documentTypeId.id = :documentTypeId")})
 public class Sequences extends AbstractWalletEntity implements Serializable {
 
@@ -47,7 +48,7 @@ public class Sequences extends AbstractWalletEntity implements Serializable {
     private Integer initialValue;
     @Column(name = "currentValue")
     private Integer currentValue;
-    @JoinColumn(name = "documentType_id", referencedColumnName = "id")
+    @JoinColumn(name = "documentTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private DocumentType documentTypeId;
     @JoinColumn(name = "originApplicationId", referencedColumnName = "id")

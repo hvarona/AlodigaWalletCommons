@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CollectionsRequest.findAll", query = "SELECT c FROM CollectionsRequest c"),
-    @NamedQuery(name = "CollectionsRequest.findById", query = "SELECT c FROM CollectionsRequest c WHERE c.id = :id")})
+    @NamedQuery(name = "CollectionsRequest.findById", query = "SELECT c FROM CollectionsRequest c WHERE c.id = :id"),
+    @NamedQuery(name = "CollectionsRequest.findBycollectionTypeId", query = "SELECT c FROM CollectionsRequest c WHERE c.collectionTypeId.id = :collectionTypeId")})
 public class CollectionsRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
