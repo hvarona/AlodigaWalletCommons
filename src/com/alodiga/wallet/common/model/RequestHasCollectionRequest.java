@@ -62,9 +62,9 @@ public class RequestHasCollectionRequest implements Serializable {
     @Size(max = 50)
     @Column(name = "indApproved")
     private String indApproved;
-    @JoinColumn(name = "businessAffiliationRequetsId", referencedColumnName = "id")
+    @JoinColumn(name = "businessAffiliationRequestId", referencedColumnName = "id")
     @OneToOne(optional = false)
-    private BusinessAffiliationRequets businessAffiliationRequetsId;
+    private BusinessAffiliationRequest businessAffiliationRequestId;
     @JoinColumn(name = "collectionsRequestId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private CollectionsRequest collectionsRequestId;
@@ -124,12 +124,12 @@ public class RequestHasCollectionRequest implements Serializable {
         this.indApproved = indApproved;
     }
 
-    public BusinessAffiliationRequets getBusinessAffiliationRequetsId() {
-        return businessAffiliationRequetsId;
+    public BusinessAffiliationRequest getBusinessAffiliationRequestId() {
+        return businessAffiliationRequestId;
     }
 
-    public void setBusinessAffiliationRequetsId(BusinessAffiliationRequets businessAffiliationRequetsId) {
-        this.businessAffiliationRequetsId = businessAffiliationRequetsId;
+    public void setBusinessAffiliationRequestId(BusinessAffiliationRequest businessAffiliationRequestId) {
+        this.businessAffiliationRequestId = businessAffiliationRequestId;
     }
 
     public CollectionsRequest getCollectionsRequestId() {

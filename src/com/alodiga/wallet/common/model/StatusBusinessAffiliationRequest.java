@@ -32,9 +32,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "status_business_affiliation_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "StatusBusinessAffiliationRequets.findAll", query = "SELECT s FROM StatusBusinessAffiliationRequets s")
-    , @NamedQuery(name = "StatusBusinessAffiliationRequets.findById", query = "SELECT s FROM StatusBusinessAffiliationRequets s WHERE s.id = :id")
-    , @NamedQuery(name = "StatusBusinessAffiliationRequets.findByDescription", query = "SELECT s FROM StatusBusinessAffiliationRequets s WHERE s.description = :description")})
+    @NamedQuery(name = "StatusBusinessAffiliationRequest.findAll", query = "SELECT s FROM StatusBusinessAffiliationRequest s")
+    , @NamedQuery(name = "StatusBusinessAffiliationRequest.findById", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.id = :id")
+    , @NamedQuery(name = "StatusBusinessAffiliationRequest.findByDescription", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.description = :description")})
 public class StatusBusinessAffiliationRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,12 +51,6 @@ public class StatusBusinessAffiliationRequest implements Serializable {
     @Size(max = 10)
     @Column(name = "code")
     private String code;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusBusinessAffiliationRequetsId")
-    private Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "finalStateId")
-    private Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusBusinessAffiliationRequetsId")
-    private Collection<BusinessAffiliationRequets> businessAffiliationRequetsCollection;
 
     public StatusBusinessAffiliationRequest() {
     }
@@ -84,16 +78,6 @@ public class StatusBusinessAffiliationRequest implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<BusinessAffiliationRequets> getBusinessAffiliationRequetsCollection() {
-        return businessAffiliationRequetsCollection;
-    }
-
-    public void setBusinessAffiliationRequetsCollection(Collection<BusinessAffiliationRequets> businessAffiliationRequetsCollection) {
-        this.businessAffiliationRequetsCollection = businessAffiliationRequetsCollection;
     }
 
     @Override
@@ -127,26 +111,6 @@ public class StatusBusinessAffiliationRequest implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<StatusBusinessAffiliationHasFinalState> getStatusBusinessAffiliationHasFinalStateCollection() {
-        return statusBusinessAffiliationHasFinalStateCollection;
-    }
-
-    public void setStatusBusinessAffiliationHasFinalStateCollection(Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection) {
-        this.statusBusinessAffiliationHasFinalStateCollection = statusBusinessAffiliationHasFinalStateCollection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<StatusBusinessAffiliationHasFinalState> getStatusBusinessAffiliationHasFinalStateCollection1() {
-        return statusBusinessAffiliationHasFinalStateCollection1;
-    }
-
-    public void setStatusBusinessAffiliationHasFinalStateCollection1(Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection1) {
-        this.statusBusinessAffiliationHasFinalStateCollection1 = statusBusinessAffiliationHasFinalStateCollection1;
     }
     
 }

@@ -5,8 +5,6 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -32,16 +30,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author jose
  */
 @Entity
-@Table(name = "business_affiliation_requets")
+@Table(name = "business_affiliation_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BusinessAffiliationRequets.findAll", query = "SELECT b FROM BusinessAffiliationRequets b"),
-    @NamedQuery(name = "BusinessAffiliationRequets.findById", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.id = :id"),
-    @NamedQuery(name = "BusinessAffiliationRequets.findByNumberRequest", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.numberRequest = :numberRequest"),
-    @NamedQuery(name = "BusinessAffiliationRequets.findByDateRequest", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.dateRequest = :dateRequest"),
-    @NamedQuery(name = "BusinessAffiliationRequets.findByCreateDate", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.createDate = :createDate"),
-    @NamedQuery(name = "BusinessAffiliationRequets.findByUpdateDate", query = "SELECT b FROM BusinessAffiliationRequets b WHERE b.updateDate = :updateDate")})
-public class BusinessAffiliationRequets extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "BusinessAffiliationRequest.findAll", query = "SELECT b FROM BusinessAffiliationRequest b")
+    , @NamedQuery(name = "BusinessAffiliationRequest.findById", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.id = :id")
+    , @NamedQuery(name = "BusinessAffiliationRequest.findByNumberRequest", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.numberRequest = :numberRequest")
+    , @NamedQuery(name = "BusinessAffiliationRequest.findByDateRequest", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.dateRequest = :dateRequest")
+    , @NamedQuery(name = "BusinessAffiliationRequest.findByCreateDate", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.createDate = :createDate")
+    , @NamedQuery(name = "BusinessAffiliationRequest.findByUpdateDate", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.updateDate = :updateDate")})
+public class BusinessAffiliationRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,9 +59,9 @@ public class BusinessAffiliationRequets extends AbstractWalletEntity implements 
     @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessAffiliationRequetsId")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessAffiliationRequestId")
     private ReviewBusinessAffiliationRequest reviewBusinessAffiliationRequest;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessAffiliationRequetsId")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessAffiliationRequestId")
     private RequestHasCollectionRequest requestHasCollectionRequest;
     @JoinColumn(name = "businessPersonId", referencedColumnName = "id")
     @OneToOne(optional = false)
@@ -72,10 +70,10 @@ public class BusinessAffiliationRequets extends AbstractWalletEntity implements 
     @ManyToOne(optional = false)
     private StatusBusinessAffiliationRequest statusBusinessAffiliationRequestId;
 
-    public BusinessAffiliationRequets() {
+    public BusinessAffiliationRequest() {
     }
 
-    public BusinessAffiliationRequets(Long id) {
+    public BusinessAffiliationRequest(Long id) {
         this.id = id;
     }
 
@@ -161,10 +159,10 @@ public class BusinessAffiliationRequets extends AbstractWalletEntity implements 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BusinessAffiliationRequets)) {
+        if (!(object instanceof BusinessAffiliationRequest)) {
             return false;
         }
-        BusinessAffiliationRequets other = (BusinessAffiliationRequets) object;
+        BusinessAffiliationRequest other = (BusinessAffiliationRequest) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -175,14 +173,5 @@ public class BusinessAffiliationRequets extends AbstractWalletEntity implements 
     public String toString() {
         return "com.alodiga.wallet.common.model.BusinessAffiliationRequets[ id=" + id + " ]";
     }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
+    
 }

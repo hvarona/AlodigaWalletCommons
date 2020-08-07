@@ -47,7 +47,6 @@ public class Person implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Correo electrónico no válido")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 50)
     @Column(name = "email")
     private String email;
@@ -76,7 +75,7 @@ public class Person implements Serializable {
     @ManyToOne(optional = false)
     private PersonType personTypeId;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessPersonId")
-    private BusinessAffiliationRequets businessAffiliationRequets;
+    private BusinessAffiliationRequest businessAffiliationRequest;
 
     public Person() {
     }
@@ -173,12 +172,12 @@ public class Person implements Serializable {
         this.personTypeId = personTypeId;
     }
 
-    public BusinessAffiliationRequets getBusinessAffiliationRequets() {
-        return businessAffiliationRequets;
+    public BusinessAffiliationRequest getBusinessAffiliationRequest() {
+        return businessAffiliationRequest;
     }
 
-    public void setBusinessAffiliationRequets(BusinessAffiliationRequets businessAffiliationRequets) {
-        this.businessAffiliationRequets = businessAffiliationRequets;
+    public void setBusinessAffiliationRequest(BusinessAffiliationRequest businessAffiliationRequest) {
+        this.businessAffiliationRequest = businessAffiliationRequest;
     }
 
     @Override
