@@ -249,7 +249,7 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     public StatusBusinessAffiliationHasFinalState saveStatusBusinessAffiliationHasFinalState(StatusBusinessAffiliationHasFinalState statusBusinessAffiliationHasFinalState) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
-
+    public boolean validateStatusBusinessAffiliationHasFinalState(Integer statusId,Integer finalId)throws GeneralException, NullParameterException; 
     //BusinessAffiliationRequest
     public List<BusinessAffiliationRequest> getBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
