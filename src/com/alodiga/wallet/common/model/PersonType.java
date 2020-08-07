@@ -63,6 +63,8 @@ public class PersonType extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "originApplicationId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private OriginApplication originApplicationId;
+    @Column(name = "indNaturalPerson")
+    private Boolean indNaturalPerson;
 
     public PersonType() {
     }
@@ -111,6 +113,14 @@ public class PersonType extends AbstractWalletEntity implements Serializable {
 
     public void setOriginApplicationId(OriginApplication originApplicationId) {
         this.originApplicationId = originApplicationId;
+    }
+    
+    public Boolean getIndNaturalPerson() {
+        return indNaturalPerson;
+    }
+
+    public void setIndNaturalPerson(Boolean indNaturalPerson) {
+        this.indNaturalPerson = indNaturalPerson;
     }
 
     @XmlTransient
