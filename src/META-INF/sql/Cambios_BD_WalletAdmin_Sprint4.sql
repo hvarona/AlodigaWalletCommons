@@ -403,18 +403,42 @@ RENAME TABLE `alodigaWallet`.`business_affiliation_requets` TO `alodigaWallet`.`
 ALTER TABLE `alodigaWallet`.`request_has_collection_request`
 DROP FOREIGN KEY `fk_request_has_collection_request_business_affiliation_requets1`;
 ALTER TABLE `alodigaWallet`.`request_has_collection_request`
-CHANGE COLUMN `businessAffiliationRequetsId` `businessAffiliationRequestId` BIGINT(20) NOT NULL ;
-SET FOREIGN_KEY_CHECKS=0;
+CHANGE COLUMN `businessAffiliationRequetsId` `businessAffiliationRequestId` BIGINT(20) NOT NULL;
 ALTER TABLE `alodigaWallet`.`request_has_collection_request`
 ADD CONSTRAINT `fk_request_has_collection_request_business1`
  FOREIGN KEY (`businessAffiliationRequestId`)
  REFERENCES `alodigaWallet`.`business_affiliation_request` (`id`)
  ON DELETE NO ACTION
  ON UPDATE NO ACTION;
- SET FOREIGN_KEY_CHECKS=1;
 
 ALTER TABLE `alodigaWallet`.`request_has_collection_request` 
-DROP INDEX `businessAffiliationRequetsId` ;
+DROP INDEX `businessAffiliationRequetsId`;
+
+ALTER TABLE `alodigaWallet`.`review_business_affiliation_request`
+DROP FOREIGN KEY `fk_review_business_affiliation_request_business_affiliation_r1`;
+ALTER TABLE `alodigaWallet`.`review_business_affiliation_request`
+CHANGE COLUMN `businessAffiliationRequetsId` `businessAffiliationRequestId` BIGINT(20) NOT NULL ;
+ALTER TABLE `alodigaWallet`.`review_business_affiliation_request`
+ADD CONSTRAINT `fk_review_business_affiliation_request_business_affiliation_r1`
+ FOREIGN KEY (`businessAffiliationRequestId`)
+ REFERENCES `alodigaWallet`.`business_affiliation_request` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+
+ALTER TABLE `alodigaWallet`.`review_business_affiliation_request` 
+DROP INDEX `businessAffiliationRequetsId`;
+
+-- Cambios en los índices en tabla account_bank
+-- author: Jesús Gómez
+-- Fecha: 07/08/2020
+ALTER TABLE `alodigaWallet`.`account_bank` 
+ADD UNIQUE INDEX `fk_account_bank_by_bank_idx` (`bankId` ASC, `accountNumber` ASC);
+
+ALTER TABLE `alodigaWallet`.`account_bank` 
+DROP INDEX `UnifiedRegistryId` ,
+ADD INDEX `UnifiedRegistryId` (`UnifiedRegistryId` ASC);
+
+
 
 
 
