@@ -61,9 +61,9 @@ public class ReviewBusinessAffiliationRequest implements Serializable {
     @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "businessAffiliationRequetsId", referencedColumnName = "id")
+    @JoinColumn(name = "businessAffiliationRequestId", referencedColumnName = "id")
     @OneToOne(optional = false)
-    private BusinessAffiliationRequets businessAffiliationRequetsId;
+    private BusinessAffiliationRequest businessAffiliationRequestId;
     @JoinColumn(name = "reviewTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private ReviewType reviewTypeId;
@@ -126,12 +126,12 @@ public class ReviewBusinessAffiliationRequest implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public BusinessAffiliationRequets getBusinessAffiliationRequetsId() {
-        return businessAffiliationRequetsId;
+    public BusinessAffiliationRequest getBusinessAffiliationRequestId() {
+        return businessAffiliationRequestId;
     }
 
-    public void setBusinessAffiliationRequetsId(BusinessAffiliationRequets businessAffiliationRequetsId) {
-        this.businessAffiliationRequetsId = businessAffiliationRequetsId;
+    public void setBusinessAffiliationRequestId(BusinessAffiliationRequest businessAffiliationRequestId) {
+        this.businessAffiliationRequestId = businessAffiliationRequestId;
     }
 
     public ReviewType getReviewTypeId() {
