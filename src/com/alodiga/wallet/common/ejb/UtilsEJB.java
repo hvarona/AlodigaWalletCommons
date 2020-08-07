@@ -29,6 +29,8 @@ import com.alodiga.wallet.common.model.Language;
 import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.Sms;
 import com.alodiga.wallet.common.model.State;
+import com.alodiga.wallet.common.model.StatusBusinessAffiliationHasFinalState;
+import com.alodiga.wallet.common.model.StatusBusinessAffiliationRequest;
 import com.alodiga.wallet.common.model.StatusTransactionApproveRequest;
 import com.alodiga.wallet.common.model.Transaction;
 import com.alodiga.wallet.common.model.TransactionApproveRequest;
@@ -232,5 +234,19 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     public CollectionsRequest saveCollectionsRequest(CollectionsRequest collectionsRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
+    //StatusBusinessAffiliationRequest
+    public List<StatusBusinessAffiliationRequest> getStatusBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public StatusBusinessAffiliationRequest loadStatusBusinessAffiliationRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    public StatusBusinessAffiliationRequest saveStatusBusinessAffiliationRequest(StatusTransactionApproveRequest statusTransactionApproveRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    //StatusBusinessAffiliationHasFinalState
+    public List<StatusBusinessAffiliationHasFinalState> getStatusBusinessAffiliationHasFinalState(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public StatusBusinessAffiliationHasFinalState loadStatusBusinessAffiliationHasFinalState(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    public StatusBusinessAffiliationHasFinalState saveStatusBusinessAffiliationHasFinalState(StatusBusinessAffiliationHasFinalState statusBusinessAffiliationHasFinalState) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
 
 }
