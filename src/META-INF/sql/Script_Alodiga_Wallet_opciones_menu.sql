@@ -814,10 +814,31 @@ INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `al
 VALUES ('92', '2', 'Ver Solicitudes de Afiliacion', 'Ver Solicitudes de Afiliacion');
 
 
+-- opciones del menu Listar Prerelaciones Estatus Afiliaci�n
+-- author: Yamelis Almea
+-- Fecha: 07/08/2020
+
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('89', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('90', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('91', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('92', '1');
+
+
+INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('185', '93', '1', 'List Affiliation Status Prerelationships', 'Affiliation Status Prerelationships');
+INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('186', '93', '2', 'Listar Prerelaciones Estatus Afiliaci�n', 'Prerelaciones Estatus Afiliaci�n');
+INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('187', '94', '1', 'Add Affiliation Status Prerelationship', 'Add Affiliation Status Prerelationship');
+INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('188', '94', '2', 'Agregar Prerelaciones Estatus Afiliacion', 'Agregar Prerelaciones Estatus Afiliacion');
+INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('189', '95', '1', 'Edit Affiliation Status Prerelationship', 'Edit Affiliation Status Prerelationship');
+INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('190', '95', '2', 'Editar  Prerelaciones Estatus Afiliacion', 'Editar  Prerelaciones Estatus Afiliacion');
+INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('191', '96', '1', 'View Affiliation Status Prerelationship', 'View Affiliation Status Prerelationship');
+INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('192', '96', '2', 'Ver  Prerelaciones Estatus Afiliacion', 'Ver  Prerelaciones Estatus Afiliacion');
+
+
+INSERT INTO `alodigawallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('93', '93', '1');
+INSERT INTO `alodigawallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('94', '94', '1');
+INSERT INTO `alodigawallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('95', '95', '1');
+INSERT INTO `alodigawallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('96', '96', '1');
+
 
 
 

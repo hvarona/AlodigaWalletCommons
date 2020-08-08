@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DocumentsPersonType.findAll", query = "SELECT d FROM DocumentsPersonType d"),
     @NamedQuery(name = "DocumentsPersonType.findById", query = "SELECT d FROM DocumentsPersonType d WHERE d.id = :id"),
     @NamedQuery(name = "DocumentsPersonType.findByDescription", query = "SELECT d FROM DocumentsPersonType d WHERE d.description = :description"),
+    @NamedQuery(name = "DocumentsPersonType.findBypersonTypeId", query = "SELECT d FROM DocumentsPersonType d WHERE d.personTypeId.id = :personTypeId"),
     @NamedQuery(name = "DocumentsPersonType.findByCodeIdentification", query = "SELECT d FROM DocumentsPersonType d WHERE d.codeIdentification = :codeIdentification")})
 public class DocumentsPersonType extends AbstractWalletEntity implements Serializable {
 

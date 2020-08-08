@@ -24,6 +24,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+
 /**
  *
  * @author jose
@@ -129,24 +132,14 @@ public class StatusBusinessAffiliationRequest implements Serializable {
         this.code = code;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<StatusBusinessAffiliationHasFinalState> getStatusBusinessAffiliationHasFinalStateCollection() {
-        return statusBusinessAffiliationHasFinalStateCollection;
+    @Override
+    public Object getPk() {
+        return getId();
     }
 
-    public void setStatusBusinessAffiliationHasFinalStateCollection(Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection) {
-        this.statusBusinessAffiliationHasFinalStateCollection = statusBusinessAffiliationHasFinalStateCollection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<StatusBusinessAffiliationHasFinalState> getStatusBusinessAffiliationHasFinalStateCollection1() {
-        return statusBusinessAffiliationHasFinalStateCollection1;
-    }
-
-    public void setStatusBusinessAffiliationHasFinalStateCollection1(Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection1) {
-        this.statusBusinessAffiliationHasFinalStateCollection1 = statusBusinessAffiliationHasFinalStateCollection1;
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }

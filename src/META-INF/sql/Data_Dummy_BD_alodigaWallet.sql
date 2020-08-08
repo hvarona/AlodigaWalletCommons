@@ -186,6 +186,20 @@ VALUES ('1', '1', '2020-08-04', '1', '1', '2020-08-04');
 INSERT INTO `alodigaWallet`.`business_affiliation_requets` (`id`, `numberRequest`, `dateRequest`, `statusBusinessAffiliationRequestId`, `businessPersonId`, `createDate`) 
 VALUES ('2', '2', '2020-08-05', '1', '2', '2020-08-04');
 
+-- Insert en la tabla status_business_affiliation_request y status_business_affiliation_has_final_state
+-- author: Yamelis Almea
+-- Fecha: 07/08/2020
+INSERT INTO `alodigawallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('1', 'RECAUDOS COMPLETOS', 'REC');
+INSERT INTO `alodigawallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('2', 'PENDIENTE LISTAS NEGRAS', 'PLN');
+INSERT INTO `alodigawallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('3', 'APROBADA  LISTAS NEGRAS', 'ALN');
+INSERT INTO `alodigawallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('4', 'RECHAZADA LISTAS NEGRAS', 'RLN');
+INSERT INTO `alodigawallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('5', 'APROBADA', 'APR');
+INSERT INTO `alodigawallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('6', 'RECHAZADA', 'REC');
+
+INSERT INTO `alodigawallet`.`status_business_affiliation_has_final_state` (`id`, `statusBusinessAffiliationRequetsId`, `finalStateId`, `createDate`) VALUES ('1', '1', '2', '2020-08-04');
+INSERT INTO `alodigawallet`.`status_business_affiliation_has_final_state` (`id`, `statusBusinessAffiliationRequetsId`, `finalStateId`, `createDate`) VALUES ('2', '1', '5', '2020-08-04');
+INSERT INTO `alodigawallet`.`status_business_affiliation_has_final_state` (`id`, `statusBusinessAffiliationRequetsId`, `finalStateId`, `createDate`) VALUES ('3', '1', '6', '2020-08-04');
+
 
 -- Insert en la tabla address_type
 -- author: Lulymar Gutierrez
