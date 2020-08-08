@@ -35,10 +35,10 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 @Table(name = "status_business_affiliation_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "StatusBusinessAffiliationRequest.findAll", query = "SELECT s FROM StatusBusinessAffiliationRequest s")
-    , @NamedQuery(name = "StatusBusinessAffiliationRequest.findById", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.id = :id")
-    , @NamedQuery(name = "StatusBusinessAffiliationRequest.findByDescription", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.description = :description")})
-public class StatusBusinessAffiliationRequest implements Serializable {
+    @NamedQuery(name = "StatusBusinessAffiliationRequest.findAll", query = "SELECT s FROM StatusBusinessAffiliationRequest s"),
+    @NamedQuery(name = "StatusBusinessAffiliationRequest.findById", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.id = :id"),
+    @NamedQuery(name = "StatusBusinessAffiliationRequest.findByDescription", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.description = :description")})
+public class StatusBusinessAffiliationRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -98,7 +98,6 @@ public class StatusBusinessAffiliationRequest implements Serializable {
 //    public void setBusinessAffiliationRequetsCollection(Collection<BusinessAffiliationRequets> businessAffiliationRequetsCollection) {
 //        this.businessAffiliationRequetsCollection = businessAffiliationRequetsCollection;
 //    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -141,5 +140,5 @@ public class StatusBusinessAffiliationRequest implements Serializable {
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
-    
+
 }
