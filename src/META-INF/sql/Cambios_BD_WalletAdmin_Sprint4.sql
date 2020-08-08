@@ -360,6 +360,9 @@ ENGINE = InnoDB;
 -- Fecha: 05/08/2020
 ALTER TABLE `alodigaWallet`.`status_business_affiliation_requets`
 ADD COLUMN `code` VARCHAR(10) NULL;
+
+
+
 -- Agregar tabla person_has_address
 -- author: Lulymar Gutierrez
 -- Fecha: 06/08/2020
@@ -381,6 +384,7 @@ CREATE TABLE `alodigaWallet`.`person_has_address` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 AUTO_INCREMENT = 0;
+
 
 CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_business_affiliation_has_final_state` (
  `id` INT NOT NULL AUTO_INCREMENT,
