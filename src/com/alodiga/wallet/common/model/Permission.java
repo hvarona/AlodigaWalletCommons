@@ -122,7 +122,11 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long LIST_BUSINESS_AFFILIATION_REQUESTS= 89L;
     public static Long ADD_BUSINESS_AFFILIATION_REQUESTS = 90L;
     public static Long EDIT_BUSINESS_AFFILIATION_REQUESTS = 91L;
-    public static Long VIEW_BUSINESS_AFFILIATION_REQUESTS = 91L;
+    public static Long VIEW_BUSINESS_AFFILIATION_REQUESTS = 92L;
+    public static Long LIST_ADDRESS = 93L;
+    public static Long ADD_ADDRESS = 94L;
+    public static Long EDIT_ADDRESS = 95L;
+    public static Long VIEW_ADDRESS = 96L;
 
 
 
