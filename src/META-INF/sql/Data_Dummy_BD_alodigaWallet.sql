@@ -185,3 +185,71 @@ INSERT INTO `alodigaWallet`.`business_affiliation_requets` (`id`, `numberRequest
 VALUES ('1', '1', '2020-08-04', '1', '1', '2020-08-04');
 INSERT INTO `alodigaWallet`.`business_affiliation_requets` (`id`, `numberRequest`, `dateRequest`, `statusBusinessAffiliationRequestId`, `businessPersonId`, `createDate`) 
 VALUES ('2', '2', '2020-08-05', '1', '2', '2020-08-04');
+
+
+-- Insert en la tabla address_type
+-- author: Lulymar Gutierrez
+-- Fecha: 6/08/2020
+INSERT INTO `alodigaWallet`.`address_type` (`id`, `description`) VALUES ('1', 'Habitación');
+INSERT INTO `alodigaWallet`.`address_type` (`id`, `description`) VALUES ('2', 'Domicilio Fiscal');
+INSERT INTO `alodigaWallet`.`address_type` (`id`, `description`) VALUES ('3', 'Facturación');
+INSERT INTO `alodigaWallet`.`address_type` (`id`, `description`) VALUES ('4', 'Compañia');
+
+
+-- Insert en la tabla edification_type
+-- author: Lulymar Gutierrez
+-- Fecha: 6/08/2020
+INSERT INTO `alodigaWallet`.`edification_type` (`id`, `description`) VALUES ('1', 'Casa');
+INSERT INTO `alodigaWallet`.`edification_type` (`id`, `description`) VALUES ('2', 'Quinta');
+INSERT INTO `alodigaWallet`.`edification_type` (`id`, `description`) VALUES ('3', 'Building');
+INSERT INTO `alodigaWallet`.`edification_type` (`id`, `description`) VALUES ('4', 'Chalet');
+INSERT INTO `alodigaWallet`.`edification_type` (`id`, `description`) VALUES ('5', 'Duplex');
+
+
+-- Insert en la tabla state
+-- author: Lulymar Gutierrez
+-- Fecha: 6/08/2020
+INSERT INTO `alodigaWallet`.`state` (`id`, `countryId`, `name`) VALUES ('4', '1', 'ANZOATEGUI');
+
+
+-- Insert en la tabla city
+-- author: Lulymar Gutierrez
+-- Fecha: 6/08/2020
+INSERT INTO `alodigaWallet`.`city` (`id`, `stateId`, `name`) VALUES ('3', '4', 'ATAPIRIRE');
+INSERT INTO `alodigaWallet`.`city` (`id`, `stateId`, `name`) VALUES ('4', '4', 'CANTAURA');
+
+
+-- Insert en la tabla street_type
+-- author: Lulymar Gutierrez
+-- Fecha: 6/08/2020
+INSERT INTO `alodigaWallet`.`street_type` (`id`, `description`) VALUES ('1', 'Calle');
+INSERT INTO `alodigaWallet`.`street_type` (`id`, `description`) VALUES ('2', 'Avenida');
+INSERT INTO `alodigaWallet`.`street_type` (`id`, `description`) VALUES ('3', 'Vereda');
+INSERT INTO `alodigaWallet`.`street_type` (`id`, `description`) VALUES ('4', 'Redoma');
+INSERT INTO `alodigaWallet`.`street_type` (`id`, `description`) VALUES ('5', 'Autopista');
+INSERT INTO `alodigaWallet`.`street_type` (`id`, `description`) VALUES ('6', 'Bulevar');
+INSERT INTO `alodigaWallet`.`street_type` (`id`, `description`) VALUES ('7', 'Callejón');
+INSERT INTO `alodigaWallet`.`street_type` (`id`, `description`) VALUES ('8', 'Carretera');
+
+
+-- Insert en la tabla zip_zone
+-- author: Lulymar Gutierrez
+-- Fecha: 6/08/2020
+INSERT INTO `alodigaWallet`.`zip_zone` (`id`, `name`, `code`, `city_id`) VALUES ('1', 'Atapirire, Anzoátegui', '6052', '3');
+INSERT INTO `alodigaWallet`.`zip_zone` (`id`, `name`, `code`, `city_id`) VALUES ('2', 'Cantaura, Anzoátegui', '6007', '4');
+INSERT INTO `alodigaWallet`.`zip_zone` (`id`, `name`, `code`, `city_id`) VALUES ('3', 'Urbanización La Vega en Caracas', '1020', '1');
+INSERT INTO `alodigaWallet`.`zip_zone` (`id`, `name`, `code`, `city_id`) VALUES ('4', 'San Andrés Central en Caracas', '1090', '1');
+
+
+-- Insert en la tabla address
+-- author: Lulymar Gutierrez
+-- Fecha: 6/08/2020
+INSERT INTO `alodigaWallet`.`address` (`id`, `countryId`, `cityId`, `countyId`, `zipCode`, `streetTypeId`, `nameStreet`, `edificationTypeId`, `nameEdification`, `tower`, `floor`, `urbanization`, `addressTypeId`, `indMainAddress`) VALUES ('1', '1', '1', '1', '3', '1', 'Calle', '1', 'Edificio', '1', '1', 'urbanizacion', '1', '0');
+INSERT INTO `alodigaWallet`.`address` (`id`, `countryId`, `cityId`, `countyId`, `zipCode`, `streetTypeId`, `nameStreet`, `edificationTypeId`, `nameEdification`, `tower`, `floor`, `urbanization`, `addressTypeId`, `indMainAddress`) VALUES ('2', '1', '1', '1', '4', '1', 'Calle2', '2', 'Edificio2', '2', '2', 'urbanizacion', '2', '1');
+
+
+-- Insert en la tabla person_has_address
+-- author: Lulymar Gutierrez
+-- Fecha: 6/08/2020
+INSERT INTO `alodigaWallet`.`person_has_address` (`addressId`, `personId`) VALUES ('1', '1');
+INSERT INTO `alodigaWallet`.`person_has_address` (`addressId`, `personId`) VALUES ('2', '2');
