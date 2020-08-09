@@ -438,6 +438,79 @@ ALTER TABLE `alodigaWallet`.`account_bank`
 DROP INDEX `UnifiedRegistryId` ,
 ADD INDEX `UnifiedRegistryId` (`UnifiedRegistryId` ASC);
 
+-- cambios relacionados con el representante legal del negocio y la dirección del solicitante
+-- author: Jesús Gómez
+-- Fecha: 09/08/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`person_has_address` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `personId` BIGINT UNIQUE NOT NULL,
+  `addressId` BIGINT(10) NOT NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_person_has_address_person2_idx` (`personId` ASC),
+  INDEX `fk_person_has_address_address2_idx` (`addressId` ASC),
+  CONSTRAINT `fk_person_has_address_person2`
+    FOREIGN KEY (`personId`)
+    REFERENCES `alodigaWallet`.`person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_person_has_address_address2`
+    FOREIGN KEY (`addressId`)
+    REFERENCES `alodigaWallet`.`address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`legal_representative` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `personId` BIGINT UNIQUE NOT NULL,
+  `documentsPersonTypeId` INT NOT NULL,
+  `identificationNumber` VARCHAR(40) NOT NULL,
+  `identificationNumberOld` VARCHAR(40) NULL,
+  `dueDateDocumentIdentification` DATE NULL,
+  `firstNames` VARCHAR(50) NOT NULL,
+  `lastNames` VARCHAR(50) NOT NULL,
+  `age` INT NOT NULL,
+  `gender` VARCHAR(1) NULL,
+  `placeBirth` VARCHAR(50) NULL,
+  `dateBirth` DATE NOT NULL,
+  `civilStatusId` INT NOT NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_legalRepresentative_person1_idx` (`personId` ASC),
+  INDEX `fk_legalRepresentative_documents_person_type1_idx` (`documentsPersonTypeId` ASC),
+  INDEX `fk_legal_representative_civil_status1_idx` (`civilStatusId` ASC),
+  CONSTRAINT `fk_legalRepresentative_person1`
+    FOREIGN KEY (`personId`)
+    REFERENCES `alodigaWallet`.`person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_legalRepresentative_documents_person_type1`
+    FOREIGN KEY (`documentsPersonTypeId`)
+    REFERENCES `alodigaWallet`.`documents_person_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_legal_representative_civil_status1`
+    FOREIGN KEY (`civilStatusId`)
+    REFERENCES `alodigaWallet`.`civil_status` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `alodigaWallet`.`legal_person`
+ADD COLUMN `legalRepresentativeId` BIGINT NULL;
+ALTER TABLE `alodigaWallet`.`legal_person`
+ADD CONSTRAINT `fk_legal_person_legal_representative1`
+ FOREIGN KEY (`legalRepresentativeId`)
+ REFERENCES `alodigaWallet`.`legal_representative` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+
+
+
+
 
 
 
