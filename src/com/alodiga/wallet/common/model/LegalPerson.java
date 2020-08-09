@@ -76,7 +76,6 @@ public class LegalPerson implements Serializable {
     @Column(name = "dateInscriptionRegister")
     @Temporal(TemporalType.DATE)
     private Date dateInscriptionRegister;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "payedCapital")
     private Float payedCapital;
     @JoinColumn(name = "businessCategoryId", referencedColumnName = "id")
@@ -88,6 +87,9 @@ public class LegalPerson implements Serializable {
     @JoinColumn(name = "personId", referencedColumnName = "id")
     @OneToOne(optional = false)
     private Person personId;
+    @JoinColumn(name = "legalRepresentativeId", referencedColumnName = "id")
+    @ManyToOne
+    private LegalRepresentative legalRepresentativeId;
 
     public LegalPerson() {
     }
@@ -221,6 +223,14 @@ public class LegalPerson implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.LegalPerson[ id=" + id + " ]";
+    }
+
+    public LegalRepresentative getLegalRepresentativeId() {
+        return legalRepresentativeId;
+    }
+
+    public void setLegalRepresentativeId(LegalRepresentative legalRepresentativeId) {
+        this.legalRepresentativeId = legalRepresentativeId;
     }
     
 }

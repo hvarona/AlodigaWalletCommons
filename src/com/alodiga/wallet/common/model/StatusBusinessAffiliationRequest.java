@@ -35,9 +35,9 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 @Table(name = "status_business_affiliation_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "StatusBusinessAffiliationRequest.findAll", query = "SELECT s FROM StatusBusinessAffiliationRequest s")
-    , @NamedQuery(name = "StatusBusinessAffiliationRequest.findById", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.id = :id")
-    , @NamedQuery(name = "StatusBusinessAffiliationRequest.findByDescription", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.description = :description")})
+    @NamedQuery(name = "StatusBusinessAffiliationRequest.findAll", query = "SELECT s FROM StatusBusinessAffiliationRequest s"),
+    @NamedQuery(name = "StatusBusinessAffiliationRequest.findById", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.id = :id"),
+    @NamedQuery(name = "StatusBusinessAffiliationRequest.findByDescription", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.description = :description")})
 public class StatusBusinessAffiliationRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,6 +54,12 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
     @Size(max = 10)
     @Column(name = "code")
     private String code;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusBusinessAffiliationRequetsId")
+    private Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "finalStateId")
+    private Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection1;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusBusinessAffiliationRequetsId")
+//    private Collection<BusinessAffiliationRequets> businessAffiliationRequetsCollection;
 
     public StatusBusinessAffiliationRequest() {
     }
@@ -83,6 +89,15 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
         this.description = description;
     }
 
+//    @XmlTransient
+//    @JsonIgnore
+//    public Collection<BusinessAffiliationRequets> getBusinessAffiliationRequetsCollection() {
+//        return businessAffiliationRequetsCollection;
+//    }
+//
+//    public void setBusinessAffiliationRequetsCollection(Collection<BusinessAffiliationRequets> businessAffiliationRequetsCollection) {
+//        this.businessAffiliationRequetsCollection = businessAffiliationRequetsCollection;
+//    }
     @Override
     public int hashCode() {
         int hash = 0;
@@ -125,5 +140,5 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
-    
+
 }
