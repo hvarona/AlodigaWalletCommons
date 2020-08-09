@@ -361,6 +361,31 @@ ENGINE = InnoDB;
 ALTER TABLE `alodigaWallet`.`status_business_affiliation_requets`
 ADD COLUMN `code` VARCHAR(10) NULL;
 
+
+
+-- Agregar tabla person_has_address
+-- author: Lulymar Gutierrez
+-- Fecha: 06/08/2020
+CREATE TABLE `alodigaWallet`.`person_has_address` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `addressId` BIGINT(20) NOT NULL,
+  `personId` BIGINT(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_personAddress_address1_idx` (`addressId` ASC),
+  INDEX `fk_personAddress_person1_idx` (`personId` ASC),
+  CONSTRAINT `fk_personAddress_address1`
+    FOREIGN KEY (`addressId`)
+    REFERENCES `alodigaWallet`.`address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_personAddress_person1`
+    FOREIGN KEY (`personId`)
+    REFERENCES `alodigaWallet`.`person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+AUTO_INCREMENT = 0;
+
+
 CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_business_affiliation_has_final_state` (
  `id` INT NOT NULL AUTO_INCREMENT,
  `statusBusinessAffiliationRequetsId` INT NOT NULL,

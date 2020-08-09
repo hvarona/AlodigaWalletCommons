@@ -23,6 +23,9 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+
 /**
  *
  * @author jose
@@ -35,7 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "StatusBusinessAffiliationHasFinalState.findById", query = "SELECT s FROM StatusBusinessAffiliationHasFinalState s WHERE s.id = :id")
     , @NamedQuery(name = "StatusBusinessAffiliationHasFinalState.findByCreateDate", query = "SELECT s FROM StatusBusinessAffiliationHasFinalState s WHERE s.createDate = :createDate")
     , @NamedQuery(name = "StatusBusinessAffiliationHasFinalState.findByUpdateDate", query = "SELECT s FROM StatusBusinessAffiliationHasFinalState s WHERE s.updateDate = :updateDate")})
-public class StatusBusinessAffiliationHasFinalState implements Serializable {
+public class StatusBusinessAffiliationHasFinalState extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -133,6 +136,16 @@ public class StatusBusinessAffiliationHasFinalState implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.StatusBusinessAffiliationHasFinalState[ id=" + id + " ]";
+    }
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }
