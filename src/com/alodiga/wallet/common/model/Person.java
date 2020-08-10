@@ -41,6 +41,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Person.findByUpdateDate", query = "SELECT p FROM Person p WHERE p.updateDate = :updateDate")})
 public class Person implements Serializable {
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
+    private PersonHasAddress personHasAddress;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
+    private LegalRepresentative legalRepresentative;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -203,6 +209,22 @@ public class Person implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.Person[ id=" + id + " ]";
+    }
+
+    public LegalRepresentative getLegalRepresentative() {
+        return legalRepresentative;
+    }
+
+    public void setLegalRepresentative(LegalRepresentative legalRepresentative) {
+        this.legalRepresentative = legalRepresentative;
+    }
+
+    public PersonHasAddress getPersonHasAddress() {
+        return personHasAddress;
+    }
+
+    public void setPersonHasAddress(PersonHasAddress personHasAddress) {
+        this.personHasAddress = personHasAddress;
     }
     
 }

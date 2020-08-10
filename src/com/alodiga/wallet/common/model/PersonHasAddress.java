@@ -9,6 +9,7 @@ import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +22,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -29,8 +32,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "PersonHasAddress.findAll", query = "SELECT p FROM PersonHasAddress p"),
     @NamedQuery(name = "PersonHasAddress.findById", query = "SELECT p FROM PersonHasAddress p WHERE p.id = :id"),
-    @NamedQuery(name = QueryConstants.PERSON_HAS_ADDRESS_BY_PERSON, query = "SELECT p FROM PersonHasAddress p WHERE p.personId.id=:personId")
-})
+    @NamedQuery(name = "PersonHasAddress.findByCreateDate", query = "SELECT p FROM PersonHasAddress p WHERE p.createDate = :createDate"),
+    @NamedQuery(name = "PersonHasAddress.findByUpdateDate", query = "SELECT p FROM PersonHasAddress p WHERE p.updateDate = :updateDate"),
+    @NamedQuery(name = QueryConstants.PERSON_HAS_ADDRESS_BY_PERSON, query = "SELECT p FROM PersonHasAddress p WHERE p.personId.id=:personId")})
+
 public class PersonHasAddress extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,6 +50,12 @@ public class PersonHasAddress extends AbstractWalletEntity implements Serializab
     @JoinColumn(name = "personId", referencedColumnName = "id")
     @OneToOne(optional = false)
     private Person personId;
+    @Column(name = "createDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+    @Column(name = "updateDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateDate;
 
     public PersonHasAddress() {
     }
@@ -75,6 +86,22 @@ public class PersonHasAddress extends AbstractWalletEntity implements Serializab
 
     public void setPersonId(Person personId) {
         this.personId = personId;
+    }
+    
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     @Override
