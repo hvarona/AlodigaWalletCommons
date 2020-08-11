@@ -267,3 +267,29 @@ INSERT INTO `alodigaWallet`.`address` (`id`, `countryId`, `cityId`, `countyId`, 
 -- Fecha: 6/08/2020
 INSERT INTO `alodigaWallet`.`person_has_address` (`addressId`, `personId`) VALUES ('1', '1');
 INSERT INTO `alodigaWallet`.`person_has_address` (`addressId`, `personId`) VALUES ('2', '2');
+
+-- Insert en la tabla person_classification
+-- author: Lulymar Gutierrez
+-- Fecha: 10/08/2020
+INSERT INTO `alodigaWallet`.`person_classification` (`description`) VALUES ('Legal Representatives');
+
+-- Insert en la tabla person
+-- author: Lulymar Gutierrez
+-- Fecha: 10/08/2020
+INSERT INTO `alodigaWallet`.`person` (`email`, `personTypeId`, `personClassificationId`, `webSite`, `countryId`, `createDate`) VALUES ('lr@noaplica.com', '2', '3', 'www', '1', '2020-08-10 10:38:00');
+
+-- Insert en la tabla legal_representative
+-- author: Lulymar Gutierrez
+-- Fecha: 10/08/2020
+INSERT INTO `alodigaWallet`.`legal_representative` (`personId`, `documentsPersonTypeId`, `identificationNumber`, `dueDateDocumentIdentification`, `firstNames`, `lastNames`, `age`, `gender`, `placeBirth`, `dateBirth`, `civilStatusId`, `createDate`) VALUES ('3', '1', '12345678', '2028-08-10', 'Legal', 'Representative', '32', 'M', 'Caracas', '1988-12-01', '1', '2020-08-10');
+
+
+-- Update en la tabla legal_person
+-- author: Lulymar Gutierrez
+-- Fecha: 10/08/2020
+UPDATE `alodigaWallet`.`legal_person` SET `legalRepresentativeId`='1' WHERE `id`='1';
+
+-- Update en la tabla phone_person
+-- author: Lulymar Gutierrez
+-- Fecha: 10/08/2020
+INSERT INTO `alodigaWallet`.`phone_person` (`countryId`, `countryCode`, `areaCode`, `numberPhone`, `personId`, `phoneTypeId`) VALUES ('1', '58', '0212', '456789', '3', '1');

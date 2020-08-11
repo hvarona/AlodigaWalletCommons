@@ -5,6 +5,8 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -37,20 +39,20 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "legal_representative")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "LegalRepresentative.findAll", query = "SELECT l FROM LegalRepresentative l")
-    , @NamedQuery(name = "LegalRepresentative.findById", query = "SELECT l FROM LegalRepresentative l WHERE l.id = :id")
-    , @NamedQuery(name = "LegalRepresentative.findByCreateDate", query = "SELECT l FROM LegalRepresentative l WHERE l.createDate = :createDate")
-    , @NamedQuery(name = "LegalRepresentative.findByUpdateDate", query = "SELECT l FROM LegalRepresentative l WHERE l.updateDate = :updateDate")
-    , @NamedQuery(name = "LegalRepresentative.findByIdentificationNumber", query = "SELECT l FROM LegalRepresentative l WHERE l.identificationNumber = :identificationNumber")
-    , @NamedQuery(name = "LegalRepresentative.findByIdentificationNumberOld", query = "SELECT l FROM LegalRepresentative l WHERE l.identificationNumberOld = :identificationNumberOld")
-    , @NamedQuery(name = "LegalRepresentative.findByDueDateDocumentIdentification", query = "SELECT l FROM LegalRepresentative l WHERE l.dueDateDocumentIdentification = :dueDateDocumentIdentification")
-    , @NamedQuery(name = "LegalRepresentative.findByFirstNames", query = "SELECT l FROM LegalRepresentative l WHERE l.firstNames = :firstNames")
-    , @NamedQuery(name = "LegalRepresentative.findByLastNames", query = "SELECT l FROM LegalRepresentative l WHERE l.lastNames = :lastNames")
-    , @NamedQuery(name = "LegalRepresentative.findByAge", query = "SELECT l FROM LegalRepresentative l WHERE l.age = :age")
-    , @NamedQuery(name = "LegalRepresentative.findByGender", query = "SELECT l FROM LegalRepresentative l WHERE l.gender = :gender")
-    , @NamedQuery(name = "LegalRepresentative.findByPlaceBirth", query = "SELECT l FROM LegalRepresentative l WHERE l.placeBirth = :placeBirth")
-    , @NamedQuery(name = "LegalRepresentative.findByDateBirth", query = "SELECT l FROM LegalRepresentative l WHERE l.dateBirth = :dateBirth")})
-public class LegalRepresentative implements Serializable {
+    @NamedQuery(name = "LegalRepresentative.findAll", query = "SELECT l FROM LegalRepresentative l"),
+    @NamedQuery(name = "LegalRepresentative.findById", query = "SELECT l FROM LegalRepresentative l WHERE l.id = :id"),
+    @NamedQuery(name = "LegalRepresentative.findByCreateDate", query = "SELECT l FROM LegalRepresentative l WHERE l.createDate = :createDate"),
+    @NamedQuery(name = "LegalRepresentative.findByUpdateDate", query = "SELECT l FROM LegalRepresentative l WHERE l.updateDate = :updateDate"),
+    @NamedQuery(name = "LegalRepresentative.findByIdentificationNumber", query = "SELECT l FROM LegalRepresentative l WHERE l.identificationNumber = :identificationNumber"),
+    @NamedQuery(name = "LegalRepresentative.findByIdentificationNumberOld", query = "SELECT l FROM LegalRepresentative l WHERE l.identificationNumberOld = :identificationNumberOld"),
+    @NamedQuery(name = "LegalRepresentative.findByDueDateDocumentIdentification", query = "SELECT l FROM LegalRepresentative l WHERE l.dueDateDocumentIdentification = :dueDateDocumentIdentification"),
+    @NamedQuery(name = "LegalRepresentative.findByFirstNames", query = "SELECT l FROM LegalRepresentative l WHERE l.firstNames = :firstNames"),
+    @NamedQuery(name = "LegalRepresentative.findByLastNames", query = "SELECT l FROM LegalRepresentative l WHERE l.lastNames = :lastNames"),
+    @NamedQuery(name = "LegalRepresentative.findByAge", query = "SELECT l FROM LegalRepresentative l WHERE l.age = :age"),
+    @NamedQuery(name = "LegalRepresentative.findByGender", query = "SELECT l FROM LegalRepresentative l WHERE l.gender = :gender"),
+    @NamedQuery(name = "LegalRepresentative.findByPlaceBirth", query = "SELECT l FROM LegalRepresentative l WHERE l.placeBirth = :placeBirth"),
+    @NamedQuery(name = "LegalRepresentative.findByDateBirth", query = "SELECT l FROM LegalRepresentative l WHERE l.dateBirth = :dateBirth")})
+public class LegalRepresentative extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -282,5 +284,14 @@ public class LegalRepresentative implements Serializable {
     public String toString() {
         return "com.alodiga.wallet.common.model.LegalRepresentative[ id=" + id + " ]";
     }
-    
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }
