@@ -135,6 +135,10 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long ADD_LEGAL_REPRESENTATIVE = 102L;
     public static Long EDIT_LEGAL_REPRESENTATIVE = 103L;
     public static Long VIEW_LEGAL_REPRESENTATIVE = 104L;
+    public static Long LIST_COLLECTION_AFFILIATION_REQUEST = 109L;
+    public static Long ADD_COLLECTION_AFFILIATION_REQUEST = 110L;
+    public static Long EDIT_COLLECTION_AFFILIATION_REQUEST = 111L;
+    public static Long VIEW_COLLECTION_AFFILIATION_REQUEST = 112L;
 
 
 

@@ -889,3 +889,27 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `pro
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('103', '103', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('104', '104', '1');
 
+-- Agregar opciones del tab Recaudos de Solicitud
+-- author: Yamelis Almea
+-- Fecha: 10/08/2020
+
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('109', '1', 'ListCollectionAffiliationRequest', 'legal_representative', 'ListCollectionAffiliationRequest', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('110', '1', 'AddCollectionAffiliationRequest', 'legal_representative', 'AddCollectionAffiliationRequest', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('111', '1', 'EditCollectionAffiliationRequest', 'legal_representative', 'EditCollectionAffiliationRequest', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('112', '1', 'ViewCollectionAffiliationRequest', 'legal_representative', 'ViewCollectionAffiliationRequest', '1');
+
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('109', '1', 'List Collection Affiliation Request', 'List Collection Affiliation Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('109', '2', 'Listar Recaudos de Solicitud', 'Listar Recaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('110', '1', 'Add Collection Affiliation Request', 'Add Collection Affiliation Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('110', '2', 'Agregar Recaudos de Solicitud', 'AgregarRecaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('111', '1', 'Edit Collection Affiliation Request', 'Edit Collection Affiliation Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('111', '2', 'Editar Recaudos de Solicitud', 'Editar Recaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('112', '1', 'View Collection Affiliation Request', 'View Collection Affiliation Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('112', '2', 'Ver Recaudos de Solicitud', 'Ver Recaudos de Solicitud');
+
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('109', '109', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('110', '110', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('111', '111', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('112', '112', '1');
