@@ -23,6 +23,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import com.alodiga.wallet.common.utils.QueryConstants;
 
 /**
  *
@@ -38,7 +39,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "RequestHasCollectionRequest.findByUpdateDate", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.updateDate = :updateDate")
     , @NamedQuery(name = "RequestHasCollectionRequest.findByImageFileUrl", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.imageFileUrl = :imageFileUrl")
     , @NamedQuery(name = "RequestHasCollectionRequest.findByObservations", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.observations = :observations")
-    , @NamedQuery(name = "RequestHasCollectionRequest.findByIndApproved", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.indApproved = :indApproved")})
+    , @NamedQuery(name = "RequestHasCollectionRequest.findByIndApproved", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.indApproved = :indApproved")
+    ,@NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_REQUEST_BY_COLLECTION_REQUEST, query = "SELECT r FROM RequestHasCollectionsRequest r WHERE r.requestId.id=:requestId AND r.collectionsRequestid.id=:collectionsRequestId")
+    ,@NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_REQUEST, query = "SELECT r FROM RequestHasCollectionsRequest r WHERE r.requestId.id=:requestId")})
+
 public class RequestHasCollectionRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,7 +65,7 @@ public class RequestHasCollectionRequest implements Serializable {
     private String observations;
     @Size(max = 50)
     @Column(name = "indApproved")
-    private String indApproved;
+    private boolean indApproved;
     @JoinColumn(name = "businessAffiliationRequestId", referencedColumnName = "id")
     @OneToOne(optional = false)
     private BusinessAffiliationRequest businessAffiliationRequestId;
@@ -116,11 +120,11 @@ public class RequestHasCollectionRequest implements Serializable {
         this.observations = observations;
     }
 
-    public String getIndApproved() {
+    public boolean getIndApproved() {
         return indApproved;
     }
 
-    public void setIndApproved(String indApproved) {
+    public void setIndApproved(boolean indApproved) {
         this.indApproved = indApproved;
     }
 

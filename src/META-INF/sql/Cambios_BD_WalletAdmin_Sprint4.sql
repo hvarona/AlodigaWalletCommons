@@ -533,8 +533,12 @@ CREATE TABLE IF NOT EXISTS `alodigaWallet`.`business_service_type` (
 ENGINE = InnoDB;
 
 
+-- cambios del campo indApproved de String a boolean en request_has_collection_request
+-- author: Yamelis Almea
+-- Fecha: 11/08/2020
 
-
+ALTER TABLE `alodigawallet`.`request_has_collection_request` 
+CHANGE COLUMN `indApproved` `indApproved` TINYINT(1) NULL DEFAULT NULL ;
 
 
 
