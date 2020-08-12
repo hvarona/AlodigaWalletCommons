@@ -532,10 +532,53 @@ CREATE TABLE IF NOT EXISTS `alodigaWallet`.`business_service_type` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- Definir campos que no son obligatorios en tablas relacionadas con el solicitante (negocio)
+-- author: Jesús Gómez
+-- Fecha: 10/08/2020
+ALTER TABLE `alodigaWallet`.`natural_person` 
+DROP FOREIGN KEY `fk_natural_person_profession1`;
+ALTER TABLE `alodigaWallet`.`natural_person` 
+CHANGE COLUMN `identificationNumber` `identificationNumber` VARCHAR(40) NOT NULL ,
+CHANGE COLUMN `dueDateDocumentIdentification` `dueDateDocumentIdentification` DATE NOT NULL ,
+CHANGE COLUMN `firstName` `firstName` VARCHAR(40) NOT NULL ,
+CHANGE COLUMN `lastName` `lastName` VARCHAR(40) NOT NULL ,
+CHANGE COLUMN `gender` `gender` VARCHAR(1) NOT NULL ,
+CHANGE COLUMN `placeBirth` `placeBirth` VARCHAR(50) NOT NULL ,
+CHANGE COLUMN `dateBirth` `dateBirth` DATE NOT NULL ,
+CHANGE COLUMN `professionId` `professionId` INT(11) NULL ;
+ALTER TABLE `alodigaWallet`.`natural_person` 
+ADD CONSTRAINT `fk_natural_person_profession1`
+  FOREIGN KEY (`professionId`)
+  REFERENCES `alodigaWallet`.`profession` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
 
+ALTER TABLE `alodigaWallet`.`phone_person` 
+CHANGE COLUMN `countryCode` `countryCode` VARCHAR(4) NOT NULL ,
+CHANGE COLUMN `areaCode` `areaCode` VARCHAR(10) NOT NULL ,
+CHANGE COLUMN `indMainPhone` `indMainPhone` TINYINT(1) NOT NULL ;
 
+ALTER TABLE `alodigaWallet`.`legal_person` 
+CHANGE COLUMN `registerNumber` `registerNumber` VARCHAR(45) NOT NULL ,
+CHANGE COLUMN `dateInscriptionRegister` `dateInscriptionRegister` DATE NOT NULL ,
+CHANGE COLUMN `payedCapital` `payedCapital` FLOAT NOT NULL ;
 
+-- Agregada columna en person_classification
+-- author: Jesús Gómez
+-- Fecha: 12/08/2020
+ALTER TABLE `alodigaWallet`.`person_classification`
+ADD COLUMN `code` VARCHAR(10) NULL AFTER `description`;
 
-
-
-
+-- Modificado FK en business_service_type
+-- author: Jesús Gómez
+-- Fecha: 12/08/2020
+ALTER TABLE `alodigaWallet`.`business_service_type` 
+DROP FOREIGN KEY `fk_business_service_type_business_type1`;
+ALTER TABLE `alodigaWallet`.`business_service_type` 
+CHANGE COLUMN `businessTypeId` `businessTypeId` INT(11) NULL ;
+ALTER TABLE `alodigaWallet`.`business_service_type` 
+ADD CONSTRAINT `fk_business_service_type_business_type1`
+  FOREIGN KEY (`businessTypeId`)
+  REFERENCES `alodigaWallet`.`business_type` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
