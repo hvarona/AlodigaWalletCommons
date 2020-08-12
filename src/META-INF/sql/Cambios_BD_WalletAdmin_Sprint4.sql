@@ -563,10 +563,22 @@ CHANGE COLUMN `registerNumber` `registerNumber` VARCHAR(45) NOT NULL ,
 CHANGE COLUMN `dateInscriptionRegister` `dateInscriptionRegister` DATE NOT NULL ,
 CHANGE COLUMN `payedCapital` `payedCapital` FLOAT NOT NULL ;
 
+-- Agregada columna en person_classification
+-- author: Jesús Gómez
+-- Fecha: 12/08/2020
+ALTER TABLE `alodigaWallet`.`person_classification`
+ADD COLUMN `code` VARCHAR(10) NULL AFTER `description`;
 
-
-
-
-
-
-
+-- Modificado FK en business_service_type
+-- author: Jesús Gómez
+-- Fecha: 12/08/2020
+ALTER TABLE `alodigaWallet`.`business_service_type` 
+DROP FOREIGN KEY `fk_business_service_type_business_type1`;
+ALTER TABLE `alodigaWallet`.`business_service_type` 
+CHANGE COLUMN `businessTypeId` `businessTypeId` INT(11) NULL ;
+ALTER TABLE `alodigaWallet`.`business_service_type` 
+ADD CONSTRAINT `fk_business_service_type_business_type1`
+  FOREIGN KEY (`businessTypeId`)
+  REFERENCES `alodigaWallet`.`business_type` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
