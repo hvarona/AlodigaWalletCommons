@@ -889,7 +889,6 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `pro
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('103', '103', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('104', '104', '1');
 
-
 -- Agregar opciones del menu de Business Type
 -- author: Jorge Pinto
 -- Fecha: 10/08/2020
@@ -912,3 +911,90 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `pro
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('106', '106', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('107', '107', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('108', '108', '1');
+
+-- Agregar opciones del tab Recaudos de Solicitud
+-- author: Yamelis Almea
+-- Fecha: 10/08/2020
+
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('109', '1', 'ListCollectionAffiliationRequest', 'legal_representative', 'ListCollectionAffiliationRequest', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('110', '1', 'AddCollectionAffiliationRequest', 'legal_representative', 'AddCollectionAffiliationRequest', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('111', '1', 'EditCollectionAffiliationRequest', 'legal_representative', 'EditCollectionAffiliationRequest', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('112', '1', 'ViewCollectionAffiliationRequest', 'legal_representative', 'ViewCollectionAffiliationRequest', '1');
+
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('109', '1', 'List Collection Affiliation Request', 'List Collection Affiliation Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('109', '2', 'Listar Recaudos de Solicitud', 'Listar Recaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('110', '1', 'Add Collection Affiliation Request', 'Add Collection Affiliation Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('110', '2', 'Agregar Recaudos de Solicitud', 'AgregarRecaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('111', '1', 'Edit Collection Affiliation Request', 'Edit Collection Affiliation Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('111', '2', 'Editar Recaudos de Solicitud', 'Editar Recaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('112', '1', 'View Collection Affiliation Request', 'View Collection Affiliation Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('112', '2', 'Ver Recaudos de Solicitud', 'Ver Recaudos de Solicitud');
+
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('109', '109', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('110', '110', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('111', '111', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('112', '112', '1');
+
+-- Agregar opciones del menu en permission_group
+-- author: Lulymar Gutierrez
+-- Fecha: 12/08/2020
+INSERT INTO `alodigaWallet`.`permission_group` (`id`, `name`, `enabled`) VALUES ('6', 'Manage Membership Requests', '1');
+
+-- Agregar opciones del menu en permission_group_data
+-- author: Lulymar Gutierrez
+-- Fecha: 12/08/2020
+INSERT INTO `alodigaWallet`.`permission_group_data` (`id`, `permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('11', '6', '1', 'Manage Membership Requests', 'Manage Membership Requests');
+INSERT INTO `alodigaWallet`.`permission_group_data` (`id`, `permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('12', '6', '2', 'Gestionar Solicitudes de Afiliacion', 'Gestionar Solicitudes de Afiliacion');
+
+--permission
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='61';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='62';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='63';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='64';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='73';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='74';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='75';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='76';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='89';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='90';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='91';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='92';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='93';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='94';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='95';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='96';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='97';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='98';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='99';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='100';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='101';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='102';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='103';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='104';
+
+-- Agregar opciones del menu de Business Type
+-- author: Jorge Pinto
+-- Fecha: 12/08/2020
+
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('113', '1', 'ListBusinessServicesType', 'business_service_type', 'ListBusinessServiceType', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('114', '1', 'AddBusinessServicesType', 'business_service_type', 'AddBusinessServiceType', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('115', '1', 'EditBusinnessServicesType', 'business_service_type', 'EditBusinnessServiceType', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('116', '1', 'ViewBusinnessServicesType', 'businnes_service_type', 'ViewBusinnessServiceType', '1');
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('113', '1', 'List Business Service Type', 'List Business Service Type');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('113', '2', 'Lista de Tipos Servicios de Negocios', 'Lista de Tipos Servicios de Negocios');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('114', '1', 'Add Business Service Type', 'Add Business Service Type');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('114', '2', 'Agregar Tipos Servicios de Negocios', 'Agregar Tipos Servicios de Negocios');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('115', '1', 'Edit Business Service Type', 'Edit Business Service Type');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('115', '2', 'Editar Tipos Servicios de Negocios', 'Editar Tipos Servicios de Negocios');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('116', '1', 'View Business Service Type', 'View Business Service Type');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('116', '2', 'Ver Tipos Servicios de Negocios', 'Ver Tipos Servicios de Negocios');
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('113', '113', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('114', '114', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('115', '115', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('116', '116', '1');
+
+

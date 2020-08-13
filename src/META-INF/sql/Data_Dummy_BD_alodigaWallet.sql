@@ -258,9 +258,8 @@ INSERT INTO `alodigaWallet`.`zip_zone` (`id`, `name`, `code`, `city_id`) VALUES 
 -- Insert en la tabla address
 -- author: Lulymar Gutierrez
 -- Fecha: 6/08/2020
-INSERT INTO `alodigaWallet`.`address` (`id`, `countryId`, `cityId`, `countyId`, `zipCode`, `streetTypeId`, `nameStreet`, `edificationTypeId`, `nameEdification`, `tower`, `floor`, `urbanization`, `addressTypeId`, `indMainAddress`) VALUES ('1', '1', '1', '1', '3', '1', 'Calle', '1', 'Edificio', '1', '1', 'urbanizacion', '1', '0');
-INSERT INTO `alodigaWallet`.`address` (`id`, `countryId`, `cityId`, `countyId`, `zipCode`, `streetTypeId`, `nameStreet`, `edificationTypeId`, `nameEdification`, `tower`, `floor`, `urbanization`, `addressTypeId`, `indMainAddress`) VALUES ('2', '1', '1', '1', '4', '1', 'Calle2', '2', 'Edificio2', '2', '2', 'urbanizacion', '2', '1');
-
+INSERT INTO `alodigaWallet`.`address` (`id`,`countryId`,`cityId`,`countyId`,`zipCode`,`streetTypeId`,`nameStreet`,`edificationTypeId`,`nameEdification`,`tower`,`floor`,`urbanization`,`addressLine1`,`addressLine2`,`addressTypeId`,`indMainAddress`) VALUES ('1', '1', '1', '1', '3','1','Calle','1','Edificio','1','1','urbanizacion','Calle1, Edificion1, Tore 1, piso 1. Urbanizacion:urbanizacion',NULL,'1','0');
+INSERT INTO `alodigaWallet`.`address` (`id`,`countryId`,`cityId`,`countyId`,`zipCode`,`streetTypeId`,`nameStreet`,`edificationTypeId`,`nameEdification`,`tower`,`floor`,`urbanization`,`addressLine1`,`addressLine2`,`addressTypeId`,`indMainAddress`) VALUES ('2', '1', '1', '1', '4','1','Calle2','1','Edificio2','2','2','urbanizacion','Calle2, Edificion2, Torre 2, piso 2. Urbanizacion:urbanizacion',NULL,'2','1');
 
 -- Insert en la tabla person_has_address
 -- author: Lulymar Gutierrez
@@ -289,11 +288,24 @@ INSERT INTO `alodigaWallet`.`legal_representative` (`personId`, `documentsPerson
 -- Fecha: 10/08/2020
 UPDATE `alodigaWallet`.`legal_person` SET `legalRepresentativeId`='1' WHERE `id`='1';
 
--- Update en la tabla phone_person
+-- Insert en la tabla phone_person
 -- author: Lulymar Gutierrez
 -- Fecha: 10/08/2020
 INSERT INTO `alodigaWallet`.`phone_person` (`countryId`, `countryCode`, `areaCode`, `numberPhone`, `personId`, `phoneTypeId`) VALUES ('1', '58', '0212', '456789', '3', '1');
 
+
+-- Insert en la tabla business_category
+-- author: Lulymar Gutierrez
+-- Fecha: 10/08/2020
+INSERT INTO `business_category` (`id`,`description`,`mccCode`) VALUES (1,'Hoteles y Clubs','1234');
+INSERT INTO `business_category` (`id`,`description`,`mccCode`) VALUES (2,'Talleres','1472');
+
+
+-- Insert en la tabla business_sub_category
+-- author: Lulymar Gutierrez
+-- Fecha: 10/08/2020
+INSERT INTO `business_sub_category` (`id`,`description`,`mccCode`,`businessCategoryId`) VALUES (1,'Hotel Internacional','1234',1);
+INSERT INTO `business_sub_category` (`id`,`description`,`mccCode`,`businessCategoryId`) VALUES (2,'Reparacion de AA','1472.1',2);
 -- data de tablas de dirección
 -- author: jesús Gómez
 -- Fecha: 13/08/2020

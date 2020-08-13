@@ -70,8 +70,7 @@ public class Close extends AbstractWalletEntity implements Serializable {
     @Basic(optional = false)
     @Column(name = "status")
     private String status;
-    @OneToMany(mappedBy = "closeId")
-    private Collection<Transaction> transactionCollection;
+
 
     public Close() {
     }
@@ -144,14 +143,6 @@ public class Close extends AbstractWalletEntity implements Serializable {
         this.status = status;
     }
 
-    @XmlTransient
-    public Collection<Transaction> getTransactionCollection() {
-        return transactionCollection;
-    }
-
-    public void setTransactionCollection(Collection<Transaction> transactionCollection) {
-        this.transactionCollection = transactionCollection;
-    }
 
     @Override
     public int hashCode() {

@@ -174,4 +174,8 @@ public class QueryConstants {
     public static final String PARAM_ORIGIN_APPLICATION_ID = "originApplicationId";
     public static final String PHONES_BY_PERSON = "phonesByPerson";
     public static final String PERSON_HAS_ADDRESS_BY_PERSON = "personHasAddressByPerson";
+    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_REQUEST_BY_COLLECTION_REQUEST = "RequestHasCollectionsRequestByRequestsByCollectionRequest";
+    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST = "RequestHasCollectionsRequestByBusinessAffiliationRequest";
+    public static final String PARAM_IND_NATURAL_PERSON = "indNaturalPerson";
+    public static final String PERSON_TYPE_BY_COUNTRY_BY_IND_NATURAL_PERSON = "personTypeByCountryByIndNaturalPerson";
 }

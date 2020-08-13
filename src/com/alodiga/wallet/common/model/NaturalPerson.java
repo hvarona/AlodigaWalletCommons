@@ -5,6 +5,8 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -32,20 +34,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "natural_person")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "NaturalPerson.findAll", query = "SELECT n FROM NaturalPerson n")
-    , @NamedQuery(name = "NaturalPerson.findById", query = "SELECT n FROM NaturalPerson n WHERE n.id = :id")
-    , @NamedQuery(name = "NaturalPerson.findByIdentificationNumber", query = "SELECT n FROM NaturalPerson n WHERE n.identificationNumber = :identificationNumber")
-    , @NamedQuery(name = "NaturalPerson.findByDueDateDocumentIdentification", query = "SELECT n FROM NaturalPerson n WHERE n.dueDateDocumentIdentification = :dueDateDocumentIdentification")
-    , @NamedQuery(name = "NaturalPerson.findByIdentificactionNumberOld", query = "SELECT n FROM NaturalPerson n WHERE n.identificactionNumberOld = :identificactionNumberOld")
-    , @NamedQuery(name = "NaturalPerson.findByFirstName", query = "SELECT n FROM NaturalPerson n WHERE n.firstName = :firstName")
-    , @NamedQuery(name = "NaturalPerson.findByLastName", query = "SELECT n FROM NaturalPerson n WHERE n.lastName = :lastName")
-    , @NamedQuery(name = "NaturalPerson.findByMarriedLastName", query = "SELECT n FROM NaturalPerson n WHERE n.marriedLastName = :marriedLastName")
-    , @NamedQuery(name = "NaturalPerson.findByGender", query = "SELECT n FROM NaturalPerson n WHERE n.gender = :gender")
-    , @NamedQuery(name = "NaturalPerson.findByPlaceBirth", query = "SELECT n FROM NaturalPerson n WHERE n.placeBirth = :placeBirth")
-    , @NamedQuery(name = "NaturalPerson.findByDateBirth", query = "SELECT n FROM NaturalPerson n WHERE n.dateBirth = :dateBirth")
-    , @NamedQuery(name = "NaturalPerson.findByCreateDate", query = "SELECT n FROM NaturalPerson n WHERE n.createDate = :createDate")
-    , @NamedQuery(name = "NaturalPerson.findByUpdateDate", query = "SELECT n FROM NaturalPerson n WHERE n.updateDate = :updateDate")})
-public class NaturalPerson implements Serializable {
+    @NamedQuery(name = "NaturalPerson.findAll", query = "SELECT n FROM NaturalPerson n"),
+    @NamedQuery(name = "NaturalPerson.findById", query = "SELECT n FROM NaturalPerson n WHERE n.id = :id"),
+    @NamedQuery(name = "NaturalPerson.findByIdentificationNumber", query = "SELECT n FROM NaturalPerson n WHERE n.identificationNumber = :identificationNumber"),
+    @NamedQuery(name = "NaturalPerson.findByDueDateDocumentIdentification", query = "SELECT n FROM NaturalPerson n WHERE n.dueDateDocumentIdentification = :dueDateDocumentIdentification"),
+    @NamedQuery(name = "NaturalPerson.findByIdentificactionNumberOld", query = "SELECT n FROM NaturalPerson n WHERE n.identificactionNumberOld = :identificactionNumberOld"),
+    @NamedQuery(name = "NaturalPerson.findByFirstName", query = "SELECT n FROM NaturalPerson n WHERE n.firstName = :firstName"),
+    @NamedQuery(name = "NaturalPerson.findByLastName", query = "SELECT n FROM NaturalPerson n WHERE n.lastName = :lastName"),
+    @NamedQuery(name = "NaturalPerson.findByMarriedLastName", query = "SELECT n FROM NaturalPerson n WHERE n.marriedLastName = :marriedLastName"),
+    @NamedQuery(name = "NaturalPerson.findByGender", query = "SELECT n FROM NaturalPerson n WHERE n.gender = :gender"),
+    @NamedQuery(name = "NaturalPerson.findByPlaceBirth", query = "SELECT n FROM NaturalPerson n WHERE n.placeBirth = :placeBirth"),
+    @NamedQuery(name = "NaturalPerson.findByDateBirth", query = "SELECT n FROM NaturalPerson n WHERE n.dateBirth = :dateBirth"),
+    @NamedQuery(name = "NaturalPerson.findByCreateDate", query = "SELECT n FROM NaturalPerson n WHERE n.createDate = :createDate"),
+    @NamedQuery(name = "NaturalPerson.findByUpdateDate", query = "SELECT n FROM NaturalPerson n WHERE n.updateDate = :updateDate")})
+public class NaturalPerson extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -270,4 +272,13 @@ public class NaturalPerson implements Serializable {
         this.statusApplicantId = statusApplicantId;
     }
     
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }

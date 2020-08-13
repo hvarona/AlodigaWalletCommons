@@ -25,6 +25,9 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+
 /**
  *
  * @author jose
@@ -39,7 +42,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "BusinessAffiliationRequest.findByDateRequest", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.dateRequest = :dateRequest")
     , @NamedQuery(name = "BusinessAffiliationRequest.findByCreateDate", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.createDate = :createDate")
     , @NamedQuery(name = "BusinessAffiliationRequest.findByUpdateDate", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.updateDate = :updateDate")})
-public class BusinessAffiliationRequest implements Serializable {
+public class BusinessAffiliationRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -182,6 +185,16 @@ public class BusinessAffiliationRequest implements Serializable {
 
     public void setReviewOfac(ReviewOfac reviewOfac) {
         this.reviewOfac = reviewOfac;
+    }
+    
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }
