@@ -558,6 +558,8 @@ CHANGE COLUMN `countryCode` `countryCode` VARCHAR(4) NOT NULL ,
 CHANGE COLUMN `areaCode` `areaCode` VARCHAR(10) NOT NULL ,
 CHANGE COLUMN `indMainPhone` `indMainPhone` TINYINT(1) NOT NULL ;
 
+
+
 ALTER TABLE `alodigaWallet`.`legal_person` 
 CHANGE COLUMN `registerNumber` `registerNumber` VARCHAR(45) NOT NULL ,
 CHANGE COLUMN `dateInscriptionRegister` `dateInscriptionRegister` DATE NOT NULL ,
@@ -568,6 +570,7 @@ CHANGE COLUMN `payedCapital` `payedCapital` FLOAT NOT NULL ;
 -- Fecha: 12/08/2020
 ALTER TABLE `alodigaWallet`.`person_classification`
 ADD COLUMN `code` VARCHAR(10) NULL AFTER `description`;
+
 
 -- Modificado FK en business_service_type
 -- author: Jesús Gómez
@@ -582,3 +585,9 @@ ADD CONSTRAINT `fk_business_service_type_business_type1`
   REFERENCES `alodigaWallet`.`business_type` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+  
+-- cambios del campo indApproved de String a boolean en request_has_collection_request
+-- author: Yamelis Almea
+-- Fecha: 12/08/2020
+ALTER TABLE `alodigawallet`.`request_has_collection_request` 
+CHANGE COLUMN `indApproved` `indApproved` TINYINT(1) NULL DEFAULT NULL ;

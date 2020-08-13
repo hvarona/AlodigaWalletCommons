@@ -52,8 +52,7 @@ import com.alodiga.wallet.common.model.Product;
     @NamedQuery(name = "Enterprise.findByEnabled", query = "SELECT e FROM Enterprise e WHERE e.enabled = :enabled"),
     @NamedQuery(name = "Enterprise.findByInfoEmail", query = "SELECT e FROM Enterprise e WHERE e.infoEmail = :infoEmail")})
 public class Enterprise extends AbstractWalletEntity implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enterpriseId")
-    private Collection<Bank> bankCollection;
+
     private static final long serialVersionUID = 1L;
     public static final Long ALODIGA = 1L;
     @Id
@@ -90,8 +89,6 @@ public class Enterprise extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "countryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Country countryId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enterpriseId")
-    private Collection<Product> productCollection;
 
     public Enterprise() {
     }
@@ -199,14 +196,6 @@ public class Enterprise extends AbstractWalletEntity implements Serializable {
         this.countryId = countryId;
     }
 
-    @XmlTransient
-    public Collection<Product> getProductCollection() {
-        return productCollection;
-    }
-
-    public void setProductCollection(Collection<Product> productCollection) {
-        this.productCollection = productCollection;
-    }
 
 	@Override
     public int hashCode() {
@@ -233,15 +222,6 @@ public class Enterprise extends AbstractWalletEntity implements Serializable {
         return "dto.Enterprise[ id=" + id + " ]";
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<Bank> getBankCollection() {
-        return bankCollection;
-    }
-
-    public void setBankCollection(Collection<Bank> bankCollection) {
-        this.bankCollection = bankCollection;
-    }
     
     @Override
     public Object getPk() {

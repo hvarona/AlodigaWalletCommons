@@ -106,7 +106,7 @@ public class PaymentInfo extends AbstractWalletEntity implements Serializable {
     @Basic(optional = false)
     @Column(name = "enabled")
     private boolean enabled;
-    private Collection<Transaction> transactionCollection;
+
 
     public PaymentInfo() {
     }
@@ -217,14 +217,6 @@ public class PaymentInfo extends AbstractWalletEntity implements Serializable {
         this.enabled = enabled;
     }
 
-    @XmlTransient
-    public Collection<Transaction> getTransactionCollection() {
-        return transactionCollection;
-    }
-
-    public void setTransactionCollection(Collection<Transaction> transactionCollection) {
-        this.transactionCollection = transactionCollection;
-    }
 
     @Override
     public int hashCode() {

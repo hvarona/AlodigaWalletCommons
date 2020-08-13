@@ -47,8 +47,7 @@ public class TransactionSource extends AbstractWalletEntity implements Serializa
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionSourceId")
-    private Collection<Transaction> transactionCollection;
+
 
     public TransactionSource() {
     }
@@ -78,14 +77,6 @@ public class TransactionSource extends AbstractWalletEntity implements Serializa
         this.name = name;
     }
 
-    @XmlTransient
-    public Collection<Transaction> getTransactionCollection() {
-        return transactionCollection;
-    }
-
-    public void setTransactionCollection(Collection<Transaction> transactionCollection) {
-        this.transactionCollection = transactionCollection;
-    }
 
     @Override
     public int hashCode() {

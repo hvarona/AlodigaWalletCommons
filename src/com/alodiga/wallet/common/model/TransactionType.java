@@ -49,14 +49,6 @@ public class TransactionType extends AbstractWalletEntity implements Serializabl
     @Basic(optional = false)
     @Column(name = "value")
     private String value;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionTypeId")
-    private Collection<Transaction> transactionCollection;
-    @OneToMany(mappedBy = "transactionTypeId")
-    private Collection<Promotion> promotionCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionTypeId")
-    private Collection<Commission> commissionCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionTypeId")
-    private Collection<PreferenceValue> preferenceValueCollection;
 
     public TransactionType() {
     }
@@ -86,41 +78,7 @@ public class TransactionType extends AbstractWalletEntity implements Serializabl
         this.value = value;
     }
 
-    @XmlTransient
-    public Collection<Transaction> getTransactionCollection() {
-        return transactionCollection;
-    }
-
-    public void setTransactionCollection(Collection<Transaction> transactionCollection) {
-        this.transactionCollection = transactionCollection;
-    }
-
-    @XmlTransient
-    public Collection<Promotion> getPromotionCollection() {
-        return promotionCollection;
-    }
-
-    public void setPromotionCollection(Collection<Promotion> promotionCollection) {
-        this.promotionCollection = promotionCollection;
-    }
-
-    @XmlTransient
-    public Collection<Commission> getCommissionCollection() {
-        return commissionCollection;
-    }
-
-    public void setCommissionCollection(Collection<Commission> commissionCollection) {
-        this.commissionCollection = commissionCollection;
-    }
-
-    @XmlTransient
-    public Collection<PreferenceValue> getPreferenceValueCollection() {
-		return preferenceValueCollection;
-	}
-
-	public void setPreferenceValueCollection(Collection<PreferenceValue> preferenceValueCollection) {
-		this.preferenceValueCollection = preferenceValueCollection;
-	}
+   
 
 	@Override
     public int hashCode() {
