@@ -856,48 +856,6 @@ CREATE TABLE IF NOT EXISTS `alodigaWallet`.`address` (
 ENGINE = InnoDB; 
 SET FOREIGN_KEY_CHECKS=1;
 
-ALTER TABLE `alodigaWallet`.`address`
-DROP COLUMN `address`,
-DROP COLUMN `zipCode`,
-DROP COLUMN `stateName`,
-DROP COLUMN `countyName`,
-DROP COLUMN `cityName`,
-ADD COLUMN `zipCode` VARCHAR(45) NULL,
-ADD COLUMN `streetTypeId` INT NOT NULL,
-ADD COLUMN  `nameStreet` VARCHAR(50) NULL,
-ADD COLUMN `edificationTypeId` INT NOT NULL,
-ADD COLUMN `nameEdification` VARCHAR(50) NULL,
-ADD COLUMN `tower` VARCHAR(40) NULL,
-ADD COLUMN `floor` INT NULL,
-ADD COLUMN `urbanization` VARCHAR(50) NULL,
-ADD COLUMN `addressLine1` VARCHAR(255) NOT NULL,
-ADD COLUMN `addressLine2` VARCHAR(250) NULL,
-ADD COLUMN `addressTypeId` INT NOT NULL,
-ADD COLUMN `indMainAddress` TINYINT(1) NULL;
-
-ALTER TABLE `alodigaWallet`.`address`
-ADD INDEX `fk_address_street_type1_idx` (`streetTypeId` ASC),
-ADD INDEX `fk_address_address_type1_idx` (`addressTypeId` ASC),
-ADD INDEX `fk_address_building_type1_idx` (`edificationTypeId` ASC);
-ALTER TABLE `alodigaWallet`.`address`
-ADD CONSTRAINT `fk_address_street_type1`
-    FOREIGN KEY (`streetTypeId`)
-    REFERENCES `alodigaWallet`.`street_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
-ALTER TABLE `alodigaWallet`.`address`
-ADD CONSTRAINT `fk_address_address_type1`
-    FOREIGN KEY (`addressTypeId`)
-    REFERENCES `alodigaWallet`.`address_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
-ALTER TABLE `alodigaWallet`.`address`
-ADD CONSTRAINT `fk_address_edification_type1`
-    FOREIGN KEY (`edificationTypeId`)
-    REFERENCES `alodigaWallet`.`edification_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
-
 CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_business_affiliation_requets` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(50) NOT NULL,

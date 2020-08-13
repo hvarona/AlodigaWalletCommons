@@ -41,6 +41,8 @@ public class QueryConstants {
     public static final String BUSINESS_SUB_CATEGORY_BY_CATEGORY = "businessSubCategoryByCategory";
     public static final String TRANSACTION_APPROVE_REQUEST_BY_STATUS = "transactionApproveRequestByStatus";
     public static final String CODE_BY_STATUS = "codeByStatus";
+    public static final String PERSON_CLASSIFICATION_BY_CODE = "personClassificationByCode";
+    public static final String STATUS_ACCOUNT_BANK_BY_CODE = "statusAcountBankByCode";
     public static final String DELETE_PERMISSION_HAS_PROFILE = "deletePermissionHasProfile";
     public static final String LOAD_USER_BY_LOGIN = "loadUserByLogin";
     public static final String LOAD_USER_BY_EMAIL = "loadUserByEmail";
@@ -173,4 +175,8 @@ public class QueryConstants {
     public static final String PARAM_ORIGIN_APPLICATION_ID = "originApplicationId";
     public static final String PHONES_BY_PERSON = "phonesByPerson";
     public static final String PERSON_HAS_ADDRESS_BY_PERSON = "personHasAddressByPerson";
+    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_REQUEST_BY_COLLECTION_REQUEST = "RequestHasCollectionsRequestByRequestsByCollectionRequest";
+    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST = "RequestHasCollectionsRequestByBusinessAffiliationRequest";
+    public static final String PARAM_IND_NATURAL_PERSON = "indNaturalPerson";
+    public static final String PERSON_TYPE_BY_COUNTRY_BY_IND_NATURAL_PERSON = "personTypeByCountryByIndNaturalPerson";
 }

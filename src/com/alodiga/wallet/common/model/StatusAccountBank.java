@@ -5,6 +5,7 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -34,6 +35,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "StatusAccountBank.findAll", query = "SELECT s FROM StatusAccountBank s")
     , @NamedQuery(name = "StatusAccountBank.findById", query = "SELECT s FROM StatusAccountBank s WHERE s.id = :id")
+    , @NamedQuery(name = QueryConstants.STATUS_ACCOUNT_BANK_BY_CODE, query = "SELECT p FROM PersonClassification p WHERE p.code = :code")    
     , @NamedQuery(name = "StatusAccountBank.findByDescription", query = "SELECT s FROM StatusAccountBank s WHERE s.description = :description")})
 public class StatusAccountBank implements Serializable {
 

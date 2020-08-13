@@ -9,6 +9,7 @@ package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
 import java.util.Collection;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,22 +26,9 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.BalanceHistory;
-import com.alodiga.wallet.common.model.BankOperation;
-import com.alodiga.wallet.common.model.Category;
-import com.alodiga.wallet.common.model.Commission;
-import com.alodiga.wallet.common.model.Enterprise;
-import com.alodiga.wallet.common.model.ExchangeDetail;
-import com.alodiga.wallet.common.model.ExchangeRate;
-import com.alodiga.wallet.common.model.Product;
-import com.alodiga.wallet.common.model.ProductData;
-import com.alodiga.wallet.common.model.ProductIntegrationType;
-import com.alodiga.wallet.common.model.Promotion;
-import com.alodiga.wallet.common.model.Transaction;
 
 /**
  *
@@ -66,17 +54,8 @@ public class Product extends AbstractWalletEntity implements Serializable {
 
     @Column(name = "indHasAssociatedBank")
     private Boolean indHasAssociatedBank;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<TransactionApproveRequest> transactionApproveRequestCollection;
 
     public static final String NAME = "name";
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<BankOperation> bankOperationCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<ExchangeDetail> exchangeDetailCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<ExchangeRate> exchangeRateCollection;
     
     public static final Long ALOCOIN_PRODUCT = 1L ;
     public static final Long ALODIGA_BALANCE = 2L ;
@@ -121,16 +100,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
     private boolean isRemettence;
     @Column(name = "isPaymentInfo")
     private boolean isPaymentInfo;
-    @OneToMany(mappedBy = "productId")
-    private Collection<Transaction> transactionCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<Promotion> promotionCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<Commission> commissionCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<ProductData> productDataCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<PreferenceValue> preferenceValueCollection;
     @JoinColumn(name = "categoryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Category categoryId;
@@ -140,8 +109,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "enterpriseId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Enterprise enterpriseId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<BalanceHistory> balanceHistoryCollection;
     @Transient
     private Float currentBalance;
     
@@ -276,51 +243,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
     }
     
     
-    
-    @XmlTransient
-    public Collection<PreferenceValue> getPreferenceValueCollection() {
-		return preferenceValueCollection;
-	}
-
-	public void setPreferenceValueCollection(Collection<PreferenceValue> preferenceValueCollection) {
-		this.preferenceValueCollection = preferenceValueCollection;
-	}
-
-	@XmlTransient
-    public Collection<Transaction> getTransactionCollection() {
-        return transactionCollection;
-    }
-
-    public void setTransactionCollection(Collection<Transaction> transactionCollection) {
-        this.transactionCollection = transactionCollection;
-    }
-
-    @XmlTransient
-    public Collection<Promotion> getPromotionCollection() {
-        return promotionCollection;
-    }
-
-    public void setPromotionCollection(Collection<Promotion> promotionCollection) {
-        this.promotionCollection = promotionCollection;
-    }
-
-    @XmlTransient
-    public Collection<Commission> getCommissionCollection() {
-        return commissionCollection;
-    }
-
-    public void setCommissionCollection(Collection<Commission> commissionCollection) {
-        this.commissionCollection = commissionCollection;
-    }
-
-    @XmlTransient
-    public Collection<ProductData> getProductDataCollection() {
-        return productDataCollection;
-    }
-
-    public void setProductDataCollection(Collection<ProductData> productDataCollection) {
-        this.productDataCollection = productDataCollection;
-    }
 
     public Category getCategoryId() {
         return categoryId;
@@ -344,15 +266,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
 
     public void setEnterpriseId(Enterprise enterpriseId) {
         this.enterpriseId = enterpriseId;
-    }
-
-    @XmlTransient
-    public Collection<BalanceHistory> getBalanceHistoryCollection() {
-        return balanceHistoryCollection;
-    }
-
-    public void setBalanceHistoryCollection(Collection<BalanceHistory> balanceHistoryCollection) {
-        this.balanceHistoryCollection = balanceHistoryCollection;
     }
     
 
@@ -381,25 +294,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
         return "dto.Product[ id=" + id + " ]";
     }
     
-    @XmlTransient
-    @JsonIgnore
-    public Collection<ExchangeDetail> getExchangeDetailCollection() {
-        return exchangeDetailCollection;
-    }
-
-    public void setExchangeDetailCollection(Collection<ExchangeDetail> exchangeDetailCollection) {
-        this.exchangeDetailCollection = exchangeDetailCollection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<ExchangeRate> getExchangeRateCollection() {
-        return exchangeRateCollection;
-    }
-
-    public void setExchangeRateCollection(Collection<ExchangeRate> exchangeRateCollection) {
-        this.exchangeRateCollection = exchangeRateCollection;
-    }
     public void setCurrentBalance(Float currentBalance) {
         this.currentBalance = currentBalance;
 }
@@ -416,21 +310,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
         this.symbol = symbol;
     }
 
-
-    
-    
-    
-    
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<BankOperation> getBankOperationCollection() {
-        return bankOperationCollection;
-    }
-
-    public void setBankOperationCollection(Collection<BankOperation> bankOperationCollection) {
-        this.bankOperationCollection = bankOperationCollection;
-    }
 
     @Override
     public Object getPk() {
@@ -450,14 +329,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
         this.indHasAssociatedBank = indHasAssociatedBank;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<TransactionApproveRequest> getTransactionApproveRequestCollection() {
-        return transactionApproveRequestCollection;
-    }
 
-    public void setTransactionApproveRequestCollection(Collection<TransactionApproveRequest> transactionApproveRequestCollection) {
-        this.transactionApproveRequestCollection = transactionApproveRequestCollection;
-    }
 }
 
