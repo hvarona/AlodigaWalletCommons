@@ -40,6 +40,9 @@ public class StreetType implements Serializable {
     @Size(max = 50)
     @Column(name = "description")
     private String description;
+    @Size(max = 10)
+    @Column(name = "code")
+    private String code;
 
     public StreetType() {
     }
@@ -87,6 +90,14 @@ public class StreetType implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.StreetType[ id=" + id + " ]";
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
     
 }
