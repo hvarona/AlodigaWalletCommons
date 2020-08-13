@@ -147,6 +147,10 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long ADD_BUSINESSE_SERVICE_TYPE = 114L;
     public static Long EDIT_BUSINESS_SERVICE_TYPE = 115L;
     public static Long VIEW_BUSINESS_SERVICE_TYPE = 116L;
+    public static Long LIST_APLICANT_OFAC = 117L;
+    public static Long ADD_APLICANT_OFAC = 118L;
+    public static Long EDIT_APLICANT_OFAC = 119L;
+    public static Long VIEW_APLICANT_OFAC = 120L;
 
 
 
