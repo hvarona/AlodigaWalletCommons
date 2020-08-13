@@ -41,6 +41,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "PersonType.findById", query = "SELECT p FROM PersonType p WHERE p.id = :id"),
     @NamedQuery(name = "PersonType.findByDescription", query = "SELECT p FROM PersonType p WHERE p.description = :description"),
     @NamedQuery(name = "PersonType.findBycountryId", query = "SELECT p FROM PersonType p WHERE p.countryId.id = :countryId"),
+    @NamedQuery(name = QueryConstants.PERSON_TYPE_BY_COUNTRY_BY_IND_NATURAL_PERSON, query = "SELECT p FROM PersonType p WHERE p.countryId.id=:countryId AND p.originApplicationId.id=:originApplicationId AND p.indNaturalPerson=:indNaturalPerson"),
 //    @NamedQuery(name = QueryConstants.PERSON_TYPE_BY_COUNTRY, query = "SELECT p FROM PersonType p WHERE p.countryId.id=:countryId AND p.originApplicationId.id=:originApplicationId"),
     @NamedQuery(name = QueryConstants.PERSON_TYPE_BY_COUNTRY, query = "SELECT p FROM PersonType p WHERE p.countryId.id=:countryId")})
 public class PersonType extends AbstractWalletEntity implements Serializable {

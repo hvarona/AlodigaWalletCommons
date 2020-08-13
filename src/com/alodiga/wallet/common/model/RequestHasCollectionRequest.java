@@ -21,8 +21,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 
 /**
  *
@@ -38,8 +43,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "RequestHasCollectionRequest.findByUpdateDate", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.updateDate = :updateDate")
     , @NamedQuery(name = "RequestHasCollectionRequest.findByImageFileUrl", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.imageFileUrl = :imageFileUrl")
     , @NamedQuery(name = "RequestHasCollectionRequest.findByObservations", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.observations = :observations")
-    , @NamedQuery(name = "RequestHasCollectionRequest.findByIndApproved", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.indApproved = :indApproved")})
-public class RequestHasCollectionRequest implements Serializable {
+    , @NamedQuery(name = "RequestHasCollectionRequest.findByIndApproved", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.indApproved = :indApproved")
+    ,@NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_REQUEST_BY_COLLECTION_REQUEST, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId AND r.collectionsRequestId.id=:collectionsRequestId")
+    ,@NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId")})
+
+public class RequestHasCollectionRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -59,9 +67,10 @@ public class RequestHasCollectionRequest implements Serializable {
     @Size(max = 1000)
     @Column(name = "observations")
     private String observations;
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "indApproved")
-    private String indApproved;
+    private boolean indApproved;
     @JoinColumn(name = "businessAffiliationRequestId", referencedColumnName = "id")
     @OneToOne(optional = false)
     private BusinessAffiliationRequest businessAffiliationRequestId;
@@ -116,11 +125,11 @@ public class RequestHasCollectionRequest implements Serializable {
         this.observations = observations;
     }
 
-    public String getIndApproved() {
+    public boolean getIndApproved() {
         return indApproved;
     }
 
-    public void setIndApproved(String indApproved) {
+    public void setIndApproved(boolean indApproved) {
         this.indApproved = indApproved;
     }
 
@@ -163,6 +172,16 @@ public class RequestHasCollectionRequest implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.RequestHasCollectionRequest[ id=" + id + " ]";
+    }
+    
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }
