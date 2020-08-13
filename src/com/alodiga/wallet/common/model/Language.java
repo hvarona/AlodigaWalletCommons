@@ -28,6 +28,7 @@ import com.alodiga.wallet.common.model.Language;
 import com.alodiga.wallet.common.model.ProductData;
 import com.alodiga.wallet.common.model.PromotionData;
 import com.alodiga.wallet.common.model.PromotionNotification;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -43,6 +44,7 @@ import com.alodiga.wallet.common.model.PromotionNotification;
     @NamedQuery(name = "Language.findByDescription", query = "SELECT l FROM Language l WHERE l.description = :description"),
     @NamedQuery(name = "Language.findByEnabled", query = "SELECT l FROM Language l WHERE l.enabled = :enabled")})
 public class Language extends AbstractWalletEntity implements Serializable {
+
     public static final Long ENGLISH = 1L;
     public static final Long SPANISH = 2L;
     public static final Long PORTUGUESE = 3L;
@@ -184,4 +186,5 @@ public class Language extends AbstractWalletEntity implements Serializable {
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+
 }

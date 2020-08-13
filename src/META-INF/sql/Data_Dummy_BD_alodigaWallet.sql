@@ -306,3 +306,26 @@ INSERT INTO `business_category` (`id`,`description`,`mccCode`) VALUES (2,'Taller
 -- Fecha: 10/08/2020
 INSERT INTO `business_sub_category` (`id`,`description`,`mccCode`,`businessCategoryId`) VALUES (1,'Hotel Internacional','1234',1);
 INSERT INTO `business_sub_category` (`id`,`description`,`mccCode`,`businessCategoryId`) VALUES (2,'Reparacion de AA','1472.1',2);
+-- data de tablas de dirección
+-- author: jesús Gómez
+-- Fecha: 13/08/2020
+INSERT INTO `alodigaWallet`.`street_type` (`description`, `code`) VALUES ('Calle', 'CALLE');
+INSERT INTO `alodigaWallet`.`street_type` (`description`, `code`) VALUES ('Avenida', 'AVENID');
+INSERT INTO `alodigaWallet`.`street_type` (`description`, `code`) VALUES ('Vereda', 'VEREDA');
+INSERT INTO `alodigaWallet`.`street_type` (`description`, `code`) VALUES ('Redoma', 'REDOMA');
+INSERT INTO `alodigaWallet`.`street_type` (`description`, `code`) VALUES ('Autopista', 'AUTOPI');
+INSERT INTO `alodigaWallet`.`street_type` (`description`, `code`) VALUES ('Bulevar', 'BULEVA');
+INSERT INTO `alodigaWallet`.`street_type` (`description`, `code`) VALUES ('Carretera', 'CARRET');
+
+INSERT INTO `alodigaWallet`.`address_type` (`description`, `code`) VALUES ('Habitación', 'HABITA');
+INSERT INTO `alodigaWallet`.`address_type` (`description`, `code`) VALUES ('Domicilio Fiscal', 'DOMFIS');
+INSERT INTO `alodigaWallet`.`address_type` (`description`, `code`) VALUES ('Facturación', 'FACTUR');
+INSERT INTO `alodigaWallet`.`address_type` (`description`, `code`) VALUES ('Empresa', 'EMPRES');
+
+INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Casa', 'CASA');
+INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Quinta', 'QUINTA');
+INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Edificio', 'EDIFIC');
+INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Residencia', 'RESIDE');
+INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Centro Comercial', 'CENCOM');
+INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Chalet', 'CHALET');
+INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Duplex', 'DUPLEX');
