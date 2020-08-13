@@ -76,8 +76,6 @@ public class LegalPerson implements Serializable {
     @Column(name = "dateInscriptionRegister")
     @Temporal(TemporalType.DATE)
     private Date dateInscriptionRegister;
-    @Column(name = "payedCapital")
-    private Float payedCapital;
     @JoinColumn(name = "businessCategoryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private BusinessCategory businessCategoryId;
@@ -90,6 +88,13 @@ public class LegalPerson implements Serializable {
     @JoinColumn(name = "legalRepresentativeId", referencedColumnName = "id")
     @ManyToOne
     private LegalRepresentative legalRepresentativeId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "payedCapital")
+    private float payedCapital;
+    @JoinColumn(name = "statusApplicantId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private StatusApplicant statusApplicantId;
 
     public LegalPerson() {
     }
@@ -168,13 +173,6 @@ public class LegalPerson implements Serializable {
         this.dateInscriptionRegister = dateInscriptionRegister;
     }
 
-    public Float getPayedCapital() {
-        return payedCapital;
-    }
-
-    public void setPayedCapital(Float payedCapital) {
-        this.payedCapital = payedCapital;
-    }
 
     public BusinessCategory getBusinessCategoryId() {
         return businessCategoryId;
@@ -231,6 +229,22 @@ public class LegalPerson implements Serializable {
 
     public void setLegalRepresentativeId(LegalRepresentative legalRepresentativeId) {
         this.legalRepresentativeId = legalRepresentativeId;
+    }
+
+    public float getPayedCapital() {
+        return payedCapital;
+    }
+
+    public void setPayedCapital(float payedCapital) {
+        this.payedCapital = payedCapital;
+    }
+
+    public StatusApplicant getStatusApplicantId() {
+        return statusApplicantId;
+    }
+
+    public void setStatusApplicantId(StatusApplicant statusApplicantId) {
+        this.statusApplicantId = statusApplicantId;
     }
     
 }
