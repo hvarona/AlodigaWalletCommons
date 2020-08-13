@@ -5,6 +5,8 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -39,7 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Person.findByWebSite", query = "SELECT p FROM Person p WHERE p.webSite = :webSite")
     , @NamedQuery(name = "Person.findByCreateDate", query = "SELECT p FROM Person p WHERE p.createDate = :createDate")
     , @NamedQuery(name = "Person.findByUpdateDate", query = "SELECT p FROM Person p WHERE p.updateDate = :updateDate")})
-public class Person implements Serializable {
+public class Person extends AbstractWalletEntity implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
     private PersonHasAddress personHasAddress;
@@ -226,5 +228,14 @@ public class Person implements Serializable {
     public void setPersonHasAddress(PersonHasAddress personHasAddress) {
         this.personHasAddress = personHasAddress;
     }
-    
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }
