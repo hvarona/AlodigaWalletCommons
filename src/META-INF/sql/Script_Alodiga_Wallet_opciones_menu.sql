@@ -889,6 +889,53 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `pro
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('103', '103', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('104', '104', '1');
 
+-- Agregar opciones del menu de Business Type
+-- author: Jorge Pinto
+-- Fecha: 10/08/2020
+
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('105', '1', 'ListBusinessType', 'business_type', 'ListBusinessType', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('106', '1', 'AddBusinessType', 'business_type', 'AddBusinessType', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('107', '1', 'EditBusinnessType', 'business_type', 'EditBusinnessType', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('108', '1', 'ViewBusinnessType', 'businnes_type', 'ViewBusinnessType', '1');
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('105', '1', 'List Business Type', 'List Business Type');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('105', '2', 'Lista de Tipos de Negocios', 'Lista de Tipos de Negocios');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('106', '1', 'Add Business Type', 'Add Business Type');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('106', '2', 'Agregar Tipos de Negocios', 'Agregar Tipos de Negocios');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('107', '1', 'Edit Business Type', 'Edit Business Type');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('107', '2', 'Editar Tipos de Negocios', 'Editar Tipos de Negocios');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('108', '1', 'View Business Type', 'View Business Type');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('108', '2', 'Ver Tipos de Negocios', 'Ver Tipos de Negocios');
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('105', '105', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('106', '106', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('107', '107', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('108', '108', '1');
+
+-- Agregar opciones del tab Recaudos de Solicitud
+-- author: Yamelis Almea
+-- Fecha: 10/08/2020
+
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('109', '1', 'ListCollectionAffiliationRequest', 'legal_representative', 'ListCollectionAffiliationRequest', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('110', '1', 'AddCollectionAffiliationRequest', 'legal_representative', 'AddCollectionAffiliationRequest', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('111', '1', 'EditCollectionAffiliationRequest', 'legal_representative', 'EditCollectionAffiliationRequest', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('112', '1', 'ViewCollectionAffiliationRequest', 'legal_representative', 'ViewCollectionAffiliationRequest', '1');
+
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('109', '1', 'List Collection Affiliation Request', 'List Collection Affiliation Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('109', '2', 'Listar Recaudos de Solicitud', 'Listar Recaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('110', '1', 'Add Collection Affiliation Request', 'Add Collection Affiliation Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('110', '2', 'Agregar Recaudos de Solicitud', 'AgregarRecaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('111', '1', 'Edit Collection Affiliation Request', 'Edit Collection Affiliation Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('111', '2', 'Editar Recaudos de Solicitud', 'Editar Recaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('112', '1', 'View Collection Affiliation Request', 'View Collection Affiliation Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('112', '2', 'Ver Recaudos de Solicitud', 'Ver Recaudos de Solicitud');
+
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('109', '109', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('110', '110', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('111', '111', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('112', '112', '1');
 
 -- Agregar opciones del menu en permission_group
 -- author: Lulymar Gutierrez

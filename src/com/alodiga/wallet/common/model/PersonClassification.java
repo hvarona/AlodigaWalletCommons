@@ -5,6 +5,7 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -34,6 +35,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "PersonClassification.findAll", query = "SELECT p FROM PersonClassification p")
     , @NamedQuery(name = "PersonClassification.findById", query = "SELECT p FROM PersonClassification p WHERE p.id = :id")
+    , @NamedQuery(name = "PersonClassification.findByCodeNa", query = "SELECT p FROM PersonClassification p WHERE p.code = 'NaBuAp'")
+    , @NamedQuery(name = "PersonClassification.findByCodeLe", query = "SELECT p FROM PersonClassification p WHERE p.code = 'LeBuAp'")
+    , @NamedQuery(name = QueryConstants.PERSON_CLASSIFICATION_BY_CODE, query = "SELECT p FROM PersonClassification p WHERE p.code = :code")    
     , @NamedQuery(name = "PersonClassification.findByDescription", query = "SELECT p FROM PersonClassification p WHERE p.description = :description")})
 public class PersonClassification implements Serializable {
 
@@ -48,6 +52,8 @@ public class PersonClassification implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
+    @Column(name = "code")
+    private String code;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "personClassificationId")
     private Collection<Person> personCollection;
 
@@ -78,6 +84,16 @@ public class PersonClassification implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+    
+    
 
     @XmlTransient
     @JsonIgnore
