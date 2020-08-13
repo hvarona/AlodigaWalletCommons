@@ -98,6 +98,9 @@ public class NaturalPerson implements Serializable {
     @JoinColumn(name = "professionId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Profession professionId;
+    @JoinColumn(name = "statusApplicantId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private StatusApplicant statusApplicantId;
 
     public NaturalPerson() {
     }
@@ -257,6 +260,14 @@ public class NaturalPerson implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.NaturalPerson[ id=" + id + " ]";
+    }
+
+    public StatusApplicant getStatusApplicantId() {
+        return statusApplicantId;
+    }
+
+    public void setStatusApplicantId(StatusApplicant statusApplicantId) {
+        this.statusApplicantId = statusApplicantId;
     }
     
 }

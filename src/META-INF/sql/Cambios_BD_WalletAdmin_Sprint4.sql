@@ -582,3 +582,74 @@ ADD CONSTRAINT `fk_business_service_type_business_type1`
   REFERENCES `alodigaWallet`.`business_type` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+
+-- Agregar campo code en tablas de tipo listados
+-- author: Jesús Gómez
+-- Fecha: 13/08/2020
+ALTER TABLE `alodigaWallet`.`street_type`
+ADD COLUMN `code` VARCHAR(10) NULL AFTER `description`;
+
+ALTER TABLE `alodigaWallet`.`address_type`
+ADD COLUMN `code` VARCHAR(10) NULL AFTER `description`;
+
+ALTER TABLE `alodigaWallet`.`edification_type`
+ADD COLUMN `code` VARCHAR(10) NULL AFTER `description`;
+
+-- Agregar tablas para la revisión de OFAC al solicitante de negocios
+-- author: Jesús Gómez
+-- Fecha: 13/08/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_applicant` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NOT NULL,
+  `code` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ALTER TABLE `alodigaWallet`.`legal_person`
+ADD COLUMN `statusApplicantId` INT NOT NULL;
+ALTER TABLE `alodigaWallet`.`legal_person`
+ADD CONSTRAINT `fk_legal_person_status_applicant1`
+ FOREIGN KEY (`statusApplicantId`)
+ REFERENCES `alodigaWallet`.`status_applicant` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+
+ALTER TABLE `alodigaWallet`.`natural_person`
+ADD COLUMN `statusApplicantId` INT NOT NULL;
+ALTER TABLE `alodigaWallet`.`natural_person`
+ADD CONSTRAINT `fk_natural_person_status_applicant1`
+ FOREIGN KEY (`statusApplicantId`)
+ REFERENCES `alodigaWallet`.`status_applicant` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`review_ofac` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `personId` BIGINT UNIQUE NOT NULL,
+  `resultReview` FLOAT NOT NULL,
+  `businessAffiliationRequetsId` BIGINT UNIQUE NOT NULL,
+  `observations` VARCHAR(1000) NULL,
+  `userReviewId` BIGINT(10) NOT NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_review_ofac_person1_idx` (`personId` ASC),
+  INDEX `fk_review_ofac_business_affiliation_requets1_idx` (`businessAffiliationRequetsId` ASC),
+  INDEX `fk_review_ofac_user1_idx` (`userReviewId` ASC),
+  CONSTRAINT `fk_review_ofac_person1`
+    FOREIGN KEY (`personId`)
+    REFERENCES `alodigaWallet`.`person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_review_ofac_business_affiliation_requets1`
+    FOREIGN KEY (`businessAffiliationRequetsId`)
+    REFERENCES `alodigaWallet`.`business_affiliation_requets` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_review_ofac_user1`
+    FOREIGN KEY (`userReviewId`)
+    REFERENCES `alodigaWallet`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+

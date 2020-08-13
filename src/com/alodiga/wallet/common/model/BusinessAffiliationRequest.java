@@ -69,6 +69,8 @@ public class BusinessAffiliationRequest implements Serializable {
     @JoinColumn(name = "statusBusinessAffiliationRequestId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private StatusBusinessAffiliationRequest statusBusinessAffiliationRequestId;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessAffiliationRequestId")
+    private ReviewOfac reviewOfac;
 
     public BusinessAffiliationRequest() {
     }
@@ -172,6 +174,14 @@ public class BusinessAffiliationRequest implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.BusinessAffiliationRequets[ id=" + id + " ]";
+    }
+
+    public ReviewOfac getReviewOfac() {
+        return reviewOfac;
+    }
+
+    public void setReviewOfac(ReviewOfac reviewOfac) {
+        this.reviewOfac = reviewOfac;
     }
     
 }

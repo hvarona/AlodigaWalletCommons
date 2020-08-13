@@ -41,12 +41,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Person.findByUpdateDate", query = "SELECT p FROM Person p WHERE p.updateDate = :updateDate")})
 public class Person implements Serializable {
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
-    private PersonHasAddress personHasAddress;
-
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
-    private LegalRepresentative legalRepresentative;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,7 +76,13 @@ public class Person implements Serializable {
     private PersonType personTypeId;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessPersonId")
     private BusinessAffiliationRequest businessAffiliationRequest;
-
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
+    private ReviewOfac reviewOfac;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
+    private PersonHasAddress personHasAddress;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
+    private LegalRepresentative legalRepresentative;
+    
     public Person() {
     }
 
@@ -225,6 +225,14 @@ public class Person implements Serializable {
 
     public void setPersonHasAddress(PersonHasAddress personHasAddress) {
         this.personHasAddress = personHasAddress;
+    }
+
+    public ReviewOfac getReviewOfac() {
+        return reviewOfac;
+    }
+
+    public void setReviewOfac(ReviewOfac reviewOfac) {
+        this.reviewOfac = reviewOfac;
     }
     
 }
