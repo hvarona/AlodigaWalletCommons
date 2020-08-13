@@ -259,4 +259,7 @@ public class Constants {
     public static final String PERSON_KEY = "personId";
     public static final int PHONE_TYPE_ROOM = 1;
     public static final int PHONE_TYPE_MOBILE = 2;
+    public static final String NATURAL_PERSON_KEY = "naturalPersonId";
+    public static final String BUSINESS_AFFILIATION_REQUEST_KEY = "businessAffiliationRequestId";
+    
 }
