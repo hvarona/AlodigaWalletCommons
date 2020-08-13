@@ -28,6 +28,8 @@ import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Card;
 import com.alodiga.wallet.common.model.UserHasCard;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -43,9 +45,6 @@ import com.alodiga.wallet.common.model.UserHasCard;
     , @NamedQuery(name = "Card.findByParentId", query = "SELECT c FROM Card c WHERE c.parentId = :parentId")})
 public class Card extends AbstractWalletEntity implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cardId")
-    private Collection<UserHasCard> userHasCardCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,8 +59,9 @@ public class Card extends AbstractWalletEntity implements Serializable {
     private String nameCard;
     @Column(name = "userDestinationId")
     private BigInteger userDestinationId;
-
-
+    @JoinColumn(name = "statusCardId", referencedColumnName = "id")
+    @ManyToOne
+    private StatusCard statusCardId;
     
 
     public Card() {
@@ -143,16 +143,6 @@ public class Card extends AbstractWalletEntity implements Serializable {
         return "com.alodiga.wallet.model.Card[ id=" + id + " ]";
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<UserHasCard> getUserHasCardCollection() {
-        return userHasCardCollection;
-    }
-
-    public void setUserHasCardCollection(Collection<UserHasCard> userHasCardCollection) {
-        this.userHasCardCollection = userHasCardCollection;
-    }
-
     @Override
     public Object getPk() {
         return getId();
@@ -161,6 +151,14 @@ public class Card extends AbstractWalletEntity implements Serializable {
     @Override
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
+    }
+
+    public StatusCard getStatusCardId() {
+        return statusCardId;
+    }
+
+    public void setStatusCardId(StatusCard statusCardId) {
+        this.statusCardId = statusCardId;
     }
     
 }
