@@ -52,10 +52,6 @@ public class Category extends AbstractWalletEntity implements Serializable {
     @Basic(optional = false)
     @Column(name = "enabled")
     private boolean enabled;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
-    private Collection<CategoryData> categoryDataCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
-    private Collection<Product> productCollection;
 
     public Category() {
     }
@@ -94,23 +90,6 @@ public class Category extends AbstractWalletEntity implements Serializable {
         this.enabled = enabled;
     }
 
-    @XmlTransient
-    public Collection<CategoryData> getCategoryDataCollection() {
-        return categoryDataCollection;
-    }
-
-    public void setCategoryDataCollection(Collection<CategoryData> categoryDataCollection) {
-        this.categoryDataCollection = categoryDataCollection;
-    }
-
-    @XmlTransient
-    public Collection<Product> getProductCollection() {
-        return productCollection;
-    }
-
-    public void setProductCollection(Collection<Product> productCollection) {
-        this.productCollection = productCollection;
-    }
 
     @Override
     public int hashCode() {

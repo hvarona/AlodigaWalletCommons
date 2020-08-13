@@ -66,8 +66,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     private String transactionNumber;
     @Column(name = "totalAmount")
     private Float totalAmount;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionId")
-//    private Collection<TransactionApproveRequest> transactionApproveRequestCollection;
 
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "totalTax")
@@ -76,8 +74,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     private Float promotionAmount;
     @Column(name = "totalAlopointsUsed")
     private Float totalAlopointsUsed;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionId")
-    private Collection<BankOperation> bankOperationCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -126,12 +122,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "closeId", referencedColumnName = "id")
     @ManyToOne
     private Close closeId;
-//    @OneToMany(mappedBy = "transactionId")
-//    private Collection<PromotionItem> promotionItemCollection;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionId")
-//    private Collection<CommissionItem> commissionItemCollection;
-//    @OneToMany(mappedBy = "transactionId")
-//    private Collection<BalanceHistory> balanceHistoryCollection;
     
     //Only by result transaction list by APP
     @Transient
@@ -298,32 +288,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
         this.closeId = closeId;
     }
 
-//    @XmlTransient
-//    public Collection<PromotionItem> getPromotionItemCollection() {
-//        return promotionItemCollection;
-//    }
-//
-//    public void setPromotionItemCollection(Collection<PromotionItem> promotionItemCollection) {
-//        this.promotionItemCollection = promotionItemCollection;
-//    }
-//
-//    @XmlTransient
-//    public Collection<CommissionItem> getCommissionItemCollection() {
-//        return commissionItemCollection;
-//    }
-//
-//    public void setCommissionItemCollection(Collection<CommissionItem> commissionItemCollection) {
-//        this.commissionItemCollection = commissionItemCollection;
-//    }
-//
-//    @XmlTransient
-//    public Collection<BalanceHistory> getBalanceHistoryCollection() {
-//        return balanceHistoryCollection;
-//    }
-//
-//    public void setBalanceHistoryCollection(Collection<BalanceHistory> balanceHistoryCollection) {
-//        this.balanceHistoryCollection = balanceHistoryCollection;
-//    }
 
     @Override
     public int hashCode() {
@@ -401,15 +365,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
         this.totalAlopointsUsed = totalAlopointsUsed;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<BankOperation> getBankOperationCollection() {
-        return bankOperationCollection;
-    }
-
-    public void setBankOperationCollection(Collection<BankOperation> bankOperationCollection) {
-        this.bankOperationCollection = bankOperationCollection;
-    }
     
     @Override
     public Object getPk() {
@@ -437,14 +392,5 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
         this.totalAmount = totalAmount;
     }
 
-//    @XmlTransient
-//    @JsonIgnore
-//    public Collection<TransactionApproveRequest> getTransactionApproveRequestCollection() {
-//        return transactionApproveRequestCollection;
-//    }
-//
-//    public void setTransactionApproveRequestCollection(Collection<TransactionApproveRequest> transactionApproveRequestCollection) {
-//        this.transactionApproveRequestCollection = transactionApproveRequestCollection;
-//    }
-//    
+  
 }

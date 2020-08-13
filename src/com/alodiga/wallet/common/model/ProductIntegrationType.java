@@ -47,8 +47,6 @@ public class ProductIntegrationType extends AbstractWalletEntity implements Seri
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productIntegrationTypeId")
-    private Collection<Product> productCollection;
 
     public ProductIntegrationType() {
     }
@@ -78,14 +76,6 @@ public class ProductIntegrationType extends AbstractWalletEntity implements Seri
         this.name = name;
     }
 
-    @XmlTransient
-    public Collection<Product> getProductCollection() {
-        return productCollection;
-    }
-
-    public void setProductCollection(Collection<Product> productCollection) {
-        this.productCollection = productCollection;
-    }
 
     @Override
     public int hashCode() {
