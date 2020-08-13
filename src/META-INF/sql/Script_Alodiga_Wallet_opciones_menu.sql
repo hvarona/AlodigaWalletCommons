@@ -889,3 +889,42 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `pro
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('103', '103', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('104', '104', '1');
 
+
+-- Agregar opciones del menu en permission_group
+-- author: Lulymar Gutierrez
+-- Fecha: 12/08/2020
+INSERT INTO `alodigaWallet`.`permission_group` (`id`, `name`, `enabled`) VALUES ('6', 'Manage Membership Requests', '1');
+
+-- Agregar opciones del menu en permission_group_data
+-- author: Lulymar Gutierrez
+-- Fecha: 12/08/2020
+INSERT INTO `alodigaWallet`.`permission_group_data` (`id`, `permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('11', '6', '1', 'Manage Membership Requests', 'Manage Membership Requests');
+INSERT INTO `alodigaWallet`.`permission_group_data` (`id`, `permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('12', '6', '2', 'Gestionar Solicitudes de Afiliacion', 'Gestionar Solicitudes de Afiliacion');
+
+--permission
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='61';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='62';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='63';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='64';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='73';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='74';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='75';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='76';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='89';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='90';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='91';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='92';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='93';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='94';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='95';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='96';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='97';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='98';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='99';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='100';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='101';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='102';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='103';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='104';
+
+
