@@ -5,7 +5,6 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -30,20 +29,14 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author jose
  */
 @Entity
-@Table(name = "status_account_bank")
+@Table(name = "status_applicant")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "StatusAccountBank.findAll", query = "SELECT s FROM StatusAccountBank s")
-    , @NamedQuery(name = "StatusAccountBank.findById", query = "SELECT s FROM StatusAccountBank s WHERE s.id = :id")
-    , @NamedQuery(name = QueryConstants.STATUS_ACCOUNT_BANK_BY_CODE, query = "SELECT p FROM PersonClassification p WHERE p.code = :code")    
-    , @NamedQuery(name = "StatusAccountBank.findByDescription", query = "SELECT s FROM StatusAccountBank s WHERE s.description = :description")})
-public class StatusAccountBank implements Serializable {
-
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "code")
-    private String code;
+    @NamedQuery(name = "StatusApplicant.findAll", query = "SELECT s FROM StatusApplicant s")
+    , @NamedQuery(name = "StatusApplicant.findById", query = "SELECT s FROM StatusApplicant s WHERE s.id = :id")
+    , @NamedQuery(name = "StatusApplicant.findByDescription", query = "SELECT s FROM StatusApplicant s WHERE s.description = :description")
+    , @NamedQuery(name = "StatusApplicant.findByCode", query = "SELECT s FROM StatusApplicant s WHERE s.code = :code")})
+public class StatusApplicant implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,22 +46,26 @@ public class StatusAccountBank implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 40)
+    @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusAccountBankId")
-    private Collection<AccountBank> accountBankCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "code")
+    private String code;
 
-    public StatusAccountBank() {
+    public StatusApplicant() {
     }
 
-    public StatusAccountBank(Integer id) {
+    public StatusApplicant(Integer id) {
         this.id = id;
     }
 
-    public StatusAccountBank(Integer id, String description) {
+    public StatusApplicant(Integer id, String description, String code) {
         this.id = id;
         this.description = description;
+        this.code = code;
     }
 
     public Integer getId() {
@@ -87,14 +84,12 @@ public class StatusAccountBank implements Serializable {
         this.description = description;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<AccountBank> getAccountBankCollection() {
-        return accountBankCollection;
+    public String getCode() {
+        return code;
     }
 
-    public void setAccountBankCollection(Collection<AccountBank> accountBankCollection) {
-        this.accountBankCollection = accountBankCollection;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override
@@ -107,10 +102,10 @@ public class StatusAccountBank implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof StatusAccountBank)) {
+        if (!(object instanceof StatusApplicant)) {
             return false;
         }
-        StatusAccountBank other = (StatusAccountBank) object;
+        StatusApplicant other = (StatusApplicant) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -119,15 +114,7 @@ public class StatusAccountBank implements Serializable {
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.StatusAccountBank[ id=" + id + " ]";
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+        return "com.alodiga.wallet.common.model.StatusApplicant[ id=" + id + " ]";
     }
     
 }

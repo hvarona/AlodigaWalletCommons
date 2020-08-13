@@ -289,4 +289,5 @@ public class User extends AbstractWalletEntity implements Serializable {
         }
         return true;
     }
+
 }
