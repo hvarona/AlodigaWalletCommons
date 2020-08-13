@@ -998,3 +998,27 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `pro
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('116', '116', '1');
 
 
+
+-- Agregar opciones del menu de la lista OFAC
+-- author: Lulymar Gutierrez
+-- Fecha: 13/08/2020
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`) VALUES ('117', '6', 'ListAplicantOFAC', 'person', 'ListAplicantOFAC');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`) VALUES ('118', '6', 'AddAplicantOFAC', 'person', 'AddAplicantOFAC');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`) VALUES ('119', '6', 'EditAplicantOFAC', 'person', 'EditAplicantOFAC');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`) VALUES ('120', '6', 'ViewAplicantOFAC', 'person', 'ViewAplicantOFAC');
+
+
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('233', '117', '1', 'List Aplicant OFAC', 'List Aplicant OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('234', '117', '2', 'Lista de Solicitante OFAC', 'Lista de Solicitante OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('235', '118', '1', 'Add Aplicant OFAC', 'Add Aplicant OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('236', '118', '2', 'Agregar Solicitante OFAC', 'Agregar Solicitante OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('237', '119', '1', 'Edit Aplicant OFAC', 'Edit Aplicant OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('238', '119', '2', 'Editar Solicitante OFAC', 'Editar Solicitante OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('239', '120', '1', 'View Aplicant OFAC', 'View Aplicant OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('240', '120', '2', 'Ver Solicitante OFAC', 'Ver Solicitante OFAC');
+
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('117', '117', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('118', '118', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('119', '119', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('120', '120', '1');

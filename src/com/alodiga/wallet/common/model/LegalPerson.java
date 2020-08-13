@@ -5,6 +5,8 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -43,7 +45,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "LegalPerson.findByRegisterNumber", query = "SELECT l FROM LegalPerson l WHERE l.registerNumber = :registerNumber")
     , @NamedQuery(name = "LegalPerson.findByDateInscriptionRegister", query = "SELECT l FROM LegalPerson l WHERE l.dateInscriptionRegister = :dateInscriptionRegister")
     , @NamedQuery(name = "LegalPerson.findByPayedCapital", query = "SELECT l FROM LegalPerson l WHERE l.payedCapital = :payedCapital")})
-public class LegalPerson implements Serializable {
+public class LegalPerson extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -76,8 +78,6 @@ public class LegalPerson implements Serializable {
     @Column(name = "dateInscriptionRegister")
     @Temporal(TemporalType.DATE)
     private Date dateInscriptionRegister;
-    @Column(name = "payedCapital")
-    private Float payedCapital;
     @JoinColumn(name = "businessCategoryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private BusinessCategory businessCategoryId;
@@ -90,6 +90,13 @@ public class LegalPerson implements Serializable {
     @JoinColumn(name = "legalRepresentativeId", referencedColumnName = "id")
     @ManyToOne
     private LegalRepresentative legalRepresentativeId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "payedCapital")
+    private float payedCapital;
+    @JoinColumn(name = "statusApplicantId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private StatusApplicant statusApplicantId;
 
     public LegalPerson() {
     }
@@ -168,13 +175,6 @@ public class LegalPerson implements Serializable {
         this.dateInscriptionRegister = dateInscriptionRegister;
     }
 
-    public Float getPayedCapital() {
-        return payedCapital;
-    }
-
-    public void setPayedCapital(Float payedCapital) {
-        this.payedCapital = payedCapital;
-    }
 
     public BusinessCategory getBusinessCategoryId() {
         return businessCategoryId;
@@ -232,5 +232,31 @@ public class LegalPerson implements Serializable {
     public void setLegalRepresentativeId(LegalRepresentative legalRepresentativeId) {
         this.legalRepresentativeId = legalRepresentativeId;
     }
+
+    public float getPayedCapital() {
+        return payedCapital;
+    }
+
+    public void setPayedCapital(float payedCapital) {
+        this.payedCapital = payedCapital;
+    }
+
+    public StatusApplicant getStatusApplicantId() {
+        return statusApplicantId;
+    }
+
+    public void setStatusApplicantId(StatusApplicant statusApplicantId) {
+        this.statusApplicantId = statusApplicantId;
+    }
     
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }
