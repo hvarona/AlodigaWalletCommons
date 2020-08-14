@@ -632,33 +632,82 @@ ADD CONSTRAINT `fk_natural_person_status_applicant1`
  ON DELETE NO ACTION
  ON UPDATE NO ACTION;
 
+ALTER TABLE `alodigaWallet`.`legal_representative`
+ADD COLUMN `statusApplicantId` INT NOT NULL;
+ALTER TABLE `alodigaWallet`.`legal_representative`
+ADD CONSTRAINT `fk_legal_representative_status_applicant1`
+ FOREIGN KEY (`statusApplicantId`)
+ REFERENCES `alodigaWallet`.`status_applicant` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+
 CREATE TABLE IF NOT EXISTS `alodigaWallet`.`review_ofac` (
+ `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+ `personId` BIGINT UNIQUE NOT NULL,
+ `resultReview` FLOAT NOT NULL,
+ `businessAffiliationRequestId` BIGINT UNIQUE NOT NULL,
+ `observations` VARCHAR(1000) NULL,
+ `userReviewId` BIGINT(10) NOT NULL,
+ `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+ `updateDate` TIMESTAMP NULL,
+ PRIMARY KEY (`id`),
+ INDEX `fk_review_ofac_person1_idx` (`personId` ASC),
+ INDEX `fk_review_ofac_business_affiliation_requets1_idx` (`businessAffiliationRequestId` ASC),
+ INDEX `fk_review_ofac_user1_idx` (`userReviewId` ASC),
+ CONSTRAINT `fk_review_ofac_person1`
+   FOREIGN KEY (`personId`)
+   REFERENCES `alodigaWallet`.`person` (`id`)
+   ON DELETE NO ACTION
+   ON UPDATE NO ACTION,
+ CONSTRAINT `fk_review_ofac_business_affiliation_request1`
+   FOREIGN KEY (`businessAffiliationRequestId`)
+   REFERENCES `alodigaWallet`.`business_affiliation_request` (`id`)
+   ON DELETE NO ACTION
+   ON UPDATE NO ACTION,
+ CONSTRAINT `fk_review_ofac_user1`
+   FOREIGN KEY (`userReviewId`)
+   REFERENCES `alodigaWallet`.`user` (`id`)
+   ON DELETE NO ACTION
+   ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- Agregar tablas para CRUD de estatus de tarjetas
+-- author: Jesús Gómez
+-- Fecha: 13/08/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_card` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NOT NULL,
+  `code` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_card_has_final_state` (
   `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
-  `personId` BIGINT UNIQUE NOT NULL,
-  `resultReview` FLOAT NOT NULL,
-  `businessAffiliationRequetsId` BIGINT UNIQUE NOT NULL,
-  `observations` VARCHAR(1000) NULL,
-  `userReviewId` BIGINT(10) NOT NULL,
+  `statusCardId` INT NOT NULL,
+  `statusCardFinalStateId` INT NOT NULL,
   `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `updateDate` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_review_ofac_person1_idx` (`personId` ASC),
-  INDEX `fk_review_ofac_business_affiliation_requets1_idx` (`businessAffiliationRequetsId` ASC),
-  INDEX `fk_review_ofac_user1_idx` (`userReviewId` ASC),
-  CONSTRAINT `fk_review_ofac_person1`
-    FOREIGN KEY (`personId`)
-    REFERENCES `alodigaWallet`.`person` (`id`)
+  INDEX `fk_status_card_has_final_state_status_card1_idx` (`statusCardId` ASC),
+  INDEX `fk_status_card_has_final_state_status_card2_idx` (`statusCardFinalStateId` ASC),
+  CONSTRAINT `fk_status_card_has_final_state_status_card1`
+    FOREIGN KEY (`statusCardId`)
+    REFERENCES `alodigaWallet`.`status_card` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_review_ofac_business_affiliation_requets1`
-    FOREIGN KEY (`businessAffiliationRequetsId`)
-    REFERENCES `alodigaWallet`.`business_affiliation_requets` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_review_ofac_user1`
-    FOREIGN KEY (`userReviewId`)
-    REFERENCES `alodigaWallet`.`user` (`id`)
+  CONSTRAINT `fk_status_card_has_final_state_status_card2`
+    FOREIGN KEY (`statusCardFinalStateId`)
+    REFERENCES `alodigaWallet`.`status_card` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+ALTER TABLE `alodigaWallet`.`card`
+ADD COLUMN `statusCardId` INT NULL;
+ALTER TABLE `alodigaWallet`.`card`
+ADD CONSTRAINT `fk_card_status_card1`
+ FOREIGN KEY (`statusCardId`)
+ REFERENCES `alodigaWallet`.`status_card` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
 

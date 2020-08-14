@@ -5,38 +5,38 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
  * @author jose
  */
 @Entity
-@Table(name = "business_service_type")
+@Table(name = "status_card")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BusinessServiceType.findAll", query = "SELECT b FROM BusinessServiceType b")
-    , @NamedQuery(name = "BusinessServiceType.findById", query = "SELECT b FROM BusinessServiceType b WHERE b.id = :id")
-    , @NamedQuery(name = "BusinessServiceType.findByDescription", query = "SELECT b FROM BusinessServiceType b WHERE b.description = :description")
-    , @NamedQuery(name = QueryConstants.BUSINESS_TYPE_BY_ID , query = "SELECT b FROM BusinessServiceType b WHERE b.businessTypeId.id = :businessTypeId")   
-    , @NamedQuery(name = "BusinessServiceType.findByCode", query = "SELECT b FROM BusinessServiceType b WHERE b.code = :code")})
-public class BusinessServiceType extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "StatusCard.findAll", query = "SELECT s FROM StatusCard s")
+    , @NamedQuery(name = "StatusCard.findById", query = "SELECT s FROM StatusCard s WHERE s.id = :id")
+    , @NamedQuery(name = "StatusCard.findByDescription", query = "SELECT s FROM StatusCard s WHERE s.description = :description")
+    , @NamedQuery(name = "StatusCard.findByCode", query = "SELECT s FROM StatusCard s WHERE s.code = :code")})
+public class StatusCard implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,21 +44,28 @@ public class BusinessServiceType extends AbstractWalletEntity implements Seriali
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
-    @Size(max = 10)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "code")
     private String code;
-    @JoinColumn(name = "businessTypeId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private BusinessType businessTypeId;
 
-    public BusinessServiceType() {
+    public StatusCard() {
     }
 
-    public BusinessServiceType(Integer id) {
+    public StatusCard(Integer id) {
         this.id = id;
+    }
+
+    public StatusCard(Integer id, String description, String code) {
+        this.id = id;
+        this.description = description;
+        this.code = code;
     }
 
     public Integer getId() {
@@ -68,7 +75,7 @@ public class BusinessServiceType extends AbstractWalletEntity implements Seriali
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getDescription() {
         return description;
     }
@@ -85,14 +92,6 @@ public class BusinessServiceType extends AbstractWalletEntity implements Seriali
         this.code = code;
     }
 
-    public BusinessType getBusinessTypeId() {
-        return businessTypeId;
-    }
-
-    public void setBusinessTypeId(BusinessType businessTypeId) {
-        this.businessTypeId = businessTypeId;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -103,10 +102,10 @@ public class BusinessServiceType extends AbstractWalletEntity implements Seriali
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BusinessServiceType)) {
+        if (!(object instanceof StatusCard)) {
             return false;
         }
-        BusinessServiceType other = (BusinessServiceType) object;
+        StatusCard other = (StatusCard) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -115,17 +114,7 @@ public class BusinessServiceType extends AbstractWalletEntity implements Seriali
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.BusinessServiceType[ id=" + id + " ]";
-    }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
+        return "com.alodiga.wallet.common.model.StatusCard[ id=" + id + " ]";
     }
     
 }

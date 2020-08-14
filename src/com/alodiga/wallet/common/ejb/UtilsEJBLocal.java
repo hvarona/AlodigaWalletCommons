@@ -213,7 +213,9 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
 
     //BusinessServiceType
     public List<BusinessServiceType> getBusinessServiceType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
+    
+    public BusinessServiceType loadBusinessServiceTypebyId(EJBRequest request)throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
     public BusinessServiceType saveBusinessServiceType(BusinessServiceType businessServiceType) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //TransactionApproveRequest

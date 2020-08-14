@@ -107,6 +107,9 @@ public class LegalRepresentative extends AbstractWalletEntity implements Seriali
     @JoinColumn(name = "civilStatusId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private CivilStatus civilStatusId;
+    @JoinColumn(name = "statusApplicantId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private StatusApplicant statusApplicantId;
     @Column(name = "createDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
@@ -227,6 +230,14 @@ public class LegalRepresentative extends AbstractWalletEntity implements Seriali
 
     public void setDateBirth(Date dateBirth) {
         this.dateBirth = dateBirth;
+    }
+
+    public StatusApplicant getStatusApplicantId() {
+        return statusApplicantId;
+    }
+
+    public void setStatusApplicantId(StatusApplicant statusApplicantId) {
+        this.statusApplicantId = statusApplicantId;
     }
 
     @XmlTransient
