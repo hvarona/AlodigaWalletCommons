@@ -329,3 +329,38 @@ INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('
 INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Centro Comercial', 'CENCOM');
 INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Chalet', 'CHALET');
 INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Duplex', 'DUPLEX');
+
+
+-- Insert en la tabla collections_request
+-- author: Yamelis Almea
+-- Fecha: 14/08/2020
+INSERT INTO `alodigawallet`.`collections_request` (`id`, `collectionTypeId`, `personTypeId`) VALUES ('1', '1', '1');
+INSERT INTO `alodigawallet`.`collections_request` (`id`, `collectionTypeId`, `personTypeId`) VALUES ('2', '3', '1');
+INSERT INTO `alodigawallet`.`collections_request` (`id`, `collectionTypeId`, `personTypeId`) VALUES ('3', '4', '1');
+INSERT INTO `alodigawallet`.`collections_request` (`id`, `collectionTypeId`, `personTypeId`) VALUES ('4', '5', '1');
+INSERT INTO `alodigawallet`.`collections_request` (`id`, `collectionTypeId`, `personTypeId`) VALUES ('5', '6', '1');
+INSERT INTO `alodigawallet`.`collections_request` (`id`, `collectionTypeId`, `personTypeId`) VALUES ('6', '1', '2');
+INSERT INTO `alodigawallet`.`collections_request` (`id`, `collectionTypeId`, `personTypeId`) VALUES ('7', '3', '2');
+INSERT INTO `alodigawallet`.`collections_request` (`id`, `collectionTypeId`, `personTypeId`) VALUES ('8', '4', '2');
+INSERT INTO `alodigawallet`.`collections_request` (`id`, `collectionTypeId`, `personTypeId`) VALUES ('9', '5', '2');
+INSERT INTO `alodigawallet`.`collections_request` (`id`, `collectionTypeId`, `personTypeId`) VALUES ('10', '6', '2');
+
+-- business_affiliation_request
+
+INSERT INTO `alodigawallet`.`business_affiliation_request` (`id`, `numberRequest`, `dateRequest`, `statusBusinessAffiliationRequestId`, `businessPersonId`, `createDate`) VALUES ('1', '12345', '2020-07-14', '1', '1', '2020-07-14 00:00:00');
+INSERT INTO `alodigawallet`.`business_affiliation_request` (`id`, `numberRequest`, `dateRequest`, `statusBusinessAffiliationRequestId`, `businessPersonId`, `createDate`) VALUES ('2', '22222', '2020-08-05', '1', '2', '2020-08-05 00:00:00');
+
+UPDATE `alodigawallet`.`business_affiliation_request` SET `statusBusinessAffiliationRequestId` = '8' WHERE (`id` = '1');
+UPDATE `alodigawallet`.`business_affiliation_request` SET `statusBusinessAffiliationRequestId` = '8' WHERE (`id` = '2');
+
+-- request_has_collection_request
+INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('1', '2020-07-14 00:00:00', '1', '1');
+INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('2', '2020-07-14 00:00:00', '3', '1');
+INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('3', '2020-07-14 00:00:00', '4', '1');
+INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('4', '2020-07-14 00:00:00', '5', '1');
+INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('5', '2020-07-14 00:00:00', '6', '1');
+INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('6', '2020-08-05 00:00:00', '1', '2');
+INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('7', '2020-08-05 00:00:00', '3', '2');
+INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('8', '2020-08-05 00:00:00', '4', '2');
+INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('9', '2020-08-05 00:00:00', '5', '2');
+INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('10', '2020-08-05 00:00:00', '6', '2');
