@@ -40,6 +40,9 @@ public class EdificationType implements Serializable {
     @Size(max = 50)
     @Column(name = "description")
     private String description;
+    @Size(max = 10)
+    @Column(name = "code")
+    private String code;
 
     public EdificationType() {
     }
@@ -87,6 +90,14 @@ public class EdificationType implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.EdificationType[ id=" + id + " ]";
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
     
 }

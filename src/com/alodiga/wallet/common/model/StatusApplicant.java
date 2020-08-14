@@ -6,7 +6,9 @@
 package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,22 +16,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
  * @author jose
  */
 @Entity
-@Table(name = "street_type")
+@Table(name = "status_applicant")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "StreetType.findAll", query = "SELECT s FROM StreetType s")
-    , @NamedQuery(name = "StreetType.findById", query = "SELECT s FROM StreetType s WHERE s.id = :id")
-    , @NamedQuery(name = "StreetType.findByDescription", query = "SELECT s FROM StreetType s WHERE s.description = :description")})
-public class StreetType implements Serializable {
+    @NamedQuery(name = "StatusApplicant.findAll", query = "SELECT s FROM StatusApplicant s")
+    , @NamedQuery(name = "StatusApplicant.findById", query = "SELECT s FROM StatusApplicant s WHERE s.id = :id")
+    , @NamedQuery(name = "StatusApplicant.findByDescription", query = "SELECT s FROM StatusApplicant s WHERE s.description = :description")
+    , @NamedQuery(name = "StatusApplicant.findByCode", query = "SELECT s FROM StatusApplicant s WHERE s.code = :code")})
+public class StatusApplicant implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -37,18 +44,28 @@ public class StreetType implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
-    @Size(max = 10)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "code")
     private String code;
 
-    public StreetType() {
+    public StatusApplicant() {
     }
 
-    public StreetType(Integer id) {
+    public StatusApplicant(Integer id) {
         this.id = id;
+    }
+
+    public StatusApplicant(Integer id, String description, String code) {
+        this.id = id;
+        this.description = description;
+        this.code = code;
     }
 
     public Integer getId() {
@@ -67,6 +84,14 @@ public class StreetType implements Serializable {
         this.description = description;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -77,10 +102,10 @@ public class StreetType implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof StreetType)) {
+        if (!(object instanceof StatusApplicant)) {
             return false;
         }
-        StreetType other = (StreetType) object;
+        StatusApplicant other = (StatusApplicant) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -89,15 +114,7 @@ public class StreetType implements Serializable {
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.StreetType[ id=" + id + " ]";
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+        return "com.alodiga.wallet.common.model.StatusApplicant[ id=" + id + " ]";
     }
     
 }
