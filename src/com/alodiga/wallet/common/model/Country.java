@@ -40,7 +40,7 @@ import com.alodiga.wallet.common.model.ValidationCollection;
 @Table(name = "country")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c"),
+    @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c INNER JOIN State s ON c.id = s.countryId.id"),
     @NamedQuery(name = "Country.findById", query = "SELECT c FROM Country c WHERE c.id = :id"),
     @NamedQuery(name = "Country.findByName", query = "SELECT c FROM Country c WHERE c.name = :name"),
     @NamedQuery(name = "Country.findByShortName", query = "SELECT c FROM Country c WHERE c.shortName = :shortName"),

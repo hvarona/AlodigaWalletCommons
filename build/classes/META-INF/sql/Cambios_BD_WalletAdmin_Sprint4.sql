@@ -1,595 +1,3 @@
--- Ajustes en Esquema de Preferencias
--- author: yamelis Almea
--- Fecha: 15/07/2020
-
-DROP TABLE IF EXISTS `alodigaWallet`.`preference_control`;
-DROP TABLE IF EXISTS `alodigaWallet`.`preference_value`;
-DROP TABLE IF EXISTS `alodigaWallet`.`preference_field_data`;
-DROP TABLE IF EXISTS `alodigaWallet`.`preference_field`;
-DROP TABLE IF EXISTS `alodigaWallet`.`preference_type`;
-DROP TABLE IF EXISTS `alodigaWallet`.`preference`;
-DROP TABLE IF EXISTS `alodigaWallet`.`preference_classification`;
-
-
-CREATE TABLE `alodigaWallet`.`preference` (
-  `id` bigint(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  `description` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
-
-INSERT INTO `alodigaWallet`.`preference` VALUES (1,'session',1,'Values relacionados con las sesion'),
-(2,'background',1,'Can set default and not default values'),
-(3,'transaction',1,'All related to transaction.'),
-(4,'commission',1,'Value relacionados con la session');
-
-CREATE TABLE `alodigaWallet`.`preference_type` (
-  `id` bigint(3) NOT NULL AUTO_INCREMENT,
-  `type` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
-
-INSERT INTO `alodigaWallet`.`preference_type` VALUES (1,'INTEGER'),
-(2,'FLOAT'),
-(3,'STRING'),
-(4,'DATE'),
-(5,'PERIOD');
-
-
-
-CREATE TABLE `alodigaWallet`.`preference_field` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `preferenceId` bigint(10) NOT NULL,
-  `enabled` tinyint(4) NOT NULL,
-  `preferenceTypeId` bigint(3) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_preference_field_preference1` (`preferenceId`),
-  KEY `fk_preference_field_preference_type1` (`preferenceTypeId`),
-  CONSTRAINT `fk_preference_field_preference1` FOREIGN KEY (`preferenceId`) REFERENCES `preference` (`id`),
-  CONSTRAINT `fk_preference_field_preference_type1` FOREIGN KEY (`preferenceTypeId`) REFERENCES `preference_type` (`id`)
-) ENGINE=InnoDB;
-
-
-INSERT INTO `alodigaWallet`.`preference_field` VALUES (1,'TIMEOUT_INACTIVE_SESSION',1,1,1),
-(4,'MAX_TRANSACTION_AMOUNT_LIMIT',3,1,1),
-(7,'MAX_WRONG_LOGIN_INTENT_NUMBER',1,1,1),
-(8,'PERIOD',1,1,1),
-(9,'DISABLED_TRANSACTION',3,1,1),
-(10,'MAX_TRANSACTION_AMOUNT_DAILY_LIMIT',3,1,1),
-(12,'DEFAULT_SMS_PROVIDER',2,1,1),
-(19,'MIN_VALUE_BALANCE_TRANSFER_TO',3,1,1),
-(20,'MAX_TRANSACTION_AMOUNT_MONTHLY_LIMIT',3,1,1),
-(21,'MAX_TRANSACTION_AMOUNT_YEARLY_LIMIT',3,1,1),
-(22,'MAX_TRANSACTION_QUANTITY_DAILY_LIMIT',3,1,1),
-(23,'MAX_TRANSACTION_QUANTITY_MONTHLY_LIMIT',3,1,1),
-(24,'MAX_TRANSACTION_QUANTITY_YEARLY_LIMIT',3,1,1);
-
-
-
-CREATE TABLE `alodigaWallet`.`preference_field_data` (
-  `id` bigint(3) NOT NULL AUTO_INCREMENT,
-  `preferenceFieldId` bigint(20) NOT NULL,
-  `languageId` bigint(3) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_preference_field_data_preference_field1` (`preferenceFieldId`),
-  KEY `fk_preference_field_data_language1` (`languageId`),
-  CONSTRAINT `fk_preference_field_data_language1` FOREIGN KEY (`languageId`) REFERENCES `language` (`id`),
-  CONSTRAINT `fk_preference_field_data_preference_field1` FOREIGN KEY (`preferenceFieldId`) REFERENCES `preference_field` (`id`)
-) ENGINE=InnoDB;
-
-
-INSERT INTO `alodigaWallet`.`preference_field_data` VALUES ('1', '1', '1', 'Timeout inactive session'),
-('2', '1', '2', 'Maximo tiempo de inactividad de sesion'),
-('3', '4', '1', 'Max transaction amount limit'),
-('4', '4', '2', 'Monto limite maximo por transaccion'),
-('5', '7', '1', 'Max wrong number intent login'),
-('6', '7', '2', 'Maximo numero de intentos de login'),
-('7', '8', '1', 'Period'),
-('8', '8', '2', 'Periodo'),
-('9', '9', '1', 'Enabled transactions'),
-('10', '9', '2', 'Transacciones habilitadas'),
-('11', '10', '1', 'Max transaction amount limit (Daily).'),
-('12', '10', '2', 'Monto limite maximo por transaccion (Diario)'),
-('13', '12', '1', 'Default SMS provider'),
-('14', '12', '2', 'Proveedor SMS predeterminado'),
-('15', '19', '1', 'Min Value balance Transferto'),
-('16', '19', '2', 'Minimo Saldo de Transferto'),
-('17', '20', '1', 'Max transaction amount limit (Monthly).'),
-('18', '20', '2', 'Monto limite maximo por transaccion (Mensual)'),
-('19', '21', '1', 'Max transaction amount limit (Yearly).'),
-('20', '21', '2', 'Monto limite maximo por transaccion (Anual)'),
-('21', '22', '1', 'Max transaction quantity limit (Daily).'),
-('22', '22', '2', 'Monto limite maximo por transaccion (Diario)'),
-('23', '23', '1', 'Max transaction quantity limit (Monthly).'),
-('24', '23', '2', 'Monto limite maximo por transaccion (Mensual)'),
-('25', '24', '1', 'Max transaction quantity limit (Yearly).'),
-('26', '24', '2', 'Monto limite maximo por transaccion (Anual)');
-
-
-CREATE TABLE `alodigaWallet`.`preference_classification` (
-  `id` bigint(3) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
-
-INSERT INTO `alodigaWallet`.`preference_classification` VALUES (1,'cliente',1),
-(2,'negocio',1);
-
-
-CREATE TABLE `alodigaWallet`.`preference_value` (
-  `id` bigint(10) NOT NULL AUTO_INCREMENT,
-  `value` varchar(45) NOT NULL,
-  `preferenceFieldId` bigint(20) NOT NULL,
-  `productId` bigint(3) DEFAULT NULL,
-  `transactionTypeId` bigint(3) DEFAULT NULL,
-  `preferenceClassficationId` bigint(3) NOT NULL,
-  `preferenceValueParentId` bigint(10) DEFAULT NULL,
-  `bussinessId` bigint(10) DEFAULT NULL,
-  `createDate` datetime NOT NULL,
-  `updateDate` datetime NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_preference_value_preference_field2` (`preferenceFieldId`),
-  KEY `fk_preference_value_product2` (`productId`),
-  KEY `fk_preference_value_transactionType2` (`transactionTypeId`),
-  KEY `fk_preference_value_preference_classification2` (`preferenceClassficationId`),
-  KEY `fk_preference_value_preference_value2` (`preferenceValueParentId`),
-  CONSTRAINT `fk_preference_value_preference_fiel2` FOREIGN KEY (`preferenceFieldId`) REFERENCES `preference_field` (`id`),
-  CONSTRAINT `fk_preference_value_product2` FOREIGN KEY (`productId`) REFERENCES `product` (`id`),
-  CONSTRAINT `fk_preference_value_transactionType2` FOREIGN KEY (`transactionTypeId`) REFERENCES `transaction_type` (`id`),
-  CONSTRAINT `fk_preference_value_preference_classification2` FOREIGN KEY (`preferenceClassficationId`) REFERENCES `preference_classification` (`id`),
-   CONSTRAINT `fk_preference_value_preference_value2` FOREIGN KEY (`preferenceValueParentId`) REFERENCES `preference_value` (`id`)
-) ENGINE=InnoDB;
-
-
-INSERT INTO `alodigaWallet`.`preference_value` VALUES (1,'20',1,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(2,'500000',4,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(3,'5',7,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(4,'1',8,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(5,'1',9,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(6,'1500000',10,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(7,'2',12,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(8,'100',19,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(9,'2500000',20,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(10,'25000000',21,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(11,'10',22,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(12,'50',23,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(13,'200',24,NULL,NULL,1,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(14,'20',1,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(15,'500000',4,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(16,'5',7,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(17,'1',8,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(18,'1',9,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(19,'1500000',10,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(20,'2',12,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(21,'100',19,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(22,'2500000',20,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(23,'25000000',21,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(24,'10',22,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(25,'50',23,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1),
-(26,'200',24,NULL,NULL,2,NULL,NULL,'2020-07-14 14:40:46','2020-07-14 15:17:48',1);
-
-
-CREATE TABLE `alodigaWallet`.`preference_control` (
-  `id` bigint(3) NOT NULL AUTO_INCREMENT,
-  `userId` bigint(10) NOT NULL,
-  `paramOld` varchar(255) NOT NULL,
-  `creationDate` datetime NOT NULL,
-  `preferenceValueId` bigint(10) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_preference_control_userId1` (`userId`),
-  KEY `fk_preference_control_preference_value_1` (`preferenceValueId`),
-  CONSTRAINT `fk_preference_control_preference_value_1` FOREIGN KEY (`preferenceValueId`) REFERENCES `preference_value`  (`id`),
-  CONSTRAINT `fk_preference_control_userId1` FOREIGN KEY (`userId`) REFERENCES `user`  (`id`)
-) ENGINE=InnoDB;
-
-
-INSERT INTO `alodigaWallet`.`provider` (`id`, `name`, `url`, `isSMSProvider`, `enabled`, `aditionalPercent`) VALUES ('2', 'Twilio', 'www', '1', '1', '0');
-
-ALTER TABLE `alodigaWallet`.`user_has_profile_has_enterprise` 
-DROP FOREIGN KEY `fk_user_has_profile_has_enterprise_enterprise1`;
-ALTER TABLE `alodigaWallet`.`user_has_profile_has_enterprise` 
-DROP COLUMN `enterpriseId`,
-DROP INDEX `fk_user_has_profile_has_enterprise_enterprise1` ;
-;
-ALTER TABLE `alodigaWallet`.`user_has_profile_has_enterprise` 
-RENAME TO  `alodigaWallet`.`user_has_profile` ;
-
--- Agregar campo en tabla product
--- author: Jesús Gómez
--- Fecha: 15/07/2020
-ALTER TABLE `alodigaWallet`.`product` 
-ADD COLUMN `indHasAssociatedBank` TINYINT(1) NULL AFTER `isPaymentInfo`;
-
--- Agregar tabla collection_type
--- author: Jesús Gómez
--- Fecha: 21/07/2020
-CREATE TABLE IF NOT EXISTS `alodigaWallet`.`collection_type` (
-  `id` INT NOT NULL,
-  `description` VARCHAR(50) NOT NULL,
-  `countryId` BIGINT(3) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_collectionType_country1_idx` (`countryId` ASC),
-  CONSTRAINT `fk_collectionType_country1`
-    FOREIGN KEY (`countryId`)
-    REFERENCES `alodigaWallet`.`country` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
--- Agregar tabla person_type
--- author: Jesús Gómez
--- Fecha: 21/07/2020
-CREATE TABLE IF NOT EXISTS `alodigaWallet`.`person_type` (
-  `id` INT NOT NULL,
-  `description` VARCHAR(50) NULL,
-  `countryId` BIGINT(3) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_personType_country1_idx` (`countryId` ASC),
-  CONSTRAINT `fk_personType_country1`
-    FOREIGN KEY (`countryId`)
-    REFERENCES `alodigaWallet`.`country` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
--- Agregar tabla documents_person_type
--- author: Jesús Gómez
--- Fecha: 21/07/2020
-CREATE TABLE IF NOT EXISTS `alodigaWallet`.`documents_person_type` (
-  `id` INT NOT NULL,
-  `description` VARCHAR(50) NULL,
-  `personTypeId` INT NOT NULL,
-  `codeIdentification` VARCHAR(10) NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_documentsPersonType_personType1_idx` (`personTypeId` ASC),
-  CONSTRAINT `fk_documentsPersonType_personType1`
-    FOREIGN KEY (`personTypeId`)
-    REFERENCES `alodigaWallet`.`person_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
--- Agregar tabla collections_request
--- author: Jesús Gómez
--- Fecha: 21/07/2020
-CREATE TABLE IF NOT EXISTS `alodigaWallet`.`collections_request` (
-  `id` INT NOT NULL,
-  `collectionTypeId` INT NOT NULL,
-  `categoryId` BIGINT(3) NOT NULL,
-  `personTypeId` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_collectionsRequest_collectionType1_idx` (`collectionTypeId` ASC),
-  INDEX `fk_collectionsRequest_category1_idx` (`categoryId` ASC),
-  INDEX `fk_collectionsRequest_personType1_idx` (`personTypeId` ASC),
-  CONSTRAINT `fk_collectionsRequest_collectionType1`
-    FOREIGN KEY (`collectionTypeId`)
-    REFERENCES `alodigaWallet`.`collection_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_collectionsRequest_category1`
-    FOREIGN KEY (`categoryId`)
-    REFERENCES `alodigaWallet`.`category` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_collectionsRequest_personType1`
-    FOREIGN KEY (`personTypeId`)
-    REFERENCES `alodigaWallet`.`person_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
--- Agregar FKs bank_has_product
--- author: Adira Quintero
--- Fecha: 20/07/2020
-ALTER TABLE `alodigaWallet`.`bank_has_product`
-ADD INDEX `fk_bank_has_product_1_idx` (`productId` ASC),
-ADD INDEX `fk_bank_has_product_2_idx` (`bankId` ASC);
-ALTER TABLE `alodigaWallet`.`bank_has_product`
-ADD CONSTRAINT `fk_bank_has_product_1`
- FOREIGN KEY (`productId`)
- REFERENCES `alodigaWallet`.`product` (`id`)
- ON DELETE NO ACTION
- ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_bank_has_product_2`
- FOREIGN KEY (`bankId`)
- REFERENCES `alodigaWallet`.`bank` (`id`)
- ON DELETE NO ACTION
- ON UPDATE NO ACTION;
-
--- Generar los auto increment en varias tablas
--- author: Jesús Gómez
--- Fecha: 22/07/2020
-SET FOREIGN_KEY_CHECKS=0;
-ALTER TABLE `alodigaWallet`.`collection_type` 
-CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE `alodigaWallet`.`collections_request` 
-CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE `alodigaWallet`.`person_type` 
-CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE `alodigaWallet`.`documents_person_type` 
-CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
-SET FOREIGN_KEY_CHECKS=1;
-
--- Agregar tabla business_category
--- author: Jesús Gómez
--- Fecha: 22/07/2020
-CREATE TABLE IF NOT EXISTS `alodigaWallet`.`business_category` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `description` VARCHAR(80) NOT NULL,
-  `mccCode` VARCHAR(10) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
--- Agregar tabla business_sub_category
--- author: Jesús Gómez
--- Fecha: 22/07/2020
-CREATE TABLE IF NOT EXISTS `alodigaWallet`.`business_sub_category` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `description` VARCHAR(80) NULL,
-  `mccCode` VARCHAR(10) NULL,
-  `businessCategoryId` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_business_sub_category_business_category1_idx` (`businessCategoryId` ASC),
-  CONSTRAINT `fk_business_sub_category_business_category1`
-    FOREIGN KEY (`businessCategoryId`)
-    REFERENCES `alodigaWallet`.`business_category` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
--- Esquema Solicitudes de Aprobación de Transacciones
--- author: Jesús Gómez
--- Fecha: 27/07/2020
-
-ALTER TABLE `alodigaWallet`.`transaction` 
-ADD COLUMN `transactionNumber` VARCHAR(40) NOT NULL AFTER `id`;
-
-CREATE TABLE IF NOT EXISTS `alodigaWallet`.`account_type_bank` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `description` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_account_bank` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `description` VARCHAR(40) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-CREATE TABLE IF NOT EXISTS `alodigaWallet`.`account_bank` (
-  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
-  `UnifiedRegistryId` BIGINT UNIQUE NOT NULL,
-  `accountNumber` VARCHAR(40) NOT NULL,
-  `bankId` BIGINT(3) NOT NULL,
-  `updateDate` TIMESTAMP NULL,
-  `statusAccountBankId` INT NOT NULL,
-  `accountTypeBankId` INT NOT NULL,
-  `createDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  INDEX `fk_account_bank_bank1_idx` (`bankId` ASC),
-  INDEX `fk_account_bank_status_account_bank1_idx` (`statusAccountBankId` ASC),
-  INDEX `fk_account_bank_account_type_bank1_idx` (`accountTypeBankId` ASC),
-  CONSTRAINT `fk_account_bank_bank1`
-    FOREIGN KEY (`bankId`)
-    REFERENCES `alodigaWallet`.`bank` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_account_bank_status_account_bank1`
-    FOREIGN KEY (`statusAccountBankId`)
-    REFERENCES `alodigaWallet`.`status_account_bank` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_account_bank_account_type_bank1`
-    FOREIGN KEY (`accountTypeBankId`)
-    REFERENCES `alodigaWallet`.`account_type_bank` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-ALTER TABLE `alodigaWallet`.`bank_operation` 
-ADD COLUMN `bankOperationDate` DATE NULL AFTER `bankOperationNumber`,
-ADD COLUMN `bankOperationAmount` FLOAT NOT NULL AFTER `bankOperationDate`,
-ADD COLUMN `accountBankId` BIGINT NULL AFTER `bankId`,
-ADD COLUMN `paymentTypeId` BIGINT(3) NULL AFTER `bankOperationAmount`;
-ALTER TABLE `alodigaWallet`.`bank_operation` 
-ADD CONSTRAINT `fk_bank_operation_account_bank1` 
-FOREIGN KEY (`accountBankId`)
-    REFERENCES `alodigaWallet`.`account_bank` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
-ALTER TABLE `alodigaWallet`.`bank_operation` 
-ADD CONSTRAINT `fk_bank_operation_payment_type1` 
-FOREIGN KEY (`paymentTypeId`)
-    REFERENCES `alodigaWallet`.`payment_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
-
-CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_transaction_approve_request` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `description` VARCHAR(40) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-CREATE TABLE IF NOT EXISTS `alodigaWallet`.`transaction_approve_request` (
-  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
-  `createDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updateDate` TIMESTAMP NULL,
-  `requestNumber` VARCHAR(40) NOT NULL,
-  `requestDate` DATE NOT NULL,
-  `productId` BIGINT(3) NOT NULL,
-  `transactionId` BIGINT(20) NOT NULL,
-  `statusTransactionApproveRequestId` INT NOT NULL,
-  `indApproveRequest` TINYINT(1) NULL,
-  `approvedRequestDate` DATE NULL,
-  `observations` VARCHAR(1000) NULL,
-  `userApprovedRequestId` BIGINT(10) NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_transaction_approve_request_transaction1_idx` (`transactionId` ASC),
-  INDEX `fk_transaction_approve_request_user1_idx` (`userApprovedRequestId` ASC),
-  INDEX `fk_transaction_approve_request_status_transaction_approve_r_idx` (`statusTransactionApproveRequestId` ASC),
-  INDEX `fk_transaction_approve_request_product1_idx` (`productId` ASC),
-  CONSTRAINT `fk_transaction_approve_request_transaction1`
-    FOREIGN KEY (`transactionId`)
-    REFERENCES `alodigaWallet`.`transaction` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_transaction_approve_request_user1`
-    FOREIGN KEY (`userApprovedRequestId`)
-    REFERENCES `alodigaWallet`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_transaction_approve_request_status_transaction_approve_req1`
-    FOREIGN KEY (`statusTransactionApproveRequestId`)
-    REFERENCES `alodigaWallet`.`status_transaction_approve_request` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_transaction_approve_request_product1`
-    FOREIGN KEY (`productId`)
-    REFERENCES `alodigaWallet`.`product` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-ALTER TABLE `alodigaWallet`.`account_type_bank` 
-ADD COLUMN `code` VARCHAR(10) NOT NULL AFTER `description`;
-
-ALTER TABLE `alodigaWallet`.`status_account_bank` 
-ADD COLUMN `code` VARCHAR(10) NOT NULL AFTER `description`;
-
-ALTER TABLE `alodigaWallet`.`status_transaction_approve_request` 
-ADD COLUMN `code` VARCHAR(10) NOT NULL AFTER `description`;
-
--- Cambios en esquema Solicitudes de Aprobación de Transacciones
--- author: Jesús Gómez
--- Fecha: 28/07/2020
-ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
-ADD COLUMN `bankOperationId` BIGINT(20) NULL AFTER `transactionId`;
-ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
-ADD CONSTRAINT `fk_transaction_approve_request_bank_operation1` 
-FOREIGN KEY (`bankOperationId`)
-    REFERENCES `alodigaWallet`.`bank_operation` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
-
-ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
-ADD COLUMN `UnifiedRegistryUserId` BIGINT NOT NULL AFTER `id`; 
-
-ALTER TABLE `alodigaWallet`.`commission` 
-ADD COLUMN `indApplicationCommission` INT NOT NULL AFTER `endingDate`;  
-
-
--- Data de collection_type
--- author: Adira Quintero
--- Fecha: 23/07/2020
-
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('1', 'DOCUMENTO DE IDENTIDAD..', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('3', 'CONSTANCIA DE TRABAJO', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('4', 'REFERENCIA BANCARIA', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('5', 'REGISTRO DE INFORMACIÓN FISCAL', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('6', 'REGISTRO MERCANTIL', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('7', 'ACTA DE CONSTITUCIÓN DE LA EMPRESA', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('8', 'DRIVER LICENSE', '2');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('9', 'DOCUMENTO DE IDENTIFICACION APP', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('10', 'FOTO CON DOCUMENTO DE IDENTIDAD', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('11', 'CEDULA DE IDENTIDAD...', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('12', 'COSNTANCIA DE DOMICILIO RESIDENCIAL', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('13', 'COSNTANCIA DE NACIMIENTO', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('14', 'ANTECEDENTES PENALES', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('15', 'COSNTANCIA DE RESIDENCIA', '2');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('16', 'CEDULA EXTRANJEROS', '1');
-INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`) VALUES ('17', 'REGISTRO DE INFORMACION FISCAL GOBIERNO', '1');
-
-
--- Tabla y data de document_type, origin_application y secuences
--- author: Yamelis Almea
--- Fecha: 30/07/2020
-
-CREATE TABLE `alodigaWallet`.`origin_application` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
-
-INSERT INTO `alodigaWallet`.`origin_application` (`id`, `name`) VALUES ('1', 'AlodigaWallet App');
-INSERT INTO `alodigaWallet`.`origin_application` (`id`, `name`) VALUES ('2', 'Alodiga Wallet Admin Web');
-
-CREATE TABLE `alodigaWallet`.`document_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(40) DEFAULT NULL,
-  `acronym` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
-
-INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('1', 'Manual Recharge Approval Request', 'MRAR');
-INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('2', 'Manual Withdrawal Approval Request', 'MWAR');
-
-
-CREATE TABLE `alodigaWallet`.`sequences` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `initialValue` int(11) DEFAULT NULL,
-  `currentValue` int(11) DEFAULT NULL,
-  `documentTypeId` int(11) NOT NULL,
-  `originApplicationId` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_sequences_documentType1_idx` (`documentTypeId`),
-  KEY `fk_sequences_originApplication1` (`originApplicationId`),
-  CONSTRAINT `fk_sequences_documentType1` FOREIGN KEY (`documentTypeId`) REFERENCES `document_type` (`id`),
-  CONSTRAINT `fk_sequences_originApplication1` FOREIGN KEY (`originApplicationId`) REFERENCES `origin_application` (`id`)
-) ENGINE=InnoDB;
-
-INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '1', '1', '1');
-INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('2', '1', '1', '1', '2');
-INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('3', '1', '1', '2', '1');
-
---Cambios en la tabla person_type
-ALTER TABLE `alodigaWallet`.`person_type` 
-ADD COLUMN `originApplicationId` INT(11) NOT NULL AFTER `countryId`,
-ADD COLUMN `indNaturalPerson` TINYINT(1) NULL DEFAULT NULL AFTER `originApplicationId`,
-ADD INDEX `fk_personType_originApplication1` (`originApplicationId` ASC) INVISIBLE;
-;
-
-UPDATE `alodigaWallet`.`person_type` SET `originApplicationId` = '1', `indNaturalPerson` = '1' WHERE (`id` = '1');
-UPDATE `alodigaWallet`.`person_type` SET `originApplicationId` = '1', `indNaturalPerson` = '0' WHERE (`id` = '2');
-UPDATE `alodigaWallet`.`person_type` SET `originApplicationId` = '2', `indNaturalPerson` = '1' WHERE (`id` = '3');
-UPDATE `alodigaWallet`.`person_type` SET `originApplicationId` = '2', `indNaturalPerson` = '1' WHERE (`id` = '4');
-
-ALTER TABLE `alodigaWallet`.`person_type` 
-ADD CONSTRAINT `fk_personType_originApplication1`
-  FOREIGN KEY (`originApplicationId`)
-  REFERENCES `alodigaWallet`.`origin_application` (`id`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-  
-UPDATE `alodigaWallet`.`person_type` SET `description` = 'Persona Natural' WHERE (`id` = '3');
-UPDATE `alodigaWallet`.`person_type` SET `description` = 'Persona Juridica', `indNaturalPerson` = '0' WHERE (`id` = '4'); 
-INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('5', 'Persona Natural', '1', '2', '1');
-INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('6', 'Persona Juridica', '1', '2', '0');
-INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('7', 'Persona Natural', '47', '1', '1');
-INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('8', 'Persona Juridica', '47', '1', '0');
-INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('9', 'Persona Natural', '85', '1', '1');
-INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('10', 'Persona Juridica', '85', '1', '0');
-INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('11', 'Persona Natural', '85', '2', '1');
-INSERT INTO `alodigaWallet`.`person_type` (`id`, `description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('12', 'Persona Juridica', '85', '2', '0');
-
--- Eiminar FK en tabla collectionsRequest
--- author: Jesús Gómez
--- Fecha: 03/08/2020
-ALTER TABLE `alodigaWallet`.`collectionsRequest`
-DROP FOREIGN KEY `fk_collectionsRequest_category1`;
-ALTER TABLE `alodigaWallet`.`collectionsRequest` 
-DROP INDEX  `fk_collectionsRequest_category1_idx`;
-ALTER TABLE `alodigaWallet`.`collectionsRequest` 
-DROP COLUMN `categoryId`;
-
-
 -- Cambios relacionados con esquema de solicitudes de afiliación del negocio
 -- author: Jesús Gómez
 -- Fecha: 03/08/2020
@@ -856,48 +264,6 @@ CREATE TABLE IF NOT EXISTS `alodigaWallet`.`address` (
 ENGINE = InnoDB; 
 SET FOREIGN_KEY_CHECKS=1;
 
-ALTER TABLE `alodigaWallet`.`address`
-DROP COLUMN `address`,
-DROP COLUMN `zipCode`,
-DROP COLUMN `stateName`,
-DROP COLUMN `countyName`,
-DROP COLUMN `cityName`,
-ADD COLUMN `zipCode` VARCHAR(45) NULL,
-ADD COLUMN `streetTypeId` INT NOT NULL,
-ADD COLUMN  `nameStreet` VARCHAR(50) NULL,
-ADD COLUMN `edificationTypeId` INT NOT NULL,
-ADD COLUMN `nameEdification` VARCHAR(50) NULL,
-ADD COLUMN `tower` VARCHAR(40) NULL,
-ADD COLUMN `floor` INT NULL,
-ADD COLUMN `urbanization` VARCHAR(50) NULL,
-ADD COLUMN `addressLine1` VARCHAR(255) NOT NULL,
-ADD COLUMN `addressLine2` VARCHAR(250) NULL,
-ADD COLUMN `addressTypeId` INT NOT NULL,
-ADD COLUMN `indMainAddress` TINYINT(1) NULL;
-
-ALTER TABLE `alodigaWallet`.`address`
-ADD INDEX `fk_address_street_type1_idx` (`streetTypeId` ASC),
-ADD INDEX `fk_address_address_type1_idx` (`addressTypeId` ASC),
-ADD INDEX `fk_address_building_type1_idx` (`edificationTypeId` ASC);
-ALTER TABLE `alodigaWallet`.`address`
-ADD CONSTRAINT `fk_address_street_type1`
-    FOREIGN KEY (`streetTypeId`)
-    REFERENCES `alodigaWallet`.`street_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
-ALTER TABLE `alodigaWallet`.`address`
-ADD CONSTRAINT `fk_address_address_type1`
-    FOREIGN KEY (`addressTypeId`)
-    REFERENCES `alodigaWallet`.`address_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
-ALTER TABLE `alodigaWallet`.`address`
-ADD CONSTRAINT `fk_address_edification_type1`
-    FOREIGN KEY (`edificationTypeId`)
-    REFERENCES `alodigaWallet`.`edification_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION;
-
 CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_business_affiliation_requets` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(50) NOT NULL,
@@ -989,5 +355,239 @@ CREATE TABLE IF NOT EXISTS `alodigaWallet`.`request_has_collection_request` (
 ENGINE = InnoDB;
 
 
+-- Cambios relacionados con esquema de Prerelaciones de Estatus de Afiliación de Negocio
+-- author: Jesús Gómez
+-- Fecha: 05/08/2020
+ALTER TABLE `alodigaWallet`.`status_business_affiliation_requets`
+ADD COLUMN `code` VARCHAR(10) NULL;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_business_affiliation_has_final_state` (
+ `id` INT NOT NULL AUTO_INCREMENT,
+ `statusBusinessAffiliationRequetsId` INT NOT NULL,
+ `finalStateId` INT NOT NULL,
+ `createDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ `updateDate` TIMESTAMP NULL,
+ PRIMARY KEY (`id`),
+ INDEX `fk_status_business_affiliation_has_final_state_status_busin_idx` (`statusBusinessAffiliationRequetsId` ASC),
+ INDEX `fk_status_business_affiliation_has_final_state_status_busin_idx1` (`finalStateId` ASC),
+ CONSTRAINT `fk_status_business_affiliation_has_final_state_status_busines1`
+   FOREIGN KEY (`statusBusinessAffiliationRequetsId`)
+   REFERENCES `alodigaWallet`.`status_business_affiliation_requets` (`id`)
+   ON DELETE NO ACTION
+   ON UPDATE NO ACTION,
+ CONSTRAINT `fk_status_business_affiliation_has_final_state_status_busines2`
+   FOREIGN KEY (`finalStateId`)
+   REFERENCES `alodigaWallet`.`status_business_affiliation_requets` (`id`)
+   ON DELETE NO ACTION
+   ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+RENAME TABLE `alodigaWallet`.`status_business_affiliation_requets` TO `alodigaWallet`.`status_business_affiliation_request`;
+
+ALTER TABLE `alodigaWallet`.`business_affiliation_requets`
+DROP FOREIGN KEY `fk_business_affiliation_requets_status_business_affiliation_r1`;
+ALTER TABLE `alodigaWallet`.`business_affiliation_requets`
+CHANGE COLUMN `statusBusinessAffiliationRequetsId` `statusBusinessAffiliationRequestId` INT(11) NOT NULL ;
+ALTER TABLE `alodigaWallet`.`business_affiliation_requets`
+ADD CONSTRAINT `fk_business_affiliation_requets_status_business_affiliation_r1`
+ FOREIGN KEY (`statusBusinessAffiliationRequestId`)
+ REFERENCES `alodigaWallet`.`status_business_affiliation_request` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+
+-- Cambios relacionados con esquema de Solicitudes de Afiliación de Negocio
+-- author: Jesús Gómez
+-- Fecha: 06/08/2020
+RENAME TABLE `alodigaWallet`.`business_affiliation_requets` TO `alodigaWallet`.`business_affiliation_request`;
+
+ALTER TABLE `alodigaWallet`.`request_has_collection_request`
+DROP FOREIGN KEY `fk_request_has_collection_request_business_affiliation_requets1`;
+ALTER TABLE `alodigaWallet`.`request_has_collection_request`
+CHANGE COLUMN `businessAffiliationRequetsId` `businessAffiliationRequestId` BIGINT(20) NOT NULL;
+ALTER TABLE `alodigaWallet`.`request_has_collection_request`
+ADD CONSTRAINT `fk_request_has_collection_request_business1`
+ FOREIGN KEY (`businessAffiliationRequestId`)
+ REFERENCES `alodigaWallet`.`business_affiliation_request` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+
+ALTER TABLE `alodigaWallet`.`request_has_collection_request` 
+DROP INDEX `businessAffiliationRequetsId`;
+
+ALTER TABLE `alodigaWallet`.`review_business_affiliation_request`
+DROP FOREIGN KEY `fk_review_business_affiliation_request_business_affiliation_r1`;
+ALTER TABLE `alodigaWallet`.`review_business_affiliation_request`
+CHANGE COLUMN `businessAffiliationRequetsId` `businessAffiliationRequestId` BIGINT(20) NOT NULL ;
+ALTER TABLE `alodigaWallet`.`review_business_affiliation_request`
+ADD CONSTRAINT `fk_review_business_affiliation_request_business_affiliation_r1`
+ FOREIGN KEY (`businessAffiliationRequestId`)
+ REFERENCES `alodigaWallet`.`business_affiliation_request` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+
+ALTER TABLE `alodigaWallet`.`review_business_affiliation_request` 
+DROP INDEX `businessAffiliationRequetsId`;
+
+-- Cambios en los índices en tabla account_bank
+-- author: Jesús Gómez
+-- Fecha: 07/08/2020
+ALTER TABLE `alodigaWallet`.`account_bank` 
+ADD UNIQUE INDEX `fk_account_bank_by_bank_idx` (`bankId` ASC, `accountNumber` ASC);
+
+ALTER TABLE `alodigaWallet`.`account_bank` 
+DROP INDEX `UnifiedRegistryId` ,
+ADD INDEX `UnifiedRegistryId` (`UnifiedRegistryId` ASC);
+
+-- cambios relacionados con el representante legal del negocio y la dirección del solicitante
+-- author: Jesús Gómez
+-- Fecha: 09/08/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`person_has_address` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `personId` BIGINT UNIQUE NOT NULL,
+  `addressId` BIGINT(10) NOT NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_person_has_address_person2_idx` (`personId` ASC),
+  INDEX `fk_person_has_address_address2_idx` (`addressId` ASC),
+  CONSTRAINT `fk_person_has_address_person2`
+    FOREIGN KEY (`personId`)
+    REFERENCES `alodigaWallet`.`person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_person_has_address_address2`
+    FOREIGN KEY (`addressId`)
+    REFERENCES `alodigaWallet`.`address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`legal_representative` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `personId` BIGINT UNIQUE NOT NULL,
+  `documentsPersonTypeId` INT NOT NULL,
+  `identificationNumber` VARCHAR(40) NOT NULL,
+  `identificationNumberOld` VARCHAR(40) NULL,
+  `dueDateDocumentIdentification` DATE NULL,
+  `firstNames` VARCHAR(50) NOT NULL,
+  `lastNames` VARCHAR(50) NOT NULL,
+  `age` INT NOT NULL,
+  `gender` VARCHAR(1) NULL,
+  `placeBirth` VARCHAR(50) NULL,
+  `dateBirth` DATE NOT NULL,
+  `civilStatusId` INT NOT NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_legalRepresentative_person1_idx` (`personId` ASC),
+  INDEX `fk_legalRepresentative_documents_person_type1_idx` (`documentsPersonTypeId` ASC),
+  INDEX `fk_legal_representative_civil_status1_idx` (`civilStatusId` ASC),
+  CONSTRAINT `fk_legalRepresentative_person1`
+    FOREIGN KEY (`personId`)
+    REFERENCES `alodigaWallet`.`person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_legalRepresentative_documents_person_type1`
+    FOREIGN KEY (`documentsPersonTypeId`)
+    REFERENCES `alodigaWallet`.`documents_person_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_legal_representative_civil_status1`
+    FOREIGN KEY (`civilStatusId`)
+    REFERENCES `alodigaWallet`.`civil_status` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `alodigaWallet`.`legal_person`
+ADD COLUMN `legalRepresentativeId` BIGINT NULL;
+ALTER TABLE `alodigaWallet`.`legal_person`
+ADD CONSTRAINT `fk_legal_person_legal_representative1`
+ FOREIGN KEY (`legalRepresentativeId`)
+ REFERENCES `alodigaWallet`.`legal_representative` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+
+-- cambios relacionados con feature Tipo de Servicios por Negocio
+-- author: Jesús Gómez
+-- Fecha: 09/08/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`business_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NOT NULL,
+  `code` VARCHAR(10) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`business_service_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NULL,
+  `code` VARCHAR(10) NULL,
+  `businessTypeId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_business_service_type_business_type1_idx` (`businessTypeId` ASC),
+  CONSTRAINT `fk_business_service_type_business_type1`
+    FOREIGN KEY (`businessTypeId`)
+    REFERENCES `alodigaWallet`.`business_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- Definir campos que no son obligatorios en tablas relacionadas con el solicitante (negocio)
+-- author: Jesús Gómez
+-- Fecha: 10/08/2020
+ALTER TABLE `alodigaWallet`.`natural_person` 
+DROP FOREIGN KEY `fk_natural_person_profession1`;
+ALTER TABLE `alodigaWallet`.`natural_person` 
+CHANGE COLUMN `identificationNumber` `identificationNumber` VARCHAR(40) NOT NULL ,
+CHANGE COLUMN `dueDateDocumentIdentification` `dueDateDocumentIdentification` DATE NOT NULL ,
+CHANGE COLUMN `firstName` `firstName` VARCHAR(40) NOT NULL ,
+CHANGE COLUMN `lastName` `lastName` VARCHAR(40) NOT NULL ,
+CHANGE COLUMN `gender` `gender` VARCHAR(1) NOT NULL ,
+CHANGE COLUMN `placeBirth` `placeBirth` VARCHAR(50) NOT NULL ,
+CHANGE COLUMN `dateBirth` `dateBirth` DATE NOT NULL ,
+CHANGE COLUMN `professionId` `professionId` INT(11) NULL ;
+ALTER TABLE `alodigaWallet`.`natural_person` 
+ADD CONSTRAINT `fk_natural_person_profession1`
+  FOREIGN KEY (`professionId`)
+  REFERENCES `alodigaWallet`.`profession` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ALTER TABLE `alodigaWallet`.`phone_person` 
+CHANGE COLUMN `countryCode` `countryCode` VARCHAR(4) NOT NULL ,
+CHANGE COLUMN `areaCode` `areaCode` VARCHAR(10) NOT NULL ,
+CHANGE COLUMN `indMainPhone` `indMainPhone` TINYINT(1) NOT NULL ;
 
 
+
+ALTER TABLE `alodigaWallet`.`legal_person` 
+CHANGE COLUMN `registerNumber` `registerNumber` VARCHAR(45) NOT NULL ,
+CHANGE COLUMN `dateInscriptionRegister` `dateInscriptionRegister` DATE NOT NULL ,
+CHANGE COLUMN `payedCapital` `payedCapital` FLOAT NOT NULL ;
+
+-- Agregada columna en person_classification
+-- author: Jesús Gómez
+-- Fecha: 12/08/2020
+ALTER TABLE `alodigaWallet`.`person_classification`
+ADD COLUMN `code` VARCHAR(10) NULL AFTER `description`;
+
+
+-- Modificado FK en business_service_type
+-- author: Jesús Gómez
+-- Fecha: 12/08/2020
+ALTER TABLE `alodigaWallet`.`business_service_type` 
+DROP FOREIGN KEY `fk_business_service_type_business_type1`;
+ALTER TABLE `alodigaWallet`.`business_service_type` 
+CHANGE COLUMN `businessTypeId` `businessTypeId` INT(11) NULL ;
+ALTER TABLE `alodigaWallet`.`business_service_type` 
+ADD CONSTRAINT `fk_business_service_type_business_type1`
+  FOREIGN KEY (`businessTypeId`)
+  REFERENCES `alodigaWallet`.`business_type` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
+-- cambios del campo indApproved de String a boolean en request_has_collection_request
+-- author: Yamelis Almea
+-- Fecha: 12/08/2020
+ALTER TABLE `alodigawallet`.`request_has_collection_request` 
+CHANGE COLUMN `indApproved` `indApproved` TINYINT(1) NULL DEFAULT NULL ;
