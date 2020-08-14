@@ -261,6 +261,9 @@ public class Constants {
     public static final int PHONE_TYPE_MOBILE = 2;
     public static final String NATURAL_PERSON_KEY = "naturalPersonId";
     public static final String BUSINESS_AFFILIATION_REQUEST_KEY = "businessAffiliationRequestId";
+    public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_COMPLET= "RECCOM";
+    public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_INCOMPLET= "RECINC";
+    
     public static final int STATUS_APPLICANT_ACTIVE = 1;
     public static final int STATUS_APPLICANT_BLACK_LIST_OK = 2;
     public static final int STATUS_APPLICANT_BLACK_LIST = 3;

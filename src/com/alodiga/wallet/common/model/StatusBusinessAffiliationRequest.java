@@ -26,6 +26,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 
 /**
  *
@@ -37,7 +38,8 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 @NamedQueries({
     @NamedQuery(name = "StatusBusinessAffiliationRequest.findAll", query = "SELECT s FROM StatusBusinessAffiliationRequest s"),
     @NamedQuery(name = "StatusBusinessAffiliationRequest.findById", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.id = :id"),
-    @NamedQuery(name = "StatusBusinessAffiliationRequest.findByDescription", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.description = :description")})
+    @NamedQuery(name = "StatusBusinessAffiliationRequest.findByDescription", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.description = :description"),
+    @NamedQuery(name = QueryConstants.STATUS_BUSINESS_AFFILIATON_REQUEST_BY_CODE, query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.code = :code")})
 public class StatusBusinessAffiliationRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
