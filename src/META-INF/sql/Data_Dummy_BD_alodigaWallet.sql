@@ -306,6 +306,7 @@ INSERT INTO `business_category` (`id`,`description`,`mccCode`) VALUES (2,'Taller
 -- Fecha: 10/08/2020
 INSERT INTO `business_sub_category` (`id`,`description`,`mccCode`,`businessCategoryId`) VALUES (1,'Hotel Internacional','1234',1);
 INSERT INTO `business_sub_category` (`id`,`description`,`mccCode`,`businessCategoryId`) VALUES (2,'Reparacion de AA','1472.1',2);
+
 -- data de tablas de dirección
 -- author: jesús Gómez
 -- Fecha: 13/08/2020
@@ -385,3 +386,15 @@ INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`
 INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('8', '2020-08-05 00:00:00', '4', '2');
 INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('9', '2020-08-05 00:00:00', '5', '2');
 INSERT INTO `alodigawallet`.`request_has_collection_request` (`id`, `createDate`, `collectionsRequestId`, `businessAffiliationRequestId`) VALUES ('10', '2020-08-05 00:00:00', '6', '2');
+
+-- data de tablas de solicitudes de afiliación
+-- author: jesús Gómez
+-- Fecha: 14/08/2020
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`, `code`) VALUES ('PENDIENTE', 'PENDIE');
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`, `code`) VALUES ('RECAUDOS COMPLETOS', 'RECCOM');
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`, `code`) VALUES ('RECAUDOS INCOMPLETOS', 'RECINC');
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`, `code`) VALUES ('PENDIENTE LISTA NEGRA', 'PELINE');
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`, `code`) VALUES ('APROBADA LISTA NEGRA', 'APLINE');
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`, `code`) VALUES ('RECHAZADA LISTA NEGRA', 'RELINE');
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`, `code`) VALUES ('APROBADA', 'APROBA');
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`, `code`) VALUES ('RECHAZADA', 'RECHAZ');
