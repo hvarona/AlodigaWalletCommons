@@ -264,6 +264,19 @@ public class Constants {
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_COMPLET= "RECCOM";
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_INCOMPLET= "RECINC";
     
+    public static final int STATUS_APPLICANT_ACTIVE = 1;
+    public static final int STATUS_APPLICANT_BLACK_LIST_OK = 2;
+    public static final int STATUS_APPLICANT_BLACK_LIST = 3;
+    public static final int STATUS_APPLICANT_INACTIVE = 4;
+    public static final int STATUS_APPLICANT_CUSTOMER = 5;
+    public static final int STATUS_REQUEST_IN_PROCESS = 1;
+    public static final int STATUS_REQUEST_PENDING = 1;
+    public static final int STATUS_REQUEST_APPROVED = 2;
+    public static final int STATUS_REQUEST_REJECTED = 3;
+    public static final int STATUS_REQUEST_COLLECTIONS_OK = 4;
+    public static final int STATUS_REQUEST_PENDING_BLACK_LIST = 5;
+    public static final int STATUS_REQUEST_BLACK_LIST_OK = 6;
+    public static final int STATUS_REQUEST_REJECTED_BLACK_LIST = 7;
     
     public static final int ORIGIN_APPLICATION_APP_ALODIGA_WALLET_ID = 1;
     public static final int ORIGIN_APPLICATION_ADMIN_WALLET_ID = 2;

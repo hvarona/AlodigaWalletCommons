@@ -331,6 +331,27 @@ INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('
 INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Duplex', 'DUPLEX');
 
 
+-- Insert en la tabla status_applicant
+-- author: Lulymar Gutierrez
+-- Fecha: 13/08/2020
+INSERT INTO `alodigaWallet`.`status_applicant` (`description`, `code`) VALUES ('ACTIVO', 'ACTIVO');
+INSERT INTO `alodigaWallet`.`status_applicant` (`description`, `code`) VALUES ('LISTA NEGRA OK', 'LISNOK');
+INSERT INTO `alodigaWallet`.`status_applicant` (`description`, `code`) VALUES ('LISTA NEGRA', 'LISNEG');
+INSERT INTO `alodigaWallet`.`status_applicant` (`description`, `code`) VALUES ('INACTIVO', 'INACTI');
+INSERT INTO `alodigaWallet`.`status_applicant` (`description`, `code`) VALUES ('NEGOCIO', 'NEGOCI');
+
+
+-- Update en la tabla legal_person
+-- author: Lulymar Gutierrez
+-- Fecha: 13/08/2020
+UPDATE `alodigaWallet`.`legal_person` SET `statusApplicantId`='1' WHERE `id`='1';
+
+
+-- Update en la tabla natural_person
+-- author: Lulymar Gutierrez
+-- Fecha: 13/08/2020
+UPDATE `alodigaWallet`.`natural_person` SET `statusApplicantId`='1' WHERE `id`='1';
+
 -- Insert en la tabla collections_request
 -- author: Yamelis Almea
 -- Fecha: 14/08/2020
