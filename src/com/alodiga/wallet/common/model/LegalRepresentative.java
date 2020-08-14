@@ -113,6 +113,9 @@ public class LegalRepresentative extends AbstractWalletEntity implements Seriali
     @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
+    @JoinColumn(name = "statusApplicantId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private StatusApplicant statusApplicantId;
 
     public LegalRepresentative() {
     }
@@ -258,6 +261,14 @@ public class LegalRepresentative extends AbstractWalletEntity implements Seriali
 
     public void setCivilStatusId(CivilStatus civilStatusId) {
         this.civilStatusId = civilStatusId;
+    }
+    
+    public StatusApplicant getStatusApplicantId() {
+        return statusApplicantId;
+    }
+
+    public void setStatusApplicantId(StatusApplicant statusApplicantId) {
+        this.statusApplicantId = statusApplicantId;
     }
 
     @Override
