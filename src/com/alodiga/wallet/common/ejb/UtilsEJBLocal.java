@@ -289,9 +289,4 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
 
     public List<PersonType> getPersonTypeByCountryByIndNaturalPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
-    //StatusCard
-    public List<StatusCard> getStatusCard(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
-    //StatusCardHasFinalState
-    public List<StatusCardHasFinalState> getStatusCardHasFinalState(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 }

@@ -219,13 +219,5 @@ public interface UtilsEJB extends WalletGenericEJB {
     public List<RequestHasCollectionRequest> getRequestsHasCollectionsRequestByBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public List<PersonType> getPersonTypeByCountryByIndNaturalPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
-    //StatusCard
-    public List<StatusCard> getStatusCard(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
-    public StatusCard saveStatusCard(StatusCard statusCard) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
-    //StatusCardHasFinalState
-    public List<StatusCardHasFinalState> getStatusCardHasFinalState(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
 }
