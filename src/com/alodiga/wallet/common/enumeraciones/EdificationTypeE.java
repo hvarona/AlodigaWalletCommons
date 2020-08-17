@@ -11,9 +11,13 @@ package com.alodiga.wallet.common.enumeraciones;
  */
 public enum EdificationTypeE {
     
-    DEB(1, "DEBITO", "DEB"),
-    CRED(2, "CREDITO", "CRED");
-    
+    CASA(1, "Casa", "CASA"),
+    QUINTA(2, "Quinta", "QUINTA"),
+    EDIFIC(3, "Edificio", "EDIFIC"),
+    RESIDE(4, "Residencia", "RESIDE"),
+    CENCOM(5, "Centro Comercial", "CENCOM"),
+    CHALET(6, "Chalet", "CHALET"),
+    DUPLEX(6, "Duplex", "DUPLEX");
     
     private int id;
     private String edificationTypeDescription;

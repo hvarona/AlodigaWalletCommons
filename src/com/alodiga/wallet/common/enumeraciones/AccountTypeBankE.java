@@ -11,8 +11,9 @@ package com.alodiga.wallet.common.enumeraciones;
  */
 public enum AccountTypeBankE {
     
-    DEB(1, "DEBITO", "DEB"),
-    CRED(2, "CREDITO", "CRED");
+    CTACOR(1, "Cuenta Corriente", "CTACOR"),
+    CTAAHO(2, "Cuenta de Ahorros", "CTAAHO"),
+    CTAUNI(2, "Cuenta Unica", "CTAUNI");
     
     
     private int id;

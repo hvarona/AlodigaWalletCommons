@@ -329,3 +329,28 @@ INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('
 INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Centro Comercial', 'CENCOM');
 INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Chalet', 'CHALET');
 INSERT INTO `alodigaWallet`.`edification_type` (`description`, `code`) VALUES ('Duplex', 'DUPLEX');
+
+-- data de tablas de estatus de la cuenta de banco
+-- author: Moises Graterol
+-- Fecha: 17/08/2020
+UPDATE `alodigaWallet`.`status_account_bank` SET `code`='ACTIVA' WHERE `id`='1';
+UPDATE `alodigaWallet`.`status_account_bank` SET `code`='INACTI' WHERE `id`='2';
+UPDATE `alodigaWallet`.`status_account_bank` SET `code`='BLOQUE' WHERE `id`='3';
+
+
+-- data de tablas de estado solicitud de afiliación de negocio
+-- author: Moises Graterol
+-- Fecha: 17/08/2020
+UPDATE `alodigaWallet`.`status_business_affiliation_request` SET `code`='RECAUD' WHERE `id`='1';
+UPDATE `alodigaWallet`.`status_business_affiliation_request` SET `code`='PELINE' WHERE `id`='2';
+UPDATE `alodigaWallet`.`status_business_affiliation_request` SET `code`='APLINE' WHERE `id`='3';
+UPDATE `alodigaWallet`.`status_business_affiliation_request` SET `code`='RELINE' WHERE `id`='4';
+UPDATE `alodigaWallet`.`status_business_affiliation_request` SET `code`='APROBA' WHERE `id`='5';
+UPDATE `alodigaWallet`.`status_business_affiliation_request` SET `code`='RECHAZ' WHERE `id`='6';
+
+-- data de tablas estado de solicitud de aprobación de transacción 
+-- author: Moises Graterol
+-- Fecha: 17/08/2020
+UPDATE `alodigaWallet`.`status_transaction_approve_request` SET `code`='PENDIE' WHERE `id`='1';
+UPDATE `alodigaWallet`.`status_transaction_approve_request` SET `code`='APROBA' WHERE `id`='2';
+UPDATE `alodigaWallet`.`status_transaction_approve_request` SET `code`='RECHAZ' WHERE `id`='3';

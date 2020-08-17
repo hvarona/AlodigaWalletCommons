@@ -70,7 +70,7 @@ public class RequestHasCollectionRequest extends AbstractWalletEntity implements
     @Basic(optional = false)
     @NotNull
     @Column(name = "indApproved")
-    private boolean indApproved;
+    private String indApproved;
     @JoinColumn(name = "businessAffiliationRequestId", referencedColumnName = "id")
     @OneToOne(optional = false)
     private BusinessAffiliationRequest businessAffiliationRequestId;
@@ -125,13 +125,15 @@ public class RequestHasCollectionRequest extends AbstractWalletEntity implements
         this.observations = observations;
     }
 
-    public boolean getIndApproved() {
+    public String getIndApproved() {
         return indApproved;
     }
 
-    public void setIndApproved(boolean indApproved) {
+    public void setIndApproved(String indApproved) {
         this.indApproved = indApproved;
     }
+
+  
 
     public BusinessAffiliationRequest getBusinessAffiliationRequestId() {
         return businessAffiliationRequestId;
