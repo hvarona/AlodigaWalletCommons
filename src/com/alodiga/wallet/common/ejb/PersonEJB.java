@@ -9,12 +9,15 @@ import com.alodiga.wallet.common.exception.RegisterNotFoundException;
 import com.alodiga.wallet.common.genericEJB.EJBRequest;
 import com.alodiga.wallet.common.genericEJB.WalletGenericEJB;
 import com.alodiga.wallet.common.model.DocumentsPersonType;
+import com.alodiga.wallet.common.model.LegalPerson;
 import com.alodiga.wallet.common.model.LegalRepresentative;
 import com.alodiga.wallet.common.model.PersonClassification;
 import com.alodiga.wallet.common.model.NaturalPerson;
+import com.alodiga.wallet.common.model.Person;
 import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.PhonePerson;
 import com.alodiga.wallet.common.model.PersonHasAddress;
+import com.alodiga.wallet.common.model.StatusApplicant;
 
 @SuppressWarnings(value = {"all"})
 @Remote
@@ -49,11 +52,23 @@ public interface PersonEJB extends WalletGenericEJB {
     public LegalRepresentative loadLegalRepresentative(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public LegalRepresentative saveLegalRepresentative(LegalRepresentative legalRepresentative) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
+    //Person
+    public List<Person> getPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public Person loadPerson(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public Person savePerson(Person person) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
     //Natural Person
     public List<NaturalPerson> getNaturalPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public NaturalPerson loadNaturalPerson(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
     public NaturalPerson saveNaturalPerson(NaturalPerson naturalPerson) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
+    //Legal Person
+    public List<LegalPerson> getLegalPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public LegalPerson loadLegalPerson(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public LegalPerson saveLegalPerson(LegalPerson legalPerson) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    //StatusApplicant
+    public List<StatusApplicant> getStatusApplicant(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public StatusApplicant loadStatusApplicant(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public StatusApplicant saveStatusApplicant(StatusApplicant statusApplicant) throws RegisterNotFoundException, NullParameterException, GeneralException;
 }

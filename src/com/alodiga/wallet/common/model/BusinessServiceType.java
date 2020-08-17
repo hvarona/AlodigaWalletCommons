@@ -7,6 +7,7 @@ package com.alodiga.wallet.common.model;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -33,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "BusinessServiceType.findAll", query = "SELECT b FROM BusinessServiceType b")
     , @NamedQuery(name = "BusinessServiceType.findById", query = "SELECT b FROM BusinessServiceType b WHERE b.id = :id")
     , @NamedQuery(name = "BusinessServiceType.findByDescription", query = "SELECT b FROM BusinessServiceType b WHERE b.description = :description")
+    , @NamedQuery(name = QueryConstants.BUSINESS_TYPE_BY_ID , query = "SELECT b FROM BusinessServiceType b WHERE b.businessTypeId.id = :businessTypeId")   
     , @NamedQuery(name = "BusinessServiceType.findByCode", query = "SELECT b FROM BusinessServiceType b WHERE b.code = :code")})
 public class BusinessServiceType extends AbstractWalletEntity implements Serializable {
 

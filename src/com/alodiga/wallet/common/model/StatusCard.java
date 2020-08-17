@@ -24,23 +24,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.utils.QueryConstants;
-
 /**
  *
  * @author jose
  */
 @Entity
-@Table(name = "status_business_affiliation_request")
+@Table(name = "status_card")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "StatusBusinessAffiliationRequest.findAll", query = "SELECT s FROM StatusBusinessAffiliationRequest s"),
-    @NamedQuery(name = "StatusBusinessAffiliationRequest.findById", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.id = :id"),
-    @NamedQuery(name = "StatusBusinessAffiliationRequest.findByDescription", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.description = :description"),
-    @NamedQuery(name = QueryConstants.STATUS_BUSINESS_AFFILIATON_REQUEST_BY_CODE, query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.code = :code")})
-public class StatusBusinessAffiliationRequest extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "StatusCard.findAll", query = "SELECT s FROM StatusCard s")
+    , @NamedQuery(name = "StatusCard.findById", query = "SELECT s FROM StatusCard s WHERE s.id = :id")
+    , @NamedQuery(name = "StatusCard.findByDescription", query = "SELECT s FROM StatusCard s WHERE s.description = :description")
+    , @NamedQuery(name = "StatusCard.findByCode", query = "SELECT s FROM StatusCard s WHERE s.code = :code")})
+public class StatusCard implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,20 +49,23 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
     @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
-    @Size(max = 10)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "code")
     private String code;
 
-    public StatusBusinessAffiliationRequest() {
+    public StatusCard() {
     }
 
-    public StatusBusinessAffiliationRequest(Integer id) {
+    public StatusCard(Integer id) {
         this.id = id;
     }
 
-    public StatusBusinessAffiliationRequest(Integer id, String description) {
+    public StatusCard(Integer id, String description, String code) {
         this.id = id;
         this.description = description;
+        this.code = code;
     }
 
     public Integer getId() {
@@ -84,7 +83,7 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     public String getCode() {
         return code;
     }
@@ -103,10 +102,10 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof StatusBusinessAffiliationRequest)) {
+        if (!(object instanceof StatusCard)) {
             return false;
         }
-        StatusBusinessAffiliationRequest other = (StatusBusinessAffiliationRequest) object;
+        StatusCard other = (StatusCard) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -115,17 +114,7 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.StatusBusinessAffiliationRequets[ id=" + id + " ]";
+        return "com.alodiga.wallet.common.model.StatusCard[ id=" + id + " ]";
     }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
-
+    
 }

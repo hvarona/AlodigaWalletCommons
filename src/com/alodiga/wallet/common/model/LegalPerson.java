@@ -5,6 +5,8 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -33,17 +35,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "legal_person")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "LegalPerson.findAll", query = "SELECT l FROM LegalPerson l")
-    , @NamedQuery(name = "LegalPerson.findById", query = "SELECT l FROM LegalPerson l WHERE l.id = :id")
-    , @NamedQuery(name = "LegalPerson.findByCreateDate", query = "SELECT l FROM LegalPerson l WHERE l.createDate = :createDate")
-    , @NamedQuery(name = "LegalPerson.findByUpdateDate", query = "SELECT l FROM LegalPerson l WHERE l.updateDate = :updateDate")
-    , @NamedQuery(name = "LegalPerson.findByIdentificationNumber", query = "SELECT l FROM LegalPerson l WHERE l.identificationNumber = :identificationNumber")
-    , @NamedQuery(name = "LegalPerson.findByTradeName", query = "SELECT l FROM LegalPerson l WHERE l.tradeName = :tradeName")
-    , @NamedQuery(name = "LegalPerson.findByBusinessName", query = "SELECT l FROM LegalPerson l WHERE l.businessName = :businessName")
-    , @NamedQuery(name = "LegalPerson.findByRegisterNumber", query = "SELECT l FROM LegalPerson l WHERE l.registerNumber = :registerNumber")
-    , @NamedQuery(name = "LegalPerson.findByDateInscriptionRegister", query = "SELECT l FROM LegalPerson l WHERE l.dateInscriptionRegister = :dateInscriptionRegister")
-    , @NamedQuery(name = "LegalPerson.findByPayedCapital", query = "SELECT l FROM LegalPerson l WHERE l.payedCapital = :payedCapital")})
-public class LegalPerson implements Serializable {
+    @NamedQuery(name = "LegalPerson.findAll", query = "SELECT l FROM LegalPerson l"),
+    @NamedQuery(name = "LegalPerson.findById", query = "SELECT l FROM LegalPerson l WHERE l.id = :id"),
+    @NamedQuery(name = "LegalPerson.findByCreateDate", query = "SELECT l FROM LegalPerson l WHERE l.createDate = :createDate"),
+    @NamedQuery(name = "LegalPerson.findByUpdateDate", query = "SELECT l FROM LegalPerson l WHERE l.updateDate = :updateDate"),
+    @NamedQuery(name = "LegalPerson.findByIdentificationNumber", query = "SELECT l FROM LegalPerson l WHERE l.identificationNumber = :identificationNumber"),
+    @NamedQuery(name = "LegalPerson.findByTradeName", query = "SELECT l FROM LegalPerson l WHERE l.tradeName = :tradeName"),
+    @NamedQuery(name = "LegalPerson.findByBusinessName", query = "SELECT l FROM LegalPerson l WHERE l.businessName = :businessName"),
+    @NamedQuery(name = "LegalPerson.findByRegisterNumber", query = "SELECT l FROM LegalPerson l WHERE l.registerNumber = :registerNumber"),
+    @NamedQuery(name = "LegalPerson.findByDateInscriptionRegister", query = "SELECT l FROM LegalPerson l WHERE l.dateInscriptionRegister = :dateInscriptionRegister"),
+    @NamedQuery(name = "LegalPerson.findByPayedCapital", query = "SELECT l FROM LegalPerson l WHERE l.payedCapital = :payedCapital")})
+public class LegalPerson extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -173,7 +175,6 @@ public class LegalPerson implements Serializable {
         this.dateInscriptionRegister = dateInscriptionRegister;
     }
 
-
     public BusinessCategory getBusinessCategoryId() {
         return businessCategoryId;
     }
@@ -246,5 +247,14 @@ public class LegalPerson implements Serializable {
     public void setStatusApplicantId(StatusApplicant statusApplicantId) {
         this.statusApplicantId = statusApplicantId;
     }
-    
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }
