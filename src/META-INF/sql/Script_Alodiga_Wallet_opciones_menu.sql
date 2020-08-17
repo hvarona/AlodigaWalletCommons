@@ -940,15 +940,15 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `pro
 -- Agregar opciones del menu en permission_group
 -- author: Lulymar Gutierrez
 -- Fecha: 12/08/2020
-INSERT INTO `alodigaWallet`.`permission_group` (`id`, `name`, `enabled`) VALUES ('6', 'Manage Membership Requests', '1');
+INSERT INTO `alodigaWallet`.`permission_group` (`id`, `name`, `enabled`) VALUES ('6', 'Manage Affiliation Requests', '1');
 
 -- Agregar opciones del menu en permission_group_data
 -- author: Lulymar Gutierrez
 -- Fecha: 12/08/2020
-INSERT INTO `alodigaWallet`.`permission_group_data` (`id`, `permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('11', '6', '1', 'Manage Membership Requests', 'Manage Membership Requests');
+INSERT INTO `alodigaWallet`.`permission_group_data` (`id`, `permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('11', '6', '1', 'Manage Affiliation Requests', 'Manage Affiliation Requests');
 INSERT INTO `alodigaWallet`.`permission_group_data` (`id`, `permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('12', '6', '2', 'Gestionar Solicitudes de Afiliacion', 'Gestionar Solicitudes de Afiliacion');
 
---permission
+-- permission
 UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='61';
 UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='62';
 UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='63';
@@ -974,7 +974,8 @@ UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='102'
 UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='103';
 UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='104';
 
--- Agregar opciones del menu de Business Type
+
+-- Agregar opciones del menu de Business Service Type
 -- author: Jorge Pinto
 -- Fecha: 12/08/2020
 
