@@ -974,9 +974,6 @@ UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='102'
 UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='103';
 UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='6' WHERE `id`='104';
 
--- Agregar opciones del menu de Business Service Type
--- author: Jorge Pinto
--- Fecha: 12/08/2020
 
 -- Agregar opciones del menu de Business Service Type
 -- author: Jorge Pinto
