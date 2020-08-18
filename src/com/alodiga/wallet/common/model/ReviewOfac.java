@@ -5,6 +5,9 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -33,13 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "review_ofac")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ReviewOfac.findAll", query = "SELECT r FROM ReviewOfac r")
-    , @NamedQuery(name = "ReviewOfac.findById", query = "SELECT r FROM ReviewOfac r WHERE r.id = :id")
-    , @NamedQuery(name = "ReviewOfac.findByResultReview", query = "SELECT r FROM ReviewOfac r WHERE r.resultReview = :resultReview")
-    , @NamedQuery(name = "ReviewOfac.findByObservations", query = "SELECT r FROM ReviewOfac r WHERE r.observations = :observations")
-    , @NamedQuery(name = "ReviewOfac.findByCreateDate", query = "SELECT r FROM ReviewOfac r WHERE r.createDate = :createDate")
-    , @NamedQuery(name = "ReviewOfac.findByUpdateDate", query = "SELECT r FROM ReviewOfac r WHERE r.updateDate = :updateDate")})
-public class ReviewOfac implements Serializable {
+    @NamedQuery(name = "ReviewOfac.findAll", query = "SELECT r FROM ReviewOfac r"),
+    @NamedQuery(name = "ReviewOfac.findById", query = "SELECT r FROM ReviewOfac r WHERE r.id = :id"),
+    @NamedQuery(name = "ReviewOfac.findByResultReview", query = "SELECT r FROM ReviewOfac r WHERE r.resultReview = :resultReview"),
+    @NamedQuery(name = "ReviewOfac.findByObservations", query = "SELECT r FROM ReviewOfac r WHERE r.observations = :observations"),
+    @NamedQuery(name = "ReviewOfac.findByCreateDate", query = "SELECT r FROM ReviewOfac r WHERE r.createDate = :createDate"),
+    @NamedQuery(name = "ReviewOfac.findByUpdateDate", query = "SELECT r FROM ReviewOfac r WHERE r.updateDate = :updateDate"),
+    @NamedQuery(name = QueryConstants.REVIEW_OFAC_BY_REQUEST, query = "SELECT r FROM ReviewOfac r WHERE r.personId.id = :personId AND r.businessAffiliationRequestId.id = :businessAffiliationRequestId")})
+public class ReviewOfac extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -170,5 +174,14 @@ public class ReviewOfac implements Serializable {
     public String toString() {
         return "com.alodiga.wallet.common.model.ReviewOfac[ id=" + id + " ]";
     }
-    
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }
