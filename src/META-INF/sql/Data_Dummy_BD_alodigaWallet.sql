@@ -352,3 +352,10 @@ UPDATE `alodigaWallet`.`legal_person` SET `statusApplicantId`='1' WHERE `id`='1'
 -- author: Lulymar Gutierrez
 -- Fecha: 13/08/2020
 UPDATE `alodigaWallet`.`natural_person` SET `statusApplicantId`='1' WHERE `id`='1';
+
+
+-- Update en la tabla natural_person
+-- author: Lulymar Gutierrez
+-- Fecha: 14/08/2020
+INSERT INTO `alodigaWallet`.`reviewType` (`id`, `description`) VALUES ('1', 'Recaudos');
+INSERT INTO `alodigaWallet`.`reviewType` (`id`, `description`) VALUES ('2', 'Lista Negra OFAC');
