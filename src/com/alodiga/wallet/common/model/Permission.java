@@ -155,6 +155,10 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long ADD_STATUS_CARD = 122L;
     public static Long EDIT_STATUS_CARD = 123L;
     public static Long VIEW_STATUS_CARD = 124L;
+    public static Long LIST_STATUS_CARD_FINAL = 125L;
+    public static Long ADD_STATUS_CARD_FINAL = 126L;
+    public static Long EDIT_STATUS_CARD_FINAL = 127L;
+    public static Long VIEW_STATUS_CARD_FINAL = 128L;
 
 
 

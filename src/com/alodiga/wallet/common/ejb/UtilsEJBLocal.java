@@ -304,4 +304,7 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
 
     //StatusCardHasFinalState
     public List<StatusCardHasFinalState> getStatusCardHasFinalState(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public List<StatusCardHasFinalState> getStatusCardById(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public boolean validateStatusCardHasFinalState(Integer statusId,Integer finalId)throws GeneralException, NullParameterException; 
+    public StatusCardHasFinalState saveStatusCardHasFinalState(StatusCardHasFinalState statusCardHasFinalState) throws RegisterNotFoundException, NullParameterException, GeneralException;
 }

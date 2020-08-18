@@ -5,6 +5,9 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -33,8 +36,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "StatusCardHasFinalState.findAll", query = "SELECT s FROM StatusCardHasFinalState s")
     , @NamedQuery(name = "StatusCardHasFinalState.findById", query = "SELECT s FROM StatusCardHasFinalState s WHERE s.id = :id")
     , @NamedQuery(name = "StatusCardHasFinalState.findByCreateDate", query = "SELECT s FROM StatusCardHasFinalState s WHERE s.createDate = :createDate")
-    , @NamedQuery(name = "StatusCardHasFinalState.findByUpdateDate", query = "SELECT s FROM StatusCardHasFinalState s WHERE s.updateDate = :updateDate")})
-public class StatusCardHasFinalState implements Serializable {
+    , @NamedQuery(name = "StatusCardHasFinalState.findByUpdateDate", query = "SELECT s FROM StatusCardHasFinalState s WHERE s.updateDate = :updateDate")
+    , @NamedQuery(name = QueryConstants.CARDSTATUS_BY_ID, query = "SELECT s FROM StatusCardHasFinalState s WHERE s.statusCardId.id=:statusCardId")})
+public class StatusCardHasFinalState extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -125,6 +129,16 @@ public class StatusCardHasFinalState implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.StatusCardHasFinalState[ id=" + id + " ]";
+    }
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }

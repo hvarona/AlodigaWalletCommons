@@ -1048,3 +1048,26 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `pro
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('122', '122', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('123', '123', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('124', '124', '1');
+
+-- Agregar opciones del menu de la lista Status Card Has Final State
+-- author: Jorge Pinto
+-- Fecha: 17/08/2020
+
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('125', '1', 'ListStatusCardFinal', 'status_card_has_final_state', 'ListStatusCardFinal', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('126', '1', 'AddStatusCardFinal', 'status_card_has_final_state', 'AddStatusCardFinal', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('127', '1', 'EditStatusCardFinal', 'status_card_has_final_state', 'EditStatusCardFinal', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('128', '1', 'ViewStatusCardFinal', 'status_card_has_final_state', 'ViewStatusCardFinal', '1');
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('125', '1', 'List Status Card Final', 'List Status Card Final');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('125', '2', 'Lista de Status de Tarjeta Final', 'Lista de Status de Tarjeta Final');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('126', '1', 'Add Status Card Final', 'Add Status Card Final');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('126', '2', 'Agregar Status de Tarjeta Final', 'Agregar Status de Tarjeta Final');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('127', '1', 'Edit Status Card Final', 'Edit Status Card Final');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('127', '2', 'Editar Status de Tarjeta', 'Editar Status de Tarjeta Final');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('128', '1', 'View Status Card Final', 'View Status Card Final');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('128', '2', 'Ver Status de Tarjeta Final', 'Ver Status de Tarjeta Final');
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('125', '125', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('126', '126', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('127', '127', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('128', '128', '1');

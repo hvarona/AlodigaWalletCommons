@@ -290,4 +290,5 @@ public class Constants {
     
     //Parámetros de las consultas de BD
     public static final String PARAM_CODE = "code";
+    public static final String STATUS_KEY = "statusCardId";
 }
