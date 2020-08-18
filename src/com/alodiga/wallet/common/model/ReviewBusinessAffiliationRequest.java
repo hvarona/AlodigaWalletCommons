@@ -5,6 +5,9 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -32,14 +35,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "review_business_affiliation_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findAll", query = "SELECT r FROM ReviewBusinessAffiliationRequest r")
-    , @NamedQuery(name = "ReviewBusinessAffiliationRequest.findById", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.id = :id")
-    , @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByReviewDate", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.reviewDate = :reviewDate")
-    , @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByObservations", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.observations = :observations")
-    , @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByIndApproved", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.indApproved = :indApproved")
-    , @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByCreateDate", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.createDate = :createDate")
-    , @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByUpdateDate", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.updateDate = :updateDate")})
-public class ReviewBusinessAffiliationRequest implements Serializable {
+    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findAll", query = "SELECT r FROM ReviewBusinessAffiliationRequest r"),
+    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findById", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.id = :id"),
+    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByReviewDate", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.reviewDate = :reviewDate"),
+    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByObservations", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.observations = :observations"),
+    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByIndApproved", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.indApproved = :indApproved"),
+    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByCreateDate", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.createDate = :createDate"),
+    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByUpdateDate", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.updateDate = :updateDate"),
+    @NamedQuery(name = QueryConstants.REVIEW_REQUEST_BY_REQUEST, query = "SELECT r FROM ReviewBusinessAffiliationRequest r where r.businessAffiliationRequestId.id = :businessAffiliationRequestId AND r.reviewTypeId.id = :reviewTypeId")})
+
+public class ReviewBusinessAffiliationRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -174,5 +179,14 @@ public class ReviewBusinessAffiliationRequest implements Serializable {
     public String toString() {
         return "com.alodiga.wallet.common.model.ReviewBusinessAffiliationRequest[ id=" + id + " ]";
     }
-    
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }

@@ -277,13 +277,11 @@ public class Constants {
     public static final int STATUS_REQUEST_PENDING_BLACK_LIST = 5;
     public static final int STATUS_REQUEST_BLACK_LIST_OK = 6;
     public static final int STATUS_REQUEST_REJECTED_BLACK_LIST = 7;
-    
     public static final int ORIGIN_APPLICATION_APP_ALODIGA_WALLET_ID = 1;
     public static final int ORIGIN_APPLICATION_ADMIN_WALLET_ID = 2;
-    
-    
     public static final int STATUS_TRANSACTION_APPROVED_REQUEST = 1;
     public static final int STATUS_ACCOUNT_BANK = 1;
+    
     
     public static final int NATURAL_PERSON = 1;
     public static final int LEGAL_PERSON = 2;
@@ -291,4 +289,6 @@ public class Constants {
     //Parámetros de las consultas de BD
     public static final String PARAM_CODE = "code";
     public static final String STATUS_KEY = "statusCardId";
+    public static final int REVIEW_REQUEST_TYPE = 1;
+    
 }
