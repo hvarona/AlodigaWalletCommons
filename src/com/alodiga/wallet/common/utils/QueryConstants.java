@@ -188,4 +188,8 @@ public class QueryConstants {
     public static final String PARAM_REVIEW_TYPE_ID = "reviewTypeId";
     public static final String PARAM_PERSON_ID = "personId";
     public static final String PARAM_LEGAL_REPRESENTATIVE_ID = "legalRepresentativeId";
+    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST_COMPLET = "RequestHasCollectionsRequestByBusinessAffiliationRequestComplet";
+    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST_INCOMPLET = "RequestHasCollectionsRequestByBusinessAffiliationRequestInComplet";
+    public static final String STATUS_BUSINESS_AFFILIATON_REQUEST_BY_CODE = "StatusBusinessAffiliationRequestByCode";
+    public static final String CARDSTATUS_BY_ID = "cardStatusById";
 }
