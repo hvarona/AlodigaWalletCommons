@@ -58,4 +58,5 @@ public class EjbConstants {
     public static final String PARAM_COLLECTION_REQUEST_ID = "collectionsRequestId";
     public static final String PARAM_IND_NATURAL_PERSON = "indNaturalPerson";
     public static final String PARAM_BUSINESS_AFFILIATION_REQUEST = "businessAffiliationRequestId";
+    public static final String PARAM_STATUS_ID = "statusCardId";
 }
