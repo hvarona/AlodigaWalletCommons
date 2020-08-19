@@ -5,8 +5,6 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -31,14 +29,13 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author jose
  */
 @Entity
-@Table(name = "status_card")
+@Table(name = "employed_position")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "StatusCard.findAll", query = "SELECT s FROM StatusCard s")
-    , @NamedQuery(name = "StatusCard.findById", query = "SELECT s FROM StatusCard s WHERE s.id = :id")
-    , @NamedQuery(name = "StatusCard.findByDescription", query = "SELECT s FROM StatusCard s WHERE s.description = :description")
-    , @NamedQuery(name = "StatusCard.findByCode", query = "SELECT s FROM StatusCard s WHERE s.code = :code")})
-public class StatusCard extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "EmployedPosition.findAll", query = "SELECT e FROM EmployedPosition e")
+    , @NamedQuery(name = "EmployedPosition.findById", query = "SELECT e FROM EmployedPosition e WHERE e.id = :id")
+    , @NamedQuery(name = "EmployedPosition.findByName", query = "SELECT e FROM EmployedPosition e WHERE e.name = :name")})
+public class EmployedPosition implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,25 +46,21 @@ public class StatusCard extends AbstractWalletEntity implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "description")
-    private String description;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "code")
-    private String code;
+    @Column(name = "name")
+    private String name;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employedPositionId")
+    private Collection<Employee> employeeCollection;
 
-    public StatusCard() {
+    public EmployedPosition() {
     }
 
-    public StatusCard(Integer id) {
+    public EmployedPosition(Integer id) {
         this.id = id;
     }
 
-    public StatusCard(Integer id, String description, String code) {
+    public EmployedPosition(Integer id, String name) {
         this.id = id;
-        this.description = description;
-        this.code = code;
+        this.name = name;
     }
 
     public Integer getId() {
@@ -78,20 +71,22 @@ public class StatusCard extends AbstractWalletEntity implements Serializable {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCode() {
-        return code;
+    @XmlTransient
+    @JsonIgnore
+    public Collection<Employee> getEmployeeCollection() {
+        return employeeCollection;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
+        this.employeeCollection = employeeCollection;
     }
 
     @Override
@@ -104,10 +99,10 @@ public class StatusCard extends AbstractWalletEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof StatusCard)) {
+        if (!(object instanceof EmployedPosition)) {
             return false;
         }
-        StatusCard other = (StatusCard) object;
+        EmployedPosition other = (EmployedPosition) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -116,17 +111,7 @@ public class StatusCard extends AbstractWalletEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.StatusCard[ id=" + id + " ]";
-    }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
+        return "com.alodiga.wallet.common.model.EmployedPosition[ id=" + id + " ]";
     }
     
 }

@@ -56,12 +56,6 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
     @Size(max = 10)
     @Column(name = "code")
     private String code;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusBusinessAffiliationRequetsId")
-    private Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "finalStateId")
-    private Collection<StatusBusinessAffiliationHasFinalState> statusBusinessAffiliationHasFinalStateCollection1;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusBusinessAffiliationRequetsId")
-//    private Collection<BusinessAffiliationRequets> businessAffiliationRequetsCollection;
 
     public StatusBusinessAffiliationRequest() {
     }
@@ -90,16 +84,15 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
     public void setDescription(String description) {
         this.description = description;
     }
+    
+    public String getCode() {
+        return code;
+    }
 
-//    @XmlTransient
-//    @JsonIgnore
-//    public Collection<BusinessAffiliationRequets> getBusinessAffiliationRequetsCollection() {
-//        return businessAffiliationRequetsCollection;
-//    }
-//
-//    public void setBusinessAffiliationRequetsCollection(Collection<BusinessAffiliationRequets> businessAffiliationRequetsCollection) {
-//        this.businessAffiliationRequetsCollection = businessAffiliationRequetsCollection;
-//    }
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -123,14 +116,6 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.StatusBusinessAffiliationRequets[ id=" + id + " ]";
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     @Override
