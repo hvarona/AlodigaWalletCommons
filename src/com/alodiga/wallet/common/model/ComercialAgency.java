@@ -5,8 +5,6 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -16,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,14 +31,13 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author jose
  */
 @Entity
-@Table(name = "status_card")
+@Table(name = "comercial_agency")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "StatusCard.findAll", query = "SELECT s FROM StatusCard s")
-    , @NamedQuery(name = "StatusCard.findById", query = "SELECT s FROM StatusCard s WHERE s.id = :id")
-    , @NamedQuery(name = "StatusCard.findByDescription", query = "SELECT s FROM StatusCard s WHERE s.description = :description")
-    , @NamedQuery(name = "StatusCard.findByCode", query = "SELECT s FROM StatusCard s WHERE s.code = :code")})
-public class StatusCard extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "ComercialAgency.findAll", query = "SELECT c FROM ComercialAgency c")
+    , @NamedQuery(name = "ComercialAgency.findById", query = "SELECT c FROM ComercialAgency c WHERE c.id = :id")
+    , @NamedQuery(name = "ComercialAgency.findByName", query = "SELECT c FROM ComercialAgency c WHERE c.name = :name")})
+public class ComercialAgency implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,26 +47,25 @@ public class StatusCard extends AbstractWalletEntity implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "description")
-    private String description;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "code")
-    private String code;
+    @Size(min = 1, max = 80)
+    @Column(name = "name")
+    private String name;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "comercialAgencyId")
+    private Collection<Employee> employeeCollection;
+    @JoinColumn(name = "cityId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private City cityId;
 
-    public StatusCard() {
+    public ComercialAgency() {
     }
 
-    public StatusCard(Integer id) {
+    public ComercialAgency(Integer id) {
         this.id = id;
     }
 
-    public StatusCard(Integer id, String description, String code) {
+    public ComercialAgency(Integer id, String name) {
         this.id = id;
-        this.description = description;
-        this.code = code;
+        this.name = name;
     }
 
     public Integer getId() {
@@ -78,20 +76,30 @@ public class StatusCard extends AbstractWalletEntity implements Serializable {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCode() {
-        return code;
+    @XmlTransient
+    @JsonIgnore
+    public Collection<Employee> getEmployeeCollection() {
+        return employeeCollection;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
+        this.employeeCollection = employeeCollection;
+    }
+
+    public City getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(City cityId) {
+        this.cityId = cityId;
     }
 
     @Override
@@ -104,10 +112,10 @@ public class StatusCard extends AbstractWalletEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof StatusCard)) {
+        if (!(object instanceof ComercialAgency)) {
             return false;
         }
-        StatusCard other = (StatusCard) object;
+        ComercialAgency other = (ComercialAgency) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -116,17 +124,7 @@ public class StatusCard extends AbstractWalletEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.StatusCard[ id=" + id + " ]";
-    }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
+        return "com.alodiga.wallet.common.model.ComercialAgency[ id=" + id + " ]";
     }
     
 }

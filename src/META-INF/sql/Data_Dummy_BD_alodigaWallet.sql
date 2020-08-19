@@ -354,6 +354,13 @@ UPDATE `alodigaWallet`.`legal_person` SET `statusApplicantId`='1' WHERE `id`='1'
 -- Fecha: 13/08/2020
 UPDATE `alodigaWallet`.`natural_person` SET `statusApplicantId`='1' WHERE `id`='1';
 
+
+-- Update en la tabla natural_person
+-- author: Lulymar Gutierrez
+-- Fecha: 14/08/2020
+INSERT INTO `alodigaWallet`.`reviewType` (`id`, `description`) VALUES ('1', 'Recaudos');
+INSERT INTO `alodigaWallet`.`reviewType` (`id`, `description`) VALUES ('2', 'Lista Negra OFAC');
+
 -- Insert en la tabla collections_request
 -- author: Yamelis Almea
 -- Fecha: 14/08/2020
@@ -424,3 +431,9 @@ UPDATE `alodigaWallet`.`status_business_affiliation_request` SET `code`='RECHAZ'
 UPDATE `alodigaWallet`.`status_transaction_approve_request` SET `code`='PENDIE' WHERE `id`='1';
 UPDATE `alodigaWallet`.`status_transaction_approve_request` SET `code`='APROBA' WHERE `id`='2';
 UPDATE `alodigaWallet`.`status_transaction_approve_request` SET `code`='RECHAZ' WHERE `id`='3';
+
+
+-- Update en la tabla status_business_affiliation_request
+-- author: Lulymar Gutierrez
+-- Fecha: 18/08/2020
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`, `code`) VALUES ('RECAUDOS SIN APROBAR', 'RSA');

@@ -15,6 +15,7 @@ public class EjbConstants {
     public static final String USER_EJB = "ejb/wallet/UserEJB";
     public static final String UTILS_EJB = "ejb/wallet/UtilsEJB";
     public static final String PERSON_EJB = "ejb/wallet/PersonEJB";
+    public static final String BUSINESS_PORTAL_EJB = "ejb/wallet/BusinessPortalEJB";
     
     public static final String PROPERTIES_PACKAGE = "com.alodiga.wallet.common.utils.";
     public static final String ERROR_FILE_NAME = PROPERTIES_PACKAGE + "system_error";
@@ -58,4 +59,8 @@ public class EjbConstants {
     public static final String PARAM_COLLECTION_REQUEST_ID = "collectionsRequestId";
     public static final String PARAM_IND_NATURAL_PERSON = "indNaturalPerson";
     public static final String PARAM_BUSINESS_AFFILIATION_REQUEST = "businessAffiliationRequestId";
+    public static final String PARAM_STATUS_ID = "statusCardId";
+    public static final String PARAM_REVIEW_REQUEST_TYPE_ID = "reviewTypeId";    
+    public static final String PARAM_LEGAL_REPRESENTATIVE_ID = "legalRepresentativeId";
+    public static final String PARAM_PERSON_TYPE_ID = "personTypeId";
 }
