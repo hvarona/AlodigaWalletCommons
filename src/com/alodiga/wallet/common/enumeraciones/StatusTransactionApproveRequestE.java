@@ -7,9 +7,9 @@ package com.alodiga.wallet.common.enumeraciones;
 
 public enum StatusTransactionApproveRequestE {
 
-	PEND(1, "Pendiente", "PEND"),
-	APPR(2, "Aprovada", "APPR"),
-	REJE(3, "Rechazada", "REJE");
+	PENDIE(1, "Pendiente", "PENDIE"),
+	APROBA(2, "Aprovada", "APROBA"),
+	RECHAZ(3, "Rechazada", "RECHAZ");
         
     private int id;
     private String statusTransactionApproveRequestDescription;

@@ -169,6 +169,7 @@ public class QueryConstants {
     public static final String PARAM_BUSSINESS_ID = "bussinessId";
     public static final String PERSON_TYPE_BY_COUNTRY = "personTypeByCountry";
     public static final String COLLECTION_TYPE_BY_COUNTRY = "CollectionTypeByCountry";
+    public static final String REVIEW_OFAC_BY_REQUEST = "reviewOfacByRequest";
     public static final String PARAM_REQUEST_NUMBER = "requestNumber";
     public static final String PARAM_CODE = "code";
     public static final String PARAM_STATUS_TRANSACTION_APPROVE_REQUEST_ID = "statusTransactionApproveRequestId";
@@ -177,11 +178,19 @@ public class QueryConstants {
     public static final String PHONES_BY_PERSON = "phonesByPerson";
     public static final String PERSON_HAS_ADDRESS_BY_PERSON = "personHasAddressByPerson";
     public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_REQUEST_BY_COLLECTION_REQUEST = "RequestHasCollectionsRequestByRequestsByCollectionRequest";
-    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST = "RequestHasCollectionsRequestByBusinessAffiliationRequest";
+    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST = "requestHasCollectionsRequestByBusinessAffiliationRequest";
+    public static final String LEGAL_PERSON_BY_LEGAL_REPRESENTATIVE = "legalPersonByLegalRepresentative";
     public static final String PARAM_IND_NATURAL_PERSON = "indNaturalPerson";
     public static final String PERSON_TYPE_BY_COUNTRY_BY_IND_NATURAL_PERSON = "personTypeByCountryByIndNaturalPerson";
     public static final String PARAM_BUSINESS_TYPE_ID = "businessTypeId";
+    public static final String REVIEW_REQUEST_BY_REQUEST = "reviewRequestByRequest";
+    public static final String PARAM_BUSINESS_AFFILIATION_REQUEST_ID = "businessAffiliationRequestId";
+    public static final String PARAM_REVIEW_TYPE_ID = "reviewTypeId";
+    public static final String PARAM_PERSON_ID = "personId";
+    public static final String PARAM_LEGAL_REPRESENTATIVE_ID = "legalRepresentativeId";
     public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST_COMPLET = "RequestHasCollectionsRequestByBusinessAffiliationRequestComplet";
     public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST_INCOMPLET = "RequestHasCollectionsRequestByBusinessAffiliationRequestInComplet";
     public static final String STATUS_BUSINESS_AFFILIATON_REQUEST_BY_CODE = "StatusBusinessAffiliationRequestByCode";
+    public static final String CARDSTATUS_BY_ID = "cardStatusById";
+    public static final String COLLECTIONS_BY_PERSON_TYPE = "collectionsByPersonType";
 }

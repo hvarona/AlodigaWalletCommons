@@ -24,7 +24,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.utils.QueryConstants;
@@ -37,17 +36,17 @@ import com.alodiga.wallet.common.utils.QueryConstants;
 @Table(name = "request_has_collection_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "RequestHasCollectionRequest.findAll", query = "SELECT r FROM RequestHasCollectionRequest r")
-    , @NamedQuery(name = "RequestHasCollectionRequest.findById", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.id = :id")
-    , @NamedQuery(name = "RequestHasCollectionRequest.findByCreateDate", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.createDate = :createDate")
-    , @NamedQuery(name = "RequestHasCollectionRequest.findByUpdateDate", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.updateDate = :updateDate")
-    , @NamedQuery(name = "RequestHasCollectionRequest.findByImageFileUrl", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.imageFileUrl = :imageFileUrl")
-    , @NamedQuery(name = "RequestHasCollectionRequest.findByObservations", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.observations = :observations")
-    , @NamedQuery(name = "RequestHasCollectionRequest.findByIndApproved", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.indApproved = :indApproved")
-    , @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_REQUEST_BY_COLLECTION_REQUEST, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId AND r.collectionsRequestId.id=:collectionsRequestId")
-    , @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId")
-    , @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST_COMPLET, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId AND r.indApproved is null or r.indApproved=0")
-    , @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST_INCOMPLET, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId AND r.indApproved=0")})
+    @NamedQuery(name = "RequestHasCollectionRequest.findAll", query = "SELECT r FROM RequestHasCollectionRequest r"),
+    @NamedQuery(name = "RequestHasCollectionRequest.findById", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.id = :id"),
+    @NamedQuery(name = "RequestHasCollectionRequest.findByCreateDate", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.createDate = :createDate"),
+    @NamedQuery(name = "RequestHasCollectionRequest.findByUpdateDate", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.updateDate = :updateDate"),
+    @NamedQuery(name = "RequestHasCollectionRequest.findByImageFileUrl", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.imageFileUrl = :imageFileUrl"),
+    @NamedQuery(name = "RequestHasCollectionRequest.findByObservations", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.observations = :observations"),
+    @NamedQuery(name = "RequestHasCollectionRequest.findByIndApproved", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.indApproved = :indApproved"),
+    @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_REQUEST_BY_COLLECTION_REQUEST, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId AND r.collectionsRequestId.id=:collectionsRequestId"),
+    @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId"),
+    @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST_COMPLET, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId AND r.indApproved is null or r.indApproved=0"),
+    @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST_INCOMPLET, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId AND r.indApproved=0")})
 
 public class RequestHasCollectionRequest extends AbstractWalletEntity implements Serializable {
 
@@ -175,7 +174,7 @@ public class RequestHasCollectionRequest extends AbstractWalletEntity implements
     public String toString() {
         return "com.alodiga.wallet.common.model.RequestHasCollectionRequest[ id=" + id + " ]";
     }
-    
+
     @Override
     public Object getPk() {
         return getId();
@@ -185,5 +184,5 @@ public class RequestHasCollectionRequest extends AbstractWalletEntity implements
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
-    
+
 }
