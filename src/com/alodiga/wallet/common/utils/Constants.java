@@ -257,6 +257,7 @@ public class Constants {
     public static final String REQUEST_NUMBER_MANUAL_WITHDRAWAL = "MW";
     public static final int ORIGIN_APPLICATION_WALLET_ADMIN_WEB_ID = 2;
     public static final String PERSON_KEY = "personId";
+    public static final String PERSON_TYPE_KEY = "personTypeId";
     public static final int PHONE_TYPE_ROOM = 1;
     public static final int PHONE_TYPE_MOBILE = 2;
     public static final String NATURAL_PERSON_KEY = "naturalPersonId";
@@ -280,6 +281,7 @@ public class Constants {
     public static final int ORIGIN_APPLICATION_APP_ALODIGA_WALLET_ID = 1;
     public static final int ORIGIN_APPLICATION_ADMIN_WALLET_ID = 2;
     public static final int STATUS_TRANSACTION_APPROVED_REQUEST = 1;
+    public static final int STATUS_REQUEST_COLLECTIONS_WITHOUT_APPROVAL = 8;
     public static final int STATUS_ACCOUNT_BANK = 1;
     
     

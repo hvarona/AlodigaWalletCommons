@@ -60,5 +60,6 @@ public class EjbConstants {
     public static final String PARAM_BUSINESS_AFFILIATION_REQUEST = "businessAffiliationRequestId";
     public static final String PARAM_STATUS_ID = "statusCardId";
     public static final String PARAM_REVIEW_REQUEST_TYPE_ID = "reviewTypeId";    
-    public static final String PARAM_LEGAL_REPRESENTATIVE_ID = "legalRepresentativeId";    
+    public static final String PARAM_LEGAL_REPRESENTATIVE_ID = "legalRepresentativeId";
+    public static final String PARAM_PERSON_TYPE_ID = "personTypeId";
 }
