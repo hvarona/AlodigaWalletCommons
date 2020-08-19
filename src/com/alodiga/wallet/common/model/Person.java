@@ -8,6 +8,7 @@ package com.alodiga.wallet.common.model;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -20,12 +21,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -42,6 +46,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Person.findByCreateDate", query = "SELECT p FROM Person p WHERE p.createDate = :createDate")
     , @NamedQuery(name = "Person.findByUpdateDate", query = "SELECT p FROM Person p WHERE p.updateDate = :updateDate")})
 public class Person extends AbstractWalletEntity implements Serializable {
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
+    private Employee employee;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personId")
+    private Collection<User> userCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -246,5 +255,23 @@ public class Person extends AbstractWalletEntity implements Serializable {
     @Override
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<User> getUserCollection() {
+        return userCollection;
+    }
+
+    public void setUserCollection(Collection<User> userCollection) {
+        this.userCollection = userCollection;
     }
 }
