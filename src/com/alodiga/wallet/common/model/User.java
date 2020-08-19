@@ -23,6 +23,8 @@ import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -40,6 +42,26 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "User.loadUserByEmail", query = "SELECT u FROM User u WHERE u.email=:email")
 })
 public class User extends AbstractWalletEntity implements Serializable {
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 40)
+    @Column(name = "identificationNumber")
+    private String identificationNumber;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<PasswordChangeRequest> passwordChangeRequestCollection;
+    @JoinColumn(name = "authorizedEmployeeId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Employee authorizedEmployeeId;
+    @JoinColumn(name = "documentsPersonTypeId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private DocumentsPersonType documentsPersonTypeId;
+    @JoinColumn(name = "employeeId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Employee employeeId;
+    @JoinColumn(name = "personId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Person personId;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -288,6 +310,56 @@ public class User extends AbstractWalletEntity implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public String getIdentificationNumber() {
+        return identificationNumber;
+    }
+
+    public void setIdentificationNumber(String identificationNumber) {
+        this.identificationNumber = identificationNumber;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<PasswordChangeRequest> getPasswordChangeRequestCollection() {
+        return passwordChangeRequestCollection;
+    }
+
+    public void setPasswordChangeRequestCollection(Collection<PasswordChangeRequest> passwordChangeRequestCollection) {
+        this.passwordChangeRequestCollection = passwordChangeRequestCollection;
+    }
+
+    public Employee getAuthorizedEmployeeId() {
+        return authorizedEmployeeId;
+    }
+
+    public void setAuthorizedEmployeeId(Employee authorizedEmployeeId) {
+        this.authorizedEmployeeId = authorizedEmployeeId;
+    }
+
+    public DocumentsPersonType getDocumentsPersonTypeId() {
+        return documentsPersonTypeId;
+    }
+
+    public void setDocumentsPersonTypeId(DocumentsPersonType documentsPersonTypeId) {
+        this.documentsPersonTypeId = documentsPersonTypeId;
+    }
+
+    public Employee getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Employee employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Person getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Person personId) {
+        this.personId = personId;
     }
 
 }
