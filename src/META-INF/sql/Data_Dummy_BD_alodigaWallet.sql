@@ -431,3 +431,9 @@ UPDATE `alodigaWallet`.`status_business_affiliation_request` SET `code`='RECHAZ'
 UPDATE `alodigaWallet`.`status_transaction_approve_request` SET `code`='PENDIE' WHERE `id`='1';
 UPDATE `alodigaWallet`.`status_transaction_approve_request` SET `code`='APROBA' WHERE `id`='2';
 UPDATE `alodigaWallet`.`status_transaction_approve_request` SET `code`='RECHAZ' WHERE `id`='3';
+
+
+-- Update en la tabla status_business_affiliation_request
+-- author: Lulymar Gutierrez
+-- Fecha: 18/08/2020
+INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`, `code`) VALUES ('RECAUDOS SIN APROBAR', 'RSA');
