@@ -1,0 +1,54 @@
+package com.alodiga.wallet.common.ejb;
+
+import java.util.List;
+
+import javax.ejb.Remote;
+
+import com.alodiga.wallet.common.exception.EmptyListException;
+import com.alodiga.wallet.common.exception.GeneralException;
+import com.alodiga.wallet.common.exception.NullParameterException;
+import com.alodiga.wallet.common.exception.RegisterNotFoundException;
+import com.alodiga.wallet.common.genericEJB.EJBRequest;
+import com.alodiga.wallet.common.genericEJB.WalletGenericEJB;
+import com.alodiga.wallet.common.model.AccountBank;
+import com.alodiga.wallet.common.model.City;
+import com.alodiga.wallet.common.model.CollectionType;
+import com.alodiga.wallet.common.model.CollectionsRequest;
+import com.alodiga.wallet.common.model.Country;
+import com.alodiga.wallet.common.model.DocumentsPersonType;
+import com.alodiga.wallet.common.model.Enterprise;
+import com.alodiga.wallet.common.model.PersonType;
+import com.alodiga.wallet.common.model.Sequences;
+import com.alodiga.wallet.common.model.State;
+import com.alodiga.wallet.common.model.TransactionApproveRequest;	
+
+
+@SuppressWarnings(value = {"all"})
+@Remote
+public interface BusinessPortalEJB extends WalletGenericEJB {
+
+    public List<PersonType> getPersonTypesBycountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
+
+    public  List<DocumentsPersonType> getDocumentPersonTypesBypersonTypeId(Long personTypeId)throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<CollectionType> getCollectionTypesBycountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<CollectionsRequest> getCollectionRequestsBycollectionTypeId(Long collectionTypeId) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<Country> getCountries() throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<State> getStatesByCountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<City> getCitiesByStateId(Long stateId) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public Sequences getSequencesByDocumentTypeByOriginApplication(Long documentTypeId, Long originApplicationId)  throws RegisterNotFoundException, GeneralException, NullParameterException;
+    
+    public TransactionApproveRequest saveTransactionApproveRequest(Long unifiedRegistryUserId, Long productId, Long transactionId, Long bankOperationId, Long documentTypeId, Long originApplicationId) throws NullParameterException, GeneralException;
+    
+    public AccountBank saveAccountBank(Long unifiedRegistryId, String accountNumber, Long bankId, Integer accountTypeBankId) throws NullParameterException, GeneralException;
+
+    public List<AccountBank> getAccountBankByUser(Long unifiedRegistryId) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public AccountBank getAccountBankByUserByBank(Long unifiedRegistryId, Long bankId) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+   }
