@@ -41,14 +41,10 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     
     public List<City> getCitiesByStateId(Long stateId) throws EmptyListException, GeneralException, NullParameterException;
     
-    public Sequences getSequencesByDocumentTypeByOriginApplication(Long documentTypeId, Long originApplicationId)  throws RegisterNotFoundException, GeneralException, NullParameterException;
+    public List<Sequences> getSequencesByDocumentType (EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+      
+    public String generateNumberSequence(List<Sequences> sequence, int originApplication) throws GeneralException, RegisterNotFoundException, NullParameterException;
     
-    public TransactionApproveRequest saveTransactionApproveRequest(Long unifiedRegistryUserId, Long productId, Long transactionId, Long bankOperationId, Long documentTypeId, Long originApplicationId) throws NullParameterException, GeneralException;
-    
-    public AccountBank saveAccountBank(Long unifiedRegistryId, String accountNumber, Long bankId, Integer accountTypeBankId) throws NullParameterException, GeneralException;
-
-    public List<AccountBank> getAccountBankByUser(Long unifiedRegistryId) throws EmptyListException, GeneralException, NullParameterException;
-    
-    public AccountBank getAccountBankByUserByBank(Long unifiedRegistryId, Long bankId) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
-   }
+    public Sequences saveSequences(Sequences sequence) throws RegisterNotFoundException, NullParameterException, GeneralException;
+   
+}
