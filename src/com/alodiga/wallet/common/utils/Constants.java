@@ -293,4 +293,8 @@ public class Constants {
     public static final String STATUS_KEY = "statusCardId";
     public static final int REVIEW_REQUEST_TYPE = 1;
     
+    //PLAID
+    public static final String CLIENTID = "5eea3c83ca4e880014b64ce2";
+    public static final String SECRET = "77ce7afbc3853883de5fc4ec90bd30";
+    
 }
