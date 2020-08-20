@@ -264,6 +264,8 @@ public class Constants {
     public static final String BUSINESS_AFFILIATION_REQUEST_KEY = "businessAffiliationRequestId";
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_COMPLET= "RECCOM";
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_INCOMPLET= "RECINC";
+    public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_PENDING= "PENDIE";
+    public static final String ORIGIN_APPLICATION_PORTAL_NEGOCIOS_CODE= "PORNEG";
     
     public static final int STATUS_APPLICANT_ACTIVE = 1;
     public static final int STATUS_APPLICANT_BLACK_LIST_OK = 2;

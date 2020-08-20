@@ -11,13 +11,18 @@ import com.alodiga.wallet.common.exception.RegisterNotFoundException;
 import com.alodiga.wallet.common.genericEJB.EJBRequest;
 import com.alodiga.wallet.common.genericEJB.WalletGenericEJB;
 import com.alodiga.wallet.common.model.AccountBank;
+import com.alodiga.wallet.common.model.Address;
+import com.alodiga.wallet.common.model.BusinessAffiliationRequest;
 import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.CollectionType;
 import com.alodiga.wallet.common.model.CollectionsRequest;
 import com.alodiga.wallet.common.model.Country;
 import com.alodiga.wallet.common.model.DocumentsPersonType;
 import com.alodiga.wallet.common.model.Enterprise;
+import com.alodiga.wallet.common.model.NaturalPerson;
+import com.alodiga.wallet.common.model.Person;
 import com.alodiga.wallet.common.model.PersonType;
+import com.alodiga.wallet.common.model.PhonePerson;
 import com.alodiga.wallet.common.model.Sequences;
 import com.alodiga.wallet.common.model.State;
 import com.alodiga.wallet.common.model.TransactionApproveRequest;	
@@ -50,5 +55,7 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     public List<AccountBank> getAccountBankByUser(Long unifiedRegistryId) throws EmptyListException, GeneralException, NullParameterException;
     
     public AccountBank getAccountBankByUserByBank(Long unifiedRegistryId, Long bankId) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public BusinessAffiliationRequest saveBusinessAffiliationRequest(Person person, NaturalPerson naturalPerson, PhonePerson phonePerson, Address address)throws NullParameterException, GeneralException;
     
    }

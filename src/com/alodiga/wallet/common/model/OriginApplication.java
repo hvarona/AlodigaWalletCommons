@@ -35,7 +35,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "OriginApplication.findAll", query = "SELECT o FROM OriginApplication o"),
     @NamedQuery(name = "OriginApplication.findById", query = "SELECT o FROM OriginApplication o WHERE o.id = :id"),
-    @NamedQuery(name = "OriginApplication.findByName", query = "SELECT o FROM OriginApplication o WHERE o.name = :name")})
+    @NamedQuery(name = "OriginApplication.findByName", query = "SELECT o FROM OriginApplication o WHERE o.name = :name"),
+    @NamedQuery(name = "OriginApplication.findByCode", query = "SELECT o FROM OriginApplication o WHERE o.code = :code")})
 public class OriginApplication extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
