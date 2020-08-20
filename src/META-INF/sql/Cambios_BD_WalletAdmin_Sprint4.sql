@@ -711,3 +711,114 @@ ADD CONSTRAINT `fk_card_status_card1`
  ON DELETE NO ACTION
  ON UPDATE NO ACTION;
 
+-- Agregar tablas para cambio de contraseña de usuario.
+-- author: Jesús Gómez
+-- Fecha: 18/08/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`comercial_agency` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(80) NOT NULL,
+  `cityId` BIGINT(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_comercialAgency_city1_idx` (`cityId` ASC),
+  CONSTRAINT `fk_comercialAgency_city1`
+    FOREIGN KEY (`cityId`)
+    REFERENCES `alodigaWallet`.`city` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`employed_position` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+ CREATE TABLE IF NOT EXISTS `alodigaWallet`.`employee` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `identificationNumber` VARCHAR(40) NULL,
+  `documentsPersonTypeId` INT NOT NULL,
+  `firstNames` VARCHAR(40) NULL,
+  `lastNames` VARCHAR(45) NULL,
+  `personId` BIGINT UNIQUE NOT NULL,
+  `employedPositionId` INT NOT NULL,
+  `comercialAgencyId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Employee_employedPosition1_idx` (`employedPositionId` ASC),
+  INDEX `fk_Employee_person1_idx` (`personId` ASC),
+  INDEX `fk_employee_comercialAgency1_idx` (`comercialAgencyId` ASC),
+  INDEX `fk_employee_documentsPersonType1_idx` (`documentsPersonTypeId` ASC),
+  CONSTRAINT `fk_Employee_employedPosition1`
+    FOREIGN KEY (`employedPositionId`)
+    REFERENCES `alodigaWallet`.`employed_position` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Employee_person1`
+    FOREIGN KEY (`personId`)
+    REFERENCES `alodigaWallet`.`person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_employee_comercialAgency1`
+    FOREIGN KEY (`comercialAgencyId`)
+    REFERENCES `alodigaWallet`.`comercial_agency` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_employee_documentsPersonType1`
+    FOREIGN KEY (`documentsPersonTypeId`)
+    REFERENCES `alodigaWallet`.`documents_person_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`password_change_request` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `requestNumber` VARCHAR(40) NULL,
+  `requestDate` TIMESTAMP NULL,
+  `indApproved` TINYINT(1) NULL,
+  `userId` BIGINT(10) NOT NULL,
+  `currentPassword` VARCHAR(20) NULL,
+  `newPassword` VARCHAR(20) NULL,
+  `createDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_password_change_request_user1_idx` (`userid` ASC),
+  CONSTRAINT `fk_password_change_request_user1`
+    FOREIGN KEY (`userId`)
+    REFERENCES `alodigaWallet`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+SET FOREIGN_KEY_CHECKS=0;
+ALTER TABLE `alodigaWallet`.`user`
+ADD COLUMN `documentsPersonTypeId` INT NOT NULL,
+ADD COLUMN `identificationNumber` VARCHAR(40) NOT NULL,
+ADD COLUMN `personId` BIGINT NOT NULL,
+ADD COLUMN `authorizedEmployeeId` INT NOT NULL,
+ADD COLUMN `employeeId` INT NOT NULL;
+ALTER TABLE `alodigaWallet`.`user`
+ADD CONSTRAINT `fk_user_documentsPersonType1`
+ FOREIGN KEY (`documentsPersonTypeId`)
+ REFERENCES `alodigaWallet`.`documents_person_type` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+ALTER TABLE `alodigaWallet`.`user`
+ADD CONSTRAINT `fk_user_person1`
+ FOREIGN KEY (`personId`)
+ REFERENCES `alodigaWallet`.`person` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+ALTER TABLE `alodigaWallet`.`user`
+ADD CONSTRAINT `fk_user_authorizedEmployee1`
+ FOREIGN KEY (`authorizedEmployeeId`)
+ REFERENCES `alodigaWallet`.`employee` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION; 
+ALTER TABLE `alodigaWallet`.`user`
+ADD CONSTRAINT `fk_user_employee1`
+ FOREIGN KEY (`employeeId`)
+ REFERENCES `alodigaWallet`.`employee` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+ SET FOREIGN_KEY_CHECKS=1;
+
+
+
