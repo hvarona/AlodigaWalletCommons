@@ -19,10 +19,12 @@ import com.alodiga.wallet.common.model.CollectionsRequest;
 import com.alodiga.wallet.common.model.Country;
 import com.alodiga.wallet.common.model.DocumentsPersonType;
 import com.alodiga.wallet.common.model.Enterprise;
+import com.alodiga.wallet.common.model.LegalPerson;
 import com.alodiga.wallet.common.model.NaturalPerson;
 import com.alodiga.wallet.common.model.Person;
 import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.PhonePerson;
+import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
 import com.alodiga.wallet.common.model.Sequences;
 import com.alodiga.wallet.common.model.State;
 import com.alodiga.wallet.common.model.TransactionApproveRequest;	
@@ -50,17 +52,10 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
       
     public String generateNumberSequence(List<Sequences> sequence, int originApplication) throws GeneralException, RegisterNotFoundException, NullParameterException;
     
-    public TransactionApproveRequest saveTransactionApproveRequest(Long unifiedRegistryUserId, Long productId, Long transactionId, Long bankOperationId, Long documentTypeId, Long originApplicationId) throws NullParameterException, GeneralException;
-    
-    public AccountBank saveAccountBank(Long unifiedRegistryId, String accountNumber, Long bankId, Integer accountTypeBankId) throws NullParameterException, GeneralException;
-
-    public List<AccountBank> getAccountBankByUser(Long unifiedRegistryId) throws EmptyListException, GeneralException, NullParameterException;
-    
-    public AccountBank getAccountBankByUserByBank(Long unifiedRegistryId, Long bankId) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
-    public BusinessAffiliationRequest saveBusinessAffiliationRequest(Person person, NaturalPerson naturalPerson, PhonePerson phonePerson, Address address)throws NullParameterException, GeneralException;
-    
     public Sequences saveSequences(Sequences sequence) throws RegisterNotFoundException, NullParameterException, GeneralException;
-   
+       
+    public BusinessAffiliationRequest saveBusinessAffiliationRequest(Person person, NaturalPerson naturalPerson,LegalPerson legalPerson, PhonePerson phonePerson, Address address)throws NullParameterException, GeneralException;
+    
+    public RequestHasCollectionRequest saveRequestHasCollectionsRequest(RequestHasCollectionRequest requestHasCollectionsRequest) throws NullParameterException, GeneralException;
 }
 

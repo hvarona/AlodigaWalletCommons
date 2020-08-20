@@ -282,6 +282,7 @@ public class Constants {
     public static final int STATUS_REQUEST_REJECTED_BLACK_LIST = 7;
     public static final int ORIGIN_APPLICATION_APP_ALODIGA_WALLET_ID = 1;
     public static final int ORIGIN_APPLICATION_ADMIN_WALLET_ID = 2;
+    public static final int ORIGIN_APPLICATION_PORTAL_WEB_ID = 3;
     public static final int STATUS_TRANSACTION_APPROVED_REQUEST = 1;
     public static final int STATUS_REQUEST_COLLECTIONS_WITHOUT_APPROVAL = 8;
     public static final int STATUS_ACCOUNT_BANK = 1;
