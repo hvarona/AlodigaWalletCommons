@@ -32,6 +32,7 @@ import com.alodiga.wallet.common.model.Address;
 import com.alodiga.wallet.common.model.Cumplimient;
 import com.alodiga.wallet.common.model.CumplimientStatus;
 
+
 /**
  *
  * @author ltoro
