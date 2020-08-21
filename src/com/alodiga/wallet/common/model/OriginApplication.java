@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -35,7 +36,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @NamedQueries({
     @NamedQuery(name = "OriginApplication.findAll", query = "SELECT o FROM OriginApplication o"),
     @NamedQuery(name = "OriginApplication.findById", query = "SELECT o FROM OriginApplication o WHERE o.id = :id"),
-    @NamedQuery(name = "OriginApplication.findByName", query = "SELECT o FROM OriginApplication o WHERE o.name = :name")})
+    @NamedQuery(name = "OriginApplication.findByName", query = "SELECT o FROM OriginApplication o WHERE o.name = :name"),
+    @NamedQuery(name = "OriginApplication.findByCode", query = "SELECT o FROM OriginApplication o WHERE o.code = :code")})
 public class OriginApplication extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,6 +49,11 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
     @Size(max = 50)
     @Column(name = "name")
     private String name;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 6)
+    @Column(name = "code")
+    private String code;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "originApplicationId")
     private Collection<PersonType> personTypeCollection;
 
@@ -82,8 +89,17 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
     public void setPersonTypeCollection(Collection<PersonType> personTypeCollection) {
         this.personTypeCollection = personTypeCollection;
     }
+    
 
-    @Override
+    public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

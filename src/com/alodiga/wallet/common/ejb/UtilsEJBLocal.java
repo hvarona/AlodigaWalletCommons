@@ -28,6 +28,7 @@ import com.alodiga.wallet.common.model.Currency;
 import com.alodiga.wallet.common.model.Enterprise;
 import com.alodiga.wallet.common.model.ExchangeRate;
 import com.alodiga.wallet.common.model.Language;
+import com.alodiga.wallet.common.model.OriginApplication;
 import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
@@ -339,6 +340,8 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
 
     public ReviewType saveReviewType(ReviewType reviewType) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
+    //OriginApplication
+    public OriginApplication loadOriginApplicationByCode(EJBRequest request)throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
     //Sequences
     public List<Sequences> getSequences(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
