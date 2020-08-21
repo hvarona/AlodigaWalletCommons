@@ -488,3 +488,15 @@ INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('3
 INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '3', '2');
 
 
+-- Insert en la tabla civilStatus y sequences
+-- author: Yamelis Almea
+-- Fecha: 21/08/2020
+INSERT INTO `alodigawallet`.`civil_status` (`id`, `description`, `languageId`) VALUES ('3', 'Divorciado', '2');
+INSERT INTO `alodigawallet`.`civil_status` (`id`, `description`, `languageId`) VALUES ('4', 'Viudo', '2');
+UPDATE `alodigawallet`.`civil_status` SET `description` = 'Casado' WHERE (`id` = '1');
+UPDATE `alodigawallet`.`civil_status` SET `description` = 'Solter0' WHERE (`id` = '2');
+
+INSERT INTO `alodigawallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '1', '3');
+INSERT INTO `alodigawallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '2', '3');
+
+
