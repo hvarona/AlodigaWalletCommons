@@ -264,6 +264,10 @@ public class Constants {
     public static final String BUSINESS_AFFILIATION_REQUEST_KEY = "businessAffiliationRequestId";
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_COMPLET= "RECCOM";
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_INCOMPLET= "RECINC";
+    public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_PENDING= "PENDIE";
+    public static final String ORIGIN_APPLICATION_PORTAL_NEGOCIOS_CODE= "PORNEG";
+    public static final String CURRENT_PASSWORD = "currentPassword";
+    public static final String USER_KEY = "userId";
     
     public static final int STATUS_APPLICANT_ACTIVE = 1;
     public static final int STATUS_APPLICANT_BLACK_LIST_OK = 2;
@@ -280,9 +284,12 @@ public class Constants {
     public static final int STATUS_REQUEST_REJECTED_BLACK_LIST = 7;
     public static final int ORIGIN_APPLICATION_APP_ALODIGA_WALLET_ID = 1;
     public static final int ORIGIN_APPLICATION_ADMIN_WALLET_ID = 2;
+    public static final int ORIGIN_APPLICATION_PORTAL_WEB_ID = 3;
     public static final int STATUS_TRANSACTION_APPROVED_REQUEST = 1;
     public static final int STATUS_REQUEST_COLLECTIONS_WITHOUT_APPROVAL = 8;
     public static final int STATUS_ACCOUNT_BANK = 1;
+    public static final int DOCUMENT_TYPE_RENEWAL_PASSWORD = 3;
+    
     
     
     public static final int NATURAL_PERSON = 1;
@@ -292,5 +299,12 @@ public class Constants {
     public static final String PARAM_CODE = "code";
     public static final String STATUS_KEY = "statusCardId";
     public static final int REVIEW_REQUEST_TYPE = 1;
+    
+    //PLAID
+    public static final String CLIENTID = "5eea3c83ca4e880014b64ce2";
+    public static final String SECRET = "77ce7afbc3853883de5fc4ec90bd30";
+    
+    //PersonClassification
+    public static Integer CLASSIFICATION_PERSON_EMPLOYEE = 9; 
     
 }

@@ -27,6 +27,7 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Preference;
 import com.alodiga.wallet.common.model.PreferenceField;
 
+
 /**
  *
  * @author usuario
