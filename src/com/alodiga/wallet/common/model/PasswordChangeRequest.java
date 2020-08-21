@@ -5,6 +5,8 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -41,7 +43,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "PasswordChangeRequest.findByNewPassword", query = "SELECT p FROM PasswordChangeRequest p WHERE p.newPassword = :newPassword")
     , @NamedQuery(name = "PasswordChangeRequest.findByCreateDate", query = "SELECT p FROM PasswordChangeRequest p WHERE p.createDate = :createDate")
     , @NamedQuery(name = "PasswordChangeRequest.findByUpdateDate", query = "SELECT p FROM PasswordChangeRequest p WHERE p.updateDate = :updateDate")})
-public class PasswordChangeRequest implements Serializable {
+public class PasswordChangeRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -57,10 +59,10 @@ public class PasswordChangeRequest implements Serializable {
     private Date requestDate;
     @Column(name = "indApproved")
     private Boolean indApproved;
-    @Size(max = 20)
+    @Size(max = 255)
     @Column(name = "currentPassword")
     private String currentPassword;
-    @Size(max = 20)
+    @Size(max = 255)
     @Column(name = "newPassword")
     private String newPassword;
     @Basic(optional = false)
@@ -183,5 +185,14 @@ public class PasswordChangeRequest implements Serializable {
     public String toString() {
         return "com.alodiga.wallet.common.model.PasswordChangeRequest[ id=" + id + " ]";
     }
-    
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }
