@@ -2,7 +2,6 @@ package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.sql.Timestamp;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,8 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.Profile;
-import com.alodiga.wallet.common.model.UserHasProfile;
 import com.alodiga.wallet.common.utils.QueryConstants;
 import java.util.Collection;
 import java.util.Date;
@@ -39,8 +36,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id=:id"),
     @NamedQuery(name = "User.validateUser", query = "SELECT u FROM User u WHERE u.login=:login AND u.password=:password"),
     @NamedQuery(name = "User.loadUserByLogin", query = "SELECT u FROM User u WHERE u.login=:login"),
-    @NamedQuery(name = "User.loadUserByEmail", query = "SELECT u FROM User u WHERE u.email=:email")
-})
+    @NamedQuery(name = "User.loadUserByEmail", query = "SELECT u FROM User u WHERE u.email=:email"),
+    @NamedQuery(name = QueryConstants.VALIDATE_PASSWORD, query = "SELECT u FROM User u WHERE u.password=:currentPassword AND u.id=:userId")})
 public class User extends AbstractWalletEntity implements Serializable {
 
     @Basic(optional = false)
@@ -159,7 +156,7 @@ public class User extends AbstractWalletEntity implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    
+
     public Date getCreationDate() {
         return creationDate;
     }
@@ -167,7 +164,6 @@ public class User extends AbstractWalletEntity implements Serializable {
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
-
 
     public String getLogin() {
         return this.login;
@@ -184,7 +180,7 @@ public class User extends AbstractWalletEntity implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getPhoneNumber() {
         return this.phoneNumber;
     }
@@ -212,22 +208,19 @@ public class User extends AbstractWalletEntity implements Serializable {
     public Profile getCurrentProfile() {
         Profile profile = null;
         for (UserHasProfile uhp : this.userHasProfile) {
-            if (uhp.getEndingDate() == null ) {
+            if (uhp.getEndingDate() == null) {
                 profile = uhp.getProfile();
             }
         }
         return profile;
     }
 
-
-
     @Override
     public String toString() {
         return super.toString();
     }
 
-     
-    public String getNaturalField(Object o,Object o2){
+    public String getNaturalField(Object o, Object o2) {
         StringBuilder sb = new StringBuilder();
         Class<?> thisClass = o.getClass();
         Class<?> thisClass2 = o2.getClass();
@@ -235,26 +228,27 @@ public class User extends AbstractWalletEntity implements Serializable {
             Field[] aClassFields = thisClass.getDeclaredFields();
             Field[] aClassFields2 = thisClass2.getDeclaredFields();
             sb.append("[");
-            for(Field f : aClassFields){
-                for(Field f2 : aClassFields2){
-                  if(f.get(o) !=  f.get(o2)){
-                       sb.append(f.getName()).append("=");
-    //                   sb.append(f.get(o)).append("|");
-                       sb.append(f.get(o2)).append(",");
-                       break;
-                  }
+            for (Field f : aClassFields) {
+                for (Field f2 : aClassFields2) {
+                    if (f.get(o) != f.get(o2)) {
+                        sb.append(f.getName()).append("=");
+                        //                   sb.append(f.get(o)).append("|");
+                        sb.append(f.get(o2)).append(",");
+                        break;
+                    }
                 }
-            }  sb.append("]");
+            }
+            sb.append("]");
         } catch (SecurityException e) {
             e.printStackTrace();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
-        }catch (IllegalAccessException e) {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         return sb.toString();
     }
-    
+
     @Override
     public Object getPk() {
         return getId();
@@ -291,8 +285,7 @@ public class User extends AbstractWalletEntity implements Serializable {
         this.transactionApproveRequestCollection = transactionApproveRequestCollection;
     }
 
-
-	@Override
+    @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
