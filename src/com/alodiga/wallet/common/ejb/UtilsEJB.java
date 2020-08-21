@@ -29,6 +29,7 @@ import com.alodiga.wallet.common.model.Currency;
 import com.alodiga.wallet.common.model.Enterprise;
 import com.alodiga.wallet.common.model.ExchangeRate;
 import com.alodiga.wallet.common.model.Language;
+import com.alodiga.wallet.common.model.OriginApplication;
 import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
@@ -333,4 +334,8 @@ public interface UtilsEJB extends WalletGenericEJB {
     public List<StatusCardHasFinalState> getStatusCardById(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public boolean validateStatusCardHasFinalState(Integer statusId,Integer finalId)throws GeneralException, NullParameterException; 
     public StatusCardHasFinalState saveStatusCardHasFinalState(StatusCardHasFinalState statusCardHasFinalState) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    //OriginApplication
+    public OriginApplication loadOriginApplicationByCode(EJBRequest request)throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
+
 }

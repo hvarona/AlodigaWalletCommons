@@ -820,5 +820,13 @@ ADD CONSTRAINT `fk_user_employee1`
  ON UPDATE NO ACTION;
  SET FOREIGN_KEY_CHECKS=1;
 
+-- Modificar tabla origin_application agregar code e incluir portal de negocio.
+-- author: Yamelis Almea
+-- Fecha: 20/08/2020
+ALTER TABLE `alodigawallet`.`origin_application` 
+ADD COLUMN `code` VARCHAR(6) NOT NULL AFTER `name`;
 
 
+UPDATE `alodigaWallet`.`origin_application` SET `code` = 'AWAAPP' WHERE (`id` = '1');
+UPDATE `alodigaWallet`.`origin_application` SET `code` = 'AWAWEB' WHERE (`id` = '2');
+INSERT INTO `alodigaWallet`.`origin_application` (`id`, `name`, `code`) VALUES ('3', 'Portal de Negocios', 'PORNEG');
