@@ -163,6 +163,10 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long ADD_PASSWORD_CHANGE_REQUEST = 130L;
     public static Long EDIT_PASSWORD_CHANGE_REQUEST = 131L;
     public static Long VIEW_PASSWORD_CHANGE_REQUEST = 132L;
+    public static Long LIST_EMPLOYEE = 133L;
+    public static Long ADD_EMPLOYEE = 134L;
+    public static Long EDIT_EMPLOYEE = 135L;
+    public static Long VIEW_EMPLOYEE = 136L;
 
 
 
