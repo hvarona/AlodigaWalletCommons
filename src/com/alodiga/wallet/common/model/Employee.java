@@ -5,6 +5,8 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -39,7 +41,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     , @NamedQuery(name = "Employee.findByIdentificationNumber", query = "SELECT e FROM Employee e WHERE e.identificationNumber = :identificationNumber")
     , @NamedQuery(name = "Employee.findByFirstNames", query = "SELECT e FROM Employee e WHERE e.firstNames = :firstNames")
     , @NamedQuery(name = "Employee.findByLastNames", query = "SELECT e FROM Employee e WHERE e.lastNames = :lastNames")})
-public class Employee implements Serializable {
+public class Employee extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -187,6 +189,16 @@ public class Employee implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.Employee[ id=" + id + " ]";
+    }
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }
