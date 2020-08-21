@@ -62,4 +62,7 @@ public class EjbConstants {
     public static final String PARAM_REVIEW_REQUEST_TYPE_ID = "reviewTypeId";    
     public static final String PARAM_LEGAL_REPRESENTATIVE_ID = "legalRepresentativeId";
     public static final String PARAM_PERSON_TYPE_ID = "personTypeId";
+    public static final String PARAM_CURRENT_PASSWORD = "currentPassword";
+    public static final String PARAM_USER_ID = "userId";
+    
 }

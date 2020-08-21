@@ -264,6 +264,8 @@ public class Constants {
     public static final String BUSINESS_AFFILIATION_REQUEST_KEY = "businessAffiliationRequestId";
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_COMPLET= "RECCOM";
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_INCOMPLET= "RECINC";
+    public static final String CURRENT_PASSWORD = "currentPassword";
+    public static final String USER_KEY = "userId";
     
     public static final int STATUS_APPLICANT_ACTIVE = 1;
     public static final int STATUS_APPLICANT_BLACK_LIST_OK = 2;
@@ -283,6 +285,8 @@ public class Constants {
     public static final int STATUS_TRANSACTION_APPROVED_REQUEST = 1;
     public static final int STATUS_REQUEST_COLLECTIONS_WITHOUT_APPROVAL = 8;
     public static final int STATUS_ACCOUNT_BANK = 1;
+    public static final int DOCUMENT_TYPE_RENEWAL_PASSWORD = 3;
+    
     
     
     public static final int NATURAL_PERSON = 1;
@@ -292,5 +296,4 @@ public class Constants {
     public static final String PARAM_CODE = "code";
     public static final String STATUS_KEY = "statusCardId";
     public static final int REVIEW_REQUEST_TYPE = 1;
-    
 }
