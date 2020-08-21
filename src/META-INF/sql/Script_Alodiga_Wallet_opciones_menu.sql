@@ -1094,3 +1094,26 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `pro
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('130', '130', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('131', '131', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('132', '132', '1');
+
+-- Agregar opciones del menu de la lista Employee
+-- author: Jorge Pinto
+-- Fecha: 20/08/2020
+
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('133', '1', 'ListEmployee', 'employee', 'ListEmployee', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('134', '1', 'AddEmployee', 'employee', 'AddEmployee', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('135', '1', 'EditEmployee', 'employee', 'EditEmployee', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('136', '1', 'ViewEmployee', 'employee', 'ViewEmployee', '1');
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('133', '1', 'List Employee', 'List Employee');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('133', '2', 'Lista Empleado', 'Lista Empleado');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('134', '1', 'Add Employee', 'Add Employee');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('134', '2', 'Agregar Empleado', 'Agregar Empleado');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('135', '1', 'Edit Employee', 'Edit Employee');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('135', '2', 'Editar Employee', 'Editar Employee');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('136', '1', 'View Employee', 'View Employee');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('136', '2', 'Ver Empleado', 'Ver Empleado');
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('133', '133', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('134', '134', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('135', '135', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('136', '136', '1');

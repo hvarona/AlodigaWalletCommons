@@ -293,4 +293,7 @@ public class Constants {
     public static final String STATUS_KEY = "statusCardId";
     public static final int REVIEW_REQUEST_TYPE = 1;
     
+    //PersonClassification
+    public static Integer CLASSIFICATION_PERSON_EMPLOYEE = 9; 
+    
 }
