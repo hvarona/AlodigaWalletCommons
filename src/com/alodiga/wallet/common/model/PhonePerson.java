@@ -45,6 +45,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PhonePerson.findByIndMainPhone", query = "SELECT p FROM PhonePerson p WHERE p.indMainPhone = :indMainPhone"),
     @NamedQuery(name = "PhonePerson.findByCreateDate", query = "SELECT p FROM PhonePerson p WHERE p.createDate = :createDate"),
     @NamedQuery(name = "PhonePerson.findByUpdateDate", query = "SELECT p FROM PhonePerson p WHERE p.updateDate = :updateDate"),
+    @NamedQuery(name = QueryConstants.PHONES_BY_MAIN, query = "SELECT p FROM PhonePerson p WHERE p.personId.id=:personId AND p.indMainPhone=true"),
     @NamedQuery(name = QueryConstants.PHONES_BY_PERSON, query = "SELECT p FROM PhonePerson p WHERE p.personId.id = :personId")})
 public class PhonePerson extends AbstractWalletEntity implements Serializable {
 

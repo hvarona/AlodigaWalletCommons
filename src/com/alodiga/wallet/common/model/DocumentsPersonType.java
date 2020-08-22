@@ -7,6 +7,7 @@ package com.alodiga.wallet.common.model;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -35,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DocumentsPersonType.findById", query = "SELECT d FROM DocumentsPersonType d WHERE d.id = :id"),
     @NamedQuery(name = "DocumentsPersonType.findByDescription", query = "SELECT d FROM DocumentsPersonType d WHERE d.description = :description"),
     @NamedQuery(name = "DocumentsPersonType.findBypersonTypeId", query = "SELECT d FROM DocumentsPersonType d WHERE d.personTypeId.id = :personTypeId"),
+    @NamedQuery(name = QueryConstants.DOCUMENTS_BY_COUNTRY, query = "SELECT d FROM DocumentsPersonType d, PersonType e, Country f WHERE d.personTypeId.id = e.id AND f.id = e.countryId.id AND e.countryId.id=:countryId AND e.originApplicationId.id=:originApplicationId AND e.indNaturalPerson=:indNaturalPerson"),
     @NamedQuery(name = "DocumentsPersonType.findByCodeIdentification", query = "SELECT d FROM DocumentsPersonType d WHERE d.codeIdentification = :codeIdentification")})
 public class DocumentsPersonType extends AbstractWalletEntity implements Serializable {
 

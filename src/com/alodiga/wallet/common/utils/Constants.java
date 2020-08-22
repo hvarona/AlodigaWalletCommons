@@ -305,6 +305,6 @@ public class Constants {
     public static final String SECRET = "77ce7afbc3853883de5fc4ec90bd30";
     
     //PersonClassification
-    public static Integer CLASSIFICATION_PERSON_EMPLOYEE = 9; 
+    public static Integer CLASSIFICATION_PERSON_EMPLOYEE = 3; 
     
 }
