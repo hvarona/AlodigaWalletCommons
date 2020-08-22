@@ -193,4 +193,6 @@ public class QueryConstants {
     public static final String STATUS_BUSINESS_AFFILIATON_REQUEST_BY_CODE = "StatusBusinessAffiliationRequestByCode";
     public static final String CARDSTATUS_BY_ID = "cardStatusById";
     public static final String COLLECTIONS_BY_PERSON_TYPE = "collectionsByPersonType";
+    public static final String DOCUMENTS_BY_COUNTRY = "documentsByCountry";
+    public static final String PHONES_BY_MAIN = "phonesByMain";
 }

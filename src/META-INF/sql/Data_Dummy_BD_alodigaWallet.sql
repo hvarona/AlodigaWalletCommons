@@ -437,3 +437,16 @@ UPDATE `alodigaWallet`.`status_transaction_approve_request` SET `code`='RECHAZ' 
 -- author: Lulymar Gutierrez
 -- Fecha: 18/08/2020
 INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`, `code`) VALUES ('RECAUDOS SIN APROBAR', 'RSA');
+
+-- Insert en la tabla personClassification
+-- author: Jorge Pinto
+-- Fecha: 20/08/2020
+INSERT INTO `alodigaWallet`.`person_classification` (`id`,`description`) VALUES ('3','Employee');
+
+-- Insert en la tabla phoneType
+-- author: Jorge Pinto
+-- Fecha: 20/08/2020
+INSERT INTO `alodigaWallet`.`phone_type` (`id`, `description`) VALUES ('1', 'MOBILE');
+INSERT INTO `alodigaWallet`.`phone_type` (`id`, `description`) VALUES ('2', 'ROOM');
+INSERT INTO `alodigaWallet`.`phone_type` (`id`, `description`) VALUES ('3', 'OFFICE');
+INSERT INTO `alodigaWallet`.`phone_type` (`id`, `description`) VALUES ('4', 'FIJO');
