@@ -26,6 +26,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+
 /**
  *
  * @author jose
@@ -37,7 +40,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "CivilStatus.findAll", query = "SELECT c FROM CivilStatus c")
     , @NamedQuery(name = "CivilStatus.findById", query = "SELECT c FROM CivilStatus c WHERE c.id = :id")
     , @NamedQuery(name = "CivilStatus.findByDescription", query = "SELECT c FROM CivilStatus c WHERE c.description = :description")})
-public class CivilStatus implements Serializable {
+public class CivilStatus extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -127,4 +130,13 @@ public class CivilStatus implements Serializable {
         return "com.alodiga.wallet.common.model.CivilStatus[ id=" + id + " ]";
     }
     
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
 }

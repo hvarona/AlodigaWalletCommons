@@ -438,6 +438,70 @@ UPDATE `alodigaWallet`.`status_transaction_approve_request` SET `code`='RECHAZ' 
 -- Fecha: 18/08/2020
 INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`description`, `code`) VALUES ('RECAUDOS SIN APROBAR', 'RSA');
 
+-- Insert en la tabla employed_position
+-- author: Lulymar Gutierrez
+-- Fecha: 19/08/2020
+INSERT INTO `alodigaWallet`.`employed_position` (`id`, `name`) VALUES ('1', 'Agente Comercial');
+
+-- Insert en la tabla comercial_agency
+-- author: Lulymar Gutierrez
+-- Fecha: 19/08/2020
+INSERT INTO `alodigaWallet`.`comercial_agency` (`id`, `name`, `cityId`) VALUES ('1', 'CCCT', '1');
+
+-- Insert en la tabla employee
+-- author: Lulymar Gutierrez
+-- Fecha: 19/08/2020
+INSERT INTO `alodigaWallet`.`employee` (`id`, `identificationNumber`, `documentsPersonTypeId`, `firstNames`, `lastNames`, `personId`, `employedPositionId`, `comercialAgencyId`) VALUES ('1', '123', '1', 'Empleado', 'Prueba', '1', '1', '1');
+INSERT INTO `alodigaWallet`.`employee` (`id`, `identificationNumber`, `documentsPersonTypeId`, `firstNames`, `lastNames`, `personId`, `employedPositionId`, `comercialAgencyId`) VALUES ('2', '456', '1', 'Empleado', 'Autoriza', '4', '1', '1');
+
+
+-- Insert en la tabla person_classification
+-- author: Lulymar Gutierrez
+-- Fecha: 19/08/2020
+INSERT INTO `alodigaWallet`.`person_classification` (`id`, `description`, `code`) VALUES ('4', 'Employee', 'EMPLOY');
+
+-- Update en la tabla person_classification
+-- author: Lulymar Gutierrez
+-- Fecha: 19/08/2020
+UPDATE `alodigaWallet`.`person_classification` SET `code`='EMISOR' WHERE `id`='1';
+UPDATE `alodigaWallet`.`person_classification` SET `code`='SOLICI' WHERE `id`='2';
+UPDATE `alodigaWallet`.`person_classification` SET `code`='LEGREP' WHERE `id`='3';
+
+-- Insert en la tabla person
+-- author: Lulymar Gutierrez
+-- Fecha: 19/08/2020
+INSERT INTO `alodigaWallet`.`person` (`id`, `email`, `personTypeId`, `personClassificationId`, `webSite`, `countryId`, `createDate`) VALUES ('4', 'empleado@noposee.com', '1', '4', 'www', '1', '2020-08-19');
+
+-- Insert en la tabla user
+-- author: Lulymar Gutierrez
+-- Fecha: 19/08/2020
+UPDATE `alodigaWallet`.`user` SET `documentsPersonTypeId`='1', `identificationNumber`='123456', `personId`='1', `authorizedEmployeeId`='2', `employeeId`='1' WHERE `id`='5';
+
+-- Insert en la tabla document_type
+-- author: Lulymar Gutierrez
+-- Fecha: 19/08/2020
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('3', 'Renewal Password', 'REPS');
+
+-- Insert en la tabla sequences
+-- author: Lulymar Gutierrez
+-- Fecha: 20/08/2020
+INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '3', '2');
+
+
+-- Insert en la tabla civilStatus y sequences
+-- author: Yamelis Almea
+-- Fecha: 21/08/2020
+INSERT INTO `alodigawallet`.`civil_status` (`id`, `description`, `languageId`) VALUES ('3', 'Divorciado', '2');
+INSERT INTO `alodigawallet`.`civil_status` (`id`, `description`, `languageId`) VALUES ('4', 'Viudo', '2');
+UPDATE `alodigawallet`.`civil_status` SET `description` = 'Casado' WHERE (`id` = '1');
+UPDATE `alodigawallet`.`civil_status` SET `description` = 'Solter0' WHERE (`id` = '2');
+
+INSERT INTO `alodigawallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '1', '3');
+INSERT INTO `alodigawallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '2', '3');
+
+
+
+
 -- Insert en la tabla personClassification
 -- author: Jorge Pinto
 -- Fecha: 20/08/2020

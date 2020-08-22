@@ -7,17 +7,24 @@ import com.alodiga.wallet.common.exception.NullParameterException;
 import com.alodiga.wallet.common.exception.RegisterNotFoundException;
 import com.alodiga.wallet.common.genericEJB.EJBRequest;
 import com.alodiga.wallet.common.genericEJB.WalletGenericEJB;
+import com.alodiga.wallet.common.model.AddressType;
+import com.alodiga.wallet.common.model.CivilStatus;
 import com.alodiga.wallet.common.model.ComercialAgency;
 import com.alodiga.wallet.common.model.DocumentsPersonType;
 import com.alodiga.wallet.common.model.EmployedPosition;
+import com.alodiga.wallet.common.model.EdificationType;
 import com.alodiga.wallet.common.model.LegalPerson;
 import com.alodiga.wallet.common.model.LegalRepresentative;
 import com.alodiga.wallet.common.model.NaturalPerson;
+import com.alodiga.wallet.common.model.PasswordChangeRequest;
 import com.alodiga.wallet.common.model.Person;
 import com.alodiga.wallet.common.model.PersonHasAddress;
 import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.PhonePerson;
+import com.alodiga.wallet.common.model.PhoneType;
+import com.alodiga.wallet.common.model.Profession;
 import com.alodiga.wallet.common.model.StatusApplicant;
+import com.alodiga.wallet.common.model.StreetType;
 import com.alodiga.wallet.common.model.Employee;
 import com.alodiga.wallet.common.model.PersonClassification;
 import com.alodiga.wallet.common.model.PhoneType;
@@ -90,7 +97,41 @@ public interface PersonEJBLocal extends WalletGenericEJB {
     //EmployedPosition
     public List<EmployedPosition> getEmployedPosition(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
+    //PasswordChangeRequest
+    public List<PasswordChangeRequest> getPasswordChangeRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public PasswordChangeRequest loadPasswordChangeRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public PasswordChangeRequest savePasswordChangeRequest(PasswordChangeRequest passwordChangeRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    //CivilStatus
+    public CivilStatus loadCivilStatus(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<CivilStatus> getCivilStatus(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public CivilStatus saveCivilStatus(CivilStatus civilStatus) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    //Profession
+    public Profession loadProfession(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<Profession> getProfession(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public Profession saveProfession(Profession profession) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
     //PhoneType
+    public PhoneType loadPhoneType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public List<PhoneType> getPhoneType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public PhoneType savePhoneType(PhoneType phoneType) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    //AddressType
+    public AddressType loadAddressType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<AddressType> getAddressType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public AddressType saveAddressType(AddressType addressType) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    //AddressType
+    public EdificationType loadEdificationType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<EdificationType> getEdificationType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public EdificationType saveEdificationType(EdificationType edificationType) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+    //StreetType
+    public StreetType loadStreetType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<StreetType> getStreetType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public StreetType saveStreetType(StreetType streetType) throws RegisterNotFoundException, NullParameterException, GeneralException;
+
+
 }
 
