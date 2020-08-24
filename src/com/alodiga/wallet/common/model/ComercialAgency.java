@@ -50,8 +50,7 @@ public class ComercialAgency implements Serializable {
     @Size(min = 1, max = 80)
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "comercialAgencyId")
-    private Collection<Employee> employeeCollection;
+    
     @JoinColumn(name = "cityId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private City cityId;
@@ -84,15 +83,7 @@ public class ComercialAgency implements Serializable {
         this.name = name;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<Employee> getEmployeeCollection() {
-        return employeeCollection;
-    }
-
-    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
-        this.employeeCollection = employeeCollection;
-    }
+   
 
     public City getCityId() {
         return cityId;

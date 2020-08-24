@@ -44,6 +44,7 @@ public class QueryConstants {
     public static final String CODE_BY_STATUS = "codeByStatus";
     public static final String PERSON_CLASSIFICATION_BY_CODE = "personClassificationByCode";
     public static final String STATUS_ACCOUNT_BANK_BY_CODE = "statusAcountBankByCode";
+    public static final String STATUS_TRANSACTION_APPROVE_REQUEST_BY_CODE = "statusTransactionApproveRequestByCode";
     public static final String DELETE_PERMISSION_HAS_PROFILE = "deletePermissionHasProfile";
     public static final String LOAD_USER_BY_LOGIN = "loadUserByLogin";
     public static final String LOAD_USER_BY_EMAIL = "loadUserByEmail";

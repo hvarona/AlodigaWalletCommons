@@ -45,8 +45,6 @@ public class User extends AbstractWalletEntity implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "identificationNumber")
     private String identificationNumber;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Collection<PasswordChangeRequest> passwordChangeRequestCollection;
     @JoinColumn(name = "authorizedEmployeeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Employee authorizedEmployeeId;
@@ -107,10 +105,7 @@ public class User extends AbstractWalletEntity implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "enabled")
-    private boolean enabled;
-    @OneToMany(mappedBy = "userApprovedRequestId")
-    private Collection<TransactionApproveRequest> transactionApproveRequestCollection;
-    //bi-directional many-to-one association to UserHasProfileHasEnterprise
+    private boolean enabled;    
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<UserHasProfile> userHasProfile;
 
@@ -275,16 +270,7 @@ public class User extends AbstractWalletEntity implements Serializable {
         this.enabled = enabled;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<TransactionApproveRequest> getTransactionApproveRequestCollection() {
-        return transactionApproveRequestCollection;
-    }
-
-    public void setTransactionApproveRequestCollection(Collection<TransactionApproveRequest> transactionApproveRequestCollection) {
-        this.transactionApproveRequestCollection = transactionApproveRequestCollection;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -313,15 +299,7 @@ public class User extends AbstractWalletEntity implements Serializable {
         this.identificationNumber = identificationNumber;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<PasswordChangeRequest> getPasswordChangeRequestCollection() {
-        return passwordChangeRequestCollection;
-    }
-
-    public void setPasswordChangeRequestCollection(Collection<PasswordChangeRequest> passwordChangeRequestCollection) {
-        this.passwordChangeRequestCollection = passwordChangeRequestCollection;
-    }
+    
 
     public Employee getAuthorizedEmployeeId() {
         return authorizedEmployeeId;

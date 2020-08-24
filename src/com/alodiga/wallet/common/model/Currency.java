@@ -51,8 +51,8 @@ public class Currency extends AbstractWalletEntity implements Serializable {
     @Basic(optional = false)
     @Column(name = "symbol")
     private String symbol;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "currencyId")
-    private Collection<Enterprise> enterpriseCollection;
+    
+    
 
     public Currency() {
     }
@@ -91,14 +91,7 @@ public class Currency extends AbstractWalletEntity implements Serializable {
         this.symbol = symbol;
     }
 
-    @XmlTransient
-    public Collection<Enterprise> getEnterpriseCollection() {
-        return enterpriseCollection;
-    }
-
-    public void setEnterpriseCollection(Collection<Enterprise> enterpriseCollection) {
-        this.enterpriseCollection = enterpriseCollection;
-    }
+   
 
     @Override
     public int hashCode() {
