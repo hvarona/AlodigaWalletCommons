@@ -18,6 +18,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+
 /**
  *
  * @author jose
@@ -29,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "EdificationType.findAll", query = "SELECT e FROM EdificationType e")
     , @NamedQuery(name = "EdificationType.findById", query = "SELECT e FROM EdificationType e WHERE e.id = :id")
     , @NamedQuery(name = "EdificationType.findByDescription", query = "SELECT e FROM EdificationType e WHERE e.description = :description")})
-public class EdificationType implements Serializable {
+public class EdificationType extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -98,6 +101,16 @@ public class EdificationType implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+    
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }
