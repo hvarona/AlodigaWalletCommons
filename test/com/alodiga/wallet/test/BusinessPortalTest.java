@@ -27,6 +27,7 @@ import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.PhonePerson;
 import com.alodiga.wallet.common.model.PhoneType;
 import com.alodiga.wallet.common.model.Profession;
+import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
 import com.alodiga.wallet.common.model.StatusApplicant;
 import com.alodiga.wallet.common.model.StreetType;
 import com.alodiga.wallet.common.utils.EjbConstants;
@@ -164,6 +165,30 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
+    
+    public void _testSaveRequestHasCollectionsRequest() {
+        try {
+            RequestHasCollectionRequest requestHasCollectionRequest = new RequestHasCollectionRequest();
+            EJBRequest request = new EJBRequest();
+			request.setParam(1L);
+            BusinessAffiliationRequest businessAffiliationRequestId = utilsEJB.loadBusinessAffiliationRequest(request);
+            requestHasCollectionRequest.setBusinessAffiliationRequestId(businessAffiliationRequestId);
+            requestHasCollectionRequest.setImageFileUrl("C:\\Users\\yamea\\OneDrive\\Imagenes\\ejemplo.jpg");
+            requestHasCollectionRequest.setCreateDate(new Timestamp(new Date().getTime()));
+            requestHasCollectionRequest = businessPortalEJB.saveRequestHasCollectionsRequest(requestHasCollectionRequest);
+            System.out.println(requestHasCollectionRequest.toString());
+            assertTrue(true);
+        } catch (RegisterNotFoundException e) {
+            fail("Error EmptyListException en testGetPersonTypesBycountryId. " + e);
+        } catch (NullParameterException e) {
+            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
+        } catch (GeneralException e) {
+            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
+        }
+
+    }
+    
+    
 
    
 }
