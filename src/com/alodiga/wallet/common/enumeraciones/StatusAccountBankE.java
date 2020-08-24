@@ -7,7 +7,7 @@ package com.alodiga.wallet.common.enumeraciones;
 
 public enum StatusAccountBankE {
 
-	ACTIVA(1, "Activa", "ACTIVA"),
+	ACTIVA(1,"Activa" ,"ACTIVA"),
 	INACTI(2, "Inactiva", "INACTI"),
 	BLOQUE(3, "Bloqueada", "BLOQUE");
         

@@ -59,6 +59,13 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Transaction.findByAdditional2", query = "SELECT t FROM Transaction t WHERE t.additional2 = :additional2")})
 public class Transaction extends AbstractWalletEntity implements Serializable {
 
+    
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Long id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
@@ -74,12 +81,8 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     private Float promotionAmount;
     @Column(name = "totalAlopointsUsed")
     private Float totalAlopointsUsed;
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Long id;
+    
+    
     @Column(name = "userSourceId")
     private BigInteger userSourceId;
     @Column(name = "userDestinationId")

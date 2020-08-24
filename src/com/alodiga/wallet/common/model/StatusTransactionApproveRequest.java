@@ -38,6 +38,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "StatusTransactionApproveRequest.findAll", query = "SELECT s FROM StatusTransactionApproveRequest s"),
     @NamedQuery(name = "StatusTransactionApproveRequest.findById", query = "SELECT s FROM StatusTransactionApproveRequest s WHERE s.id = :id"),
     @NamedQuery(name = "StatusTransactionApproveRequest.findByDescription", query = "SELECT s FROM StatusTransactionApproveRequest s WHERE s.description = :description"),
+    @NamedQuery(name = QueryConstants.STATUS_TRANSACTION_APPROVE_REQUEST_BY_CODE, query = "SELECT s FROM StatusTransactionApproveRequest s WHERE s.code = :code"),
     @NamedQuery(name = QueryConstants.CODE_BY_STATUS, query = "SELECT s FROM StatusTransactionApproveRequest s WHERE s.code = :code")})
 public class StatusTransactionApproveRequest extends AbstractWalletEntity implements Serializable {
 
@@ -52,13 +53,12 @@ public class StatusTransactionApproveRequest extends AbstractWalletEntity implem
     @Size(min = 1, max = 40)
     @Column(name = "description")
     private String description;
-    @Basic(optional = false)
-    @NotNull
+    @Basic(optional = false)    
     @Size(min = 1, max = 10)
+    @NotNull
     @Column(name = "code")
     private String code;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusTransactionApproveRequestId")
-    private Collection<TransactionApproveRequest> transactionApproveRequestCollection;
+    
 
     public StatusTransactionApproveRequest() {
     }
@@ -96,15 +96,7 @@ public class StatusTransactionApproveRequest extends AbstractWalletEntity implem
         this.code = code;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<TransactionApproveRequest> getTransactionApproveRequestCollection() {
-        return transactionApproveRequestCollection;
-    }
-
-    public void setTransactionApproveRequestCollection(Collection<TransactionApproveRequest> transactionApproveRequestCollection) {
-        this.transactionApproveRequestCollection = transactionApproveRequestCollection;
-    }
+    
 
     @Override
     public int hashCode() {
@@ -128,8 +120,10 @@ public class StatusTransactionApproveRequest extends AbstractWalletEntity implem
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.StatusTransactionApproveRequest[ id=" + id + " ]";
+        return "StatusTransactionApproveRequest{" + "id=" + id + '}';
     }
+
+    
 
     @Override
     public Object getPk() {
