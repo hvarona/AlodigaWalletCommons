@@ -18,6 +18,7 @@ import com.alodiga.wallet.common.model.AddressType;
 import com.alodiga.wallet.common.model.BusinessAffiliationRequest;
 import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.CivilStatus;
+import com.alodiga.wallet.common.model.CollectionsRequest;
 import com.alodiga.wallet.common.model.DocumentsPersonType;
 import com.alodiga.wallet.common.model.EdificationType;
 import com.alodiga.wallet.common.model.LegalPerson;
@@ -27,6 +28,7 @@ import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.PhonePerson;
 import com.alodiga.wallet.common.model.PhoneType;
 import com.alodiga.wallet.common.model.Profession;
+import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
 import com.alodiga.wallet.common.model.StatusApplicant;
 import com.alodiga.wallet.common.model.StreetType;
 import com.alodiga.wallet.common.utils.EjbConstants;
@@ -73,7 +75,7 @@ public class BusinessPortalTest extends TestCase {
 
     }
     
-    public void testSaveBusinessAffiliationRequestNaturalPerson() {
+    public void _testSaveBusinessAffiliationRequestNaturalPerson() {
         try {
         	//Person
 			Person person = new Person();
@@ -164,6 +166,36 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
+    
+    public void testSaveRequestHasCollectionsRequest() {
+        try {
+            RequestHasCollectionRequest requestHasCollectionRequest = new RequestHasCollectionRequest();
+            EJBRequest request = new EJBRequest();
+			request.setParam(2L);
+            BusinessAffiliationRequest businessAffiliationRequestId = utilsEJB.loadBusinessAffiliationRequest(request);
+            requestHasCollectionRequest.setBusinessAffiliationRequestId(businessAffiliationRequestId);
+            request = new EJBRequest();
+			request.setParam(6);
+            CollectionsRequest collectionsRequestId = utilsEJB.loadCollectionsRequest(request);
+            requestHasCollectionRequest.setCollectionsRequestId(collectionsRequestId);
+            requestHasCollectionRequest.setImageFileUrl("C:\\Users\\yamea\\OneDrive\\Imagenes\\ejemplo.jpg");
+            requestHasCollectionRequest.setCreateDate(new Timestamp(new Date().getTime()));
+//            short approved = 0;
+//            requestHasCollectionRequest.setIndApproved(approved);
+            requestHasCollectionRequest = businessPortalEJB.saveRequestHasCollectionsRequest(requestHasCollectionRequest);
+            System.out.println(requestHasCollectionRequest.toString());
+            assertTrue(true);
+        } catch (RegisterNotFoundException e) {
+            fail("Error EmptyListException en testGetPersonTypesBycountryId. " + e);
+        } catch (NullParameterException e) {
+            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
+        } catch (GeneralException e) {
+            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
+        }
+
+    }
+    
+    
 
    
 }
