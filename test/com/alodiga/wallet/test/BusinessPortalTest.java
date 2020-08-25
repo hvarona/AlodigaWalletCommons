@@ -18,6 +18,7 @@ import com.alodiga.wallet.common.model.AddressType;
 import com.alodiga.wallet.common.model.BusinessAffiliationRequest;
 import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.CivilStatus;
+import com.alodiga.wallet.common.model.CollectionsRequest;
 import com.alodiga.wallet.common.model.DocumentsPersonType;
 import com.alodiga.wallet.common.model.EdificationType;
 import com.alodiga.wallet.common.model.LegalPerson;
@@ -74,7 +75,7 @@ public class BusinessPortalTest extends TestCase {
 
     }
     
-    public void testSaveBusinessAffiliationRequestNaturalPerson() {
+    public void _testSaveBusinessAffiliationRequestNaturalPerson() {
         try {
         	//Person
 			Person person = new Person();
@@ -166,15 +167,21 @@ public class BusinessPortalTest extends TestCase {
 
     }
     
-    public void _testSaveRequestHasCollectionsRequest() {
+    public void testSaveRequestHasCollectionsRequest() {
         try {
             RequestHasCollectionRequest requestHasCollectionRequest = new RequestHasCollectionRequest();
             EJBRequest request = new EJBRequest();
-			request.setParam(1L);
+			request.setParam(2L);
             BusinessAffiliationRequest businessAffiliationRequestId = utilsEJB.loadBusinessAffiliationRequest(request);
             requestHasCollectionRequest.setBusinessAffiliationRequestId(businessAffiliationRequestId);
+            request = new EJBRequest();
+			request.setParam(6);
+            CollectionsRequest collectionsRequestId = utilsEJB.loadCollectionsRequest(request);
+            requestHasCollectionRequest.setCollectionsRequestId(collectionsRequestId);
             requestHasCollectionRequest.setImageFileUrl("C:\\Users\\yamea\\OneDrive\\Imagenes\\ejemplo.jpg");
             requestHasCollectionRequest.setCreateDate(new Timestamp(new Date().getTime()));
+//            short approved = 0;
+//            requestHasCollectionRequest.setIndApproved(approved);
             requestHasCollectionRequest = businessPortalEJB.saveRequestHasCollectionsRequest(requestHasCollectionRequest);
             System.out.println(requestHasCollectionRequest.toString());
             assertTrue(true);
