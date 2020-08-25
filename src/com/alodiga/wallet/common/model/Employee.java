@@ -70,10 +70,7 @@ public class Employee extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "documentsPersonTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private DocumentsPersonType documentsPersonTypeId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "authorizedEmployeeId")
-    private Collection<User> userCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeId")
-    private Collection<User> userCollection1;
+    
 
     public Employee() {
     }
@@ -146,26 +143,7 @@ public class Employee extends AbstractWalletEntity implements Serializable {
         this.documentsPersonTypeId = documentsPersonTypeId;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<User> getUserCollection() {
-        return userCollection;
-    }
-
-    public void setUserCollection(Collection<User> userCollection) {
-        this.userCollection = userCollection;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<User> getUserCollection1() {
-        return userCollection1;
-    }
-
-    public void setUserCollection1(Collection<User> userCollection1) {
-        this.userCollection1 = userCollection1;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

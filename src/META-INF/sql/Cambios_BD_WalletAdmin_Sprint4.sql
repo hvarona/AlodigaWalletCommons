@@ -830,6 +830,7 @@ ADD COLUMN `code` VARCHAR(6) NOT NULL AFTER `name`;
 UPDATE `alodigaWallet`.`origin_application` SET `code` = 'AWAAPP' WHERE (`id` = '1');
 UPDATE `alodigaWallet`.`origin_application` SET `code` = 'AWAWEB' WHERE (`id` = '2');
 INSERT INTO `alodigaWallet`.`origin_application` (`id`, `name`, `code`) VALUES ('3', 'Portal de Negocios', 'PORNEG');
+
 -- cambios de los campos currentPassword y newPassword en la tabla password_change_request, cambiando el tamaño
 -- de 20 a 255
 -- author: Lulymar Gutierrez
@@ -837,4 +838,11 @@ INSERT INTO `alodigaWallet`.`origin_application` (`id`, `name`, `code`) VALUES (
 ALTER TABLE `alodigaWallet`.`password_change_request` 
 CHANGE COLUMN `currentPassword` `currentPassword` VARCHAR(255) NULL DEFAULT NULL ,
 CHANGE COLUMN `newPassword` `newPassword` VARCHAR(255) NULL DEFAULT NULL ;
+
+-- Modificado el indice de personId para que acepte valores duplicados.
+-- author: Jesús Gómez
+-- Fecha: 21/08/2020
+ALTER TABLE `alodigaWallet`.`phone_person` 
+DROP INDEX `personId` ,
+ADD INDEX `personId` (`personId` ASC);
 

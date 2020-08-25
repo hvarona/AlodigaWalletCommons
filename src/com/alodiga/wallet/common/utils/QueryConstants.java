@@ -44,6 +44,7 @@ public class QueryConstants {
     public static final String CODE_BY_STATUS = "codeByStatus";
     public static final String PERSON_CLASSIFICATION_BY_CODE = "personClassificationByCode";
     public static final String STATUS_ACCOUNT_BANK_BY_CODE = "statusAcountBankByCode";
+    public static final String STATUS_TRANSACTION_APPROVE_REQUEST_BY_CODE = "statusTransactionApproveRequestByCode";
     public static final String DELETE_PERMISSION_HAS_PROFILE = "deletePermissionHasProfile";
     public static final String LOAD_USER_BY_LOGIN = "loadUserByLogin";
     public static final String LOAD_USER_BY_EMAIL = "loadUserByEmail";
@@ -193,6 +194,8 @@ public class QueryConstants {
     public static final String STATUS_BUSINESS_AFFILIATON_REQUEST_BY_CODE = "StatusBusinessAffiliationRequestByCode";
     public static final String CARDSTATUS_BY_ID = "cardStatusById";
     public static final String COLLECTIONS_BY_PERSON_TYPE = "collectionsByPersonType";
+    public static final String DOCUMENTS_BY_COUNTRY = "documentsByCountry";
+    public static final String PHONES_BY_MAIN = "phonesByMain";
     public static final String VALIDATE_PASSWORD = "validatePassword";
     
 }

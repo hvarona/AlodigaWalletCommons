@@ -7,8 +7,8 @@ package com.alodiga.wallet.common.enumeraciones;
 
 public enum StatusTransactionApproveRequestE {
 
-	PENDIE(1, "Pendiente", "PENDIE"),
-	APROBA(2, "Aprovada", "APROBA"),
+        PENDIEN(1, "Pendiente", "PENDIEN"),
+	APROBA(2, "Aprobada", "APROBA"),
 	RECHAZ(3, "Rechazada", "RECHAZ");
         
     private int id;
@@ -44,6 +44,8 @@ public enum StatusTransactionApproveRequestE {
     public void setStatusTransactionApproveRequestCode(String statusTransactionApproveRequestCode) {
         this.statusTransactionApproveRequestCode = statusTransactionApproveRequestCode;
     }
+
+   
 
     
     
