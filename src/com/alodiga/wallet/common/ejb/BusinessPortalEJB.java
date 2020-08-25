@@ -19,11 +19,13 @@ import com.alodiga.wallet.common.model.CivilStatus;
 import com.alodiga.wallet.common.model.CollectionType;
 import com.alodiga.wallet.common.model.CollectionsRequest;
 import com.alodiga.wallet.common.model.Country;
+import com.alodiga.wallet.common.model.DocumentType;
 import com.alodiga.wallet.common.model.DocumentsPersonType;
 import com.alodiga.wallet.common.model.EdificationType;
 import com.alodiga.wallet.common.model.Enterprise;
 import com.alodiga.wallet.common.model.LegalPerson;
 import com.alodiga.wallet.common.model.NaturalPerson;
+import com.alodiga.wallet.common.model.OriginApplication;
 import com.alodiga.wallet.common.model.Person;
 import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.PhonePerson;
@@ -75,5 +77,9 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     public List<EdificationType> getEdificationType(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
     
     public List<StreetType> getStreetType(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
+    
+    public DocumentType loadDocumentType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public OriginApplication loadOriginApplication(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 }
 
