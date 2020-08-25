@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import com.alodiga.wallet.common.ejb.BusinessEJB;
 import com.alodiga.wallet.common.ejb.BusinessPortalEJB;
 import com.alodiga.wallet.common.ejb.PersonEJB;
 import com.alodiga.wallet.common.ejb.UtilsEJB;
@@ -32,6 +33,8 @@ import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
 import com.alodiga.wallet.common.model.StatusApplicant;
 import com.alodiga.wallet.common.model.StreetType;
 import com.alodiga.wallet.common.utils.EjbConstants;
+import com.portal.business.commons.data.BusinessData;
+import com.portal.business.commons.models.Business;
 
 import junit.framework.TestCase;
 import java.util.Properties;
@@ -42,6 +45,7 @@ public class BusinessPortalTest extends TestCase {
     BusinessPortalEJB businessPortalEJB;
     UtilsEJB utilsEJB;
     PersonEJB personEJB;
+    BusinessEJB businessEJB;
 
     @Override
     protected void setUp() throws Exception {
@@ -53,6 +57,7 @@ public class BusinessPortalTest extends TestCase {
         props.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
         InitialContext intialContext = new InitialContext(props);
         businessPortalEJB = (BusinessPortalEJB) intialContext.lookup(EjbConstants.BUSINESS_PORTAL_EJB);
+        businessEJB = (BusinessEJB) intialContext.lookup(EjbConstants.BUSINESS_EJB);
         utilsEJB = (UtilsEJB) intialContext.lookup(EjbConstants.UTILS_EJB);
         personEJB = (PersonEJB) intialContext.lookup(EjbConstants.PERSON_EJB);
 
@@ -167,7 +172,7 @@ public class BusinessPortalTest extends TestCase {
 
     }
     
-    public void testSaveRequestHasCollectionsRequest() {
+    public void _testSaveRequestHasCollectionsRequest() {
         try {
             RequestHasCollectionRequest requestHasCollectionRequest = new RequestHasCollectionRequest();
             EJBRequest request = new EJBRequest();
@@ -192,6 +197,33 @@ public class BusinessPortalTest extends TestCase {
         } catch (GeneralException e) {
             fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
         }
+
+    }
+    
+    public void testGetBusinessById() {
+        try {
+			Business business = businessEJB.getBusinessById(1L);
+			System.out.println(business.toString());
+			assertTrue(true);
+		} catch (com.portal.business.commons.exceptions.NullParameterException e) {
+			fail("Error EmptyListException en testGetBusinessById. " + e);
+		} catch (com.portal.business.commons.exceptions.GeneralException e) {
+			fail("Error GeneralException en testGetBusinessById. " + e);
+		}
+
+    }
+    
+    
+    public void testGetAll() {
+        try {
+        	List<Business> business = businessEJB.getAll();
+			System.out.println(business.size());
+			assertTrue(true);
+		} catch (com.portal.business.commons.exceptions.EmptyListException e) {
+			fail("Error EmptyListException en testGetAll. " + e);
+		} catch (com.portal.business.commons.exceptions.GeneralException e) {
+			fail("Error GeneralException en testGetAll. " + e);
+		}
 
     }
     
