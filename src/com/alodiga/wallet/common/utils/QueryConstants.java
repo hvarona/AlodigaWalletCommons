@@ -35,6 +35,7 @@ public class QueryConstants {
     public static final String SOLICITUDES_BY_USER_RESPONDER = "solicitudesByUserResponder";
     public static final String SOLICITUDES_BY_DISTRIBUTOR_RESPONDER = "solicitudesByDistributorResponder";
     public static final String COMMISSION_BY_PRODUCT = "commissionByProduct";
+    public static final String BANK_BY_PRODUCT = "bankByProduct";
     public static final String TRANSACTION_BY_DISTRIBUTOR = "transactionByDistributor";
     public static final String TRANSACTION_BY_CUSTOMER = "transactionByCostumer";
     public static final String REPORT_BY_PROFILE = "reportByProfile";
@@ -124,13 +125,9 @@ public class QueryConstants {
     public static final String PARAM_TRANSACTION_STATUS = "transactionStatus";
     public static final String PARAM_CATEGORY_ID = "categoryId";
     public static final String PARAM_CONDITION_ID = "conditionId";
-    //public static final String PRODUCT_DETAIL_VALUE_TYPE_ID = "ProductDetailValueTypeId";
     public static final String PARAM_DISTRIBUTOR = "distributor";
     public static final String PARAM_BALANCES_TRANSFERENCES = "balanceTransferences";
-    //public static final String PARAM_CUSTOMER_PRODUCT_DETAIL_ID = "customerProductDetailId";
-    //public static final String PARAM_PRODUCT_DETAIL_VALUE_TYPE_ID = "productDetailValueTypeId";
     public static final String PARAM_DELETED = "deleted";
-    //public static final String PARAM_CUSTOMER_PRODUCT_DETAIL = "customerProductDetail";
     public static final String PARAM_OBJECT = "object";
     public static final String PARAM_SQL = "sql";
     public static final String PARAM_SUCCESS = "success";
