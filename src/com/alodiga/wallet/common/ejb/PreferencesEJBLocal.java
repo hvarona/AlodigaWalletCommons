@@ -65,5 +65,7 @@ public interface PreferencesEJBLocal extends WalletGenericEJBLocal {
     public List<PreferenceValue> getPreferenceValuesByClassificationIdAndBussinessId(Long classificationId, Long bussinessId) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
     
     public boolean validatePreferencesValues(Long classificationId,Long productId,Long transactionTypeId, Long bussinessId)throws GeneralException, NullParameterException, EmptyListException;
+    
+    public Map<Long, String> getLastPreferenceValuesByBusiness(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
 
 }
