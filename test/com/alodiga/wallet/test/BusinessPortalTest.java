@@ -209,7 +209,7 @@ public class BusinessPortalTest extends TestCase {
 
     }
      
-      public void testsaveSequences() {
+      public void _testsaveSequences() {
         try {
             Sequences sequenceses = new Sequences();
             EJBRequest request = new EJBRequest();
