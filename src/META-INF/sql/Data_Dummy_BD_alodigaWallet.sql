@@ -656,3 +656,12 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Ver Estatus de Tarjeta Fin
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Tasa de Cambio', `description`='Tasa de Cambio' WHERE `id`='91';
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Auditoría', `description`='Auditoría' WHERE `id`='67';
 
+-- ALTER TABLE en la tabla country
+-- author: Moises Graterol
+-- Fecha: 31/08/2020
+ALTER TABLE `alodigaWallet`.`country` 
+ADD UNIQUE INDEX `name_UNIQUE` (`name` ASC);
+-- UPDATE en la tabla country
+-- author: Moises Graterol
+-- Fecha: 31/08/2020
+UPDATE `alodigaWallet`.`country` SET `shortName`='ANT' WHERE `id`='9';
