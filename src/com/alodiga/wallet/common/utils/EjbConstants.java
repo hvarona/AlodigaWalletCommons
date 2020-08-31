@@ -16,6 +16,7 @@ public class EjbConstants {
     public static final String UTILS_EJB = "ejb/wallet/UtilsEJB";
     public static final String PERSON_EJB = "ejb/wallet/PersonEJB";
     public static final String BUSINESS_PORTAL_EJB = "ejb/wallet/BusinessPortalEJB";
+    public static final String BUSINESS_EJB = "ejb/wallet/BusinessEJB";
     
     public static final String PROPERTIES_PACKAGE = "com.alodiga.wallet.common.utils.";
     public static final String ERROR_FILE_NAME = PROPERTIES_PACKAGE + "system_error";

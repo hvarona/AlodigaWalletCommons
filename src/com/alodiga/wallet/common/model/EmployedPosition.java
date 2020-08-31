@@ -48,8 +48,7 @@ public class EmployedPosition implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employedPositionId")
-    private Collection<Employee> employeeCollection;
+    
 
     public EmployedPosition() {
     }
@@ -79,15 +78,7 @@ public class EmployedPosition implements Serializable {
         this.name = name;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<Employee> getEmployeeCollection() {
-        return employeeCollection;
-    }
-
-    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
-        this.employeeCollection = employeeCollection;
-    }
+   
 
     @Override
     public int hashCode() {
