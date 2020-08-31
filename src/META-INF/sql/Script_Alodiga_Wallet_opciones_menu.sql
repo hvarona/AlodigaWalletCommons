@@ -625,36 +625,36 @@ INSERT INTO `alodigaWallet`.`collection_type` (`id`, `description`, `countryId`)
 -- Agregar opciones del menu Aprobación Retiro Manual
 -- author: Lulymar Gutierrez
 -- Fecha: 23/07/2020
-INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
+INSERT INTO `alodigaWallet`.`permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
 VALUES (77,1,'ListManualWithdrawalApproval','transaction_approve_request','ListManualWithdrawalApproval',1);
-INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
+INSERT INTO `alodigaWallet`.`permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
 VALUES (78,1,'AddManualWithdrawalApproval','transaction_approve_request','AddManualWithdrawalApproval',1);
-INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
+INSERT INTO `alodigaWallet`.`permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
 VALUES (79,1,'EditManualWithdrawalApproval','transaction_approve_request','EditManualWithdrawalApproval',1);
-INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
+INSERT INTO `alodigaWallet`.`permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
 VALUES (80,1,'ViewManualWithdrawalApproval','transaction_approve_request','ViewManualWithdrawalApproval',1);
 
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (153,77,1,'List Manual Withdrawal Approval','List Manual Withdrawal Approval');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (154,77,2,'Lista Aprobación Retiro Manual','Lista Aprobación Retiro Manual');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (155,78,1,'Add Manual Withdrawal Approval','Add Manual Withdrawal Approval');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (156,78,2,'Agregar Aprobación Retiro Manual','Agregar Aprobación Retiro Manual');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (157,79,1,'Edit Manual Withdrawal Approval','Edit Manual Withdrawal Approval');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (158,79,2,'Editar Aprobación Retiro Manual','Editar Aprobación Retiro Manual');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (159,80,1,'View Manual Withdrawal Approval','View Manual Withdrawal Approval');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (160,80,2,'Ver Aprobación Retiro Manual','Ver Aprobación Retiro Manual');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (77,1,'List Manual Withdrawal Approval','List Manual Withdrawal Approval');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (77,2,'Lista Aprobación Retiro Manual','Lista Aprobación Retiro Manual');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (78,1,'Add Manual Withdrawal Approval','Add Manual Withdrawal Approval');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (78,2,'Agregar Aprobación Retiro Manual','Agregar Aprobación Retiro Manual');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (79,1,'Edit Manual Withdrawal Approval','Edit Manual Withdrawal Approval');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (79,2,'Editar Aprobación Retiro Manual','Editar Aprobación Retiro Manual');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (80,1,'View Manual Withdrawal Approval','View Manual Withdrawal Approval');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (80,2,'Ver Aprobación Retiro Manual','Ver Aprobación Retiro Manual');
 
-INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (77,77,1);
-INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (78,78,1);
-INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (79,79,1);
-INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (80,80,1);
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (77,77,1);
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (78,78,1);
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (79,79,1);
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (80,80,1);
 
 
 --Permisos para Recarga Manual
@@ -667,14 +667,14 @@ INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `
 INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('84', '1', 'ViewManualRechargesApproval', 'transaction_approve_request', 'ViewManualRechargesApproval', '1');
 
 
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('161', '81', '1', 'List Manual Recharges Approval', 'List Manual Recharges Approval');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('162', '81', '2', 'Listar Aprobaciones de Recarga Manual', 'Listar Aprobaciones de Recarga Manual');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('163', '82', '1', 'Add Manual Recharges Approval', 'Add Manual Recharges Approval');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('164', '82', '2', 'Agregar Aprobaciones de Recarga Manual', 'Agregar Aprobaciones de Recarga Manual');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('165', '83', '1', 'Edit Manual Recharges Approval', 'Edit Manual Recharges Approval');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('166', '83', '2', 'Editar Aprobaciones de Recarga Manual', 'Editar Aprobaciones de Recarga Manual');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('167', '84', '1', 'View Manual Recharges Approval', 'View Manual Recharges Approval');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('168', '84', '2', 'Ver Aprobaciones de Recarga Manual', 'Ver Aprobaciones de Recarga Manual');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('164', '81', '1', 'List Manual Recharges Approval', 'List Manual Recharges Approval');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('165', '81', '2', 'Listar Aprobaciones de Recarga Manual', 'Listar Aprobaciones de Recarga Manual');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('166', '82', '1', 'Add Manual Recharges Approval', 'Add Manual Recharges Approval');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('167', '82', '2', 'Agregar Aprobaciones de Recarga Manual', 'Agregar Aprobaciones de Recarga Manual');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('168', '83', '1', 'Edit Manual Recharges Approval', 'Edit Manual Recharges Approval');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('169', '83', '2', 'Editar Aprobaciones de Recarga Manual', 'Editar Aprobaciones de Recarga Manual');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('170', '84', '1', 'View Manual Recharges Approval', 'View Manual Recharges Approval');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('171', '84', '2', 'Ver Aprobaciones de Recarga Manual', 'Ver Aprobaciones de Recarga Manual');
 
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('81', '81', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('82', '82', '1');
@@ -682,105 +682,69 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `pro
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('84', '84', '1');
 
 --Grupo Manejo Transaccional
-INSERT INTO `alodigawallet`.`permission_group` (`id`, `name`, `enabled`) VALUES ('5', 'Transacional Management', '1');
+INSERT INTO `alodigaWallet`.`permission_group` (`id`, `name`, `enabled`) VALUES ('5', 'Transacional Management', '1');
 
-INSERT INTO `alodigawallet`.`permission_group_data` (`id`, `permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('9', '5', '1', 'Transactional Management', 'Transactional Management');
-INSERT INTO `alodigawallet`.`permission_group_data` (`id`, `permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('10', '5', '2', 'Gestion Transactional', 'Gestion Transactional');
+INSERT INTO `alodigaWallet`.`permission_group_data` (`id`, `permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('9', '5', '1', 'Transactional Management', 'Transactional Management');
+INSERT INTO `alodigaWallet`.`permission_group_data` (`id`, `permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('10', '5', '2', 'Gestion Transactional', 'Gestion Transactional');
 
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '77');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '78');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '79');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '80');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '81');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '82');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '83');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '84');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '52');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '35');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '36');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '50');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '51');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '58');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '59');
-UPDATE `alodigawallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '60');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '77');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '78');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '79');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '80');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '81');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '82');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '83');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '84');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '52');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '35');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '36');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '50');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '51');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '58');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '59');
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = '5' WHERE (`id` = '60');
 
 --Modificar la descripcion de las preferencias especificas en el menu
-UPDATE `alodigawallet`.`permission_data` SET `alias` = 'Listar Preferencias Especificas', `description` = 'Listar Preferencias Especificas' WHERE (`id` = '105');
-UPDATE `alodigawallet`.`permission_data` SET `alias` = 'List Specifics Preferences', `description` = 'List Specifics Preferences' WHERE (`id` = '106');
-
-
-
--- Agregar opciones del menu Aprobación Retiro Manual
--- author: Lulymar Gutierrez
--- Fecha: 23/07/2020
-INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
-VALUES (77,1,'ListManualWithdrawalApproval','transaction_approve_request','ListManualWithdrawalApproval',1);
-INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
-VALUES (78,1,'AddManualWithdrawalApproval','transaction_approve_request','AddManualWithdrawalApproval',1);
-INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
-VALUES (79,1,'EditManualWithdrawalApproval','transaction_approve_request','EditManualWithdrawalApproval',1);
-INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`)
-VALUES (80,1,'ViewManualWithdrawalApproval','transaction_approve_request','ViewManualWithdrawalApproval',1);
-
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (153,77,1,'List Manual Withdrawal Approval','List Manual Withdrawal Approval');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (154,77,2,'Lista Aprobación Retiro Manual','Lista Aprobación Retiro Manual');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (155,78,1,'Add Manual Withdrawal Approval','Add Manual Withdrawal Approval');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (156,78,2,'Agregar Aprobación Retiro Manual','Agregar Aprobación Retiro Manual');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (157,79,1,'Edit Manual Withdrawal Approval','Edit Manual Withdrawal Approval');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (158,79,2,'Editar Aprobación Retiro Manual','Editar Aprobación Retiro Manual');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (159,80,1,'View Manual Withdrawal Approval','View Manual Withdrawal Approval');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (160,80,2,'Ver Aprobación Retiro Manual','Ver Aprobación Retiro Manual');
-
-INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (77,77,1);
-INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (78,78,1);
-INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (79,79,1);
-INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (80,80,1);
+UPDATE `alodigaWallet`.`permission_data` SET `alias` = 'Listar Preferencias Especificas', `description` = 'Listar Preferencias Especificas' WHERE (`id` = '105');
+UPDATE `alodigaWallet`.`permission_data` SET `alias` = 'List Specifics Preferences', `description` = 'List Specifics Preferences' WHERE (`id` = '106');
 
 
 
 -- Agregar opciones del menu Recaudos de Solicitud
 -- author: Lulymar Gutierrez
 -- Fecha: 3/08/2020
-INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
+INSERT INTO `alodigaWallet`.`permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
 VALUES (85,1,'ListCollectionsRequest','collections_request','ListCollectionsRequest',1);
-INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
+INSERT INTO `alodigaWallet`.`permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
 VALUES (86,1,'AddCollectionsRequest','collections_request','AddCollectionsRequest',1);
-INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
+INSERT INTO `alodigaWallet`.`permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
 VALUES (87,1,'EditCollectionsRequest','collections_request','EditCollectionsRequest',1);
-INSERT INTO `permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
+INSERT INTO `alodigaWallet`.`permission` (`id`,`permissionGroupId`,`action`,`entity`,`name`,`enabled`) 
 VALUES (88,1,'ViewCollectionsRequest','collections_request','ViewCollectionsRequest',1);
 
 
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (169,85,1,'List Collections Request','List Collections Request');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (170,85,2,'Lista Recaudos de Solicitud','Lista Recaudos de Solicitud');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (171,86,1,'Add Collections Request','Add Collections Request');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (172,86,2,'Agregar Recaudos de Solicitud','Agregar Recaudos de Solicitud');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (173,87,1,'Edit Collections Request','Edit Collections Request');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (174,87,2,'Editar Recaudos de Solicitud','Editar Recaudos de Solicitud');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (175,88,1,'View Collections Request','View Collections Request');
-INSERT INTO `permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
-VALUES (176,88,2,'Ver Recaudos de Solicitud','Ver Recaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (172,85,1,'List Collections Request','List Collections Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (173,85,2,'Lista Recaudos de Solicitud','Lista Recaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (174,86,1,'Add Collections Request','Add Collections Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (175,86,2,'Agregar Recaudos de Solicitud','Agregar Recaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (176,87,1,'Edit Collections Request','Edit Collections Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (177,87,2,'Editar Recaudos de Solicitud','Editar Recaudos de Solicitud');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (178,88,1,'View Collections Request','View Collections Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`,`permissionId`,`languageId`,`alias`,`description`) 
+VALUES (179,88,2,'Ver Recaudos de Solicitud','Ver Recaudos de Solicitud');
 
 
-INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (85,85,1);
-INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (86,86,1);
-INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (87,87,1);
-INSERT INTO `permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (88,88,1);
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (85,85,1);
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (86,86,1);
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (87,87,1);
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`,`permissionId`,`profileId`) VALUES (88,88,1);
 
 
 -- Agregar opciones del menu Solicitudes de Afiliacion
@@ -823,20 +787,23 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId
 -- opciones del menu Listar Prerelaciones Estatus Afiliaci�n
 -- author: Yamelis Almea
 -- Fecha: 07/08/2020
-INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('185', '93', '1', 'List Affiliation Status Prerelationships', 'Affiliation Status Prerelationships');
-INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('186', '93', '2', 'Listar Prerelaciones Estatus Afiliaci�n', 'Prerelaciones Estatus Afiliaci�n');
-INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('187', '94', '1', 'Add Affiliation Status Prerelationship', 'Add Affiliation Status Prerelationship');
-INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('188', '94', '2', 'Agregar Prerelaciones Estatus Afiliacion', 'Agregar Prerelaciones Estatus Afiliacion');
-INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('189', '95', '1', 'Edit Affiliation Status Prerelationship', 'Edit Affiliation Status Prerelationship');
-INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('190', '95', '2', 'Editar  Prerelaciones Estatus Afiliacion', 'Editar  Prerelaciones Estatus Afiliacion');
-INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('191', '96', '1', 'View Affiliation Status Prerelationship', 'View Affiliation Status Prerelationship');
-INSERT INTO `alodigawallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('192', '96', '2', 'Ver  Prerelaciones Estatus Afiliacion', 'Ver  Prerelaciones Estatus Afiliacion');
+
+-- Faltan los insert de la tabla permission
+
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('188', '93', '1', 'List Affiliation Status Prerelationships', 'Affiliation Status Prerelationships');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('189', '93', '2', 'Listar Prerelaciones Estatus Afiliación', 'Prerelaciones Estatus Afiliación');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('190', '94', '1', 'Add Affiliation Status Prerelationship', 'Add Affiliation Status Prerelationship');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('191', '94', '2', 'Agregar Prerelaciones Estatus Afiliacion', 'Agregar Prerelaciones Estatus Afiliacion');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('192', '95', '1', 'Edit Affiliation Status Prerelationship', 'Edit Affiliation Status Prerelationship');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('193', '95', '2', 'Editar  Prerelaciones Estatus Afiliacion', 'Editar  Prerelaciones Estatus Afiliacion');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('194', '96', '1', 'View Affiliation Status Prerelationship', 'View Affiliation Status Prerelationship');
+INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('195', '96', '2', 'Ver  Prerelaciones Estatus Afiliacion', 'Ver  Prerelaciones Estatus Afiliacion');
 
 
-INSERT INTO `alodigawallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('93', '93', '1');
-INSERT INTO `alodigawallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('94', '94', '1');
-INSERT INTO `alodigawallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('95', '95', '1');
-INSERT INTO `alodigawallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('96', '96', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('93', '93', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('94', '94', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('95', '95', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('96', '96', '1');
 
 
 
@@ -1009,14 +976,14 @@ INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `
 INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`) VALUES ('120', '6', 'ViewAplicantOFAC', 'person', 'ViewAplicantOFAC');
 
 
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('233', '117', '1', 'List Aplicant OFAC', 'List Aplicant OFAC');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('234', '117', '2', 'Lista de Solicitante OFAC', 'Lista de Solicitante OFAC');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('235', '118', '1', 'Add Aplicant OFAC', 'Add Aplicant OFAC');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('236', '118', '2', 'Agregar Solicitante OFAC', 'Agregar Solicitante OFAC');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('237', '119', '1', 'Edit Aplicant OFAC', 'Edit Aplicant OFAC');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('238', '119', '2', 'Editar Solicitante OFAC', 'Editar Solicitante OFAC');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('239', '120', '1', 'View Aplicant OFAC', 'View Aplicant OFAC');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('240', '120', '2', 'Ver Solicitante OFAC', 'Ver Solicitante OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('117', '1', 'List Aplicant OFAC', 'List Aplicant OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('117', '2', 'Lista de Solicitante OFAC', 'Lista de Solicitante OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('118', '1', 'Add Aplicant OFAC', 'Add Aplicant OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('118', '2', 'Agregar Solicitante OFAC', 'Agregar Solicitante OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('119', '1', 'Edit Aplicant OFAC', 'Edit Aplicant OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('119', '2', 'Editar Solicitante OFAC', 'Editar Solicitante OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('120', '1', 'View Aplicant OFAC', 'View Aplicant OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('120', '2', 'Ver Solicitante OFAC', 'Ver Solicitante OFAC');
 
 
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('117', '117', '1');
@@ -1081,14 +1048,14 @@ INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `
 INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('131', '2', 'EditPasswordChangeRequest', 'password_change_request', 'EditPasswordChangeRequest', '1');
 INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('132', '2', 'ViewPasswordChangeRequest', 'password_change_request', 'ViewPasswordChangeRequest', '1');
 
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('257', '129', '1', 'List Password Change Request', 'List Password Change Request');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('258', '129', '2', 'Listado Cambio de Contraseña', 'Listado Cambio de Contraseña');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('259', '130', '1', 'Add Password Change Request', 'Add Password Change Request');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('260', '130', '2', 'Agregar Cambio de Contraseña', 'Agregar Cambio de Contraseña');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('261', '131', '1', 'Edit Password Change Request', 'Edit Password Change Request');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('262', '131', '2', 'Editar Cambio de Contraseña', 'Editar Cambio de Contraseña');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('263', '132', '1', 'View Password Change Request', 'View Password Change Request');
-INSERT INTO `alodigaWallet`.`permission_data` (`id`, `permissionId`, `languageId`, `alias`, `description`) VALUES ('264', '132', '2', 'Ver Cambio de Contraseña', 'Ver Cambio de Contraseña');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('129', '1', 'List Password Change Request', 'List Password Change Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('129', '2', 'Listado Cambio de Contraseña', 'Listado Cambio de Contraseña');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('130', '1', 'Add Password Change Request', 'Add Password Change Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('130', '2', 'Agregar Cambio de Contraseña', 'Agregar Cambio de Contraseña');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('131', '1', 'Edit Password Change Request', 'Edit Password Change Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('131', '2', 'Editar Cambio de Contraseña', 'Editar Cambio de Contraseña');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('132', '1', 'View Password Change Request', 'View Password Change Request');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('132', '2', 'Ver Cambio de Contraseña', 'Ver Cambio de Contraseña');
 
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('129', '129', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('130', '130', '1');

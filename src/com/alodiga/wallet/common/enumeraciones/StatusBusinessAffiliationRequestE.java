@@ -11,12 +11,13 @@ package com.alodiga.wallet.common.enumeraciones;
  */
 public enum StatusBusinessAffiliationRequestE {
     
-    RECAUD(1, "RECAUDOS COMPLETOS", "RECAUD"),
-    PELINE(2, "PENDIENTE LISTAS NEGRAS", "PELINE"),
-    APLINE(2, "APROBADA  LISTAS NEGRAS", "APLINE"),
-    RELINE(2, "RECHAZADA LISTAS NEGRAS", "RELINE"),
-    APROBA(2, "APROBADA", "APROBA"),
-    RECHAZ(2, "RECHAZADA", "RECHAZ");
+    PENDIE(1, "PENDIENTE", "PENDIE"),
+    RECCOM(2, "RECAUDOS COMPLETOS", "RECCOM"),
+    RECINC(3, "RECAUDOS INCOMPLETOS", "RECINC"),
+    PELINE(4, "PENDIENTE LISTA NEGRA", "PELINE"),
+    APLINE(5, "APROBADA LISTA NEGRA", "APLINE"),
+    APROBA(7, "APROBADA", "APROBA"),
+    RECHAZ(6, "RECHAZADA", "RECHAZ");
     
     
     private int id;

@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.BankHasProduct;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import com.ericsson.alodiga.ws.Banco;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -37,7 +38,8 @@ import javax.persistence.ManyToOne;
     , @NamedQuery(name = "BankHasProduct.findById", query = "SELECT b FROM BankHasProduct b WHERE b.id = :id")
     , @NamedQuery(name = "BankHasProduct.findByProductId", query = "SELECT b FROM BankHasProduct b WHERE b.productId = :productId")
     , @NamedQuery(name = "BankHasProduct.findByProductIdAndBankId", query = "SELECT b FROM BankHasProduct b WHERE b.productId = :productId AND b.bankId = :bankId")
-    , @NamedQuery(name = "BankHasProduct.findByBankId", query = "SELECT b FROM BankHasProduct b WHERE b.bankId = :bankId")})
+    , @NamedQuery(name = "BankHasProduct.findByBankId", query = "SELECT b FROM BankHasProduct b WHERE b.bankId = :bankId")
+    , @NamedQuery(name = QueryConstants.BANK_BY_PRODUCT, query = "SELECT b FROM BankHasProduct b WHERE b.productId.id = :productId")})
 public class BankHasProduct extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
