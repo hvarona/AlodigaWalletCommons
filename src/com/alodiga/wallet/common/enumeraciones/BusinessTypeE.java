@@ -11,9 +11,9 @@ package com.alodiga.wallet.common.enumeraciones;
  */
 public enum BusinessTypeE {
     
-    COMERC(1, "COMERCIO", "COMERC"),
-    LEBUAP(2, "PROVEEDOR", "PROVEE"),
-    CORRES(3, "CORRESPONSAL", "CORRES");
+    
+    CORRES(7, "CORRESPONSAL", "CORRES"),
+    COMERC(8, "COMERCIO", "COMERC");
     
     private int id;
     private String businessTypeDescription;

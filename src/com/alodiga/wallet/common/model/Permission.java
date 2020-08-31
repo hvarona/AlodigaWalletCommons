@@ -24,8 +24,10 @@ import javax.persistence.NamedQuery;
 @Entity
 @Table(name = "permission")
 @NamedQueries({
-    @NamedQuery(name = "Permission.findAll", query = "SELECT p FROM Permission p WHERE p.enabled =1"),
-    @NamedQuery(name = "Permission.findById", query = "SELECT p FROM Permission p WHERE p.id = :id"),
+    @NamedQuery(name = "Permission.findAll", query = "SELECT p FROM Permission p WHERE p.enabled =1")
+    ,
+    @NamedQuery(name = "Permission.findById", query = "SELECT p FROM Permission p WHERE p.id = :id")
+    ,
     @NamedQuery(name = "Permission.findByGroupId", query = "SELECT p FROM Permission p WHERE p.permissionGroup.id = :groupId ORDER BY p.id DESC")})
 public class Permission extends AbstractWalletEntity implements Serializable {
 
@@ -73,18 +75,18 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long EDIT_BANK = 40L;
     public static Long VIEW_BANK = 41L;
     public static Long LIST_CURRENCIES = 42L;
-    public static Long ADD_CURRENCIES	= 43L;
+    public static Long ADD_CURRENCIES = 43L;
     public static Long EDIT_CURRENCIES = 44L;
     public static Long VIEW_CURRENCIES = 45L;
     public static Long LIST_EXCHANGE_RATE = 46L;
-    public static Long ADD_EXCHANGE_RATE = 47L;	
+    public static Long ADD_EXCHANGE_RATE = 47L;
     public static Long EDIT_EXCHANGE_RATE = 48L;
     public static Long VIEW_EXCHANGE_RATE = 49L;
     public static Long LIST_OPERATION_BANK = 50L;
     public static Long VIEW_OPERATION_BANK = 51L;
     public static Long LIST_TRANSACTION = 52L;
     public static Long LIST_PREFERENCES = 53L;
-    public static Long ADD_PREFERENCES = 54L;	
+    public static Long ADD_PREFERENCES = 54L;
     public static Long EDIT_PREFERENCES = 55L;
     public static Long VIEW_PREFERENCES = 56L;
     public static Long CHANGE_PREFERENCES_STATUS = 57L;
@@ -103,7 +105,7 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long ADD_BUSINESS_SUB_CATEGORY = 70L;
     public static Long EDIT_BUSINESS_SUB_CATEGORY = 71L;
     public static Long VIEW_BUSINESS_SUB_CATEGORY = 72L;
-    public static Long LIST_COLLECTIONS_TYPE= 73L;
+    public static Long LIST_COLLECTIONS_TYPE = 73L;
     public static Long ADD_TYPE_OF_COLLECTIONS = 74L;
     public static Long EDIT_TYPE_OF_COLLECTIONS = 75L;
     public static Long VIEW_TYPE_OF_COLLECTIONS = 76L;
@@ -111,19 +113,19 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long ADD_MANUAL_WITHDRAWAL_APPROVAL = 78L;
     public static Long EDIT_MANUAL_WITHDRAWAL_APPROVAL = 79L;
     public static Long VIEW_MANUAL_WITHDRAWAL_APPROVAL = 80L;
-    public static Long LIST_MANUAL_RECHARGUES_APPROVAL= 81L;
+    public static Long LIST_MANUAL_RECHARGUES_APPROVAL = 81L;
     public static Long ADD_MANUAL_RECHARGUES_APPROVAL = 82L;
     public static Long EDIT_MANUAL_RECHARGUES_APPROVAL = 83L;
     public static Long VIEW_MANUAL_RECHARGUES_APPROVAL = 84L;
-    public static Long LIST_COLLECTIONS_REQUEST= 85L;
+    public static Long LIST_COLLECTIONS_REQUEST = 85L;
     public static Long ADD_COLLECTIONS_REQUEST = 86L;
     public static Long EDIT_COLLECTIONS_REQUEST = 87L;
     public static Long VIEW_COLLECTIONS_REQUEST = 88L;
-    public static Long LIST_BUSINESS_AFFILIATION_REQUESTS= 89L;
+    public static Long LIST_BUSINESS_AFFILIATION_REQUESTS = 89L;
     public static Long ADD_BUSINESS_AFFILIATION_REQUESTS = 90L;
     public static Long EDIT_BUSINESS_AFFILIATION_REQUESTS = 91L;
     public static Long VIEW_BUSINESS_AFFILIATION_REQUESTS = 92L;
-    public static Long LIST_AFFILIATIONSTATUSPRERELATIONSHIPS= 93L;
+    public static Long LIST_AFFILIATIONSTATUSPRERELATIONSHIPS = 93L;
     public static Long ADD_AFFILIATIONSTATUSPRERELATIONSHIP = 94L;
     public static Long EDIT_AFFILIATIONSTATUSPRERELATIONSHIP = 95L;
     public static Long VIEW_AFFILIATIONSTATUSPRERELATIONSHIP = 96L;
@@ -167,11 +169,7 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long ADD_EMPLOYEE = 134L;
     public static Long EDIT_EMPLOYEE = 135L;
     public static Long VIEW_EMPLOYEE = 136L;
-
-
-
-
-
+    public static Long LIST_PRODUCT = 137L;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -190,6 +188,7 @@ public class Permission extends AbstractWalletEntity implements Serializable {
 
     public Permission() {
     }
+
     public Permission(Long id) {
         this.id = id;
     }

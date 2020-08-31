@@ -40,6 +40,7 @@ import com.alodiga.wallet.common.model.StatusApplicant;
 import com.alodiga.wallet.common.model.StreetType;
 import com.alodiga.wallet.common.utils.EjbConstants;
 import com.portal.business.commons.models.Business;
+
 import java.util.HashMap;
 import java.util.Map;
 import junit.framework.TestCase;
@@ -210,7 +211,7 @@ public class BusinessPortalTest extends TestCase {
 
     }
      
-      public void testsaveSequences() {
+      public void _testsaveSequences() {
         try {
             Sequences sequenceses = new Sequences();
             EJBRequest request = new EJBRequest();
