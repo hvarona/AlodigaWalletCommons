@@ -14,7 +14,7 @@ public enum AddressTypeE {
     HABITA(1, "HABITACION", "HABITA"),
     DOMFIS(2, "DOMICILIO FISCAL", "DOMFIS"),
     FACTUR(3, "FACTURACION", "FACTUR"),
-    EMPRES(3, "EMPRESA", "EMPRES");
+    EMPRES(4, "EMPRESA", "EMPRES");
     
     private int id;
     private String addressTypeDescription;

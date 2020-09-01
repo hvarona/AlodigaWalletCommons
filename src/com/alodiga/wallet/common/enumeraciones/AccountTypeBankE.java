@@ -13,7 +13,7 @@ public enum AccountTypeBankE {
     
     CTACOR(1, "Cuenta Corriente", "CTACOR"),
     CTAAHO(2, "Cuenta de Ahorros", "CTAAHO"),
-    CTAUNI(2, "Cuenta Unica", "CTAUNI");
+    CTAUNI(3, "Cuenta Unica", "CTAUNI");
     
     
     private int id;

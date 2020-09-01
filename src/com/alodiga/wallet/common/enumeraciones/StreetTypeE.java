@@ -13,11 +13,11 @@ public enum StreetTypeE {
     
     CALLE(1, "CALLE", "CALLE"),
     AVENID(2, "AVENIDA", "AVENID"),
-    VEREDA(2, "VEREDA", "VEREDA"),
-    REDOMA(2, "REDOMA", "REDOMA"),
-    AUTOPI(2, "AUTOPISTA", "AUTOPI"),
-    BULEVA(2, "BULEVAR", "BULEVA"),
-    CARRET(2, "CARRETERA", "CARRET");  
+    VEREDA(3, "VEREDA", "VEREDA"),
+    REDOMA(4, "REDOMA", "REDOMA"),
+    AUTOPI(5, "AUTOPISTA", "AUTOPI"),
+    BULEVA(6, "BULEVAR", "BULEVA"),
+    CARRET(7, "CARRETERA", "CARRET");  
     
     private int id;
     private String streetTypeDescription;
