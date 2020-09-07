@@ -1084,3 +1084,28 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `pro
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('134', '134', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('135', '135', '1');
 INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('136', '136', '1');
+
+-- Agregar opciones del menu de Días Feriados
+-- author: Graterol Moises
+-- Fecha: 07/09/2020
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('137', '4', 'ListCalendarDays', 'calendar_days', 'ListCalendarDays', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('138', '4', 'AddCalendarDays', 'calendar_days', 'AddCalendarDays', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('139', '4', 'EditCalendarDays', 'calendar_days', 'EditCalendarDays', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('140', '4', 'ViewCalendarDays', 'calendar_days', 'ViewCalendarDays', '1');
+
+
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('137', '137', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('138', '138', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('139', '139', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('140', '140', '1');
+
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('137', '1', 'List Of Holidays', 'List Of Holidays');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('137', '2', 'Lista Días Feriados', 'Lista Días Feriados');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('138', '1', 'Add Of Holidays', 'Add Of Holidays');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('138', '2', 'Agregar Días Feriados', 'Agregar Días Feriados');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('139', '1', 'Edit Of Holidays', 'Edit Of Holidays');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('139', '2', 'Editar Días Feriados', 'Editar Días Feriados');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('140', '1', 'View Of Holidays', 'View Of Holidays');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('140', '2', 'Ver Días Feriados', 'Ver Días Feriados');

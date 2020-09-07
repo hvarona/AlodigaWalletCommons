@@ -18,6 +18,7 @@ import com.alodiga.wallet.common.model.BusinessCategory;
 import com.alodiga.wallet.common.model.BusinessSubCategory;
 import com.alodiga.wallet.common.model.BusinessType;
 import com.alodiga.wallet.common.model.BusinessServiceType;
+import com.alodiga.wallet.common.model.CalendarDays;
 import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.Close;
 import com.alodiga.wallet.common.model.CollectionType;
@@ -358,6 +359,7 @@ public interface UtilsEJB extends WalletGenericEJB {
     
     public Country saveNewCountry(Country country) throws RegisterNotFoundException, GeneralException, NullParameterException, DuplicateEntryException;
     
-    
+    //Calendar Days
+    public List<CalendarDays> getCalendarDays(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
 }
