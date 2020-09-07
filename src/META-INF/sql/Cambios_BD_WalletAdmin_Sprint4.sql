@@ -861,4 +861,15 @@ CREATE TABLE IF NOT EXISTS `alodigaWallet`.`calendar_days` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+-- Agregar la preferencia MAX_NUMBER_OF_CARDS_ENABLED para el limite de tarjetas que se pueden activar diariamente por negocio
+-- author: Yamelis Almea
+-- Fecha: 01/09/2020
+
+INSERT INTO `alodigawallet`.`preference_field` (`id`, `name`, `preferenceId`, `enabled`, `preferenceTypeId`) VALUES ('25', 'MAX_NUMBER_OF_CARDS_ENABLED', '3', '1', '1');
+INSERT INTO `alodigawallet`.`preference_value` (`value`, `preferenceFieldId`, `preferenceClassficationId`, `createDate`, `updateDate`, `enabled`) VALUES ('5', '25', '2', '2020-07-14 14:40:46', '2020-07-14 15:17:48', '1');
+
+INSERT INTO `alodigawallet`.`preference_value` (`value`, `preferenceFieldId`, `productId`, `transactionTypeId`, `preferenceClassficationId`, `preferenceValueParentId`, `bussinessId`, `createDate`, `updateDate`, `enabled`) VALUES ('4', '25', '1', '1', '1', '136', '1', '2020-07-19 12:50:41', '2020-07-19 12:50:41', '1');
+INSERT INTO `alodigawallet`.`preference_value` (`value`, `preferenceFieldId`, `productId`, `transactionTypeId`, `preferenceClassficationId`, `preferenceValueParentId`, `bussinessId`, `createDate`, `updateDate`, `enabled`) VALUES ('4', '25', '2', '1', '1', '136', '1', '2020-07-19 12:50:41', '2020-07-19 12:50:41', '1');
+
+INSERT INTO `alodigawallet`.`preference_value` (`value`, `preferenceFieldId`, `productId`, `transactionTypeId`, `preferenceClassficationId`, `preferenceValueParentId`, `bussinessId`, `createDate`, `updateDate`, `enabled`) VALUES ('3', '25', '1', '2', '2', '136', '2', '2020-07-19 12:49:06', '2020-07-19 12:49:06', '1');
 
