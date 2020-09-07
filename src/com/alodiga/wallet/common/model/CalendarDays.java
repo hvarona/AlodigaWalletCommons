@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -55,6 +57,9 @@ public class CalendarDays implements Serializable {
     @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
+    @JoinColumn(name = "countryId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Country countryId;
 
     public CalendarDays() {
     }
@@ -101,6 +106,14 @@ public class CalendarDays implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Country getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(Country countryId) {
+        this.countryId = countryId;
     }
 
     @Override

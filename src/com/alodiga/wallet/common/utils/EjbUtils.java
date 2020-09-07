@@ -98,6 +98,18 @@ public class EjbUtils {
         calendar.set(Calendar.MILLISECOND, 0);
         return calendar.getTime();
     }
+    
+    public static Date getBeginningDateAnnual(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.DAY_OF_YEAR, 1);
+        calendar.set(Calendar.AM_PM, Calendar.AM);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTime();
+    }
 
     public static Date addDays(Date date, int daysNumber) {
         Calendar calendar = Calendar.getInstance();
