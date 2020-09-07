@@ -307,4 +307,15 @@ public class Constants {
     //PersonClassification
     public static Integer CLASSIFICATION_PERSON_EMPLOYEE = 3; 
     
+    //AddressType
+    public static Integer RESIDENCE_ADDRESS_TYPE = 1;
+    
+    //EdificationType
+    public static Integer EDIFICATION_TYPE = 1;
+    
+    //StreetType
+    public static Integer STREET_TYPE = 1;
+    
+    
+    
 }
