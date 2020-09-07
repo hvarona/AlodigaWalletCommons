@@ -846,3 +846,19 @@ ALTER TABLE `alodigaWallet`.`phone_person`
 DROP INDEX `personId` ,
 ADD INDEX `personId` (`personId` ASC);
 
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`calendar_days` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `countyId` BIGINT(10) NOT NULL,
+  `holidayDate` DATE NULL,
+  `description` VARCHAR(50) NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_calendarDays_county1_idx` (`countyId` ASC),
+  CONSTRAINT `fk_calendarDays_county1`
+    FOREIGN KEY (`countyId`)
+    REFERENCES `alodigaWallet`.`county` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
