@@ -195,5 +195,7 @@ public class QueryConstants {
     public static final String PHONES_BY_MAIN = "phonesByMain";
     public static final String VALIDATE_PASSWORD = "validatePassword";
     public static final String CLASSIFICATION_ID = "classificationId";
+    public static final String CODE_EXIST_IN_BD_COUNTRY = "codeExistInBdCountry";
+    public static final String NAME_EXIST_IN_BD_COUNTRY = "nameExistInBdCountry";
     
 }

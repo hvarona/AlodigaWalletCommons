@@ -81,7 +81,13 @@ public interface UtilsEJB extends WalletGenericEJB {
     public Country saveCountry(Country country) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public Country loadCountryByShortName(String referenceCode) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
+    
+    public List<Country> getSearchCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
+   
+    public List<Country> getValidateCountryByCode(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<Country> getValidateCountryByName(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+   
     //Currency
     public List<Currency> getCurrency(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
