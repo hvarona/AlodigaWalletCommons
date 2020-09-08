@@ -361,5 +361,5 @@ public interface UtilsEJB extends WalletGenericEJB {
     
     //Calendar Days
     public List<CalendarDays> getCalendarDays(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
+    public CalendarDays saveCalendarDays(CalendarDays calendarDays) throws RegisterNotFoundException, NullParameterException, GeneralException;
 }
