@@ -52,6 +52,11 @@ import javax.validation.constraints.NotNull;
 
 public class BankOperation extends AbstractWalletEntity implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Long id;
     @Column(name = "bankOperationDate")
     @Temporal(TemporalType.DATE)
     private Date bankOperationDate;
@@ -65,12 +70,7 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     @JoinColumn(name = "paymentTypeId", referencedColumnName = "id")
     @ManyToOne
     private PaymentType paymentTypeId;
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Long id;
+    private static final long serialVersionUID = 1L;    
     @Column(name = "userSourceId")
     private BigInteger userSourceId;
     @Size(max = 40)
