@@ -2,6 +2,7 @@ package com.alodiga.wallet.common.utils;
 
 //import com.alodiga.twilio.sms.services.TwilioSmsSenderProxy;
 //import com.alodiga.massiva.sms.SendSmsMassiva;
+import com.alodiga.massiva.sms.SendSmsMassiva;
 import com.alodiga.wallet.common.model.Sms;
 import com.alodiga.wallet.common.utils.Constants;
 import java.math.BigInteger;
@@ -177,11 +178,11 @@ public class SendSmsThread extends Thread {
                 
             } else if (movil.substring(0, 2).equals("58")) {
                 //Venezuela  integras con Massiva
-//                APIOperations aPIOperations = new APIOperations();
-//                SendSmsMassiva sendSmsMassiva = new SendSmsMassiva();
+                //APIOperations aPIOperations = new APIOperations();
+                SendSmsMassiva sendSmsMassiva = new SendSmsMassiva();
                 try {
                     //String response = aPIOperations.sendSmsSimbox(message, movil, userId);
-//                    String response = sendSmsMassiva.sendSmsMassiva(message, movil);
+                    String response = sendSmsMassiva.sendSmsMassiva(message, movil);
                     Sms sms = new Sms();
                     sms.setUserId(BigInteger.valueOf(userId));
                     //sms.setIntegratorName(Constants.INTEGRATOR_SIMBOX);
@@ -190,6 +191,7 @@ public class SendSmsThread extends Thread {
                     sms.setDestination(movil);
                     sms.setContent(message);
                     sms.setCreationDate(new Timestamp(new Date().getTime()));
+                    sms.setStatus("Enviado");
 //                    if (getelement(response, "status").equals("1")) {
 //                        sms.setStatus(Constants.SEND_SMS);
 //                        sms.setAdditional(getelementIntoLabel(response, "celular", "sid"));
@@ -198,7 +200,7 @@ public class SendSmsThread extends Thread {
 //                        sms.setAdditional(null);
 //                    }
 
-                    //sms.setAdditional(response);
+                    sms.setAdditional(response);
                     entityManager.flush();
                     entityManager.persist(sms);
                     
