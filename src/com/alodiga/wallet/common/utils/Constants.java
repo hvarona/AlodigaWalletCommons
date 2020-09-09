@@ -268,6 +268,7 @@ public class Constants {
     public static final String ORIGIN_APPLICATION_PORTAL_NEGOCIOS_CODE= "PORNEG";
     public static final String CURRENT_PASSWORD = "currentPassword";
     public static final String USER_KEY = "userId";
+    public static final String COUNTRY_KEY ="countryId";
     
     public static final int STATUS_APPLICANT_ACTIVE = 1;
     public static final int STATUS_APPLICANT_BLACK_LIST_OK = 2;
@@ -297,6 +298,7 @@ public class Constants {
     
     //Parámetros de las consultas de BD
     public static final String PARAM_CODE = "code";
+    public static final String PARAM_NAME = "name";
     public static final String STATUS_KEY = "statusCardId";
     public static final int REVIEW_REQUEST_TYPE = 1;
     
@@ -306,5 +308,16 @@ public class Constants {
     
     //PersonClassification
     public static Integer CLASSIFICATION_PERSON_EMPLOYEE = 3; 
+    
+    //AddressType
+    public static Integer RESIDENCE_ADDRESS_TYPE = 1;
+    
+    //EdificationType
+    public static Integer EDIFICATION_TYPE = 1;
+    
+    //StreetType
+    public static Integer STREET_TYPE = 1;
+    
+    
     
 }

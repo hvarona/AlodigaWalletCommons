@@ -30,7 +30,7 @@ import com.alodiga.wallet.common.model.UserWS;
     @NamedQuery(name = "UserWS.findAll", query = "SELECT u FROM UserWS u")
     , @NamedQuery(name = "UserWS.findByUsuario", query = "SELECT u FROM UserWS u WHERE u.usuario = :usuario")
     , @NamedQuery(name = "UserWS.findByPassword", query = "SELECT u FROM UserWS u WHERE u.password = :password")
-    , @NamedQuery(name = "UserWS.findByUserANDPassword", query = "SELECT u FROM UserWS u")})
+    , @NamedQuery(name = "UserWS.findByUserANDPassword", query = "SELECT u FROM UserWS u WHERE u.usuario = :usuario AND u.password = :password")})
 public class UserWS implements Serializable {
 
     private static final long serialVersionUID = 1L;

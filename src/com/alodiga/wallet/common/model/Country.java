@@ -31,6 +31,7 @@ import com.alodiga.wallet.common.model.Enterprise;
 import com.alodiga.wallet.common.model.SmsProvider;
 import com.alodiga.wallet.common.model.State;
 import com.alodiga.wallet.common.model.ValidationCollection;
+import com.alodiga.wallet.common.utils.QueryConstants;
 
 /**
  *
@@ -47,7 +48,10 @@ import com.alodiga.wallet.common.model.ValidationCollection;
     @NamedQuery(name = "Country.findByCode", query = "SELECT c FROM Country c WHERE c.code = :code"),
     @NamedQuery(name = "Country.findByAlternativeName1", query = "SELECT c FROM Country c WHERE c.alternativeName1 = :alternativeName1"),
     @NamedQuery(name = "Country.findByAlternativeName2", query = "SELECT c FROM Country c WHERE c.alternativeName2 = :alternativeName2"),
-    @NamedQuery(name = "Country.findByAlternativeName3", query = "SELECT c FROM Country c WHERE c.alternativeName3 = :alternativeName3")})
+    @NamedQuery(name = "Country.findByAlternativeName3", query = "SELECT c FROM Country c WHERE c.alternativeName3 = :alternativeName3"),
+    @NamedQuery(name = QueryConstants.CODE_EXIST_IN_BD_COUNTRY, query = "SELECT c FROM Country c WHERE c.code = :code"),
+    @NamedQuery(name = QueryConstants.NAME_EXIST_IN_BD_COUNTRY, query = "SELECT c FROM Country c WHERE c.name = :name")})
+
 public class Country extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

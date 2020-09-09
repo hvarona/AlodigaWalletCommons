@@ -66,10 +66,10 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
+    
     @Column(name = "transactionNumber")
     private String transactionNumber;
+    
     @Column(name = "totalAmount")
     private Float totalAmount;
     @Column(name = "totalTax")
