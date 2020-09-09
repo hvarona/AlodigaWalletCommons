@@ -59,7 +59,6 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Transaction.findByAdditional2", query = "SELECT t FROM Transaction t WHERE t.additional2 = :additional2")})
 public class Transaction extends AbstractWalletEntity implements Serializable {
 
-    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,16 +72,12 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     private String transactionNumber;
     @Column(name = "totalAmount")
     private Float totalAmount;
-
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "totalTax")
     private Float totalTax;
     @Column(name = "promotionAmount")
     private Float promotionAmount;
     @Column(name = "totalAlopointsUsed")
-    private Float totalAlopointsUsed;
-    
-    
+    private Float totalAlopointsUsed;  
     @Column(name = "userSourceId")
     private BigInteger userSourceId;
     @Column(name = "userDestinationId")
@@ -125,6 +120,13 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "closeId", referencedColumnName = "id")
     @ManyToOne
     private Close closeId;
+    @Column(name = "indClosed")
+    private Boolean indClosed;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionId")
+    private Collection<TransactionLog> transactionLogCollection;
+    @JoinColumn(name = "dailyClosingId", referencedColumnName = "id")
+    @ManyToOne
+    private DailyClosing dailyClosingId;
     
     //Only by result transaction list by APP
     @Transient
@@ -132,10 +134,7 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     @Transient
     private String destinationUser;
     @Transient
-    private String transactionType;
-    
-
-    
+    private String transactionType;  
 
     public Transaction() {
     }
@@ -393,6 +392,32 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
 
     public void setTotalAmount(Float totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public Boolean getIndClosed() {
+        return indClosed;
+    }
+
+    public void setIndClosed(Boolean indClosed) {
+        this.indClosed = indClosed;
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<TransactionLog> getTransactionLogCollection() {
+        return transactionLogCollection;
+    }
+
+    public void setTransactionLogCollection(Collection<TransactionLog> transactionLogCollection) {
+        this.transactionLogCollection = transactionLogCollection;
+    }
+
+    public DailyClosing getDailyClosingId() {
+        return dailyClosingId;
+    }
+
+    public void setDailyClosingId(DailyClosing dailyClosingId) {
+        this.dailyClosingId = dailyClosingId;
     }
 
   

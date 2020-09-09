@@ -846,6 +846,9 @@ ALTER TABLE `alodigaWallet`.`phone_person`
 DROP INDEX `personId` ,
 ADD INDEX `personId` (`personId` ASC);
 
+-- Agregar tabla de calendar_days
+-- author: Jesús Gómez
+-- Fecha: 07/09/2020
 CREATE TABLE IF NOT EXISTS `alodigaWallet`.`calendar_days` (
   `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
   `countryId` BIGINT(3) NOT NULL,
@@ -868,9 +871,87 @@ ENGINE = InnoDB
 
 INSERT INTO `alodigawallet`.`preference_field` (`id`, `name`, `preferenceId`, `enabled`, `preferenceTypeId`) VALUES ('25', 'MAX_NUMBER_OF_CARDS_ENABLED', '3', '1', '1');
 INSERT INTO `alodigawallet`.`preference_value` (`value`, `preferenceFieldId`, `preferenceClassficationId`, `createDate`, `updateDate`, `enabled`) VALUES ('5', '25', '2', '2020-07-14 14:40:46', '2020-07-14 15:17:48', '1');
-
 INSERT INTO `alodigawallet`.`preference_value` (`value`, `preferenceFieldId`, `productId`, `transactionTypeId`, `preferenceClassficationId`, `preferenceValueParentId`, `bussinessId`, `createDate`, `updateDate`, `enabled`) VALUES ('4', '25', '1', '1', '1', '136', '1', '2020-07-19 12:50:41', '2020-07-19 12:50:41', '1');
 INSERT INTO `alodigawallet`.`preference_value` (`value`, `preferenceFieldId`, `productId`, `transactionTypeId`, `preferenceClassficationId`, `preferenceValueParentId`, `bussinessId`, `createDate`, `updateDate`, `enabled`) VALUES ('4', '25', '2', '1', '1', '136', '1', '2020-07-19 12:50:41', '2020-07-19 12:50:41', '1');
-
 INSERT INTO `alodigawallet`.`preference_value` (`value`, `preferenceFieldId`, `productId`, `transactionTypeId`, `preferenceClassficationId`, `preferenceValueParentId`, `bussinessId`, `createDate`, `updateDate`, `enabled`) VALUES ('3', '25', '1', '2', '2', '136', '2', '2020-07-19 12:49:06', '2020-07-19 12:49:06', '1');
 
+-- Creación de las tablas para el cierre diario de las transacciones realizadas en la billetera
+-- author: Jesús Gómez
+-- Fecha: 09/09/2020
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`daily_closing_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NOT NULL,
+  `code` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`daily_closing` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `closingDate` DATE NOT NULL,
+  `closingStartTime` TIME NULL,
+  `closingEndTime` TIME NULL,
+  `dailyClosingTypeId` INT NOT NULL,
+  `totalTransactions` INT NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_daily_closing_daily_closing_type1_idx` (`dailyClosingTypeId` ASC),
+  CONSTRAINT `fk_daily_closing_daily_closing_type1`
+    FOREIGN KEY (`dailyClosingTypeId`)
+    REFERENCES `alodigaWallet`.`daily_closing_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`code_error_transaction_log` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NULL,
+  `code` VARCHAR(50) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_transaction_log` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NOT NULL,
+  `code` VARCHAR(10) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`transaction_log` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `transactionId` BIGINT(20) NOT NULL,
+  `statusTransactionLogId` INT NOT NULL,
+  `codeErrorTransactionLogId` INT NOT NULL,
+  `observations` VARCHAR(1500) NULL,
+  `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_transaction_log_transaction1_idx` (`transactionId` ASC),
+  INDEX `fk_transaction_log_status_transaction_log1_idx` (`statusTransactionLogId` ASC),
+  INDEX `fk_transaction_log_code_error_transaction_log1_idx` (`codeErrorTransactionLogId` ASC),
+  CONSTRAINT `fk_transaction_log_transaction1`
+    FOREIGN KEY (`transactionId`)
+    REFERENCES `alodigaWallet`.`transaction` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transaction_log_status_transaction_log1`
+    FOREIGN KEY (`statusTransactionLogId`)
+    REFERENCES `alodigaWallet`.`status_transaction_log` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transaction_log_code_error_transaction_log1`
+    FOREIGN KEY (`codeErrorTransactionLogId`)
+    REFERENCES `alodigaWallet`.`code_error_transaction_log` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ALTER TABLE `alodigaWallet`.`transaction`
+ADD COLUMN `indClosed` TINYINT(1) NULL,
+ADD COLUMN `dailyClosingId` BIGINT NULL;
+ALTER TABLE `alodigaWallet`.`transaction`
+ADD CONSTRAINT `fk_transaction_dailyClosing1`
+ FOREIGN KEY (`dailyClosingId`)
+ REFERENCES `alodigaWallet`.`daily_closing` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
