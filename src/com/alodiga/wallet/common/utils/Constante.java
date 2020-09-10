@@ -152,4 +152,8 @@ public class Constante {
         public static final Long sTransationTypeAF = 10l;
         public static final String sTransactionConceptPurchaseBalance = "Purchase Balance Afinitas";
         
+        
+        //addres Type
+        public static final int addressType = 1;
+        
 }

@@ -169,7 +169,11 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long ADD_EMPLOYEE = 134L;
     public static Long EDIT_EMPLOYEE = 135L;
     public static Long VIEW_EMPLOYEE = 136L;
-    public static Long LIST_PRODUCT = 137L;
+    public static Long LIST_OF_HOLIDAYS = 137L;
+    public static Long ADD_OF_HOLIDAYS = 138L;
+    public static Long EDIT_OF_HOLIDAYS = 139L;
+    public static Long VIEW_OF_HOLIDAYS = 140L;
+    
 
     private static final long serialVersionUID = 1L;
     @Id

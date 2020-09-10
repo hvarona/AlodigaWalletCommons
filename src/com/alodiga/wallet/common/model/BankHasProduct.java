@@ -36,9 +36,9 @@ import javax.persistence.ManyToOne;
 @NamedQueries({
     @NamedQuery(name = "BankHasProduct.findAll", query = "SELECT b FROM BankHasProduct b")
     , @NamedQuery(name = "BankHasProduct.findById", query = "SELECT b FROM BankHasProduct b WHERE b.id = :id")
-    , @NamedQuery(name = "BankHasProduct.findByProductId", query = "SELECT b FROM BankHasProduct b WHERE b.productId = :productId")
-    , @NamedQuery(name = "BankHasProduct.findByProductIdAndBankId", query = "SELECT b FROM BankHasProduct b WHERE b.productId = :productId AND b.bankId = :bankId")
-    , @NamedQuery(name = "BankHasProduct.findByBankId", query = "SELECT b FROM BankHasProduct b WHERE b.bankId = :bankId")
+    , @NamedQuery(name = "BankHasProduct.findByProductId", query = "SELECT b FROM BankHasProduct b WHERE b.productId.id = :productId")
+    , @NamedQuery(name = "BankHasProduct.findByProductIdAndBankId", query = "SELECT b FROM BankHasProduct b WHERE b.productId.id = :productId AND b.bankId.id = :bankId")
+    , @NamedQuery(name = "BankHasProduct.findByBankId", query = "SELECT b FROM BankHasProduct b WHERE b.bankId.id = :bankId")
     , @NamedQuery(name = QueryConstants.BANK_BY_PRODUCT, query = "SELECT b FROM BankHasProduct b WHERE b.productId.id = :productId")})
 public class BankHasProduct extends AbstractWalletEntity implements Serializable {
 

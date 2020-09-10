@@ -1,5 +1,6 @@
 package com.alodiga.wallet.common.ejb;
 
+import com.alodiga.wallet.common.exception.DuplicateEntryException;
 import java.util.List;
 import com.alodiga.wallet.common.exception.EmptyListException;
 import com.alodiga.wallet.common.exception.GeneralException;
@@ -16,6 +17,7 @@ import com.alodiga.wallet.common.model.BusinessCategory;
 import com.alodiga.wallet.common.model.BusinessSubCategory;
 import com.alodiga.wallet.common.model.BusinessType;
 import com.alodiga.wallet.common.model.BusinessServiceType;
+import com.alodiga.wallet.common.model.CalendarDays;
 import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.Close;
 import com.alodiga.wallet.common.model.CollectionType;
@@ -317,7 +319,6 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public StatusBusinessAffiliationRequest loadStatusBusinessAffiliationRequestByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
 
     //ReviewOfac
-
     public List<ReviewOfac> getReviewOfac(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public List<ReviewOfac> getReviewOfacByRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
@@ -327,7 +328,6 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public ReviewOfac saveReviewOfac(ReviewOfac reviewOfac) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //StatusCard
-
     public List<StatusCard> getStatusCard(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     //StatusCardHasFinalState
@@ -347,7 +347,8 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public ReviewType saveReviewType(ReviewType reviewType) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //OriginApplication
-    public OriginApplication loadOriginApplicationByCode(EJBRequest request)throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
+    public OriginApplication loadOriginApplicationByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
+
     //Sequences
     public List<Sequences> getSequences(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
@@ -359,4 +360,9 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
 
     public String generateNumberSequence(List<Sequences> sequence, int originApplication) throws GeneralException, RegisterNotFoundException, NullParameterException;
 
+    public Country saveNewCountry(Country country) throws RegisterNotFoundException, GeneralException, NullParameterException, DuplicateEntryException;
+
+    //Calendar Days
+    public List<CalendarDays> getCalendarDays(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public CalendarDays saveCalendarDays(CalendarDays calendarDays) throws RegisterNotFoundException, NullParameterException, GeneralException;
 }
