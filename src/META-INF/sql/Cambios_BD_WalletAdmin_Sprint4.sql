@@ -955,3 +955,15 @@ ADD CONSTRAINT `fk_transaction_dailyClosing1`
  REFERENCES `alodigaWallet`.`daily_closing` (`id`)
  ON DELETE NO ACTION
  ON UPDATE NO ACTION;
+
+ -- Agregar campo en tabla Bank
+-- author: Jesús Gómez
+-- Fecha: 10/09/2020
+ALTER TABLE `alodigaWallet`.`bank` 
+CHANGE COLUMN `aba` `aba` VARCHAR(30) NULL,
+ADD COLUMN `SwiftCode` VARCHAR(20) NOT NULL AFTER `aba`;
+
+ALTER TABLE `alodigaWallet`.`bank` 
+CHANGE COLUMN `countryId` `countryId` BIGINT(30) NOT NULL AFTER `id`,
+CHANGE COLUMN `enterpriseId` `enterpriseId` BIGINT(20) NOT NULL AFTER `swiftCode`,
+CHANGE COLUMN `aba` `abaCode` VARCHAR(30) NULL DEFAULT NULL;
