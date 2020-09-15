@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "BusinessSubCategory.findById", query = "SELECT b FROM BusinessSubCategory b WHERE b.id = :id"),
     @NamedQuery(name = "BusinessSubCategory.findByDescription", query = "SELECT b FROM BusinessSubCategory b WHERE b.description = :description"),
     @NamedQuery(name = "BusinessSubCategory.findByMccCode", query = "SELECT b FROM BusinessSubCategory b WHERE b.mccCode = :mccCode"),
-    @NamedQuery(name = QueryConstants.BUSINESS_SUB_CATEGORY_BY_CATEGORY, query = "SELECT b FROM BusinessSubCategory b WHERE b.businessCategoryId.id= :businessCategoryId")})
+    @NamedQuery(name = QueryConstants.BUSINESS_SUB_CATEGORY_BY_CATEGORY, query = "SELECT b FROM BusinessSubCategory b WHERE b.businessCategoryId.id= :businessCategoryId"),})
+    @NamedQuery(name = QueryConstants.CODEMCC_EXIST_IN_BD_BUSINESS_SUB_CATEGORY, query = "SELECT b FROM BusinessSubCategory b WHERE b.mccCode= :mccCode")
 public class BusinessSubCategory extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

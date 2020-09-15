@@ -967,3 +967,9 @@ ALTER TABLE `alodigaWallet`.`bank`
 CHANGE COLUMN `countryId` `countryId` BIGINT(30) NOT NULL AFTER `id`,
 CHANGE COLUMN `enterpriseId` `enterpriseId` BIGINT(20) NOT NULL AFTER `swiftCode`,
 CHANGE COLUMN `aba` `abaCode` VARCHAR(30) NULL DEFAULT NULL;
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 15/09/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Businnes Category', `description`='Businnes Category' WHERE `id`='281';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Categorias de Comercio', `description`='Categorias de Comercio' WHERE `id`='282';
