@@ -956,7 +956,7 @@ ADD CONSTRAINT `fk_transaction_dailyClosing1`
  ON DELETE NO ACTION
  ON UPDATE NO ACTION;
 
- -- Agregar campo en tabla Bank
+-- Agregar campo en tabla Bank
 -- author: Jesús Gómez
 -- Fecha: 10/09/2020
 ALTER TABLE `alodigaWallet`.`bank` 
@@ -967,3 +967,17 @@ ALTER TABLE `alodigaWallet`.`bank`
 CHANGE COLUMN `countryId` `countryId` BIGINT(30) NOT NULL AFTER `id`,
 CHANGE COLUMN `enterpriseId` `enterpriseId` BIGINT(20) NOT NULL AFTER `swiftCode`,
 CHANGE COLUMN `aba` `abaCode` VARCHAR(30) NULL DEFAULT NULL;
+
+-- Agregar FK en tabla collection_type
+-- author: Jesús Gómez
+-- Fecha: 14/09/2020
+SET FOREIGN_KEY_CHECKS=0;
+ALTER TABLE `alodigaWallet`.`collection_type`
+ADD COLUMN `personTypeId` INT(11) NOT NULL,
+ALTER TABLE `alodigaWallet`.`collection_type`
+ADD CONSTRAINT `fk_collectionType_personType1`
+ FOREIGN KEY (`personTypeId`)
+ REFERENCES `alodigaWallet`.`person_type` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+ SET FOREIGN_KEY_CHECKS=1;

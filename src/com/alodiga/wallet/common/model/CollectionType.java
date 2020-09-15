@@ -55,11 +55,12 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
     @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "collectionTypeId")
-    private Collection<CollectionsRequest> collectionsRequestCollection;
     @JoinColumn(name = "countryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Country countryId;
+    @JoinColumn(name = "personTypeId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private PersonType personTypeId;
 
     public CollectionType() {
     }
@@ -89,22 +90,20 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
         this.description = description;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<CollectionsRequest> getCollectionsRequestCollection() {
-        return collectionsRequestCollection;
-    }
-
-    public void setCollectionsRequestCollection(Collection<CollectionsRequest> collectionsRequestCollection) {
-        this.collectionsRequestCollection = collectionsRequestCollection;
-    }
-
     public Country getCountryId() {
         return countryId;
     }
 
     public void setCountryId(Country countryId) {
         this.countryId = countryId;
+    }
+    
+    public PersonType getPersonTypeId() {
+        return personTypeId;
+    }
+
+    public void setPersonTypeId(PersonType personTypeId) {
+        this.personTypeId = personTypeId;
     }
 
     @Override
