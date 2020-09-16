@@ -258,6 +258,7 @@ public class Constants {
     public static final int ORIGIN_APPLICATION_WALLET_ADMIN_WEB_ID = 2;
     public static final String PERSON_KEY = "personId";
     public static final String PERSON_TYPE_KEY = "personTypeId";
+    public static final String BUSINESS_TYPE_KEY = "businessTypeId";
     public static final int PHONE_TYPE_ROOM = 1;
     public static final int PHONE_TYPE_MOBILE = 2;
     public static final String NATURAL_PERSON_KEY = "naturalPersonId";
