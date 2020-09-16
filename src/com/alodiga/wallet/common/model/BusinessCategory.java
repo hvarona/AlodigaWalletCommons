@@ -7,6 +7,7 @@ package com.alodiga.wallet.common.model;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -37,7 +38,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "BusinessCategory.findAll", query = "SELECT b FROM BusinessCategory b")
     , @NamedQuery(name = "BusinessCategory.findById", query = "SELECT b FROM BusinessCategory b WHERE b.id = :id")
     , @NamedQuery(name = "BusinessCategory.findByDescription", query = "SELECT b FROM BusinessCategory b WHERE b.description = :description")
-    , @NamedQuery(name = "BusinessCategory.findByMccCode", query = "SELECT b FROM BusinessCategory b WHERE b.mccCode = :mccCode")})
+    , @NamedQuery(name = "BusinessCategory.findByMccCode", query = "SELECT b FROM BusinessCategory b WHERE b.mccCode = :mccCode")
+    , @NamedQuery(name = QueryConstants.CODEMCC_EXIST_IN_BD_BUSINESS_CATEGORY, query = "SELECT b FROM BusinessCategory b WHERE b.mccCode = :mccCode")})
+
 public class BusinessCategory extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

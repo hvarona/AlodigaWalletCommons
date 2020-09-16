@@ -35,6 +35,8 @@ public class QueryConstants {
     public static final String SOLICITUDES_BY_USER_RESPONDER = "solicitudesByUserResponder";
     public static final String SOLICITUDES_BY_DISTRIBUTOR_RESPONDER = "solicitudesByDistributorResponder";
     public static final String COMMISSION_BY_PRODUCT = "commissionByProduct";
+    public static final String COMMISSION_BY_TRANSACTIONTYPE_AND_PRODUCT ="comissionByTransactionTypeAndProduct";
+    public static final String EXCHANGE_RATE_BY_PRODUCT = "exchangeRateByProduct";
     public static final String BANK_BY_PRODUCT = "bankByProduct";
     public static final String TRANSACTION_BY_DISTRIBUTOR = "transactionByDistributor";
     public static final String TRANSACTION_BY_CUSTOMER = "transactionByCostumer";
@@ -198,5 +200,6 @@ public class QueryConstants {
     public static final String CLASSIFICATION_ID = "classificationId";
     public static final String CODE_EXIST_IN_BD_COUNTRY = "codeExistInBdCountry";
     public static final String NAME_EXIST_IN_BD_COUNTRY = "nameExistInBdCountry";
-    
+    public static final String CODEMCC_EXIST_IN_BD_BUSINESS_CATEGORY="codeMCCExistInBdBusinessCategory";
+    public static final String CODEMCC_EXIST_IN_BD_BUSINESS_SUB_CATEGORY="codeMCCExistInBdBusinessSubCategory";
 }

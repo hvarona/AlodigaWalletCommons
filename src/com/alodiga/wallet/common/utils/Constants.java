@@ -248,6 +248,8 @@ public class Constants {
 
     public static final int ORIGIN_APPLICATION_ID = 1;
     public static final String PRODUCT_KEY = "productId";
+    public static final String COMISSION_PRODUCT_KEY = "value";
+    public static final String TRANSACTION_TYPE_KEY = "transactionTypeId";
     public static final String DOCUMENT_TYPE_KEY = "documentTypeId";
     public static final int DOCUMENT_TYPE_MANUAL_WITHDRAWAL_APPROVAL = 2;
     public static final String BUSINESS_CATEGORY_ID = "businessCategoryId";
@@ -300,6 +302,7 @@ public class Constants {
     //Parámetros de las consultas de BD
     public static final String PARAM_CODE = "code";
     public static final String PARAM_NAME = "name";
+    public static final String PARAM_MCC_CODE = "mccCode";
     public static final String STATUS_KEY = "statusCardId";
     public static final int REVIEW_REQUEST_TYPE = 1;
     

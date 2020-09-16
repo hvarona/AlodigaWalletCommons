@@ -46,7 +46,8 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "Commission.findByIsPercentCommision", query = "SELECT c FROM Commission c WHERE c.isPercentCommision = :isPercentCommision"),
     @NamedQuery(name = "Commission.findByProductTransactionType", query = "SELECT c FROM Commission c WHERE c.productId.id = :productId AND c.transactionTypeId.id = :transactionTypeId AND c.endingDate is null"),
     @NamedQuery(name = "Commission.findByValue", query = "SELECT c FROM Commission c WHERE c.value = :value"),
-    @NamedQuery(name = QueryConstants.COMMISSION_BY_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id= :productId")})
+    @NamedQuery(name = QueryConstants.COMMISSION_BY_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id= :productId"),
+    @NamedQuery(name = QueryConstants.COMMISSION_BY_TRANSACTIONTYPE_AND_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id = :productId AND c.transactionTypeId.id = :transactionTypeId AND c.endingDate is null")})
 public class Commission extends AbstractWalletEntity implements Serializable {
 
     @OneToMany(mappedBy = "commisionId")

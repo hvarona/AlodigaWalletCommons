@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 
 /**
  *
@@ -43,7 +44,9 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
     @NamedQuery(name = "ExchangeRate.findByValue", query = "SELECT e FROM ExchangeRate e WHERE e.value = :value"),
     @NamedQuery(name = "ExchangeRate.findByProduct", query = "SELECT e FROM ExchangeRate e WHERE e.productId.id = :productId AND e.endingDate is null"),
     @NamedQuery(name = "ExchangeRate.findByBeginningDate", query = "SELECT e FROM ExchangeRate e WHERE e.beginningDate = :beginningDate"),
-    @NamedQuery(name = "ExchangeRate.findByEndingDate", query = "SELECT e FROM ExchangeRate e WHERE e.endingDate = :endingDate")})
+    @NamedQuery(name = "ExchangeRate.findByEndingDate", query = "SELECT e FROM ExchangeRate e WHERE e.endingDate = :endingDate"),
+    @NamedQuery(name = QueryConstants.EXCHANGE_RATE_BY_PRODUCT, query = "SELECT e FROM ExchangeRate e WHERE e.productId.id = :productId AND e.endingDate is null")})
+
 public class ExchangeRate extends AbstractWalletEntity implements Serializable {
 
     @JoinColumn(name = "productId", referencedColumnName = "id")
