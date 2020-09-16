@@ -362,6 +362,8 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public ReviewType saveReviewType(ReviewType reviewType) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //OriginApplication
+    public List<OriginApplication> getOriginApplications(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     public OriginApplication loadOriginApplicationByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
 
     //Sequences

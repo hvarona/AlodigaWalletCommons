@@ -364,10 +364,10 @@ public interface UtilsEJB extends WalletGenericEJB {
     public StatusCardHasFinalState saveStatusCardHasFinalState(StatusCardHasFinalState statusCardHasFinalState) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     //OriginApplication
+    public List<OriginApplication> getOriginApplications(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     public OriginApplication loadOriginApplicationByCode(EJBRequest request)throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
 
-
-    
     //Sequences
     public List<Sequences> getSequences(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
