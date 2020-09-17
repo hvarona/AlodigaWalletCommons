@@ -329,9 +329,15 @@ public interface UtilsEJB extends WalletGenericEJB {
     public StatusBusinessAffiliationRequest loadStatusBusinessAffiliationRequestByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
     
     //PersonType
+    public PersonType savePersonType (PersonType personType)  throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public List<PersonType> getPersonType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     public List<PersonType> getPersonTypeByCountryByIndNaturalPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
     public List<PersonType> getPersonTypeByCountryByOriginApplication(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<PersonType> getSearchPersonTypeByCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
     
     //ReviewOfac
     public List<ReviewOfac> getReviewOfac(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
