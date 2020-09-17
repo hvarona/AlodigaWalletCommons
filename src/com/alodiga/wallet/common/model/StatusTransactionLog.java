@@ -5,9 +5,6 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -32,16 +29,14 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author jose
  */
 @Entity
-@Table(name = "business_category")
+@Table(name = "status_transaction_log")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BusinessCategory.findAll", query = "SELECT b FROM BusinessCategory b")
-    , @NamedQuery(name = "BusinessCategory.findById", query = "SELECT b FROM BusinessCategory b WHERE b.id = :id")
-    , @NamedQuery(name = "BusinessCategory.findByDescription", query = "SELECT b FROM BusinessCategory b WHERE b.description = :description")
-    , @NamedQuery(name = "BusinessCategory.findByMccCode", query = "SELECT b FROM BusinessCategory b WHERE b.mccCode = :mccCode")
-    , @NamedQuery(name = QueryConstants.CODEMCC_EXIST_IN_BD_BUSINESS_CATEGORY, query = "SELECT b FROM BusinessCategory b WHERE b.mccCode = :mccCode")})
-
-public class BusinessCategory extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "StatusTransactionLog.findAll", query = "SELECT s FROM StatusTransactionLog s")
+    , @NamedQuery(name = "StatusTransactionLog.findById", query = "SELECT s FROM StatusTransactionLog s WHERE s.id = :id")
+    , @NamedQuery(name = "StatusTransactionLog.findByDescription", query = "SELECT s FROM StatusTransactionLog s WHERE s.description = :description")
+    , @NamedQuery(name = "StatusTransactionLog.findByCode", query = "SELECT s FROM StatusTransactionLog s WHERE s.code = :code")})
+public class StatusTransactionLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -51,23 +46,23 @@ public class BusinessCategory extends AbstractWalletEntity implements Serializab
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 80)
+    @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
     @Size(max = 10)
-    @Column(name = "mccCode")
-    private String mccCode;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessCategoryId")
-    private Collection<BusinessSubCategory> businessSubCategoryCollection;
+    @Column(name = "code")
+    private String code;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusTransactionLogId")
+    private Collection<TransactionLog> transactionLogCollection;
 
-    public BusinessCategory() {
+    public StatusTransactionLog() {
     }
 
-    public BusinessCategory(Integer id) {
+    public StatusTransactionLog(Integer id) {
         this.id = id;
     }
 
-    public BusinessCategory(Integer id, String description) {
+    public StatusTransactionLog(Integer id, String description) {
         this.id = id;
         this.description = description;
     }
@@ -88,22 +83,22 @@ public class BusinessCategory extends AbstractWalletEntity implements Serializab
         this.description = description;
     }
 
-    public String getMccCode() {
-        return mccCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setMccCode(String mccCode) {
-        this.mccCode = mccCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @XmlTransient
     @JsonIgnore
-    public Collection<BusinessSubCategory> getBusinessSubCategoryCollection() {
-        return businessSubCategoryCollection;
+    public Collection<TransactionLog> getTransactionLogCollection() {
+        return transactionLogCollection;
     }
 
-    public void setBusinessSubCategoryCollection(Collection<BusinessSubCategory> businessSubCategoryCollection) {
-        this.businessSubCategoryCollection = businessSubCategoryCollection;
+    public void setTransactionLogCollection(Collection<TransactionLog> transactionLogCollection) {
+        this.transactionLogCollection = transactionLogCollection;
     }
 
     @Override
@@ -116,10 +111,10 @@ public class BusinessCategory extends AbstractWalletEntity implements Serializab
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BusinessCategory)) {
+        if (!(object instanceof StatusTransactionLog)) {
             return false;
         }
-        BusinessCategory other = (BusinessCategory) object;
+        StatusTransactionLog other = (StatusTransactionLog) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -128,16 +123,7 @@ public class BusinessCategory extends AbstractWalletEntity implements Serializab
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.BusinessCategory[ id=" + id + " ]";
+        return "com.alodiga.wallet.common.model.StatusTransactionLog[ id=" + id + " ]";
     }
     
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
 }

@@ -5,9 +5,6 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -28,15 +23,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author jose
  */
 @Entity
-@Table(name = "business_service_type")
+@Table(name = "code_error_transaction_log")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BusinessServiceType.findAll", query = "SELECT b FROM BusinessServiceType b")
-    , @NamedQuery(name = "BusinessServiceType.findById", query = "SELECT b FROM BusinessServiceType b WHERE b.id = :id")
-    , @NamedQuery(name = "BusinessServiceType.findByDescription", query = "SELECT b FROM BusinessServiceType b WHERE b.description = :description")
-    , @NamedQuery(name = "BusinessServiceType.findByCode", query = "SELECT b FROM BusinessServiceType b WHERE b.code = :code")
-    , @NamedQuery(name = QueryConstants.BUSINESS_SERVICE_TYPE_BY_BUSINESS_TYPE , query = "SELECT b FROM BusinessServiceType b WHERE b.businessTypeId.id = :businessTypeId")})
-public class BusinessServiceType extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "CodeErrorTransactionLog.findAll", query = "SELECT c FROM CodeErrorTransactionLog c")
+    , @NamedQuery(name = "CodeErrorTransactionLog.findById", query = "SELECT c FROM CodeErrorTransactionLog c WHERE c.id = :id")
+    , @NamedQuery(name = "CodeErrorTransactionLog.findByDescription", query = "SELECT c FROM CodeErrorTransactionLog c WHERE c.description = :description")
+    , @NamedQuery(name = "CodeErrorTransactionLog.findByCode", query = "SELECT c FROM CodeErrorTransactionLog c WHERE c.code = :code")})
+public class CodeErrorTransactionLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,17 +41,14 @@ public class BusinessServiceType extends AbstractWalletEntity implements Seriali
     @Size(max = 50)
     @Column(name = "description")
     private String description;
-    @Size(max = 10)
+    @Size(max = 50)
     @Column(name = "code")
     private String code;
-    @JoinColumn(name = "businessTypeId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private BusinessType businessTypeId;
 
-    public BusinessServiceType() {
+    public CodeErrorTransactionLog() {
     }
 
-    public BusinessServiceType(Integer id) {
+    public CodeErrorTransactionLog(Integer id) {
         this.id = id;
     }
 
@@ -68,7 +59,7 @@ public class BusinessServiceType extends AbstractWalletEntity implements Seriali
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getDescription() {
         return description;
     }
@@ -85,14 +76,6 @@ public class BusinessServiceType extends AbstractWalletEntity implements Seriali
         this.code = code;
     }
 
-    public BusinessType getBusinessTypeId() {
-        return businessTypeId;
-    }
-
-    public void setBusinessTypeId(BusinessType businessTypeId) {
-        this.businessTypeId = businessTypeId;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -103,10 +86,10 @@ public class BusinessServiceType extends AbstractWalletEntity implements Seriali
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BusinessServiceType)) {
+        if (!(object instanceof CodeErrorTransactionLog)) {
             return false;
         }
-        BusinessServiceType other = (BusinessServiceType) object;
+        CodeErrorTransactionLog other = (CodeErrorTransactionLog) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -115,17 +98,7 @@ public class BusinessServiceType extends AbstractWalletEntity implements Seriali
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.BusinessServiceType[ id=" + id + " ]";
-    }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
+        return "com.alodiga.wallet.common.model.CodeErrorTransactionLog[ id=" + id + " ]";
     }
     
 }

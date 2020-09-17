@@ -5,9 +5,6 @@
  */
 package com.alodiga.wallet.common.model;
 
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -32,16 +29,14 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author jose
  */
 @Entity
-@Table(name = "business_category")
+@Table(name = "daily_closing_type")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BusinessCategory.findAll", query = "SELECT b FROM BusinessCategory b")
-    , @NamedQuery(name = "BusinessCategory.findById", query = "SELECT b FROM BusinessCategory b WHERE b.id = :id")
-    , @NamedQuery(name = "BusinessCategory.findByDescription", query = "SELECT b FROM BusinessCategory b WHERE b.description = :description")
-    , @NamedQuery(name = "BusinessCategory.findByMccCode", query = "SELECT b FROM BusinessCategory b WHERE b.mccCode = :mccCode")
-    , @NamedQuery(name = QueryConstants.CODEMCC_EXIST_IN_BD_BUSINESS_CATEGORY, query = "SELECT b FROM BusinessCategory b WHERE b.mccCode = :mccCode")})
-
-public class BusinessCategory extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "DailyClosingType.findAll", query = "SELECT d FROM DailyClosingType d")
+    , @NamedQuery(name = "DailyClosingType.findById", query = "SELECT d FROM DailyClosingType d WHERE d.id = :id")
+    , @NamedQuery(name = "DailyClosingType.findByDescription", query = "SELECT d FROM DailyClosingType d WHERE d.description = :description")
+    , @NamedQuery(name = "DailyClosingType.findByCode", query = "SELECT d FROM DailyClosingType d WHERE d.code = :code")})
+public class DailyClosingType implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -51,25 +46,28 @@ public class BusinessCategory extends AbstractWalletEntity implements Serializab
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 80)
+    @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
-    @Size(max = 10)
-    @Column(name = "mccCode")
-    private String mccCode;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessCategoryId")
-    private Collection<BusinessSubCategory> businessSubCategoryCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "code")
+    private String code;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dailyClosingTypeId")
+    private Collection<DailyClosing> dailyClosingCollection;
 
-    public BusinessCategory() {
+    public DailyClosingType() {
     }
 
-    public BusinessCategory(Integer id) {
+    public DailyClosingType(Integer id) {
         this.id = id;
     }
 
-    public BusinessCategory(Integer id, String description) {
+    public DailyClosingType(Integer id, String description, String code) {
         this.id = id;
         this.description = description;
+        this.code = code;
     }
 
     public Integer getId() {
@@ -88,22 +86,22 @@ public class BusinessCategory extends AbstractWalletEntity implements Serializab
         this.description = description;
     }
 
-    public String getMccCode() {
-        return mccCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setMccCode(String mccCode) {
-        this.mccCode = mccCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @XmlTransient
     @JsonIgnore
-    public Collection<BusinessSubCategory> getBusinessSubCategoryCollection() {
-        return businessSubCategoryCollection;
+    public Collection<DailyClosing> getDailyClosingCollection() {
+        return dailyClosingCollection;
     }
 
-    public void setBusinessSubCategoryCollection(Collection<BusinessSubCategory> businessSubCategoryCollection) {
-        this.businessSubCategoryCollection = businessSubCategoryCollection;
+    public void setDailyClosingCollection(Collection<DailyClosing> dailyClosingCollection) {
+        this.dailyClosingCollection = dailyClosingCollection;
     }
 
     @Override
@@ -116,10 +114,10 @@ public class BusinessCategory extends AbstractWalletEntity implements Serializab
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BusinessCategory)) {
+        if (!(object instanceof DailyClosingType)) {
             return false;
         }
-        BusinessCategory other = (BusinessCategory) object;
+        DailyClosingType other = (DailyClosingType) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -128,16 +126,7 @@ public class BusinessCategory extends AbstractWalletEntity implements Serializab
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.BusinessCategory[ id=" + id + " ]";
+        return "com.alodiga.wallet.common.model.DailyClosingType[ id=" + id + " ]";
     }
     
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
 }

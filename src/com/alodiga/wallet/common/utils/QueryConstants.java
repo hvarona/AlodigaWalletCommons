@@ -35,12 +35,15 @@ public class QueryConstants {
     public static final String SOLICITUDES_BY_USER_RESPONDER = "solicitudesByUserResponder";
     public static final String SOLICITUDES_BY_DISTRIBUTOR_RESPONDER = "solicitudesByDistributorResponder";
     public static final String COMMISSION_BY_PRODUCT = "commissionByProduct";
+    public static final String COMMISSION_BY_TRANSACTIONTYPE_AND_PRODUCT ="comissionByTransactionTypeAndProduct";
+    public static final String EXCHANGE_RATE_BY_PRODUCT = "exchangeRateByProduct";
     public static final String BANK_BY_PRODUCT = "bankByProduct";
     public static final String TRANSACTION_BY_DISTRIBUTOR = "transactionByDistributor";
     public static final String TRANSACTION_BY_CUSTOMER = "transactionByCostumer";
     public static final String REPORT_BY_PROFILE = "reportByProfile";
     public static final String BUSINESS_SUB_CATEGORY_BY_CATEGORY = "businessSubCategoryByCategory";
     public static final String BUSINESS_TYPE_BY_ID = "businessTypeById";
+    public static final String BUSINESS_SERVICE_TYPE_BY_BUSINESS_TYPE = "businessServiceTypeByBusinessType";
     public static final String TRANSACTION_APPROVE_REQUEST_BY_STATUS = "transactionApproveRequestByStatus";
     public static final String CODE_BY_STATUS = "codeByStatus";
     public static final String PERSON_CLASSIFICATION_BY_CODE = "personClassificationByCode";
@@ -180,6 +183,7 @@ public class QueryConstants {
     public static final String LEGAL_PERSON_BY_LEGAL_REPRESENTATIVE = "legalPersonByLegalRepresentative";
     public static final String PARAM_IND_NATURAL_PERSON = "indNaturalPerson";
     public static final String PERSON_TYPE_BY_COUNTRY_BY_IND_NATURAL_PERSON = "personTypeByCountryByIndNaturalPerson";
+    public static final String PERSON_TYPE_BY_COUNTRY_BY_ORIGIN_APPLICATION = "personTypeByCountryByOriginApplication";
     public static final String PARAM_BUSINESS_TYPE_ID = "businessTypeId";
     public static final String REVIEW_REQUEST_BY_REQUEST = "reviewRequestByRequest";
     public static final String PARAM_BUSINESS_AFFILIATION_REQUEST_ID = "businessAffiliationRequestId";
@@ -197,5 +201,6 @@ public class QueryConstants {
     public static final String CLASSIFICATION_ID = "classificationId";
     public static final String CODE_EXIST_IN_BD_COUNTRY = "codeExistInBdCountry";
     public static final String NAME_EXIST_IN_BD_COUNTRY = "nameExistInBdCountry";
-    
+    public static final String CODEMCC_EXIST_IN_BD_BUSINESS_CATEGORY="codeMCCExistInBdBusinessCategory";
+    public static final String CODEMCC_EXIST_IN_BD_BUSINESS_SUB_CATEGORY="codeMCCExistInBdBusinessSubCategory";
 }
