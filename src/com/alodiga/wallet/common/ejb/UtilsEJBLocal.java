@@ -34,6 +34,7 @@ import com.alodiga.wallet.common.model.Language;
 import com.alodiga.wallet.common.model.OriginApplication;
 import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.PersonType;
+import com.alodiga.wallet.common.model.Product;
 import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
 import com.alodiga.wallet.common.model.ReviewBusinessAffiliationRequest;
 import com.alodiga.wallet.common.model.ReviewOfac;
@@ -147,6 +148,8 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
 
     public ExchangeRate saveExchangeRate(ExchangeRate exchangeRate) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
+    public ExchangeRate getExchangeRateByBeginningDate(Product productId,Date creationDate) throws EmptyListException, GeneralException, NullParameterException, RegisterNotFoundException;
+    
     //Transaction
     public List<Transaction> getTransaction(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
@@ -367,5 +370,5 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public List<CalendarDays> getCalendarDays(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public CalendarDays saveCalendarDays(CalendarDays calendarDays) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
-    
+    public Long loadTransactionTypeById(Long TransactionTypeId) throws RegisterNotFoundException, NullParameterException, GeneralException;
 }
