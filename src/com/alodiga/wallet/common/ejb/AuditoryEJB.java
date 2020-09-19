@@ -19,7 +19,7 @@ import java.util.Date;
 @Remote
 public interface AuditoryEJB extends WalletGenericEJB {
 
- 
+    //Audit
     public List<Audit> getAudits(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
 
     public List<Audit> getLastAudits(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
@@ -30,6 +30,9 @@ public interface AuditoryEJB extends WalletGenericEJB {
 
     public Audit saveAudit(EJBRequest request) throws GeneralException, NullParameterException;
 
+    //AuditAction
+    public List<AuditAction> getAuditAction(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
+    
     public List<AuditAction> getAuditActions(Date beginningDate, Date endingDate) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
 
     public List<AuditAction> searchAuditAction(String login, String userName, Long permissionId, Date beginningDate, Date endingDate) throws GeneralException, NullParameterException, EmptyListException;

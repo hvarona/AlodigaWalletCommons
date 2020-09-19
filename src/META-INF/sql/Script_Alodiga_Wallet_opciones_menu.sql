@@ -1131,3 +1131,27 @@ INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `al
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('143', '2', 'Editar Tipos de Persona', 'Editar Tipos de Persona');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('144', '1', 'View Person Type', 'View Person Type');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('144', '2', 'Ver Tipos de Persona', 'Ver Tipos de Persona');
+
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 15/09/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Businnes Category', `description`='Businnes Category' WHERE `id`='281';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Categorias de Comercio', `description`='Categorias de Comercio' WHERE `id`='282';
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 17/09/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Business Service Type', `description`='Business Service Type' WHERE `id`='225';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Tipos Servicios de Negocios', `description`='Tipos Servicios de Negocios' WHERE `id`='226';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Card Status', `description`='Card Status' WHERE `id`='233';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Estatus de Tarjetas', `description`='Estatus de Tarjetas' WHERE `id`='234';
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 18/09/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Auditoría del Sistema', `description`='Auditoría del Sistema' WHERE `id`='67';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='System Audit', `description`='System Audit' WHERE `id`='68';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Perfiles de Usuario', `description`='Perfiles de Usuario' WHERE `id`='9';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='User Profiles', `description`='User Profiles' WHERE `id`='10';
+
