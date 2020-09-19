@@ -127,6 +127,9 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "dailyClosingId", referencedColumnName = "id")
     @ManyToOne
     private DailyClosing dailyClosingId;
+    @Basic(optional = false)
+    @Column(name = "transactionBusinessId")
+    private long transactionBusinessId;
     
     //Only by result transaction list by APP
     @Transient
@@ -420,5 +423,12 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
         this.dailyClosingId = dailyClosingId;
     }
 
+    public long getTransactionBusinessId() {
+  		return transactionBusinessId;
+  	}
+
+  	public void setTransactionBusinessId(long transactionBusinessId) {
+  		this.transactionBusinessId = transactionBusinessId;
+  	}
   
 }
