@@ -40,6 +40,6 @@ public interface AuditoryEJB extends WalletGenericEJB {
     public AuditAction saveAuditAction(AuditAction action) throws GeneralException, NullParameterException;
 
     public List<AuditAction> getAuditActionsByUserId(Long userId, Date beginningDate, Date endingDate) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
-    
+        
     public Event loadEvent(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 }

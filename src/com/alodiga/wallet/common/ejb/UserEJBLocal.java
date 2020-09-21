@@ -32,11 +32,15 @@ public interface UserEJBLocal extends WalletGenericEJBLocal {
     public User saveUser(EJBRequest request) throws NullParameterException, GeneralException;
     
     public User saveUser(User user) throws NullParameterException, GeneralException;
-
+    
     public boolean validateExistingUser(EJBRequest request) throws NullParameterException, GeneralException;
     
     public void updateUserNotifications(String ids) throws NullParameterException, GeneralException;
 
+    public List<User> getValidateEmployee(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<User> getUserByLogin(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+        
     //Profile
     public List<Profile> getProfiles() throws EmptyListException, GeneralException;
     
