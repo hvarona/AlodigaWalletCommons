@@ -100,6 +100,8 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     @JoinColumn(name = "bankOperationModeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private BankOperationMode bankOperationModeId;
+    @Column(name = "businessId")
+    private long businessId;
 
     public BankOperation() {
     }
@@ -262,5 +264,13 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     public void setPaymentTypeId(PaymentType paymentTypeId) {
         this.paymentTypeId = paymentTypeId;
     }
+
+	public long getBusinessId() {
+		return businessId;
+	}
+
+	public void setBusinessId(long businessId) {
+		this.businessId = businessId;
+	}
     
 }

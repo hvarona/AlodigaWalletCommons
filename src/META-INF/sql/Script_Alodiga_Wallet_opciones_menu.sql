@@ -1146,3 +1146,13 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Business Service Type', `d
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Tipos Servicios de Negocios', `description`='Tipos Servicios de Negocios' WHERE `id`='226';
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Card Status', `description`='Card Status' WHERE `id`='233';
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Estatus de Tarjetas', `description`='Estatus de Tarjetas' WHERE `id`='234';
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 18/09/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Auditoría del Sistema', `description`='Auditoría del Sistema' WHERE `id`='67';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='System Audit', `description`='System Audit' WHERE `id`='68';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Perfiles de Usuario', `description`='Perfiles de Usuario' WHERE `id`='9';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='User Profiles', `description`='User Profiles' WHERE `id`='10';
+
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Estatus de Tarjetas', `description`='Estatus de Tarjetas' WHERE `id`='234';

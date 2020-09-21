@@ -987,3 +987,52 @@ ADD CONSTRAINT `fk_collectionType_personType1`
 -- Fecha: 15/09/2020
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Businnes Category', `description`='Businnes Category' WHERE `id`='281';
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Categorias de Comercio', `description`='Categorias de Comercio' WHERE `id`='282';
+
+-- Cambios para incluir el transaccionBusinessId que se genera en el portal de negocio
+-- author: Yamelis Almea
+-- Fecha: 17/09/2020
+
+ALTER TABLE `alodigaWallet`.`balance_history` 
+ADD COLUMN `businessId` BIGINT(10) NULL DEFAULT NULL AFTER `adjusmentInfo`,
+CHANGE COLUMN `userId` `userId` BIGINT(10) NULL DEFAULT NULL ;
+
+ALTER TABLE `alodigaWallet`.`balance_history` 
+ADD COLUMN `transactionBusinessId` BIGINT(20) NULL DEFAULT NULL AFTER `businessId`;
+
+ALTER TABLE `alodigaWallet`.`transaction` 
+ADD COLUMN `transactionBusinessId` BIGINT(20) NULL DEFAULT NULL AFTER `concept`;
+
+
+CREATE TABLE `alodigaWallet`.`business_has_product` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `productId` bigint(3) NOT NULL,
+  `businessId` bigint(10) NOT NULL,
+  `beginningDate` datetime NOT NULL,
+  `endingDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_product_has_provider_product2` (`productId`),
+  KEY `fk_product_has_provider_business)id` (`businessId`)
+) ENGINE=InnoDB;
+
+-- Cambios para incluir el businessId para retiro manual y transferencia de saldo de un negocio a una cuenta personal. Se agrego un nuevo tipo de transaccion para identificar las transaciones de retiro manual del negocio.
+-- author: Yamelis Almea
+-- Fecha: 19/09/2020
+
+INSERT INTO `alodigawallet`.`transaction_type` (`id`, `value`) VALUES ('11', 'BUSINESS_ WITHDRAWALS_MANUAL');
+
+
+ALTER TABLE `alodigawallet`.`bank_operation` 
+ADD COLUMN `businessId` BIGINT(10) NULL AFTER `additional2`;
+
+
+ALTER TABLE `alodigawallet`.`transaction_approve_request` 
+ADD COLUMN `businessId` BIGINT(10) NULL AFTER `userApprovedRequestId`;
+
+ALTER TABLE `alodigawallet`.`transaction` 
+ADD COLUMN `businessId` BIGINT(10) NULL DEFAULT NULL AFTER `dailyClosingId`;
+
+
+ALTER TABLE `alodigawallet`.`transaction` 
+ADD COLUMN `businessDestinationId` BIGINT(10) NULL DEFAULT NULL AFTER `businessId`;
+
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Categorias de Comercio', `description`='Categorias de Comercio' WHERE `id`='282';

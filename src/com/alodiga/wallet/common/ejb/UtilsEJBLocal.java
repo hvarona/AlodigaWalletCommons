@@ -153,8 +153,6 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public ExchangeRate saveExchangeRate(ExchangeRate exchangeRate) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     public List<ExchangeRate> getExchangeRateByProductAndEndingDate(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
-    public ExchangeRate getExchangeRateByBeginningDate(Product productId,Date creationDate) throws EmptyListException, GeneralException, NullParameterException, RegisterNotFoundException;
     
     //Transaction
     public List<Transaction> getTransaction(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
