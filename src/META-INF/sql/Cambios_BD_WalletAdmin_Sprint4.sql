@@ -955,3 +955,35 @@ ADD CONSTRAINT `fk_transaction_dailyClosing1`
  REFERENCES `alodigaWallet`.`daily_closing` (`id`)
  ON DELETE NO ACTION
  ON UPDATE NO ACTION;
+
+-- Agregar campo en tabla Bank
+-- author: Jesús Gómez
+-- Fecha: 10/09/2020
+ALTER TABLE `alodigaWallet`.`bank` 
+CHANGE COLUMN `aba` `aba` VARCHAR(30) NULL,
+ADD COLUMN `SwiftCode` VARCHAR(20) NOT NULL AFTER `aba`;
+
+ALTER TABLE `alodigaWallet`.`bank` 
+CHANGE COLUMN `countryId` `countryId` BIGINT(30) NOT NULL AFTER `id`,
+CHANGE COLUMN `enterpriseId` `enterpriseId` BIGINT(20) NOT NULL AFTER `swiftCode`,
+CHANGE COLUMN `aba` `abaCode` VARCHAR(30) NULL DEFAULT NULL;
+
+-- Agregar FK en tabla collection_type
+-- author: Jesús Gómez
+-- Fecha: 14/09/2020
+SET FOREIGN_KEY_CHECKS=0;
+ALTER TABLE `alodigaWallet`.`collection_type`
+ADD COLUMN `personTypeId` INT(11) NOT NULL,
+ALTER TABLE `alodigaWallet`.`collection_type`
+ADD CONSTRAINT `fk_collectionType_personType1`
+ FOREIGN KEY (`personTypeId`)
+ REFERENCES `alodigaWallet`.`person_type` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+ SET FOREIGN_KEY_CHECKS=1;
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 15/09/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Businnes Category', `description`='Businnes Category' WHERE `id`='281';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Categorias de Comercio', `description`='Categorias de Comercio' WHERE `id`='282';

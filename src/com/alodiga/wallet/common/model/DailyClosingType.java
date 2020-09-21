@@ -47,17 +47,14 @@ public class DailyClosingType extends AbstractWalletEntity implements Serializab
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "code")
     private String code;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dailyClosingTypeId")
-    private Collection<DailyClosing> dailyClosingCollection;
+    
 
     public DailyClosingType() {
     }
@@ -96,15 +93,7 @@ public class DailyClosingType extends AbstractWalletEntity implements Serializab
         this.code = code;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<DailyClosing> getDailyClosingCollection() {
-        return dailyClosingCollection;
-    }
 
-    public void setDailyClosingCollection(Collection<DailyClosing> dailyClosingCollection) {
-        this.dailyClosingCollection = dailyClosingCollection;
-    }
 
     @Override
     public int hashCode() {

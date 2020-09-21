@@ -117,16 +117,18 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "productId", referencedColumnName = "id")
     @ManyToOne
     private Product productId;
+    
     @JoinColumn(name = "closeId", referencedColumnName = "id")
     @ManyToOne
     private Close closeId;
+    
     @Column(name = "indClosed")
     private Boolean indClosed;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transactionId")
-    private Collection<TransactionLog> transactionLogCollection;
+    
     @JoinColumn(name = "dailyClosingId", referencedColumnName = "id")
     @ManyToOne
     private DailyClosing dailyClosingId;
+           
     
     //Only by result transaction list by APP
     @Transient
@@ -400,17 +402,7 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
 
     public void setIndClosed(Boolean indClosed) {
         this.indClosed = indClosed;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<TransactionLog> getTransactionLogCollection() {
-        return transactionLogCollection;
-    }
-
-    public void setTransactionLogCollection(Collection<TransactionLog> transactionLogCollection) {
-        this.transactionLogCollection = transactionLogCollection;
-    }
+    }    
 
     public DailyClosing getDailyClosingId() {
         return dailyClosingId;

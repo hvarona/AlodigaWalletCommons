@@ -49,12 +49,11 @@ public class DailyClosing extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Basic(optional = false)
-    @NotNull
+    @Basic(optional = false)    
     @Column(name = "closingDate")
     @Temporal(TemporalType.DATE)
     private Date closingDate;
@@ -75,8 +74,8 @@ public class DailyClosing extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "dailyClosingTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private DailyClosingType dailyClosingTypeId;
-    @OneToMany(mappedBy = "dailyClosingId")
-    private Collection<Transaction> transactionCollection;
+    
+    
 
     public DailyClosing() {
     }
@@ -154,16 +153,7 @@ public class DailyClosing extends AbstractWalletEntity implements Serializable {
         this.dailyClosingTypeId = dailyClosingTypeId;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<Transaction> getTransactionCollection() {
-        return transactionCollection;
-    }
-
-    public void setTransactionCollection(Collection<Transaction> transactionCollection) {
-        this.transactionCollection = transactionCollection;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

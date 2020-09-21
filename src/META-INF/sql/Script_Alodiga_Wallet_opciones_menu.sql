@@ -1109,3 +1109,40 @@ INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `al
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('139', '2', 'Editar Días Feriados', 'Editar Días Feriados');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('140', '1', 'View Of Holidays', 'View Of Holidays');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('140', '2', 'Ver Días Feriados', 'Ver Días Feriados');
+
+-- Agregar opciones del menu de Tipo de personas
+-- author: Jorge Pinto
+-- Fecha: 16/09/2020
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('141', '1', 'ListPersonType', 'person_type', 'ListPersonType', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('142', '1', 'AddPersonType', 'person_type', 'AddPersonType', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('143', '1', 'EditPersonType', 'person_type', 'EditPersonType', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('144', '1', 'ViewPersonType', 'person_type', 'ViewPersonType', '1');
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('141', '141', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('142', '142', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('143', '143', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`id`, `permissionId`, `profileId`) VALUES ('144', '144', '1');
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('141', '1', 'Person Type', 'Person Type');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('141', '2', 'Tipos de Persona', 'Tipos de Persona');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('142', '1', 'Add Person Type', 'Add Person Type');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('142', '2', 'Agregar Tipos de Persona', 'Agregar Tipos de Persona');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('143', '1', 'Edit Person Type', 'Edit Person Type');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('143', '2', 'Editar Tipos de Persona', 'Editar Tipos de Persona');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('144', '1', 'View Person Type', 'View Person Type');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('144', '2', 'Ver Tipos de Persona', 'Ver Tipos de Persona');
+
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 15/09/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Businnes Category', `description`='Businnes Category' WHERE `id`='281';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Categorias de Comercio', `description`='Categorias de Comercio' WHERE `id`='282';
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 17/09/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Business Service Type', `description`='Business Service Type' WHERE `id`='225';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Tipos Servicios de Negocios', `description`='Tipos Servicios de Negocios' WHERE `id`='226';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Card Status', `description`='Card Status' WHERE `id`='233';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Estatus de Tarjetas', `description`='Estatus de Tarjetas' WHERE `id`='234';
