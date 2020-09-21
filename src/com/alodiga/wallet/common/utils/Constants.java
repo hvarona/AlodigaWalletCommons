@@ -272,6 +272,7 @@ public class Constants {
     public static final String CURRENT_PASSWORD = "currentPassword";
     public static final String USER_KEY = "userId";
     public static final String COUNTRY_KEY ="countryId";
+    public static final String PARAM_LOGIN = "login";
     
     public static final int STATUS_APPLICANT_ACTIVE = 1;
     public static final int STATUS_APPLICANT_BLACK_LIST_OK = 2;

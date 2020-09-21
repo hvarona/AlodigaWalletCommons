@@ -197,6 +197,8 @@ public class QueryConstants {
     public static final String COLLECTIONS_BY_PERSON_TYPE = "collectionsByPersonType";
     public static final String DOCUMENTS_BY_COUNTRY = "documentsByCountry";
     public static final String PHONES_BY_MAIN = "phonesByMain";
+    public static final String LOGIN_EXIST_IN_BD = "loginExistInBD";
+    public static final String EMPLOYEE_EXIST_IN_BD = "EmployeeExistInBD";
     public static final String VALIDATE_PASSWORD = "validatePassword";
     public static final String CLASSIFICATION_ID = "classificationId";
     public static final String CODE_EXIST_IN_BD_COUNTRY = "codeExistInBdCountry";
