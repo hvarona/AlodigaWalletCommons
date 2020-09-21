@@ -56,6 +56,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Transaction.findByBillPaymentDescription", query = "SELECT t FROM Transaction t WHERE t.billPaymentDescription = :billPaymentDescription"),
     @NamedQuery(name = "Transaction.findByExternalId", query = "SELECT t FROM Transaction t WHERE t.externalId = :externalId"),
     @NamedQuery(name = "Transaction.findByAdditional", query = "SELECT t FROM Transaction t WHERE t.additional = :additional"),
+    @NamedQuery(name = "Transaction.findByBusinessId", query = "SELECT t FROM Transaction t WHERE t.businessId = :businessId OR t.businessDestinationId = :businessDestinationId ORDER BY t.id DESC"),
     @NamedQuery(name = "Transaction.findByAdditional2", query = "SELECT t FROM Transaction t WHERE t.additional2 = :additional2")})
 public class Transaction extends AbstractWalletEntity implements Serializable {
 
@@ -127,10 +128,12 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "dailyClosingId", referencedColumnName = "id")
     @ManyToOne
     private DailyClosing dailyClosingId;
-    @Basic(optional = false)
+    @Column(name = "businessId")
+    private long businessId;
+    @Column(name = "businessDestinationId")
+    private long businessDestinationId;
     @Column(name = "transactionBusinessId")
     private long transactionBusinessId;
-    
     //Only by result transaction list by APP
     @Transient
     private String commisionAmount;
@@ -423,12 +426,30 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
         this.dailyClosingId = dailyClosingId;
     }
 
-    public long getTransactionBusinessId() {
+    public long getBusinessId() {
+		return businessId;
+	}
+
+	public void setBusinessId(long businessId) {
+		this.businessId = businessId;
+	}
+
+	public long getTransactionBusinessId() {
   		return transactionBusinessId;
   	}
 
   	public void setTransactionBusinessId(long transactionBusinessId) {
   		this.transactionBusinessId = transactionBusinessId;
   	}
+
+	public long getBusinessDestinationId() {
+		return businessDestinationId;
+	}
+
+	public void setBusinessDestinationId(long businessDestinationId) {
+		this.businessDestinationId = businessDestinationId;
+	}
+  	
+  	
   
 }

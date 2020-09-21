@@ -1013,3 +1013,25 @@ CREATE TABLE `alodigaWallet`.`business_has_product` (
   KEY `fk_product_has_provider_product2` (`productId`),
   KEY `fk_product_has_provider_business)id` (`businessId`)
 ) ENGINE=InnoDB;
+
+-- Cambios para incluir el businessId para retiro manual y transferencia de saldo de un negocio a una cuenta personal. Se agrego un nuevo tipo de transaccion para identificar las transaciones de retiro manual del negocio.
+-- author: Yamelis Almea
+-- Fecha: 19/09/2020
+
+INSERT INTO `alodigawallet`.`transaction_type` (`id`, `value`) VALUES ('11', 'BUSINESS_ WITHDRAWALS_MANUAL');
+
+
+ALTER TABLE `alodigawallet`.`bank_operation` 
+ADD COLUMN `businessId` BIGINT(10) NULL AFTER `additional2`;
+
+
+ALTER TABLE `alodigawallet`.`transaction_approve_request` 
+ADD COLUMN `businessId` BIGINT(10) NULL AFTER `userApprovedRequestId`;
+
+ALTER TABLE `alodigawallet`.`transaction` 
+ADD COLUMN `businessId` BIGINT(10) NULL DEFAULT NULL AFTER `dailyClosingId`;
+
+
+ALTER TABLE `alodigawallet`.`transaction` 
+ADD COLUMN `businessDestinationId` BIGINT(10) NULL DEFAULT NULL AFTER `businessId`;
+
