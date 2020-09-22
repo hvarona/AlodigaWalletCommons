@@ -206,6 +206,8 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
 
     public List<CollectionType> getCollectionTypeByCountry(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
+    public List<CollectionType> getCollectionTypeByCountryByPersonType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     public CollectionType loadCollectionType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public CollectionType saveCollectionType(CollectionType collectionType) throws RegisterNotFoundException, NullParameterException, GeneralException;
