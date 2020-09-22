@@ -113,9 +113,18 @@ public class Constante {
 
         //Pago a Comercios (Transacciones)
         public static final String sPreferenceTransaction = "transaction";
-        public static final String sValidatePreferenceTransaction1 = "MAX_TRANSACTION_AMOUNT_LIMIT";
-        public static final String sValidatePreferenceTransaction2 = "MAX_TRANSACTION_NUMBER_BY_ACCOUNT";
-        public static final String sValidatePreferenceTransaction3 = "MAX_TRANSACTION_NUMBER_BY_CUSTOMER";
+//        public static final String sValidatePreferenceTransaction1 = "MAX_TRANSACTION_AMOUNT_LIMIT";
+//        public static final String sValidatePreferenceTransaction2 = "MAX_TRANSACTION_NUMBER_BY_ACCOUNT";
+//        public static final String sValidatePreferenceTransaction3 = "MAX_TRANSACTION_NUMBER_BY_CUSTOMER";
+        //Validaciones de las transacciones de la billetera
+        public static final String sValidatePreferenceTransaction4 = "MAX_TRANSACTION_AMOUNT_LIMIT";
+        public static final String sValidatePreferenceTransaction5 = "MAX_TRANSACTION_QUANTITY_DAILY_LIMIT";
+        public static final String sValidatePreferenceTransaction6 = "MAX_TRANSACTION_AMOUNT_DAILY_LIMIT";
+        public static final String sValidatePreferenceTransaction7 = "MAX_TRANSACTION_QUANTITY_MONTHLY_LIMIT";
+        public static final String sValidatePreferenceTransaction8 = "MAX_TRANSACTION_AMOUNT_MONTHLY_LIMIT";
+        public static final String sValidatePreferenceTransaction9 = "MAX_TRANSACTION_QUANTITY_YEARLY_LIMIT";
+        public static final String sValidatePreferenceTransaction10 = "MAX_TRANSACTION_AMOUNT_YEARLY_LIMIT";
+        public static final String sValidatePreferenceTransaction11 = "DISABLED_TRANSACTION";
         public static final Long sTransationTypePS = 2l;
         public static final Long sTransactionSource = 2l;
         public static final String sTransactionConceptPaymentShop = "Payment Shop";
