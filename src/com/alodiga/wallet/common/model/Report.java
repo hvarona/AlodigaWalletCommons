@@ -72,9 +72,9 @@ public class Report extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "reportTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private ReportType reportTypeId;
-    @OneToMany(mappedBy = "report", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<ReportHasProfile> reportHasProfiles;
-    @OneToMany(mappedBy = "report", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<ReportParameter> reportParameters;
 
     public Report() {
