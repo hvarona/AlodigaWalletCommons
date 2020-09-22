@@ -122,6 +122,8 @@ public class Constants {
     public static final Long sTransationType = 2l;
     public static final Long sTransactionSource = 2l;
     public static final String sTransactionConcept = "Payment Shop";
+    public static final Long preferenceClassficationUser = 1l;
+    public static final Long preferenceClassficationBusiness = 2l;
 
     public static final String ALODIGA_WALLET_USUARIO_API = "usuarioWS";
     public static final String ALODIGA_WALLET_PASSWORD_API = "passwordWS";
