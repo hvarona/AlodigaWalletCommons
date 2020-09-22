@@ -57,6 +57,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Transaction.findByExternalId", query = "SELECT t FROM Transaction t WHERE t.externalId = :externalId"),
     @NamedQuery(name = "Transaction.findByAdditional", query = "SELECT t FROM Transaction t WHERE t.additional = :additional"),
     @NamedQuery(name = "Transaction.findByBusinessId", query = "SELECT t FROM Transaction t WHERE t.businessId = :businessId OR t.businessDestinationId = :businessDestinationId ORDER BY t.id DESC"),
+    @NamedQuery(name = "Transaction.findByBusinessIdBetweenDate", query = "SELECT t FROM Transaction t WHERE (t.businessId = :businessId OR t.businessDestinationId = :businessDestinationId)  and t.creationDate between :from AND :to ORDER BY t.id DESC"),
     @NamedQuery(name = "Transaction.findByAdditional2", query = "SELECT t FROM Transaction t WHERE t.additional2 = :additional2")})
 public class Transaction extends AbstractWalletEntity implements Serializable {
 
