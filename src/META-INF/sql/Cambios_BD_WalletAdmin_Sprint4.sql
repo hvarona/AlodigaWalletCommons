@@ -982,12 +982,6 @@ ADD CONSTRAINT `fk_collectionType_personType1`
  ON UPDATE NO ACTION;
  SET FOREIGN_KEY_CHECKS=1;
 
--- Cambios nombre de Menu
--- author: Jorge Pinto
--- Fecha: 15/09/2020
-UPDATE `alodigaWallet`.`permission_data` SET `alias`='Businnes Category', `description`='Businnes Category' WHERE `id`='281';
-UPDATE `alodigaWallet`.`permission_data` SET `alias`='Categorias de Comercio', `description`='Categorias de Comercio' WHERE `id`='282';
-
 -- Cambios para incluir el transaccionBusinessId que se genera en el portal de negocio
 -- author: Yamelis Almea
 -- Fecha: 17/09/2020
