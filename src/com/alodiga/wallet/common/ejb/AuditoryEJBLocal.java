@@ -19,6 +19,7 @@ import com.alodiga.wallet.common.model.Event;
 public interface AuditoryEJBLocal extends WalletGenericEJBLocal {
 
 
+    //Audit
     public List<Audit> getAudits(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
 
     public List<Audit> getLastAudits(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
@@ -29,6 +30,9 @@ public interface AuditoryEJBLocal extends WalletGenericEJBLocal {
 
     public Audit saveAudit(EJBRequest request) throws GeneralException, NullParameterException;
 
+    //AuditAction
+    public List<AuditAction> getAuditAction(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
+    
     public List<AuditAction> getAuditActions(Date beginningDate, Date endingDate) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
 
     public List<AuditAction> searchAuditAction(String login, String userName, Long permissionId, Date beginningDate, Date endingDate) throws GeneralException, NullParameterException, EmptyListException;
@@ -36,7 +40,7 @@ public interface AuditoryEJBLocal extends WalletGenericEJBLocal {
     public AuditAction saveAuditAction(AuditAction action) throws GeneralException, NullParameterException;
 
     public List<AuditAction> getAuditActionsByUserId(Long userId, Date beginningDate, Date endingDate) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
-    
+        
     public Event loadEvent(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
 }

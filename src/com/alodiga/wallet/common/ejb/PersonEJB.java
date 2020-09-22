@@ -94,7 +94,9 @@ public interface PersonEJB extends WalletGenericEJB {
     
     //ComercialAgency
     public List<ComercialAgency> getComercialAgency(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
+    
+    public ComercialAgency loadComercialAgency(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
     //EmployedPosition
     public List<EmployedPosition> getEmployedPosition(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     

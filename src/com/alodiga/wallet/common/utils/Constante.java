@@ -134,6 +134,9 @@ public class Constante {
         public static final Long sBankOperationModeManual = 1L;
         public static final Long sBankOperationTypeWithdrawal = 1L;
         public static final String sProductNotCommission = "Not commission configured for this product";
+        public static final Long sTransationTypeBusinessManualWithdrawal = 11l;
+        public static final Long sDocumentTypeBusinessManualWithdrawal = 14l;
+        public static final Long sOriginApplicationPortalBusiness = 3l;
         
         //Recarga Manual
         public static final Long sTransationTypeManualRecharge = 6l;

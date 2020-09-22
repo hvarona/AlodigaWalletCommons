@@ -98,6 +98,8 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
     @JoinColumn(name = "bankOperationId", referencedColumnName = "id")
     @ManyToOne
     private BankOperation bankOperationId;
+    @Column(name = "businessId")
+    private long businessId;
 
     public TransactionApproveRequest() {
     }
@@ -251,7 +253,15 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
     }
     
 
-    @Override
+    public long getBusinessId() {
+		return businessId;
+	}
+
+	public void setBusinessId(long businessId) {
+		this.businessId = businessId;
+	}
+
+	@Override
     public Object getPk() {
         return getId();
     }

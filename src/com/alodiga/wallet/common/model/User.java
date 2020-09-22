@@ -37,6 +37,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "User.validateUser", query = "SELECT u FROM User u WHERE u.login=:login AND u.password=:password"),
     @NamedQuery(name = "User.loadUserByLogin", query = "SELECT u FROM User u WHERE u.login=:login"),
     @NamedQuery(name = "User.loadUserByEmail", query = "SELECT u FROM User u WHERE u.email=:email"),
+    @NamedQuery(name = QueryConstants.LOGIN_EXIST_IN_BD, query = "SELECT u FROM User u WHERE u.login = :login"),
+    @NamedQuery(name = QueryConstants.EMPLOYEE_EXIST_IN_BD, query = "SELECT u FROM User u WHERE u.employeeId.id = :employeeId"),
     @NamedQuery(name = QueryConstants.VALIDATE_PASSWORD, query = "SELECT u FROM User u WHERE u.password=:currentPassword AND u.id=:userId")})
 public class User extends AbstractWalletEntity implements Serializable {
 

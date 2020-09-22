@@ -244,7 +244,8 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public List<BusinessServiceType> getBusinessServiceType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public List<BusinessServiceType> getBusinessServiceTypeByBusinessType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public BusinessServiceType saveBusinessServiceType(BusinessServiceType businessServiceType) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
+    public List<BusinessServiceType> getBusinessServiceTypeValidateCode(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     //TransactionApproveRequest
     public List<TransactionApproveRequest> getTransactionApproveRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
@@ -325,8 +326,16 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public List<RequestHasCollectionRequest> getRequestsHasCollectionsRequestByBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     //PersonType
+    public PersonType savePersonType (PersonType personType)  throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public List<PersonType> getPersonType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     public List<PersonType> getPersonTypeByCountryByIndNaturalPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
+    public List<PersonType> getPersonTypeByCountryByOriginApplication(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    public List<PersonType> getSearchPersonTypeByCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
+    
     public void updateBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public StatusBusinessAffiliationRequest loadStatusBusinessAffiliationRequestByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
@@ -360,6 +369,8 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public ReviewType saveReviewType(ReviewType reviewType) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //OriginApplication
+    public List<OriginApplication> getOriginApplications(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     public OriginApplication loadOriginApplicationByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
 
     //Sequences

@@ -183,6 +183,7 @@ public class QueryConstants {
     public static final String LEGAL_PERSON_BY_LEGAL_REPRESENTATIVE = "legalPersonByLegalRepresentative";
     public static final String PARAM_IND_NATURAL_PERSON = "indNaturalPerson";
     public static final String PERSON_TYPE_BY_COUNTRY_BY_IND_NATURAL_PERSON = "personTypeByCountryByIndNaturalPerson";
+    public static final String PERSON_TYPE_BY_COUNTRY_BY_ORIGIN_APPLICATION = "personTypeByCountryByOriginApplication";
     public static final String PARAM_BUSINESS_TYPE_ID = "businessTypeId";
     public static final String REVIEW_REQUEST_BY_REQUEST = "reviewRequestByRequest";
     public static final String PARAM_BUSINESS_AFFILIATION_REQUEST_ID = "businessAffiliationRequestId";
@@ -196,10 +197,13 @@ public class QueryConstants {
     public static final String COLLECTIONS_BY_PERSON_TYPE = "collectionsByPersonType";
     public static final String DOCUMENTS_BY_COUNTRY = "documentsByCountry";
     public static final String PHONES_BY_MAIN = "phonesByMain";
+    public static final String LOGIN_EXIST_IN_BD = "loginExistInBD";
+    public static final String EMPLOYEE_EXIST_IN_BD = "EmployeeExistInBD";
     public static final String VALIDATE_PASSWORD = "validatePassword";
     public static final String CLASSIFICATION_ID = "classificationId";
     public static final String CODE_EXIST_IN_BD_COUNTRY = "codeExistInBdCountry";
     public static final String NAME_EXIST_IN_BD_COUNTRY = "nameExistInBdCountry";
     public static final String CODEMCC_EXIST_IN_BD_BUSINESS_CATEGORY="codeMCCExistInBdBusinessCategory";
     public static final String CODEMCC_EXIST_IN_BD_BUSINESS_SUB_CATEGORY="codeMCCExistInBdBusinessSubCategory";
+    public static final String CODE_EXIST_IN_BD_BUSINESS_SERVICE_TYPE="codeExistInBdBusinessServiceType";
 }

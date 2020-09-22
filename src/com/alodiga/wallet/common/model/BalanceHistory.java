@@ -40,6 +40,7 @@ import com.alodiga.wallet.common.model.Transaction;
     @NamedQuery(name = "BalanceHistory.findAll", query = "SELECT b FROM BalanceHistory b"),
     @NamedQuery(name = "BalanceHistory.findById", query = "SELECT b FROM BalanceHistory b WHERE b.id = :id"),
     @NamedQuery(name = "BalanceHistory.findByUserId", query = "SELECT b FROM BalanceHistory b WHERE b.userId = :userId"),
+    @NamedQuery(name = "BalanceHistory.findByBusinessId", query = "SELECT b FROM BalanceHistory b WHERE b.businessId = :businessId"),
     @NamedQuery(name = "BalanceHistory.findByOldAmount", query = "SELECT b FROM BalanceHistory b WHERE b.oldAmount = :oldAmount"),
     @NamedQuery(name = "BalanceHistory.findByCurrentAmount", query = "SELECT b FROM BalanceHistory b WHERE b.currentAmount = :currentAmount"),
     @NamedQuery(name = "BalanceHistory.findByDate", query = "SELECT b FROM BalanceHistory b WHERE b.date = :date"),
@@ -56,6 +57,12 @@ public class BalanceHistory  extends AbstractWalletEntity implements Serializabl
     @Basic(optional = false)
     @Column(name = "userId")
     private long userId;
+    @Basic(optional = false)
+    @Column(name = "businessId")
+    private long businessId;
+    @Basic(optional = false)
+    @Column(name = "transactionBusinessId")
+    private long transactionBusinessId;
     @Basic(optional = false)
     @Column(name = "oldAmount")
     private float oldAmount;
@@ -85,9 +92,10 @@ public class BalanceHistory  extends AbstractWalletEntity implements Serializabl
         this.id = id;
     }
 
-    public BalanceHistory(Long id, long userId, float oldAmount, float currentAmount, Date date, long version) {
+    public BalanceHistory(Long id, long userId,long businessId, float oldAmount, float currentAmount, Date date, long version) {
         this.id = id;
         this.userId = userId;
+        this.businessId = businessId;
         this.oldAmount = oldAmount;
         this.currentAmount = currentAmount;
         this.date = date;
@@ -110,7 +118,23 @@ public class BalanceHistory  extends AbstractWalletEntity implements Serializabl
         this.userId = userId;
     }
 
-    public float getOldAmount() {
+    public long getBusinessId() {
+		return businessId;
+	}
+
+	public void setBusinessId(long businessId) {
+		this.businessId = businessId;
+	}
+
+	public long getTransactionBusinessId() {
+		return transactionBusinessId;
+	}
+
+	public void setTransactionBusinessId(long transactionBusinessId) {
+		this.transactionBusinessId = transactionBusinessId;
+	}
+
+	public float getOldAmount() {
         return oldAmount;
     }
 

@@ -67,6 +67,8 @@ public class EjbConstants {
     public static final String PARAM_PERSON_TYPE_ID = "personTypeId";
     public static final String PARAM_CURRENT_PASSWORD = "currentPassword";
     public static final String PARAM_USER_ID = "userId";
+    public static final String PARAM_LOGIN = "login";
+    public static final String PARAM_EMPLOYEE = "employeeId";
     public static final String TRANSACTION_TYPE_KEY = "transactionTypeId";
     public static final String COMISSION_PRODUCT_KEY = "value";
     public static final String PARAM_MCC_CODE = "mccCode";
