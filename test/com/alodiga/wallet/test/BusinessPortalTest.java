@@ -387,6 +387,24 @@ public class BusinessPortalTest extends TestCase {
 //    }
     
     
+  public void testBusinessAffiliationRequest() {
+
+	  	EJBRequest request = new EJBRequest();
+		request.setParam(2L);
+		try {
+			businessPortalEJB.loadBusinessAffiliationRequest(request);
+			assertTrue(true);
+		} catch (RegisterNotFoundException e) {
+			fail("Error RegisterNotFoundException en testBusinessAffiliationRequest. " + e);
+		} catch (NullParameterException e) {
+			fail("Error NullParameterException en testBusinessAffiliationRequest. " + e);
+		} catch (GeneralException e) {
+			fail("Error GeneralException en testBusinessAffiliationRequest. " + e);
+		}
+
+
+}
+    
 
    
 }
