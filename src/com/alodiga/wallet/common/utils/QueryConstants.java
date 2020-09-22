@@ -206,4 +206,5 @@ public class QueryConstants {
     public static final String CODEMCC_EXIST_IN_BD_BUSINESS_CATEGORY="codeMCCExistInBdBusinessCategory";
     public static final String CODEMCC_EXIST_IN_BD_BUSINESS_SUB_CATEGORY="codeMCCExistInBdBusinessSubCategory";
     public static final String CODE_EXIST_IN_BD_BUSINESS_SERVICE_TYPE="codeExistInBdBusinessServiceType";
+    public static final String CODE_EXIST_IN_BD_PREFERENCE_FIELD = "codeExistInBdPreferenceField";
 }
