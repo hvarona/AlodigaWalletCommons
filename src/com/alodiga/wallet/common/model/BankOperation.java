@@ -102,6 +102,8 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     private BankOperationMode bankOperationModeId;
     @Column(name = "businessId")
     private long businessId;
+    @Column(name = "accountBankBusinessId")
+    private long accountBankBusinessId;
 
     public BankOperation() {
     }
@@ -272,5 +274,15 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
 	public void setBusinessId(long businessId) {
 		this.businessId = businessId;
 	}
+
+	public long getAccountBankBusinessId() {
+		return accountBankBusinessId;
+	}
+
+	public void setAccountBankBusinessId(long accountBankBusinessId) {
+		this.accountBankBusinessId = accountBankBusinessId;
+	}
+	
+	
     
 }

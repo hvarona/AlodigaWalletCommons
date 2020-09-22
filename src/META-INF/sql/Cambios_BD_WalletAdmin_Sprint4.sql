@@ -1069,4 +1069,10 @@ INSERT INTO `alodigawallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('1
 
 INSERT INTO `alodigawallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('8', '1', '0', '14', '3');
 
+-- Cambios para incluir el accountBankId del portal de negocio para el retiro manual 
+-- author: Yamelis Almea
+-- Fecha: 21/09/2020
+ALTER TABLE `alodigawallet`.`bank_operation` 
+ADD COLUMN `accountBankBusinessId` BIGINT(10) NULL DEFAULT NULL AFTER `businessId`;
+
 
