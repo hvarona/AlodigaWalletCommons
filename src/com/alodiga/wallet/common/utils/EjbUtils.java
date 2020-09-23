@@ -2,9 +2,14 @@ package com.alodiga.wallet.common.utils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
+
 import javax.transaction.UserTransaction;
 import org.apache.log4j.Logger;
 import com.alodiga.wallet.common.exception.GeneralException;
+
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -126,4 +131,30 @@ public class EjbUtils {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.format(date);
     }
+    
+    public static Timestamp convertStringToTimestampBeginningDate(String strDate) {
+        try {
+          DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+           // you can change format of date
+          Date date = formatter.parse(strDate);         
+          Timestamp timeStampDate = new Timestamp(getBeginningDate(date).getTime());
+          return timeStampDate;
+        } catch (ParseException e) {
+          System.out.println("Exception :" + e);
+          return null;
+        }
+      }
+    
+    public static Timestamp convertStringToTimestampEndingDate(String strDate) {
+        try {
+          DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+           // you can change format of date
+          Date date = formatter.parse(strDate);       
+          Timestamp timeStampDate = new Timestamp(getEndingDate(date).getTime());
+          return timeStampDate;
+        } catch (ParseException e) {
+          System.out.println("Exception :" + e);
+          return null;
+        }
+      }
 }
