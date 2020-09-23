@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.utils.QueryConstants;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -46,6 +47,7 @@ import com.alodiga.wallet.common.utils.QueryConstants;
     @NamedQuery(name = "PreferenceField.findByEnabled", query = "SELECT p FROM PreferenceField p WHERE p.enabled = :enabled")})
 
 public class PreferenceField extends AbstractWalletEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -72,6 +74,12 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
     private Preference preferenceId;
     @OneToMany(mappedBy = "preferenceField", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<PreferenceFieldData> preferenceFieldData;
+    @Size(max = 80)
+    @Column(name = "description")
+    private String description;
+    @Size(max = 10)
+    @Column(name = "code")
+    private String code;
 
     public PreferenceField() {
     }
@@ -195,6 +203,22 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
     @Override
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
     
 }
