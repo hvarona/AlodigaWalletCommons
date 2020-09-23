@@ -88,6 +88,7 @@ public interface PersonEJB extends WalletGenericEJB {
     //Employee
     public List<Employee> getEmployee(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public Employee saveEmployee(Employee employee)  throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<Employee> searchEmployee(String name) throws EmptyListException, GeneralException, NullParameterException;
     
     //Tabla de PersonClassification 
     public PersonClassification loadPersonClassification(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;

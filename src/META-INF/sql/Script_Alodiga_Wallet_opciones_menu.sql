@@ -1255,3 +1255,18 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId
 -- permission_data
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('149', '1', 'Management Report', 'Management Report');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('149', '2', 'Administrar Reportes', 'Administrar Reportes');
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 23/09/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Employees', `description`='Employees' WHERE `permissionId`='133' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Empleados', `description`='Empleados' WHERE `permissionId`='133' AND `languageId`='2';
+
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Password Change Request', `description`='Password Change Request' WHERE `permissionId`='129' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Solicitud de Cambio de Contraseña', `description`='Solicitud de Cambio de Contraseña' WHERE `permissionId`='129' AND `languageId`='2';
+
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='General Preferences', `description`='General Preferences' WHERE `permissionId`='26' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Preferencias Generales', `description`='Preferencias Generales' WHERE `permissionId`='26' AND `languageId`='2';
+
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Specific Preferences', `description`='Specific Preferences' WHERE `permissionId`='53' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Preferencias Específicas', `description`='Preferencias Específicas' WHERE `permissionId`='53' AND `languageId`='2';
