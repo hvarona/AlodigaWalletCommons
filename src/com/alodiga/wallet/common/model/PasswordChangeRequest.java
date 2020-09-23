@@ -59,10 +59,10 @@ public class PasswordChangeRequest extends AbstractWalletEntity implements Seria
     private Date requestDate;
     @Column(name = "indApproved")
     private Boolean indApproved;
-    @Size(max = 255)
+    @Size(max = 80)
     @Column(name = "currentPassword")
     private String currentPassword;
-    @Size(max = 255)
+    @Size(max = 80)
     @Column(name = "newPassword")
     private String newPassword;
     @Basic(optional = false)

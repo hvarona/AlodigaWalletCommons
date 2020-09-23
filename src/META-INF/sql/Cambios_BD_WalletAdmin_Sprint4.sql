@@ -1012,61 +1012,87 @@ CREATE TABLE `alodigaWallet`.`business_has_product` (
 -- author: Yamelis Almea
 -- Fecha: 19/09/2020
 
-INSERT INTO `alodigawallet`.`transaction_type` (`id`, `value`) VALUES ('11', 'BUSINESS_ WITHDRAWALS_MANUAL');
+INSERT INTO `alodigaWallet`.`transaction_type` (`id`, `value`) VALUES ('11', 'BUSINESS_ WITHDRAWALS_MANUAL');
 
-
-ALTER TABLE `alodigawallet`.`bank_operation` 
+ALTER TABLE `alodigaWallet`.`bank_operation` 
 ADD COLUMN `businessId` BIGINT(10) NULL AFTER `additional2`;
 
-
-ALTER TABLE `alodigawallet`.`transaction_approve_request` 
+ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
 ADD COLUMN `businessId` BIGINT(10) NULL AFTER `userApprovedRequestId`;
 
-ALTER TABLE `alodigawallet`.`transaction` 
+ALTER TABLE `alodigaWallet`.`transaction` 
 ADD COLUMN `businessId` BIGINT(10) NULL DEFAULT NULL AFTER `dailyClosingId`;
 
-
-ALTER TABLE `alodigawallet`.`transaction` 
+ALTER TABLE `alodigaWallet`.`transaction` 
 ADD COLUMN `businessDestinationId` BIGINT(10) NULL DEFAULT NULL AFTER `businessId`;
 
 -- Cambios para generar transactionNumber
 -- author: Yamelis Almea
 -- Fecha: 21/09/2020
 
-ALTER TABLE `alodigawallet`.`transaction_type` 
+ALTER TABLE `alodigaWallet`.`transaction_type` 
 ADD COLUMN `code` VARCHAR(6) NOT NULL AFTER `value`;
 
-UPDATE `alodigawallet`.`transaction_type` SET `code` = 'PROREC' WHERE (`id` = '1');
-UPDATE `alodigawallet`.`transaction_type` SET `code` = 'PROPAY' WHERE (`id` = '2');
-UPDATE `alodigawallet`.`transaction_type` SET `code` = 'PROTRA' WHERE (`id` = '3');
-UPDATE `alodigawallet`.`transaction_type` SET `code` = 'PROEXC' WHERE (`id` = '4');
-UPDATE `alodigawallet`.`transaction_type` SET `code` = 'WITMAN' WHERE (`id` = '5');
-UPDATE `alodigawallet`.`transaction_type` SET `code` = 'MANREC' WHERE (`id` = '6');
-UPDATE `alodigawallet`.`transaction_type` SET `code` = 'TOPREC' WHERE (`id` = '7');
-UPDATE `alodigawallet`.`transaction_type` SET `code` = 'TRACAR' WHERE (`id` = '8');
-UPDATE `alodigawallet`.`transaction_type` SET `code` = 'TRAREM' WHERE (`id` = '9');
-UPDATE `alodigawallet`.`transaction_type` SET `code` = 'PURBAL' WHERE (`id` = '10');
-UPDATE `alodigawallet`.`transaction_type` SET `code` = 'BUSWIM' WHERE (`id` = '11');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'PROREC' WHERE (`id` = '1');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'PROPAY' WHERE (`id` = '2');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'PROTRA' WHERE (`id` = '3');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'PROEXC' WHERE (`id` = '4');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'WITMAN' WHERE (`id` = '5');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'MANREC' WHERE (`id` = '6');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'TOPREC' WHERE (`id` = '7');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'TRACAR' WHERE (`id` = '8');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'TRAREM' WHERE (`id` = '9');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'PURBAL' WHERE (`id` = '10');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'BUSWIM' WHERE (`id` = '11');
 
 
-INSERT INTO `alodigawallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('4', 'PRODUCT_RECHARGE', 'PROREC');
-INSERT INTO `alodigawallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('5', 'PRODUCT_PAYMENT', 'PROPAY');
-INSERT INTO `alodigawallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('6', 'PRODUCT_TRANSFER', 'PROTRA');
-INSERT INTO `alodigawallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('7', 'PRODUCT_EXCHANGE', 'PROEXC');
-INSERT INTO `alodigawallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('8', 'WITHDRAWALS_MANUAL', 'WITMAN');
-INSERT INTO `alodigawallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('9', 'MANUAL_RECHARGE', 'MANREC');
-INSERT INTO `alodigawallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('10', 'TOP_UP_RECHARGE', 'TOPREC');
-INSERT INTO `alodigawallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('11', 'TRANSFER_CARD_TO_CARD', 'TRACAR');
-INSERT INTO `alodigawallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('12', 'TRANSFER_REMITTANCE', 'TRAREM');
-INSERT INTO `alodigawallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('13', 'PURCHASE_BALANCE', 'PURBAL');
-INSERT INTO `alodigawallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('14', 'BUSINESS_ WITHDRAWALS_MANUAL', 'BUSWIM');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('4', 'PRODUCT_RECHARGE', 'PROREC');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('5', 'PRODUCT_PAYMENT', 'PROPAY');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('6', 'PRODUCT_TRANSFER', 'PROTRA');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('7', 'PRODUCT_EXCHANGE', 'PROEXC');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('8', 'WITHDRAWALS_MANUAL', 'WITMAN');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('9', 'MANUAL_RECHARGE', 'MANREC');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('10', 'TOP_UP_RECHARGE', 'TOPREC');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('11', 'TRANSFER_CARD_TO_CARD', 'TRACAR');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('12', 'TRANSFER_REMITTANCE', 'TRAREM');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('13', 'PURCHASE_BALANCE', 'PURBAL');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('14', 'BUSINESS_ WITHDRAWALS_MANUAL', 'BUSWIM');
 
-INSERT INTO `alodigawallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('8', '1', '0', '14', '3');
+INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('8', '1', '1', '14', '3');
 
 -- Cambios para incluir el accountBankId del portal de negocio para el retiro manual 
 -- author: Yamelis Almea
 -- Fecha: 21/09/2020
-ALTER TABLE `alodigawallet`.`bank_operation` 
+ALTER TABLE `alodigaWallet`.`bank_operation` 
 ADD COLUMN `accountBankBusinessId` BIGINT(10) NULL DEFAULT NULL AFTER `businessId`;
+
+-- Agregar nuevas campos en la tabla preference_field 
+-- author: Jesús Gómez
+-- Fecha: 22/09/2020
+ALTER TABLE `alodigaWallet`.`preference_field`
+ADD COLUMN `description` VARCHAR(80) NULL AFTER `name`,
+ADD COLUMN `code` VARCHAR(10) NULL AFTER `description`;
+
+-- Modificar tamaños de campos en la tabla password_change_request 
+-- author: Jesús Gómez
+-- Fecha: 23/09/2020
+ALTER TABLE `alodigaWallet`.`password_change_request` 
+CHANGE COLUMN `currentPassword` `currentPassword` VARCHAR(80) NULL DEFAULT NULL ,
+CHANGE COLUMN `newPassword` `newPassword` VARCHAR(80) NULL DEFAULT NULL ;
+
+-- Colocar campos obligatorios en la tabla calendar_days 
+-- author: Jesús Gómez
+-- Fecha: 23/09/2020
+ALTER TABLE `alodigaWallet`.`calendar_days` 
+CHANGE COLUMN `holidayDate` `holidayDate` DATE NOT NULL ,
+CHANGE COLUMN `createDate` `createDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+
+-- Agregar campo en la tabla transaction_type 
+-- author: Jesús Gómez
+-- Fecha: 23/09/2020
+ALTER TABLE `alodigaWallet`.`transaction_type` 
+ADD COLUMN `description` VARCHAR(80) NULL AFTER `code`;
+
+
 
 
