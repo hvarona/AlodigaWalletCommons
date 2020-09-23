@@ -169,7 +169,9 @@ public class QueryConstants {
     public static final String PARAM_BANK_ID = "bankId";
     public static final String PARAM_BUSSINESS_ID = "bussinessId";
     public static final String PERSON_TYPE_BY_COUNTRY = "personTypeByCountry";
+    public static final String PERSON_TYPE_ID = "personTypeId";
     public static final String COLLECTION_TYPE_BY_COUNTRY = "CollectionTypeByCountry";
+    public static final String COLLECTION_TYPE_BY_COUNTRY_BY_PERSON_TYPE = "CollectionTypeByCountryByPersonType";
     public static final String REVIEW_OFAC_BY_REQUEST = "reviewOfacByRequest";
     public static final String PARAM_REQUEST_NUMBER = "requestNumber";
     public static final String PARAM_CODE = "code";
@@ -184,6 +186,7 @@ public class QueryConstants {
     public static final String PARAM_IND_NATURAL_PERSON = "indNaturalPerson";
     public static final String PERSON_TYPE_BY_COUNTRY_BY_IND_NATURAL_PERSON = "personTypeByCountryByIndNaturalPerson";
     public static final String PERSON_TYPE_BY_COUNTRY_BY_ORIGIN_APPLICATION = "personTypeByCountryByOriginApplication";
+    public static final String PERSON_TYPE_BY_COUNTRY_BY_ORIGIN_APPLICATION_PORTAL = "personTypeByCountryByOriginApplicationPortal";
     public static final String PARAM_BUSINESS_TYPE_ID = "businessTypeId";
     public static final String REVIEW_REQUEST_BY_REQUEST = "reviewRequestByRequest";
     public static final String PARAM_BUSINESS_AFFILIATION_REQUEST_ID = "businessAffiliationRequestId";

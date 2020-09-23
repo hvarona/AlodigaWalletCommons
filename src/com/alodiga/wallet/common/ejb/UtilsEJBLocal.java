@@ -27,12 +27,14 @@ import com.alodiga.wallet.common.model.CommissionItem;
 import com.alodiga.wallet.common.model.Country;
 import com.alodiga.wallet.common.model.County;
 import com.alodiga.wallet.common.model.Currency;
+import com.alodiga.wallet.common.model.DailyClosing;
 import com.alodiga.wallet.common.model.Enterprise;
 import com.alodiga.wallet.common.model.ExchangeRate;
 import com.alodiga.wallet.common.model.Language;
 import com.alodiga.wallet.common.model.OriginApplication;
 import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.PersonType;
+import com.alodiga.wallet.common.model.Product;
 import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
 import com.alodiga.wallet.common.model.ReviewBusinessAffiliationRequest;
 import com.alodiga.wallet.common.model.ReviewOfac;
@@ -204,6 +206,8 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
 
     public List<CollectionType> getCollectionTypeByCountry(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
+    public List<CollectionType> getCollectionTypeByCountryByPersonType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     public CollectionType loadCollectionType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public CollectionType saveCollectionType(CollectionType collectionType) throws RegisterNotFoundException, NullParameterException, GeneralException;
@@ -389,4 +393,6 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     //Calendar Days
     public List<CalendarDays> getCalendarDays(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public CalendarDays saveCalendarDays(CalendarDays calendarDays) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public Long loadTransactionTypeById(Long TransactionTypeId) throws RegisterNotFoundException, NullParameterException, GeneralException;
 }
