@@ -1070,3 +1070,12 @@ ALTER TABLE `alodigawallet`.`bank_operation`
 ADD COLUMN `accountBankBusinessId` BIGINT(10) NULL DEFAULT NULL AFTER `businessId`;
 
 
+
+-- Cambios person_classification
+-- author: Jorge Pinto
+-- Fecha: 23/09/2020
+UPDATE `alodigaWallet`.`person_classification` SET `description`='Natural Business Applicant', `code`='NABUAP' WHERE `id`='1';
+UPDATE `alodigaWallet`.`person_classification` SET `description`='Legal Business Applicant', `code`='LEBUAP' WHERE `id`='2';
+UPDATE `alodigaWallet`.`person_classification` SET `description`='Employee', `code`='EMPLEA' WHERE `id`='3';
+UPDATE `alodigaWallet`.`person_classification` SET `description`='User', `code`='USER' WHERE `id`='4';
+
