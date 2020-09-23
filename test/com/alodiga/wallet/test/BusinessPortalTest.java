@@ -1,6 +1,5 @@
 package com.alodiga.wallet.test;
 
-
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +7,7 @@ import java.util.List;
 //import com.alodiga.wallet.common.ejb.BusinessEJB;
 import com.alodiga.wallet.common.ejb.BusinessPortalEJB;
 import com.alodiga.wallet.common.ejb.PersonEJB;
+import com.alodiga.wallet.common.ejb.ProductEJB;
 import com.alodiga.wallet.common.ejb.UtilsEJB;
 import com.alodiga.wallet.common.exception.EmptyListException;
 import com.alodiga.wallet.common.exception.GeneralException;
@@ -25,6 +25,7 @@ import com.alodiga.wallet.common.model.Country;
 import com.alodiga.wallet.common.model.DocumentType;
 import com.alodiga.wallet.common.model.DocumentsPersonType;
 import com.alodiga.wallet.common.model.EdificationType;
+import com.alodiga.wallet.common.model.ExchangeRate;
 import com.alodiga.wallet.common.model.LegalPerson;
 import com.alodiga.wallet.common.model.NaturalPerson;
 import com.alodiga.wallet.common.model.OriginApplication;
@@ -32,6 +33,7 @@ import com.alodiga.wallet.common.model.Person;
 import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.PhonePerson;
 import com.alodiga.wallet.common.model.PhoneType;
+import com.alodiga.wallet.common.model.Product;
 import com.alodiga.wallet.common.model.Profession;
 import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
 import com.alodiga.wallet.common.model.Sequences;
@@ -39,12 +41,16 @@ import com.alodiga.wallet.common.model.State;
 import com.alodiga.wallet.common.model.StatusApplicant;
 import com.alodiga.wallet.common.model.StreetType;
 import com.alodiga.wallet.common.utils.EjbConstants;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 //import com.portal.business.commons.models.Business;
 
 import java.util.HashMap;
 import java.util.Map;
 import junit.framework.TestCase;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.InitialContext;
 
 public class BusinessPortalTest extends TestCase {
@@ -52,29 +58,29 @@ public class BusinessPortalTest extends TestCase {
     BusinessPortalEJB businessPortalEJB;
     UtilsEJB utilsEJB;
     PersonEJB personEJB;
-   // BusinessEJB businessEJB;
+    ProductEJB productEJB;
+    // BusinessEJB businessEJB;
 
     @Override
     protected void setUp() throws Exception {
         try {
             Properties props = new Properties();
-        props.setProperty("java.naming.factory.initial", "com.sun.enterprise.naming.SerialInitContextFactory");
-        props.setProperty("java.naming.factory.url.pkgs", "com.sun.enterprise.naming");
-        props.setProperty("java.naming.factory.state", "com.sun.corba.ee.impl.presentation.rmi.JNDIStateFactoryImpl");
-        props.setProperty("org.omg.CORBA.ORBInitialHost", "localhost");
-        props.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
-        InitialContext intialContext = new InitialContext(props);
-        businessPortalEJB = (BusinessPortalEJB) intialContext.lookup(EjbConstants.BUSINESS_PORTAL_EJB);
+            props.setProperty("java.naming.factory.initial", "com.sun.enterprise.naming.SerialInitContextFactory");
+            props.setProperty("java.naming.factory.url.pkgs", "com.sun.enterprise.naming");
+            props.setProperty("java.naming.factory.state", "com.sun.corba.ee.impl.presentation.rmi.JNDIStateFactoryImpl");
+            props.setProperty("org.omg.CORBA.ORBInitialHost", "localhost");
+            props.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
+            InitialContext intialContext = new InitialContext(props);
+            businessPortalEJB = (BusinessPortalEJB) intialContext.lookup(EjbConstants.BUSINESS_PORTAL_EJB);
 //        businessEJB = (BusinessEJB) intialContext.lookup(EjbConstants.BUSINESS_EJB);
-        utilsEJB = (UtilsEJB) intialContext.lookup(EjbConstants.UTILS_EJB);
-        personEJB = (PersonEJB) intialContext.lookup(EjbConstants.PERSON_EJB);
+            utilsEJB = (UtilsEJB) intialContext.lookup(EjbConstants.UTILS_EJB);
+            personEJB = (PersonEJB) intialContext.lookup(EjbConstants.PERSON_EJB);
+            productEJB = (ProductEJB) intialContext.lookup(EjbConstants.PRODUCT_EJB);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
 
     }
-
 
     public void _testGetPersonTypesBycountryId() {
         try {
@@ -91,7 +97,7 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
-    
+
     public void _testGetDocumentPersonTypesBypersonTypeId() {
         try {
             List<DocumentsPersonType> documentsPersonTypes;
@@ -107,7 +113,7 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
-    
+
     public void _testGetCollectionTypesBycountryId() {
         try {
             List<CollectionType> collectionTypes;
@@ -123,7 +129,8 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
-     public void _testGetCollectionRequestsBycollectionTypeId() {
+
+    public void _testGetCollectionRequestsBycollectionTypeId() {
         try {
             List<CollectionsRequest> collectionsRequests;
             collectionsRequests = businessPortalEJB.getCollectionRequestsBycollectionTypeId(1L);
@@ -138,8 +145,8 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
-     
-     public void _testGetCountries() {
+
+    public void _testGetCountries() {
         try {
             List<Country> country;
             country = businessPortalEJB.getCountries();
@@ -154,8 +161,8 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
-    
-     public void _testGetStatesByCountryId() {
+
+    public void _testGetStatesByCountryId() {
         try {
             List<State> states;
             states = businessPortalEJB.getStatesByCountryId(1L);
@@ -170,8 +177,8 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
-     
-     public void _testGetCitiesByStateId() {
+
+    public void _testGetCitiesByStateId() {
         try {
             List<City> citys;
             citys = businessPortalEJB.getCitiesByStateId(1L);
@@ -186,18 +193,19 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
-      public void _testGetSequencesByDocumentType() {
+
+    public void _testGetSequencesByDocumentType() {
         try {
             List<Sequences> sequenceses;
             EJBRequest request = new EJBRequest();
-            request.setParam(1);            
-            DocumentType documentType = businessPortalEJB.loadDocumentType(request);   
+            request.setParam(1);
+            DocumentType documentType = businessPortalEJB.loadDocumentType(request);
             Map<String, Object> params = new HashMap<String, Object>();
             params.put(EjbConstants.PARAM_DOCUMENT_TYPE_ID, documentType.getId());
             request = new EJBRequest();
             request.setParams(params);
             sequenceses = businessPortalEJB.getSequencesByDocumentType(request);
-            System.out.println(sequenceses.size());            
+            System.out.println(sequenceses.size());
             assertTrue(true);
         } catch (EmptyListException e) {
             fail("Error EmptyListException en testGetPersonTypesBycountryId. " + e);
@@ -210,13 +218,13 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
-     
-      public void _testsaveSequences() {
+
+    public void _testsaveSequences() {
         try {
             Sequences sequenceses = new Sequences();
             EJBRequest request = new EJBRequest();
-            request.setParam(1);            
-            DocumentType documentType = businessPortalEJB.loadDocumentType(request);   
+            request.setParam(1);
+            DocumentType documentType = businessPortalEJB.loadDocumentType(request);
             sequenceses.setDocumentTypeId(documentType);
             sequenceses.setCurrentValue(10);
             sequenceses.setInitialValue(1);
@@ -236,92 +244,90 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
-    
-    
-    
+
     public void _testSaveBusinessAffiliationRequestNaturalPerson() {
         try {
-        	//Person
-			Person person = new Person();
-			EJBRequest request = new EJBRequest();
-			request.setParam(1L);
-			City city = utilsEJB.loadCity(request);
-			person.setCountryId(city.getStateId().getCountryId());
-			person.setCreateDate(new Timestamp(new Date().getTime()));
-			person.setEmail("test@gmail.com");
-			request = new EJBRequest();
-		    request.setParam(1);
-			PersonType personType = personEJB.loadPersonType(request);
-			person.setPersonTypeId(personType);
-			person.setWebSite("www.test.com");
-			//Natural Person
-			NaturalPerson naturalPerson = new NaturalPerson();
-			naturalPerson.setCreateDate(new Timestamp(new Date().getTime()));
-			String text = "1989-10-02 01:02:03.123456789";
-			Timestamp dateBirth = Timestamp.valueOf(text);
-			naturalPerson.setDateBirth(dateBirth);
-			request = new EJBRequest();
-		    request.setParam(1);
-		    DocumentsPersonType documentsPersonType = personEJB.loadDocumentsPersonType(request);
-			naturalPerson.setDocumentsPersonTypeId(documentsPersonType);
-			text = "2022-10-02 01:02:03.123456789";
-			Timestamp dueDateDocumentIdentification = Timestamp.valueOf(text);
-			naturalPerson.setDueDateDocumentIdentification(dueDateDocumentIdentification);
-			request = new EJBRequest();
-		    request.setParam(1);
-			CivilStatus civilStatus = personEJB.loadCivilStatus(request);
-			naturalPerson.setCivilStatusId(civilStatus);
-			naturalPerson.setFirstName("Nombre");
-			naturalPerson.setLastName("Apellido");
-			naturalPerson.setGender("F");
-			naturalPerson.setIdentificationNumber("12345678");
-			naturalPerson.setPlaceBirth("Caracas");
-			request = new EJBRequest();
-		    request.setParam(1);
-			Profession profession = personEJB.loadProfession(request);
-			naturalPerson.setProfessionId(profession);
-			request = new EJBRequest();
-		    request.setParam(1);
-			StatusApplicant statusApplicant = personEJB.loadStatusApplicant(request);
-			naturalPerson.setStatusApplicantId(statusApplicant);
-			//LegalPerson
-			LegalPerson legalPerson = null;
-			//PhonePerson
-			PhonePerson phonePerson = new PhonePerson();
-			phonePerson.setAreaCode("0212");
-			phonePerson.setCountryId(city.getStateId().getCountryId());
-			phonePerson.setCountryCode("58");
-			phonePerson.setCreateDate(new Timestamp(new Date().getTime()));
-			request = new EJBRequest();
-		    request.setParam(1);
-			PhoneType phoneType = personEJB.loadPhoneType(request);
-			phonePerson.setPhoneTypeId(phoneType);
-			phonePerson.setNumberPhone("6712325");
-			//Address
-			Address address = new Address();
-			address.setCountryId(city.getStateId().getCountryId());
-			address.setCityId(city);
-			address.setAddressLine1("addresLine1");
-			address.setAddressLine2("addressLine2");
-			address.setZipCode("12345");
-			request = new EJBRequest();
-		    request.setParam(1);
-			AddressType addressType = personEJB.loadAddressType(request);
-			address.setAddressTypeId(addressType);
-			EdificationType edificationType = personEJB.loadEdificationType(request);
-			address.setEdificationTypeId(edificationType);
-			address.setFloor(1);
-			address.setIndMainAddress(true);
-			address.setNameEdification("nameEdification");
-			address.setTower("Torre");
-			address.setNameStreet("nameStreet");
-			address.setUrbanization("urbanization");
-			StreetType streetType = personEJB.loadStreetType(request);
-			address.setStreetTypeId(streetType);
-			BusinessAffiliationRequest a = businessPortalEJB.saveBusinessAffiliationRequest(person, naturalPerson,legalPerson, phonePerson, address);
-			System.out.println(a.toString());
+            //Person
+            Person person = new Person();
+            EJBRequest request = new EJBRequest();
+            request.setParam(1L);
+            City city = utilsEJB.loadCity(request);
+            person.setCountryId(city.getStateId().getCountryId());
+            person.setCreateDate(new Timestamp(new Date().getTime()));
+            person.setEmail("test@gmail.com");
+            request = new EJBRequest();
+            request.setParam(1);
+            PersonType personType = personEJB.loadPersonType(request);
+            person.setPersonTypeId(personType);
+            person.setWebSite("www.test.com");
+            //Natural Person
+            NaturalPerson naturalPerson = new NaturalPerson();
+            naturalPerson.setCreateDate(new Timestamp(new Date().getTime()));
+            String text = "1989-10-02 01:02:03.123456789";
+            Timestamp dateBirth = Timestamp.valueOf(text);
+            naturalPerson.setDateBirth(dateBirth);
+            request = new EJBRequest();
+            request.setParam(1);
+            DocumentsPersonType documentsPersonType = personEJB.loadDocumentsPersonType(request);
+            naturalPerson.setDocumentsPersonTypeId(documentsPersonType);
+            text = "2022-10-02 01:02:03.123456789";
+            Timestamp dueDateDocumentIdentification = Timestamp.valueOf(text);
+            naturalPerson.setDueDateDocumentIdentification(dueDateDocumentIdentification);
+            request = new EJBRequest();
+            request.setParam(1);
+            CivilStatus civilStatus = personEJB.loadCivilStatus(request);
+            naturalPerson.setCivilStatusId(civilStatus);
+            naturalPerson.setFirstName("Nombre");
+            naturalPerson.setLastName("Apellido");
+            naturalPerson.setGender("F");
+            naturalPerson.setIdentificationNumber("12345678");
+            naturalPerson.setPlaceBirth("Caracas");
+            request = new EJBRequest();
+            request.setParam(1);
+            Profession profession = personEJB.loadProfession(request);
+            naturalPerson.setProfessionId(profession);
+            request = new EJBRequest();
+            request.setParam(1);
+            StatusApplicant statusApplicant = personEJB.loadStatusApplicant(request);
+            naturalPerson.setStatusApplicantId(statusApplicant);
+            //LegalPerson
+            LegalPerson legalPerson = null;
+            //PhonePerson
+            PhonePerson phonePerson = new PhonePerson();
+            phonePerson.setAreaCode("0212");
+            phonePerson.setCountryId(city.getStateId().getCountryId());
+            phonePerson.setCountryCode("58");
+            phonePerson.setCreateDate(new Timestamp(new Date().getTime()));
+            request = new EJBRequest();
+            request.setParam(1);
+            PhoneType phoneType = personEJB.loadPhoneType(request);
+            phonePerson.setPhoneTypeId(phoneType);
+            phonePerson.setNumberPhone("6712325");
+            //Address
+            Address address = new Address();
+            address.setCountryId(city.getStateId().getCountryId());
+            address.setCityId(city);
+            address.setAddressLine1("addresLine1");
+            address.setAddressLine2("addressLine2");
+            address.setZipCode("12345");
+            request = new EJBRequest();
+            request.setParam(1);
+            AddressType addressType = personEJB.loadAddressType(request);
+            address.setAddressTypeId(addressType);
+            EdificationType edificationType = personEJB.loadEdificationType(request);
+            address.setEdificationTypeId(edificationType);
+            address.setFloor(1);
+            address.setIndMainAddress(true);
+            address.setNameEdification("nameEdification");
+            address.setTower("Torre");
+            address.setNameStreet("nameStreet");
+            address.setUrbanization("urbanization");
+            StreetType streetType = personEJB.loadStreetType(request);
+            address.setStreetTypeId(streetType);
+            BusinessAffiliationRequest a = businessPortalEJB.saveBusinessAffiliationRequest(person, naturalPerson, legalPerson, phonePerson, address);
+            System.out.println(a.toString());
             assertTrue(true);
-        }  catch (RegisterNotFoundException e) {
+        } catch (RegisterNotFoundException e) {
             fail("Error EmptyListException en testGetPersonTypesBycountryId. " + e);
         } catch (NullParameterException e) {
             fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
@@ -330,16 +336,16 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
-    
+
     public void _testSaveRequestHasCollectionsRequest() {
         try {
             RequestHasCollectionRequest requestHasCollectionRequest = new RequestHasCollectionRequest();
             EJBRequest request = new EJBRequest();
-			request.setParam(2L);
+            request.setParam(2L);
             BusinessAffiliationRequest businessAffiliationRequestId = utilsEJB.loadBusinessAffiliationRequest(request);
             requestHasCollectionRequest.setBusinessAffiliationRequestId(businessAffiliationRequestId);
             request = new EJBRequest();
-			request.setParam(6);
+            request.setParam(6);
             CollectionsRequest collectionsRequestId = utilsEJB.loadCollectionsRequest(request);
             requestHasCollectionRequest.setCollectionsRequestId(collectionsRequestId);
             requestHasCollectionRequest.setImageFileUrl("C:\\Users\\yamea\\OneDrive\\Imagenes\\ejemplo.jpg");
@@ -358,7 +364,36 @@ public class BusinessPortalTest extends TestCase {
         }
 
     }
-    
+
+    public void testgetExchangeRateByBeginningDate() throws ParseException {
+
+        EJBRequest request = new EJBRequest();
+        request.setParam(1L);
+        Date curDate = new Date(2020,8,16);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        String DateToStr = format.format(curDate);
+        Date fechaDate = null;
+        fechaDate = format.parse(DateToStr);
+        
+        String text = "2019-09-26 00:00:00.000000";
+            Timestamp dateBirth = Timestamp.valueOf(text);
+        try {
+            Product product = productEJB.loadProductById(1L);
+            ExchangeRate exchangeRate = utilsEJB.getExchangeRateByBeginningDate(product, dateBirth);
+            System.out.println(exchangeRate.toString());
+            assertTrue(true);
+        } catch (GeneralException ex) {
+            fail("Error GeneralException en testgetExchangeRateByBeginningDate " + ex);
+        } catch (RegisterNotFoundException ex) {
+            fail("Error RegisterNotFoundException en testgetExchangeRateByBeginningDate " + ex);
+        } catch (NullParameterException ex) {
+            fail("Error NullParameterException en testgetExchangeRateByBeginningDate " + ex);
+        } catch (EmptyListException ex) {
+            fail("Error EmptyListException en testgetExchangeRateByBeginningDate " + ex);
+        }
+
+    }
+
 //    public void testGetBusinessById() {
 //        try {
 //			Business business = businessEJB.getBusinessById(1L);
@@ -371,8 +406,6 @@ public class BusinessPortalTest extends TestCase {
 //		}
 //
 //    }
-    
-    
 //    public void testGetAll() {
 //        try {
 //        	List<Business> business = businessEJB.getAll();
