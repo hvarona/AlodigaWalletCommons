@@ -43,7 +43,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "PreferenceField.findById", query = "SELECT p FROM PreferenceField p WHERE p.id = :id"),
     @NamedQuery(name = "PreferenceField.findByName", query = "SELECT p FROM PreferenceField p WHERE p.name = :name"),
     @NamedQuery(name = "PreferenceField.findByPreference", query = "SELECT p FROM PreferenceField p WHERE p.preferenceId.id = :preferenceId"),
-//    @NamedQuery(name = QueryConstants.CODE_EXIST_IN_BD_PREFERENCE_FIELD, query = "SELECT p FROM PreferenceField p WHERE p.code = :code"),
+    @NamedQuery(name = QueryConstants.CODE_EXIST_IN_BD_PREFERENCE_FIELD, query = "SELECT p FROM PreferenceField p WHERE p.code = :code"),
     @NamedQuery(name = "PreferenceField.findByEnabled", query = "SELECT p FROM PreferenceField p WHERE p.enabled = :enabled")})
 
 public class PreferenceField extends AbstractWalletEntity implements Serializable {
@@ -57,6 +57,10 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "code")
+    private String code;
     @Basic(optional = false)
     @Column(name = "enabled")
     private short enabled;
@@ -105,7 +109,23 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
     public void setName(String name) {
         this.name = name;
     }
+    
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    public String getCode() {
+        return description;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+    
     public short getEnabled() {
         return enabled;
     }

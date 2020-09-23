@@ -8,7 +8,9 @@ package com.alodiga.wallet.common.enumeraciones;
 public enum PersonClassificationE {
 
 	NABUAP(1, "Natural Business Applicant", "NABUAP"),
-	LEBUAP(2, "Legal Business Applicant", "LEBUAP");
+	LEBUAP(2, "Legal Business Applicant", "LEBUAP"),
+        EMPLEA(3, "Employee", "EMPLEA"),
+        USER(4, "User", "USER");
 	
     private int id;
     private String personClassificationDescription;
