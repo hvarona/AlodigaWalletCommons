@@ -13,11 +13,17 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.PermissionHasProfile;
 import com.alodiga.wallet.common.model.ProfileData;
+import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 @Entity
@@ -25,23 +31,43 @@ import com.alodiga.wallet.common.model.ProfileData;
 @NamedQueries({
     @NamedQuery(name = "Profile.findAll", query = "SELECT p FROM Profile p WHERE p.enabled =1"),
     @NamedQuery(name = "Profile.findById", query = "SELECT p FROM Profile p WHERE p.id = :id")})
-public class Profile extends AbstractWalletEntity implements Serializable {
 
-    public static Long ADMINISTRATOR = 1L;
-    public static Long DISTRIBUTOR = 2L;
+public class Profile extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
     private Long id;
-    private boolean enabled;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "name")
     private String name;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "enabled")
+    private boolean enabled;
     @OneToMany(mappedBy = "profile", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     private List<PermissionHasProfile> permissionHasProfiles;
     @OneToMany(mappedBy = "profile", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<ProfileData> profileData;
+    
+    public static Long ADMINISTRATOR = 1L;
+    public static Long DISTRIBUTOR = 2L;
 
     public Profile() {
+    }
+    
+    public Profile(Long id) {
+        this.id = id;
+    }
+
+    public Profile(Long id, String name, boolean enabled) {
+        this.id = id;
+        this.name = name;
+        this.enabled = enabled;
     }
 
     public Long getId() {
@@ -82,11 +108,6 @@ public class Profile extends AbstractWalletEntity implements Serializable {
 
     public void setProfileData(List<ProfileData> profileData) {
         this.profileData = profileData;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
     }
 
     public ProfileData getProfileDataByLanguageId(Long languageId) {
@@ -136,5 +157,30 @@ public class Profile extends AbstractWalletEntity implements Serializable {
     @Override
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
+    }
+    
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Profile)) {
+            return false;
+        }
+        Profile other = (Profile) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 }

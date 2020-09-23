@@ -10,12 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.PermissionData;
 import com.alodiga.wallet.common.model.PermissionGroup;
-
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -24,11 +22,10 @@ import javax.persistence.NamedQuery;
 @Entity
 @Table(name = "permission")
 @NamedQueries({
-    @NamedQuery(name = "Permission.findAll", query = "SELECT p FROM Permission p WHERE p.enabled =1")
-    ,
-    @NamedQuery(name = "Permission.findById", query = "SELECT p FROM Permission p WHERE p.id = :id")
-    ,
+    @NamedQuery(name = "Permission.findAll", query = "SELECT p FROM Permission p WHERE p.enabled =1"),
+    @NamedQuery(name = "Permission.findById", query = "SELECT p FROM Permission p WHERE p.id = :id"),
     @NamedQuery(name = "Permission.findByGroupId", query = "SELECT p FROM Permission p WHERE p.permissionGroup.id = :groupId ORDER BY p.id DESC")})
+
 public class Permission extends AbstractWalletEntity implements Serializable {
 
     public static String LOG_IN = "User has logged in.";
@@ -181,6 +178,7 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long ADD_PREFERENCE = 146L;
     public static Long EDIT_PREFERENCE = 147L;
     public static Long VIEW_PREFERENCE = 148L;
+    public static Long MANAGEMENT_REPORT = 149L;
     
 
     private static final long serialVersionUID = 1L;
