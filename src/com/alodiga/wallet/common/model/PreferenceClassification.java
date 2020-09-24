@@ -38,6 +38,7 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
     @NamedQuery(name = "PreferenceClassification.findByName", query = "SELECT p FROM PreferenceClassification p WHERE p.name = :name"),
     @NamedQuery(name = "PreferenceClassification.findByEnabled", query = "SELECT p FROM PreferenceClassification p WHERE p.enabled = :enabled"),})
 public class PreferenceClassification extends AbstractWalletEntity implements Serializable {
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,8 +51,6 @@ public class PreferenceClassification extends AbstractWalletEntity implements Se
     @Basic(optional = false)
     @Column(name = "enabled")
     private boolean enabled;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "preferenceClassficationId")
-    private Collection<PreferenceValue> preferenceValueCollection;
 
     public PreferenceClassification() {
     }
@@ -89,17 +88,6 @@ public class PreferenceClassification extends AbstractWalletEntity implements Se
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
-
-    @XmlTransient
-    public Collection<PreferenceValue> getPreferenceValueCollection() {
-    	return preferenceValueCollection;
-    }
-    
-    public void setPreferenceValueCollection(Collection<PreferenceValue> preferenceValueCollection) {
-    	this.preferenceValueCollection = preferenceValueCollection;
-    }
-    
 
     @Override
     public int hashCode() {
