@@ -57,10 +57,6 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
-    @Column(name = "description")
-    private String description;
-    @Column(name = "code")
-    private String code;
     @Basic(optional = false)
     @Column(name = "enabled")
     private short enabled;
@@ -119,7 +115,7 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
     }
     
     public String getCode() {
-        return description;
+        return code;
     }
 
     public void setCode(String code) {
@@ -205,20 +201,5 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
         return super.getTableName(this.getClass());
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
     
 }
