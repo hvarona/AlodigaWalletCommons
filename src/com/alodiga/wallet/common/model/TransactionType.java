@@ -27,6 +27,7 @@ import com.alodiga.wallet.common.model.Commission;
 import com.alodiga.wallet.common.model.Promotion;
 import com.alodiga.wallet.common.model.Transaction;
 import com.alodiga.wallet.common.model.TransactionType;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -40,7 +41,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "TransactionType.findAll", query = "SELECT t FROM TransactionType t"),
     @NamedQuery(name = "TransactionType.findById", query = "SELECT t FROM TransactionType t WHERE t.id = :id"),
-    @NamedQuery(name = "TransactionType.findByValue", query = "SELECT t FROM TransactionType t WHERE t.value = :value")})
+    @NamedQuery(name = "TransactionType.findByValue", query = "SELECT t FROM TransactionType t WHERE t.value = :value"),
+    @NamedQuery(name = QueryConstants.CODE_EXIST_IN_BD_TRANSACTION_TYPE, query = "SELECT t FROM TransactionType t WHERE t.code = :code")})
 public class TransactionType extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
