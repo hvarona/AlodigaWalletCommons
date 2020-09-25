@@ -5,6 +5,8 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -36,7 +38,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     , @NamedQuery(name = "DailyClosingType.findById", query = "SELECT d FROM DailyClosingType d WHERE d.id = :id")
     , @NamedQuery(name = "DailyClosingType.findByDescription", query = "SELECT d FROM DailyClosingType d WHERE d.description = :description")
     , @NamedQuery(name = "DailyClosingType.findByCode", query = "SELECT d FROM DailyClosingType d WHERE d.code = :code")})
-public class DailyClosingType implements Serializable {
+public class DailyClosingType extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,17 +47,14 @@ public class DailyClosingType implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "code")
     private String code;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dailyClosingTypeId")
-    private Collection<DailyClosing> dailyClosingCollection;
+    
 
     public DailyClosingType() {
     }
@@ -94,15 +93,7 @@ public class DailyClosingType implements Serializable {
         this.code = code;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<DailyClosing> getDailyClosingCollection() {
-        return dailyClosingCollection;
-    }
 
-    public void setDailyClosingCollection(Collection<DailyClosing> dailyClosingCollection) {
-        this.dailyClosingCollection = dailyClosingCollection;
-    }
 
     @Override
     public int hashCode() {
@@ -127,6 +118,16 @@ public class DailyClosingType implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.DailyClosingType[ id=" + id + " ]";
+    }
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }
