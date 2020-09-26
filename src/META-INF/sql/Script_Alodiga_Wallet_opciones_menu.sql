@@ -1292,3 +1292,18 @@ INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `al
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('152', '2', 'Editar Tipo de Transacciones', 'Editar Tipo de Transacciones');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('153', '1', 'View Transactions Type', 'View Transactions Type');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('153', '2', 'Ver Tipo de Transacciones', 'Ver Tipo de Transacciones');
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 25/09/2020
+UPDATE `alodigaWallet`.`permission_group_data` SET `alias`='Gestión Transaccional', `description`='Gestión Transaccional' WHERE `id`='10';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Manage Reports', `description`='Manage Reports' WHERE `permissionId`='28' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Administrar Reportes', `description`='Administrar Reportes' WHERE `permissionId`='28' AND `languageId`='2';
+
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Manage Reports', `description`='Manage Reports' WHERE `permissionId`='149' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Visualizar Reportes', `description`='Visualizar Reportes' WHERE `permissionId`='149' AND `languageId`='2';
+
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Manage Holidays', `description`='Manage Holidays' WHERE `permissionId`='137' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Administrar Días Feriados', `description`='Administrar Días Feriados' WHERE `permissionId`='137' AND `languageId`='2';
+
+
