@@ -7,6 +7,7 @@ package com.alodiga.wallet.common.model;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -39,7 +40,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "CalendarDays.findByHolidayDate", query = "SELECT c FROM CalendarDays c WHERE c.holidayDate = :holidayDate")
     , @NamedQuery(name = "CalendarDays.findByDescription", query = "SELECT c FROM CalendarDays c WHERE c.description = :description")
     , @NamedQuery(name = "CalendarDays.findByCreateDate", query = "SELECT c FROM CalendarDays c WHERE c.createDate = :createDate")
-    , @NamedQuery(name = "CalendarDays.findByUpdateDate", query = "SELECT c FROM CalendarDays c WHERE c.updateDate = :updateDate")})
+    , @NamedQuery(name = "CalendarDays.findByUpdateDate", query = "SELECT c FROM CalendarDays c WHERE c.updateDate = :updateDate")
+    , @NamedQuery(name = QueryConstants.HOLI_DAY_EXIST_IN_BD_CALENDAR_DAYS, query = "SELECT c FROM CalendarDays c WHERE c.holidayDate = :holidayDate AND c.countryId = :countryId")})
 public class CalendarDays extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

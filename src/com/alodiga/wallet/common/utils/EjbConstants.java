@@ -72,5 +72,6 @@ public class EjbConstants {
     public static final String TRANSACTION_TYPE_KEY = "transactionTypeId";
     public static final String COMISSION_PRODUCT_KEY = "value";
     public static final String PARAM_MCC_CODE = "mccCode";
+    public static final String PARAM_HOLI_DAY_DATE = "holidayDate";
     
 }

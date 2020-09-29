@@ -1125,4 +1125,10 @@ REFERENCES `alodigaWallet`.`origin_application` (`id`)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
+-- Agregar Incluir businessId en la tabla accountBank
+-- author: Yamelis Almea
+-- Fecha: 30/09/2020
 
+ALTER TABLE `alodigawallet`.`account_bank` 
+ADD COLUMN `businessId` BIGINT(20) NULL DEFAULT NULL AFTER `createDate`,
+CHANGE COLUMN `UnifiedRegistryId` `UnifiedRegistryId` BIGINT(20) NULL DEFAULT NULL ;

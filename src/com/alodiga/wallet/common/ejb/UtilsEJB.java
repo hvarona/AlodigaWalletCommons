@@ -49,6 +49,7 @@ import com.alodiga.wallet.common.model.StatusBusinessAffiliationRequest;
 import com.alodiga.wallet.common.model.StatusTransactionApproveRequest;
 import com.alodiga.wallet.common.model.Transaction;
 import com.alodiga.wallet.common.model.TransactionApproveRequest;
+import com.alodiga.wallet.common.model.TransactionSource;
 import com.alodiga.wallet.common.model.TransactionType;
 import java.util.Date;
 
@@ -206,7 +207,10 @@ public interface UtilsEJB extends WalletGenericEJB {
     public TransactionType saveTransactionType(TransactionType transactionType) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public List<CommissionItem> getCommissionItems(Long transactionId) throws EmptyListException, GeneralException, NullParameterException;
-
+    
+    //TransactionSource
+    public List<TransactionSource> getTransactionSource(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     //CollectionType
     public List<CollectionType> getCollectionType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
@@ -400,8 +404,13 @@ public interface UtilsEJB extends WalletGenericEJB {
     
     //Calendar Days
     public List<CalendarDays> getCalendarDays(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+   
     public CalendarDays saveCalendarDays(CalendarDays calendarDays) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     public Long loadTransactionTypeById(Long TransactionTypeId) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
+    public List<CalendarDays> searchCalendarDays(String name) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<CalendarDays> getCalendarDaysByCountryAndDate(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
 }

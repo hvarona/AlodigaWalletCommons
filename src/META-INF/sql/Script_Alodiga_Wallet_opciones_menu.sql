@@ -1307,3 +1307,15 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Manage Holidays', `descrip
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Administrar Días Feriados', `description`='Administrar Días Feriados' WHERE `permissionId`='137' AND `languageId`='2';
 
 
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 26/09/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Mobile Wallet Transactions', `description`='Mobile Wallet Transactions' WHERE `permissionId`='52' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Transacciones Billetera Móvil', `description`='Transacciones Billetera Móvil' WHERE `permissionId`='52' AND `languageId`='2';
+
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 28/09/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Bank operations', `description`='Bank operations' WHERE `permissionId`='50' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Operaciones Bancarias', `description`='Operaciones Bancarias' WHERE `permissionId`='50' AND `languageId`='2';';
