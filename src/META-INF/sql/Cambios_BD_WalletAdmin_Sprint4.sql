@@ -1093,15 +1093,12 @@ CHANGE COLUMN `createDate` `createDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMES
 ALTER TABLE `alodigaWallet`.`transaction_type` 
 ADD COLUMN `description` VARCHAR(80) NULL AFTER `code`;
 
+-- Agregar campo code en la tabla transaction_source 
+-- author: Jesús Gómez
+-- Fecha: 24/09/2020
+ALTER TABLE `alodigaWallet`.`transaction_source`
+ADD COLUMN `code` VARCHAR(10) NULL AFTER `name`;
 
 
 
-
--- Cambios person_classification
--- author: Jorge Pinto
--- Fecha: 23/09/2020
-UPDATE `alodigaWallet`.`person_classification` SET `description`='Natural Business Applicant', `code`='NABUAP' WHERE `id`='1';
-UPDATE `alodigaWallet`.`person_classification` SET `description`='Legal Business Applicant', `code`='LEBUAP' WHERE `id`='2';
-UPDATE `alodigaWallet`.`person_classification` SET `description`='Employee', `code`='EMPLEA' WHERE `id`='3';
-UPDATE `alodigaWallet`.`person_classification` SET `description`='User', `code`='USER' WHERE `id`='4';
 
