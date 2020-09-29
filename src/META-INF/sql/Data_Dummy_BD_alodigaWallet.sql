@@ -665,3 +665,11 @@ ADD UNIQUE INDEX `name_UNIQUE` (`name` ASC);
 -- author: Moises Graterol
 -- Fecha: 31/08/2020
 UPDATE `alodigaWallet`.`country` SET `shortName`='ANT' WHERE `id`='9';
+
+-- Cambios person_classification
+-- author: Jorge Pinto
+-- Fecha: 23/09/2020
+UPDATE `alodigaWallet`.`person_classification` SET `description`='Natural Business Applicant', `code`='NABUAP' WHERE `id`='1';
+UPDATE `alodigaWallet`.`person_classification` SET `description`='Legal Business Applicant', `code`='LEBUAP' WHERE `id`='2';
+UPDATE `alodigaWallet`.`person_classification` SET `description`='Employee', `code`='EMPLOY' WHERE `id`='3';
+UPDATE `alodigaWallet`.`person_classification` SET `description`='User', `code`='USER' WHERE `id`='4';

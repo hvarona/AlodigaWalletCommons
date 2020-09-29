@@ -71,9 +71,9 @@ public class DailyClosing extends AbstractWalletEntity implements Serializable {
     @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "dailyClosingTypeId", referencedColumnName = "id")
+    @JoinColumn(name = "originApplicationId", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private DailyClosingType dailyClosingTypeId;
+    private OriginApplication originApplicationId;
     
     
 
@@ -128,6 +128,14 @@ public class DailyClosing extends AbstractWalletEntity implements Serializable {
     public void setTotalTransactions(Integer totalTransactions) {
         this.totalTransactions = totalTransactions;
     }
+    
+    public OriginApplication getOriginApplicationId() {
+        return originApplicationId;
+    }
+
+    public void setOriginApplicationId(OriginApplication originApplicationId) {
+        this.originApplicationId = originApplicationId;
+    }
 
     public Date getCreateDate() {
         return createDate;
@@ -144,15 +152,6 @@ public class DailyClosing extends AbstractWalletEntity implements Serializable {
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
-
-    public DailyClosingType getDailyClosingTypeId() {
-        return dailyClosingTypeId;
-    }
-
-    public void setDailyClosingTypeId(DailyClosingType dailyClosingTypeId) {
-        this.dailyClosingTypeId = dailyClosingTypeId;
-    }
-
     
     @Override
     public int hashCode() {
