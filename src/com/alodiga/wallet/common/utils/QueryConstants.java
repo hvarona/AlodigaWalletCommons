@@ -211,4 +211,5 @@ public class QueryConstants {
     public static final String CODE_EXIST_IN_BD_BUSINESS_SERVICE_TYPE="codeExistInBdBusinessServiceType";
     public static final String CODE_EXIST_IN_BD_PREFERENCE_FIELD = "codeExistInBdPreferenceField";
     public static final String CODE_EXIST_IN_BD_TRANSACTION_TYPE = "codeExistInBdTransactionType";
+    public static final String HOLI_DAY_EXIST_IN_BD_CALENDAR_DAYS = "holiDayExistInBdCalendarDays";
 }
