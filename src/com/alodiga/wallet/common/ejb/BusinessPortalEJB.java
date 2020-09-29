@@ -11,8 +11,10 @@ import com.alodiga.wallet.common.exception.RegisterNotFoundException;
 import com.alodiga.wallet.common.genericEJB.EJBRequest;
 import com.alodiga.wallet.common.genericEJB.WalletGenericEJB;
 import com.alodiga.wallet.common.model.AccountBank;
+import com.alodiga.wallet.common.model.AccountTypeBank;
 import com.alodiga.wallet.common.model.Address;
 import com.alodiga.wallet.common.model.AddressType;
+import com.alodiga.wallet.common.model.Bank;
 import com.alodiga.wallet.common.model.BusinessAffiliationRequest;
 import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.CivilStatus;
@@ -78,5 +80,13 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     public PhoneType loadPhoneType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     public BusinessAffiliationRequest loadBusinessAffiliationRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public Bank loadBank(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public AccountTypeBank loadAccountTypeBank(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public List<Bank> getBanks (EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;    
+    
+    public List<AccountTypeBank> getAccountTypeBanks (EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;    
 }
 

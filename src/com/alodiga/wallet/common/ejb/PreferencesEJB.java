@@ -65,6 +65,12 @@ public interface PreferencesEJB extends WalletGenericEJB {
 
     public List<TransactionType> getTransactionTypes(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
+    public TransactionType saveTransactionType(EJBRequest request) throws GeneralException, NullParameterException;
+    
+    public List<TransactionType> getTransactionTypeByCode(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<TransactionType> searchTransactionType(String name) throws EmptyListException, GeneralException, NullParameterException;
+    
     public List<PreferenceValue> getPreferenceValuesByParam(Long classificationId, Long productId, Long transactionTypeId, Long bussinessId) throws GeneralException, NullParameterException, EmptyListException;
     
     public List<PreferenceValue> getPreferenceValuesByClassificationIdAndBussinessId(Long classificationId, Long bussinessId) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
@@ -72,4 +78,6 @@ public interface PreferencesEJB extends WalletGenericEJB {
     public boolean validatePreferencesValues(Long classificationId,Long productId,Long transactionTypeId, Long bussinessId)throws GeneralException, NullParameterException, EmptyListException;
     
     public Map<Long, String> getLastPreferenceValuesByBusiness(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
+    
+    
 }

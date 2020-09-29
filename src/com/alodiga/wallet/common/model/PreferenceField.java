@@ -115,7 +115,7 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
     }
     
     public String getCode() {
-        return description;
+        return code;
     }
 
     public void setCode(String code) {
@@ -200,5 +200,6 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+
     
 }
