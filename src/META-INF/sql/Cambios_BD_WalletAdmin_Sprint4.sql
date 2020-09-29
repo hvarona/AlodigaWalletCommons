@@ -1099,6 +1099,30 @@ ADD COLUMN `description` VARCHAR(80) NULL AFTER `code`;
 ALTER TABLE `alodigaWallet`.`transaction_source`
 ADD COLUMN `code` VARCHAR(10) NULL AFTER `name`;
 
+-- Eliminar FK en tabla daily_closing
+-- author: Jesús Gómez
+-- Fecha: 29/09/2020
+ALTER TABLE `alodigaWallet`.`daily_closing`
+DROP FOREIGN KEY `fk_daily_closing_daily_closing_type1`;
+ALTER TABLE `alodigaWallet`.`daily_closing`
+DROP COLUMN `dailyClosingTypeId`,
+DROP INDEX `fk_daily_closing_daily_closing_type1_idx`;
 
+-- Eliminar tabla daily_closing_type
+-- author: Jesús Gómez
+-- Fecha: 29/09/2020
+DROP TABLE `alodigaWallet`.`daily_closing_type`;
+
+-- Agregar FK en tabla daily_closing
+-- author: Jesús Gómez
+-- Fecha: 29/09/2020
+ALTER TABLE `alodigaWallet`.`daily_closing`
+ADD COLUMN `originApplicationId` INT NOT NULL AFTER `totalTransactions`;
+ALTER TABLE `alodigaWallet`.`daily_closing`
+ADD CONSTRAINT `fk_dailyClosing_originApplication1`
+FOREIGN KEY (`originApplicationId`)
+REFERENCES `alodigaWallet`.`origin_application` (`id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
 
 
