@@ -37,6 +37,8 @@ public interface AuditoryEJB extends WalletGenericEJB {
 
     public List<AuditAction> searchAuditAction(String login, String userName, Long permissionId, Date beginningDate, Date endingDate) throws GeneralException, NullParameterException, EmptyListException;
 
+    public List<AuditAction> searchAuditActionTest(Long userId, Long permissionId, Date beginningDate, Date endingDate) throws GeneralException, NullParameterException, EmptyListException;
+    
     public AuditAction saveAuditAction(AuditAction action) throws GeneralException, NullParameterException;
 
     public List<AuditAction> getAuditActionsByUserId(Long userId, Date beginningDate, Date endingDate) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
