@@ -6,9 +6,7 @@
 package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,15 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.Transaction;
-import com.alodiga.wallet.common.model.TransactionSource;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -47,6 +41,9 @@ public class TransactionSource extends AbstractWalletEntity implements Serializa
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
+    @Size(min = 1, max = 10)
+    @Column(name = "code")
+    private String code;
 
 
     public TransactionSource() {
@@ -77,6 +74,13 @@ public class TransactionSource extends AbstractWalletEntity implements Serializa
         this.name = name;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     @Override
     public int hashCode() {

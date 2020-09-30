@@ -1093,15 +1093,42 @@ CHANGE COLUMN `createDate` `createDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMES
 ALTER TABLE `alodigaWallet`.`transaction_type` 
 ADD COLUMN `description` VARCHAR(80) NULL AFTER `code`;
 
+-- Agregar campo code en la tabla transaction_source 
+-- author: Jesús Gómez
+-- Fecha: 24/09/2020
+ALTER TABLE `alodigaWallet`.`transaction_source`
+ADD COLUMN `code` VARCHAR(10) NULL AFTER `name`;
 
+-- Eliminar FK en tabla daily_closing
+-- author: Jesús Gómez
+-- Fecha: 29/09/2020
+ALTER TABLE `alodigaWallet`.`daily_closing`
+DROP FOREIGN KEY `fk_daily_closing_daily_closing_type1`;
+ALTER TABLE `alodigaWallet`.`daily_closing`
+DROP COLUMN `dailyClosingTypeId`,
+DROP INDEX `fk_daily_closing_daily_closing_type1_idx`;
 
+-- Eliminar tabla daily_closing_type
+-- author: Jesús Gómez
+-- Fecha: 29/09/2020
+DROP TABLE `alodigaWallet`.`daily_closing_type`;
 
+-- Agregar FK en tabla daily_closing
+-- author: Jesús Gómez
+-- Fecha: 29/09/2020
+ALTER TABLE `alodigaWallet`.`daily_closing`
+ADD COLUMN `originApplicationId` INT NOT NULL AFTER `totalTransactions`;
+ALTER TABLE `alodigaWallet`.`daily_closing`
+ADD CONSTRAINT `fk_dailyClosing_originApplication1`
+FOREIGN KEY (`originApplicationId`)
+REFERENCES `alodigaWallet`.`origin_application` (`id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
 
--- Cambios person_classification
--- author: Jorge Pinto
--- Fecha: 23/09/2020
-UPDATE `alodigaWallet`.`person_classification` SET `description`='Natural Business Applicant', `code`='NABUAP' WHERE `id`='1';
-UPDATE `alodigaWallet`.`person_classification` SET `description`='Legal Business Applicant', `code`='LEBUAP' WHERE `id`='2';
-UPDATE `alodigaWallet`.`person_classification` SET `description`='Employee', `code`='EMPLEA' WHERE `id`='3';
-UPDATE `alodigaWallet`.`person_classification` SET `description`='User', `code`='USER' WHERE `id`='4';
+-- Agregar Incluir businessId en la tabla accountBank
+-- author: Yamelis Almea
+-- Fecha: 30/09/2020
 
+ALTER TABLE `alodigawallet`.`account_bank` 
+ADD COLUMN `businessId` BIGINT(20) NULL DEFAULT NULL AFTER `createDate`,
+CHANGE COLUMN `UnifiedRegistryId` `UnifiedRegistryId` BIGINT(20) NULL DEFAULT NULL ;
