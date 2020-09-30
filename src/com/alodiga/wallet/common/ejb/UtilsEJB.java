@@ -51,6 +51,7 @@ import com.alodiga.wallet.common.model.Transaction;
 import com.alodiga.wallet.common.model.TransactionApproveRequest;
 import com.alodiga.wallet.common.model.TransactionSource;
 import com.alodiga.wallet.common.model.TransactionType;
+import java.math.BigInteger;
 import java.util.Date;
 
 @SuppressWarnings(value = {"all"})
@@ -168,6 +169,10 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     public List<Transaction> getTransactionByBeginningDate(Date beginningDate) throws EmptyListException, GeneralException, NullParameterException;
 
+    public List<Transaction> getTransactionByBeginningDateAndOrigin(Date beginningDate, Long transactionSourceId) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<Transaction> getTransactionByDatesAndOrigin(Date beginningDate, Date endingDate, Long transactionSourceId) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
+    
     public Transaction loadTransaction(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public Transaction saveTransaction(Transaction transaction) throws RegisterNotFoundException, NullParameterException, GeneralException;
