@@ -74,6 +74,9 @@ public class DailyClosing extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "originApplicationId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private OriginApplication originApplicationId;
+    @Basic(optional = false)
+    @Column(name = "transactionsAmount")
+    private float transactionsAmount;
     
     
 
@@ -128,8 +131,17 @@ public class DailyClosing extends AbstractWalletEntity implements Serializable {
     public void setTotalTransactions(Integer totalTransactions) {
         this.totalTransactions = totalTransactions;
     }
-    
-    public OriginApplication getOriginApplicationId() {
+   
+
+	public float getTransactionsAmount() {
+		return transactionsAmount;
+	}
+
+	public void setTransactionsAmount(float transactionsAmount) {
+		this.transactionsAmount = transactionsAmount;
+	}
+
+	public OriginApplication getOriginApplicationId() {
         return originApplicationId;
     }
 
