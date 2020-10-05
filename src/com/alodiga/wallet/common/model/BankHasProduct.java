@@ -15,9 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.BankHasProduct;

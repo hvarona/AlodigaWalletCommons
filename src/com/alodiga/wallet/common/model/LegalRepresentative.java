@@ -25,7 +25,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -61,7 +60,6 @@ public class LegalRepresentative extends AbstractWalletEntity implements Seriali
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "identificationNumber")
     private String identificationNumber;
@@ -72,17 +70,14 @@ public class LegalRepresentative extends AbstractWalletEntity implements Seriali
     @Temporal(TemporalType.DATE)
     private Date dueDateDocumentIdentification;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "firstNames")
     private String firstNames;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "lastNames")
     private String lastNames;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "age")
     private int age;
     @Size(max = 1)
@@ -92,7 +87,6 @@ public class LegalRepresentative extends AbstractWalletEntity implements Seriali
     @Column(name = "placeBirth")
     private String placeBirth;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "dateBirth")
     @Temporal(TemporalType.DATE)
     private Date dateBirth;

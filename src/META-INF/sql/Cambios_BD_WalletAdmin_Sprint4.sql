@@ -1133,9 +1133,11 @@ ALTER TABLE `alodigawallet`.`account_bank`
 ADD COLUMN `businessId` BIGINT(20) NULL DEFAULT NULL AFTER `createDate`,
 CHANGE COLUMN `UnifiedRegistryId` `UnifiedRegistryId` BIGINT(20) NULL DEFAULT NULL ;
 
-
 -- Agregar campo en tabla daily_closing
--- author: Yamelis Almea
--- Fecha: 02/10/2020
+-- author: Jesús Gómez
+-- Fecha: 01/10/2020
 ALTER TABLE `alodigaWallet`.`daily_closing`
 ADD COLUMN `transactionsAmount` FLOAT NOT NULL AFTER `totalTransactions`;
+
+ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
+CHANGE COLUMN `UnifiedRegistryUserId` `UnifiedRegistryUserId` BIGINT(20) NULL ;

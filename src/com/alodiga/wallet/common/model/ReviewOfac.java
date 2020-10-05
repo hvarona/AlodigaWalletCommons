@@ -24,7 +24,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -52,7 +51,6 @@ public class ReviewOfac extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "resultReview")
     private float resultReview;
     @Size(max = 1000)

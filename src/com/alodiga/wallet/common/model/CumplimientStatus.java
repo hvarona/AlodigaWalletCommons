@@ -18,12 +18,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Cumplimient;
@@ -51,12 +49,9 @@ public class CumplimientStatus extends AbstractWalletEntity implements Serializa
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "value")
     private String value;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "complientStatusId")
-    private Collection<Cumplimient> cumplimientCollection;
 
     public CumplimientStatus() {
     }
@@ -84,16 +79,6 @@ public class CumplimientStatus extends AbstractWalletEntity implements Serializa
 
     public void setValue(String value) {
         this.value = value;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<Cumplimient> getCumplimientCollection() {
-        return cumplimientCollection;
-    }
-
-    public void setCumplimientCollection(Collection<Cumplimient> cumplimientCollection) {
-        this.cumplimientCollection = cumplimientCollection;
     }
 
     @Override

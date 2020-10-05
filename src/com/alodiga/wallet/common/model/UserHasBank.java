@@ -17,14 +17,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.Bank;
-import com.alodiga.wallet.common.model.UserHasBank;
 
 /**
  *
@@ -38,7 +34,9 @@ import com.alodiga.wallet.common.model.UserHasBank;
     @NamedQuery(name = "UserHasBank.findById", query = "SELECT u FROM UserHasBank u WHERE u.id = :id"),
     @NamedQuery(name = "UserHasBank.findByUserSourceId", query = "SELECT u FROM UserHasBank u WHERE u.userSourceId = :userSourceId"),
     @NamedQuery(name = "UserHasBank.findByAccountNumber", query = "SELECT u FROM UserHasBank u WHERE u.accountNumber = :accountNumber")})
+
 public class UserHasBank extends AbstractWalletEntity implements Serializable {
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,11 +44,9 @@ public class UserHasBank extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "userSourceId")
     private long userSourceId;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 25)
     @Column(name = "accountNumber")
     private String accountNumber;

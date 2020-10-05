@@ -26,15 +26,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.Address;
-import com.alodiga.wallet.common.model.CreditcardType;
-import com.alodiga.wallet.common.model.PaymentInfo;
-import com.alodiga.wallet.common.model.PaymentPatner;
-import com.alodiga.wallet.common.model.PaymentType;
-import com.alodiga.wallet.common.model.Transaction;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -44,23 +38,16 @@ import com.alodiga.wallet.common.model.Transaction;
 @Table(name = "payment_info")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PaymentInfo.findAll", query = "SELECT p FROM PaymentInfo p")
-    ,
-    @NamedQuery(name = "PaymentInfo.findById", query = "SELECT p FROM PaymentInfo p WHERE p.id = :id")
-    ,
-    @NamedQuery(name = "PaymentInfo.findByUserId", query = "SELECT p FROM PaymentInfo p WHERE p.userId = :userId AND p.enabled = 1")
-    ,
-    @NamedQuery(name = "PaymentInfo.findByCreditCardName", query = "SELECT p FROM PaymentInfo p WHERE p.creditCardName = :creditCardName")
-    ,
-    @NamedQuery(name = "PaymentInfo.findByCreditCardCVV", query = "SELECT p FROM PaymentInfo p WHERE p.creditCardCVV = :creditCardCVV")
-    ,
-    @NamedQuery(name = "PaymentInfo.findByCreditCardDate", query = "SELECT p FROM PaymentInfo p WHERE p.creditCardDate = :creditCardDate")
-    ,
-    @NamedQuery(name = "PaymentInfo.findByBeginningDate", query = "SELECT p FROM PaymentInfo p WHERE p.beginningDate = :beginningDate")
-    ,
-    @NamedQuery(name = "PaymentInfo.findByEndingDate", query = "SELECT p FROM PaymentInfo p WHERE p.endingDate = :endingDate")
-    ,
-@NamedQuery(name = "PaymentInfo.findByUserIdById", query = "SELECT p FROM PaymentInfo p WHERE p.userId = :userId AND p.id = :id")})
+    @NamedQuery(name = "PaymentInfo.findAll", query = "SELECT p FROM PaymentInfo p"),
+    @NamedQuery(name = "PaymentInfo.findById", query = "SELECT p FROM PaymentInfo p WHERE p.id = :id"),
+    @NamedQuery(name = "PaymentInfo.findByUserId", query = "SELECT p FROM PaymentInfo p WHERE p.userId = :userId AND p.enabled = 1"),
+    @NamedQuery(name = "PaymentInfo.findByCreditCardName", query = "SELECT p FROM PaymentInfo p WHERE p.creditCardName = :creditCardName"),
+    @NamedQuery(name = "PaymentInfo.findByCreditCardCVV", query = "SELECT p FROM PaymentInfo p WHERE p.creditCardCVV = :creditCardCVV"),
+    @NamedQuery(name = "PaymentInfo.findByCreditCardDate", query = "SELECT p FROM PaymentInfo p WHERE p.creditCardDate = :creditCardDate"),
+    @NamedQuery(name = "PaymentInfo.findByBeginningDate", query = "SELECT p FROM PaymentInfo p WHERE p.beginningDate = :beginningDate"),
+    @NamedQuery(name = "PaymentInfo.findByEndingDate", query = "SELECT p FROM PaymentInfo p WHERE p.endingDate = :endingDate"),
+    @NamedQuery(name = "PaymentInfo.findByUserIdById", query = "SELECT p FROM PaymentInfo p WHERE p.userId = :userId AND p.id = :id")})
+
 public class PaymentInfo extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -93,7 +80,6 @@ public class PaymentInfo extends AbstractWalletEntity implements Serializable {
     @ManyToOne(optional = false)
     private PaymentPatner paymentPatnerId;
     @JoinColumn(name = "creditCardTypeId", referencedColumnName = "id")
-
     @ManyToOne
     private CreditcardType creditCardTypeId;
     @Lob
@@ -260,4 +246,5 @@ public class PaymentInfo extends AbstractWalletEntity implements Serializable {
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+
 }

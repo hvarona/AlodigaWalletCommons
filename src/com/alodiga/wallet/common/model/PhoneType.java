@@ -18,12 +18,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 
@@ -38,6 +36,7 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
     @NamedQuery(name = "PhoneType.findAll", query = "SELECT p FROM PhoneType p")
     , @NamedQuery(name = "PhoneType.findById", query = "SELECT p FROM PhoneType p WHERE p.id = :id")
     , @NamedQuery(name = "PhoneType.findByDescription", query = "SELECT p FROM PhoneType p WHERE p.description = :description")})
+
 public class PhoneType extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,12 +46,9 @@ public class PhoneType extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "phoneTypeId")
-    private Collection<PhonePerson> phonePersonCollection;
 
     public PhoneType() {
     }
@@ -80,16 +76,6 @@ public class PhoneType extends AbstractWalletEntity implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<PhonePerson> getPhonePersonCollection() {
-        return phonePersonCollection;
-    }
-
-    public void setPhonePersonCollection(Collection<PhonePerson> phonePersonCollection) {
-        this.phonePersonCollection = phonePersonCollection;
     }
 
     @Override
