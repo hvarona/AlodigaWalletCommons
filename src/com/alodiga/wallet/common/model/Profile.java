@@ -20,7 +20,6 @@ import com.alodiga.wallet.common.model.ProfileData;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -41,12 +40,10 @@ public class Profile extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "enabled")
     private boolean enabled;
     @OneToMany(mappedBy = "profile", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})

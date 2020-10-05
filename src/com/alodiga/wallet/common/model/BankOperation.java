@@ -18,9 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Bank;
@@ -30,10 +28,13 @@ import com.alodiga.wallet.common.model.BankOperationType;
 import com.alodiga.wallet.common.model.Commission;
 import com.alodiga.wallet.common.model.Product;
 import com.alodiga.wallet.common.model.Transaction;
+import java.util.Collection;
 import java.util.Date;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -61,7 +62,6 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     @Temporal(TemporalType.DATE)
     private Date bankOperationDate;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "bankOperationAmount")
     private float bankOperationAmount;
     @JoinColumn(name = "accountBankId", referencedColumnName = "id")
@@ -73,13 +73,10 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     private static final long serialVersionUID = 1L;    
     @Column(name = "userSourceId")
     private BigInteger userSourceId;
-    @Size(max = 40)
     @Column(name = "bankOperationNumber")
     private String bankOperationNumber;
-    @Size(max = 500)
     @Column(name = "additional")
     private String additional;
-    @Size(max = 500)
     @Column(name = "additional2")
     private String additional2;
     @JoinColumn(name = "commisionId", referencedColumnName = "id")
@@ -101,9 +98,9 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     @ManyToOne(optional = false)
     private BankOperationMode bankOperationModeId;
     @Column(name = "businessId")
-    private long businessId;
+    private BigInteger businessId;
     @Column(name = "accountBankBusinessId")
-    private long accountBankBusinessId;
+    private BigInteger accountBankBusinessId;
 
     public BankOperation() {
     }
@@ -267,22 +264,20 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
         this.paymentTypeId = paymentTypeId;
     }
 
-	public long getBusinessId() {
+	public BigInteger getBusinessId() {
 		return businessId;
 	}
 
-	public void setBusinessId(long businessId) {
+	public void setBusinessId(BigInteger businessId) {
 		this.businessId = businessId;
 	}
 
-	public long getAccountBankBusinessId() {
+	public BigInteger getAccountBankBusinessId() {
 		return accountBankBusinessId;
 	}
 
-	public void setAccountBankBusinessId(long accountBankBusinessId) {
+	public void setAccountBankBusinessId(BigInteger accountBankBusinessId) {
 		this.accountBankBusinessId = accountBankBusinessId;
-	}
-	
-	
+	}	
     
 }

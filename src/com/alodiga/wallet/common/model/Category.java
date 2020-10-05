@@ -26,6 +26,7 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Category;
 import com.alodiga.wallet.common.model.CategoryData;
 import com.alodiga.wallet.common.model.Product;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -40,6 +41,7 @@ import com.alodiga.wallet.common.model.Product;
     @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name"),
     @NamedQuery(name = "Category.findByEnabled", query = "SELECT c FROM Category c WHERE c.enabled = :enabled")})
 public class Category extends AbstractWalletEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -125,4 +127,5 @@ public class Category extends AbstractWalletEntity implements Serializable {
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+
 }

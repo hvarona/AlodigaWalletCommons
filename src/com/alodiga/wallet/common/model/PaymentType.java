@@ -20,11 +20,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.PaymentInfo;
-import com.alodiga.wallet.common.model.PaymentType;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -38,7 +36,11 @@ import com.alodiga.wallet.common.model.PaymentType;
     @NamedQuery(name = "PaymentType.findById", query = "SELECT p FROM PaymentType p WHERE p.id = :id"),
     @NamedQuery(name = "PaymentType.findByName", query = "SELECT p FROM PaymentType p WHERE p.name = :name"),
     @NamedQuery(name = "PaymentType.findByEnabled", query = "SELECT p FROM PaymentType p WHERE p.enabled = :enabled")})
+
 public class PaymentType extends AbstractWalletEntity implements Serializable {
+
+    @OneToMany(mappedBy = "paymentTypeId")
+    private Collection<BankOperation> bankOperationCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,8 +53,6 @@ public class PaymentType extends AbstractWalletEntity implements Serializable {
     @Basic(optional = false)
     @Column(name = "enabled")
     private boolean enabled;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "paymentTypeId")
-    private Collection<PaymentInfo> paymentInfoCollection;
 
     public PaymentType() {
     }
@@ -91,15 +91,6 @@ public class PaymentType extends AbstractWalletEntity implements Serializable {
         this.enabled = enabled;
     }
 
-    @XmlTransient
-    public Collection<PaymentInfo> getPaymentInfoCollection() {
-        return paymentInfoCollection;
-    }
-
-    public void setPaymentInfoCollection(Collection<PaymentInfo> paymentInfoCollection) {
-        this.paymentInfoCollection = paymentInfoCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -133,5 +124,15 @@ public class PaymentType extends AbstractWalletEntity implements Serializable {
     @Override
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<BankOperation> getBankOperationCollection() {
+        return bankOperationCollection;
+    }
+
+    public void setBankOperationCollection(Collection<BankOperation> bankOperationCollection) {
+        this.bankOperationCollection = bankOperationCollection;
     }
 }

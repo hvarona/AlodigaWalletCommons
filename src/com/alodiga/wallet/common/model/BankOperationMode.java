@@ -18,12 +18,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.BankOperation;
@@ -49,12 +47,9 @@ public class BankOperationMode extends AbstractWalletEntity implements Serializa
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bankOperationModeId")
-    private Collection<BankOperation> bankOperationCollection;
 
     public BankOperationMode() {
     }
@@ -82,16 +77,6 @@ public class BankOperationMode extends AbstractWalletEntity implements Serializa
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<BankOperation> getBankOperationCollection() {
-        return bankOperationCollection;
-    }
-
-    public void setBankOperationCollection(Collection<BankOperation> bankOperationCollection) {
-        this.bankOperationCollection = bankOperationCollection;
     }
 
     @Override

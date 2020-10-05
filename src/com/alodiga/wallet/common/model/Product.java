@@ -6,11 +6,8 @@ package com.alodiga.wallet.common.model;
  * and open the template in the editor.
  */
 
-
 import java.io.Serializable;
 import java.util.Collection;
-
-
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,9 +24,9 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -52,9 +49,6 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
     @NamedQuery(name = "Product.findByIsPayTopUp", query = "SELECT p FROM Product p WHERE p.isPayTopUp = :isPayTopUp"),
     @NamedQuery(name = "Product.findByIsExchangeProduct", query = "SELECT p FROM Product p WHERE p.isExchangeProduct = :isExchangeProduct")})
 public class Product extends AbstractWalletEntity implements Serializable {
-
-    @Column(name = "indHasAssociatedBank")
-    private Boolean indHasAssociatedBank;
 
     public static final String NAME = "name";
     
@@ -110,11 +104,11 @@ public class Product extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "enterpriseId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Enterprise enterpriseId;
+    @Column(name = "indHasAssociatedBank")
+    private Boolean indHasAssociatedBank;
     @Transient
     private Float currentBalance;
     
-    
-
     public Product() {
     }
 
@@ -329,7 +323,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
     public void setIndHasAssociatedBank(Boolean indHasAssociatedBank) {
         this.indHasAssociatedBank = indHasAssociatedBank;
     }
-
 
 }
 
