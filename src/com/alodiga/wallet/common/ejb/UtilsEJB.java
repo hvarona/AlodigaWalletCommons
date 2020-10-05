@@ -169,9 +169,9 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     public List<Transaction> getTransactionByBeginningDate(Date beginningDate) throws EmptyListException, GeneralException, NullParameterException;
 
-    public List<Transaction> getTransactionByBeginningDateAndOrigin(Date beginningDate, Long transactionSourceId) throws EmptyListException, GeneralException, NullParameterException;
+    public List<Transaction> getTransactionByBeginningDateAndOriginTransaccion(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
-    public List<Transaction> getTransactionByDatesAndOrigin(Date beginningDate, Date endingDate, Long transactionSourceId) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
+    public List<Transaction> getTransactionByDatesAndOrigin(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
     
     public Transaction loadTransaction(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
