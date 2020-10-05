@@ -24,7 +24,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -45,6 +44,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     , @NamedQuery(name = "DailyClosing.findByTotalTransactions", query = "SELECT d FROM DailyClosing d WHERE d.totalTransactions = :totalTransactions")
     , @NamedQuery(name = "DailyClosing.findByCreateDate", query = "SELECT d FROM DailyClosing d WHERE d.createDate = :createDate")
     , @NamedQuery(name = "DailyClosing.findByUpdateDate", query = "SELECT d FROM DailyClosing d WHERE d.updateDate = :updateDate")})
+
 public class DailyClosing extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -74,9 +74,10 @@ public class DailyClosing extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "originApplicationId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private OriginApplication originApplicationId;
+    @Basic(optional = false)
+    @Column(name = "transactionsAmount")
+    private float transactionsAmount;   
     
-    
-
     public DailyClosing() {
     }
 
@@ -127,6 +128,14 @@ public class DailyClosing extends AbstractWalletEntity implements Serializable {
 
     public void setTotalTransactions(Integer totalTransactions) {
         this.totalTransactions = totalTransactions;
+    }
+    
+    public float getTransactionsAmount() {
+        return transactionsAmount;
+    }
+
+    public void setTransactionsAmount(float transactionsAmount) {
+        this.transactionsAmount = transactionsAmount;
     }
     
     public OriginApplication getOriginApplicationId() {

@@ -24,7 +24,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -42,8 +41,49 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = QueryConstants.VALIDATE_PASSWORD, query = "SELECT u FROM User u WHERE u.password=:currentPassword AND u.id=:userId")})
 public class User extends AbstractWalletEntity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
+    @Column(name = "id")
+    private Long id;
+    @Basic(optional = false)
+    @Size(min = 1, max = 255)
+    @Column(name = "login")
+    private String login;
+    @Basic(optional = false)
+    @Size(min = 1, max = 255)
+    @Column(name = "password")
+    private String password;
+    @Basic(optional = false)
+    @Size(min = 1, max = 45)
+    @Column(name = "firstName")
+    private String firstName;
+    @Basic(optional = false)
+    @Size(min = 1, max = 45)
+    @Column(name = "lastName")
+    private String lastName;
+    @Basic(optional = false)
+    @Column(name = "creationDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationDate;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Correo electrónico no válido")//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+    @Size(min = 1, max = 255)
+    @Column(name = "email")
+    private String email;
+    @Size(max = 45)
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
+    @Basic(optional = false)
+    @Column(name = "receiveTopUpNotification")
+    private boolean receiveTopUpNotification;
+    @Basic(optional = false)
+    @Column(name = "enabled")
+    private boolean enabled;    
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<UserHasProfile> userHasProfile;
+        @Basic(optional = false)
     @Size(min = 1, max = 40)
     @Column(name = "identificationNumber")
     private String identificationNumber;
@@ -59,57 +99,6 @@ public class User extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "personId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Person personId;
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Long id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "login")
-    private String login;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "password")
-    private String password;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "firstName")
-    private String firstName;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "lastName")
-    private String lastName;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "creationDate")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDate;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Correo electrónico no válido")//if the field contains email address consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "email")
-    private String email;
-    @Size(max = 45)
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "receiveTopUpNotification")
-    private boolean receiveTopUpNotification;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "enabled")
-    private boolean enabled;    
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    private List<UserHasProfile> userHasProfile;
 
     public User() {
     }

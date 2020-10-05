@@ -41,6 +41,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     , @NamedQuery(name = "Employee.findByIdentificationNumber", query = "SELECT e FROM Employee e WHERE e.identificationNumber = :identificationNumber")
     , @NamedQuery(name = "Employee.findByFirstNames", query = "SELECT e FROM Employee e WHERE e.firstNames = :firstNames")
     , @NamedQuery(name = "Employee.findByLastNames", query = "SELECT e FROM Employee e WHERE e.lastNames = :lastNames")})
+
 public class Employee extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

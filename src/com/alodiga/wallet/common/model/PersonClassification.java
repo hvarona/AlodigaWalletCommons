@@ -19,7 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -48,14 +47,11 @@ public class PersonClassification implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
     @Column(name = "code")
     private String code;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personClassificationId")
-    private Collection<Person> personCollection;
 
     public PersonClassification() {
     }
@@ -91,18 +87,6 @@ public class PersonClassification implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
-    }
-    
-    
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<Person> getPersonCollection() {
-        return personCollection;
-    }
-
-    public void setPersonCollection(Collection<Person> personCollection) {
-        this.personCollection = personCollection;
     }
 
     @Override

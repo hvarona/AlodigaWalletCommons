@@ -22,10 +22,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Address;
@@ -61,19 +59,15 @@ public class Cumplimient extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "userSourceId")
     private long userSourceId;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "isKYC")
     private boolean isKYC;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "IsAML")
     private boolean isAML;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "beginningDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date beginningDate;

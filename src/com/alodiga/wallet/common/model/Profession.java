@@ -18,12 +18,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 
@@ -47,12 +45,9 @@ public class Profession extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "professionId")
-    private Collection<NaturalPerson> naturalPersonCollection;
 
     public Profession() {
     }
@@ -80,16 +75,6 @@ public class Profession extends AbstractWalletEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<NaturalPerson> getNaturalPersonCollection() {
-        return naturalPersonCollection;
-    }
-
-    public void setNaturalPersonCollection(Collection<NaturalPerson> naturalPersonCollection) {
-        this.naturalPersonCollection = naturalPersonCollection;
     }
 
     @Override

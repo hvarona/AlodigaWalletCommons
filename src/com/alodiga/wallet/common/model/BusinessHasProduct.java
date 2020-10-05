@@ -16,9 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.BusinessHasProduct;
@@ -37,8 +35,6 @@ import com.alodiga.wallet.common.model.BusinessHasProduct;
     @NamedQuery(name = "BusinessHasProduct.findByBusinessIdAllProduct", query = "SELECT u FROM BusinessHasProduct u WHERE u.businessId = :businessId"),
     @NamedQuery(name = "BusinessHasProduct.findByBusinessId", query = "SELECT u FROM BusinessHasProduct u WHERE u.businessId = :businessId AND u.productId = 3")})
 public class BusinessHasProduct extends AbstractWalletEntity implements Serializable {
-    
-    
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,14 +43,11 @@ public class BusinessHasProduct extends AbstractWalletEntity implements Serializ
     @Column(name = "id")
     private Long id;
     private Timestamp beginningDate;
-    
     private Timestamp endingDate;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "productId")
     private long productId;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "businessId")
     private long businessId;
 
