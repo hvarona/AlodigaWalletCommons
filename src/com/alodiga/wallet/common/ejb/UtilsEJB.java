@@ -1,5 +1,6 @@
 package com.alodiga.wallet.common.ejb;
 
+import com.alodiga.wallet.common.exception.DuplicateEntryException;
 import java.util.List;
 import javax.ejb.Remote;
 import com.alodiga.wallet.common.exception.EmptyListException;
@@ -17,6 +18,7 @@ import com.alodiga.wallet.common.model.BusinessCategory;
 import com.alodiga.wallet.common.model.BusinessSubCategory;
 import com.alodiga.wallet.common.model.BusinessType;
 import com.alodiga.wallet.common.model.BusinessServiceType;
+import com.alodiga.wallet.common.model.CalendarDays;
 import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.Close;
 import com.alodiga.wallet.common.model.CollectionType;
@@ -32,6 +34,7 @@ import com.alodiga.wallet.common.model.Language;
 import com.alodiga.wallet.common.model.OriginApplication;
 import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.PersonType;
+import com.alodiga.wallet.common.model.Product;
 import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
 import com.alodiga.wallet.common.model.ReviewBusinessAffiliationRequest;
 import com.alodiga.wallet.common.model.ReviewOfac;
@@ -46,7 +49,9 @@ import com.alodiga.wallet.common.model.StatusBusinessAffiliationRequest;
 import com.alodiga.wallet.common.model.StatusTransactionApproveRequest;
 import com.alodiga.wallet.common.model.Transaction;
 import com.alodiga.wallet.common.model.TransactionApproveRequest;
+import com.alodiga.wallet.common.model.TransactionSource;
 import com.alodiga.wallet.common.model.TransactionType;
+import java.math.BigInteger;
 import java.util.Date;
 
 @SuppressWarnings(value = {"all"})
@@ -79,7 +84,13 @@ public interface UtilsEJB extends WalletGenericEJB {
     public Country saveCountry(Country country) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public Country loadCountryByShortName(String referenceCode) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
+    
+    public List<Country> getSearchCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
+   
+    public List<Country> getValidateCountryByCode(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<Country> getValidateCountryByName(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+   
     //Currency
     public List<Currency> getCurrency(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
@@ -130,13 +141,26 @@ public interface UtilsEJB extends WalletGenericEJB {
     public Bank loadBank(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public Bank saveBank(Bank bank) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
+    
+    public List<Bank> getSearchBank(String name) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<Bank> searchBankByCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
+    
     //ExchangeRate
     public List<ExchangeRate> getExchangeRate(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public ExchangeRate loadExchangeRate(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public ExchangeRate saveExchangeRate(ExchangeRate exchangeRate) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public List<ExchangeRate> getExchangeRateByProductAndEndingDate(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+
+
+    public ExchangeRate getExchangeRateByBeginningDate(Product productId,Date creationDate) throws EmptyListException, GeneralException, NullParameterException, RegisterNotFoundException;
+
+    
+    
 
     //Transaction
     public List<Transaction> getTransaction(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
@@ -145,6 +169,10 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     public List<Transaction> getTransactionByBeginningDate(Date beginningDate) throws EmptyListException, GeneralException, NullParameterException;
 
+    public List<Transaction> getTransactionByBeginningDateAndOriginTransaccion(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<Transaction> getTransactionByDatesAndOrigin(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
+    
     public Transaction loadTransaction(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public Transaction saveTransaction(Transaction transaction) throws RegisterNotFoundException, NullParameterException, GeneralException;
@@ -174,6 +202,8 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     public Commission saveCommission(Commission commission) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
+    public List<Commission> getCommissionByProductAndTranssactionType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     //TransactionType
     public List<TransactionType> getTransactionType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
@@ -182,11 +212,16 @@ public interface UtilsEJB extends WalletGenericEJB {
     public TransactionType saveTransactionType(TransactionType transactionType) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public List<CommissionItem> getCommissionItems(Long transactionId) throws EmptyListException, GeneralException, NullParameterException;
-
+    
+    //TransactionSource
+    public List<TransactionSource> getTransactionSource(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     //CollectionType
     public List<CollectionType> getCollectionType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public List<CollectionType> getCollectionTypeByCountry(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<CollectionType> getCollectionTypeByCountryByPersonType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public CollectionType loadCollectionType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
@@ -202,7 +237,11 @@ public interface UtilsEJB extends WalletGenericEJB {
     public BusinessCategory loadBusinessCategory(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public BusinessCategory saveBusinessCategory(BusinessCategory businessCategory) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
+    
+    public List<BusinessCategory> getSearchBusinessCategory(String name) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<BusinessCategory> getValidateCodeMCC(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     //BusinessSubCategory
     public List<BusinessSubCategory> getBusinessSubCategory(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
@@ -211,19 +250,21 @@ public interface UtilsEJB extends WalletGenericEJB {
     public BusinessSubCategory loadBusinessSubCategory(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public BusinessSubCategory saveBusinessSubCategory(BusinessSubCategory businessSubCategory) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
+    
+    public List<BusinessSubCategory> getSearchBusinessSubCategory(String name) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<BusinessSubCategory> getBusinessSubCategoryValidateCodeMCC(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     //BusinessType
     public List<BusinessType> getBusinessType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public BusinessType saveBusinessType(BusinessType businessType) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //BusinessServiceType
     public List<BusinessServiceType> getBusinessServiceType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
-    public BusinessServiceType loadBusinessServiceTypebyId(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
+    public List<BusinessServiceType> getBusinessServiceTypeByBusinessType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public BusinessServiceType saveBusinessServiceType(BusinessServiceType businessServiceType) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
+    public List<BusinessServiceType> getBusinessServiceTypeValidateCode(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     //TransactionApproveRequest
     public List<TransactionApproveRequest> getTransactionApproveRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
@@ -259,7 +300,7 @@ public interface UtilsEJB extends WalletGenericEJB {
     public CollectionsRequest loadCollectionsRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public CollectionsRequest saveCollectionsRequest(CollectionsRequest collectionsRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
+    
     //StatusBusinessAffiliationRequest
     public List<StatusBusinessAffiliationRequest> getStatusBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
@@ -303,12 +344,21 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     public List<RequestHasCollectionRequest> getRequestsHasCollectionsRequestByBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
-    public List<PersonType> getPersonTypeByCountryByIndNaturalPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public void updateBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public StatusBusinessAffiliationRequest loadStatusBusinessAffiliationRequestByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
-
+    
+    //PersonType
+    public PersonType savePersonType (PersonType personType)  throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public List<PersonType> getPersonType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<PersonType> getPersonTypeByCountryByIndNaturalPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<PersonType> getPersonTypeByCountryByOriginApplication(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<PersonType> getSearchPersonTypeByCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
+    
     //ReviewOfac
     public List<ReviewOfac> getReviewOfac(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
@@ -340,10 +390,10 @@ public interface UtilsEJB extends WalletGenericEJB {
     public StatusCardHasFinalState saveStatusCardHasFinalState(StatusCardHasFinalState statusCardHasFinalState) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     //OriginApplication
+    public List<OriginApplication> getOriginApplications(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     public OriginApplication loadOriginApplicationByCode(EJBRequest request)throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
 
-
-    
     //Sequences
     public List<Sequences> getSequences(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
@@ -354,5 +404,18 @@ public interface UtilsEJB extends WalletGenericEJB {
     public Sequences saveSequences(Sequences sequences) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public String generateNumberSequence(List<Sequences> sequence, int originApplication) throws GeneralException, RegisterNotFoundException, NullParameterException;
+    
+    public Country saveNewCountry(Country country) throws RegisterNotFoundException, GeneralException, NullParameterException, DuplicateEntryException;
+    
+    //Calendar Days
+    public List<CalendarDays> getCalendarDays(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+   
+    public CalendarDays saveCalendarDays(CalendarDays calendarDays) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public Long loadTransactionTypeById(Long TransactionTypeId) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public List<CalendarDays> searchCalendarDays(String name) throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<CalendarDays> getCalendarDaysByCountryAndDate(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
 }

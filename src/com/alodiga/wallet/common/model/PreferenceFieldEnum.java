@@ -13,7 +13,8 @@ public enum PreferenceFieldEnum {
 	MAX_TRANSACTION_QUANTITY_DAILY_LIMIT_ID(22L, PreferenceTypeValuesEnum.INTEGER),
     MAX_TRANSACTION_QUANTITY_MONTH_LIMIT_ID(23l, PreferenceTypeValuesEnum.INTEGER),
     MAX_TRANSACTION_QUANTITY_YEAR_LIMIT_ID(24l, PreferenceTypeValuesEnum.INTEGER),
-    MAX_NUMBER_OF_CARDS_ENABLED(25l, PreferenceTypeValuesEnum.INTEGER);
+    MAX_NUMBER_OF_CARDS_ENABLED(25l, PreferenceTypeValuesEnum.INTEGER),
+    WALLET_CLOSING_TIME(26l, PreferenceTypeValuesEnum.STRING);
 	
 
     private Long id;

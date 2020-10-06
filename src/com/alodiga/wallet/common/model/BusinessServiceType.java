@@ -34,8 +34,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "BusinessServiceType.findAll", query = "SELECT b FROM BusinessServiceType b")
     , @NamedQuery(name = "BusinessServiceType.findById", query = "SELECT b FROM BusinessServiceType b WHERE b.id = :id")
     , @NamedQuery(name = "BusinessServiceType.findByDescription", query = "SELECT b FROM BusinessServiceType b WHERE b.description = :description")
-    , @NamedQuery(name = QueryConstants.BUSINESS_TYPE_BY_ID , query = "SELECT b FROM BusinessServiceType b WHERE b.businessTypeId.id = :businessTypeId")   
-    , @NamedQuery(name = "BusinessServiceType.findByCode", query = "SELECT b FROM BusinessServiceType b WHERE b.code = :code")})
+    , @NamedQuery(name = "BusinessServiceType.findByCode", query = "SELECT b FROM BusinessServiceType b WHERE b.code = :code")
+    , @NamedQuery(name = QueryConstants.BUSINESS_SERVICE_TYPE_BY_BUSINESS_TYPE , query = "SELECT b FROM BusinessServiceType b WHERE b.businessTypeId.id = :businessTypeId")
+    , @NamedQuery(name = QueryConstants.CODE_EXIST_IN_BD_BUSINESS_SERVICE_TYPE, query = "SELECT b FROM BusinessServiceType b WHERE b.code = :code")})
+
 public class BusinessServiceType extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

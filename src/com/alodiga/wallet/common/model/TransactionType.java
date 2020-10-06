@@ -20,13 +20,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Commission;
 import com.alodiga.wallet.common.model.Promotion;
 import com.alodiga.wallet.common.model.Transaction;
 import com.alodiga.wallet.common.model.TransactionType;
+import com.alodiga.wallet.common.utils.QueryConstants;
+import javax.validation.constraints.Size;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -38,8 +40,10 @@ import com.alodiga.wallet.common.model.TransactionType;
 @NamedQueries({
     @NamedQuery(name = "TransactionType.findAll", query = "SELECT t FROM TransactionType t"),
     @NamedQuery(name = "TransactionType.findById", query = "SELECT t FROM TransactionType t WHERE t.id = :id"),
-    @NamedQuery(name = "TransactionType.findByValue", query = "SELECT t FROM TransactionType t WHERE t.value = :value")})
+    @NamedQuery(name = "TransactionType.findByValue", query = "SELECT t FROM TransactionType t WHERE t.value = :value"),
+    @NamedQuery(name = QueryConstants.CODE_EXIST_IN_BD_TRANSACTION_TYPE, query = "SELECT t FROM TransactionType t WHERE t.code = :code")})
 public class TransactionType extends AbstractWalletEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +53,13 @@ public class TransactionType extends AbstractWalletEntity implements Serializabl
     @Basic(optional = false)
     @Column(name = "value")
     private String value;
+    @Basic(optional = false)
+    @Size(min = 1, max = 6)
+    @Column(name = "code")
+    private String code;
+    @Size(min = 1, max = 80)
+    @Column(name = "description")
+    private String description;
 
     public TransactionType() {
     }
@@ -114,4 +125,21 @@ public class TransactionType extends AbstractWalletEntity implements Serializabl
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

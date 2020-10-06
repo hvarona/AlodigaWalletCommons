@@ -36,6 +36,8 @@ public interface ReportEJBLocal extends WalletGenericEJB {
 
     public Report saveReport(EJBRequest request) throws NullParameterException, GeneralException, NullParameterException;
 
+    public List<Report> searchReport(String name) throws EmptyListException, GeneralException, NullParameterException;
+    
     //ParameterType
     public List<ParameterType> getParameterType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 

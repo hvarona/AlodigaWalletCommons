@@ -17,10 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Country;
@@ -42,6 +40,7 @@ import com.alodiga.wallet.common.model.SmsProvider;
     , @NamedQuery(name = "SmsProvider.findByPort", query = "SELECT s FROM SmsProvider s WHERE s.port = :port")
     , @NamedQuery(name = "SmsProvider.findByWsdl", query = "SELECT s FROM SmsProvider s WHERE s.wsdl = :wsdl")
     , @NamedQuery(name = "SmsProvider.findByIntegrationType", query = "SELECT s FROM SmsProvider s WHERE s.integrationType = :integrationType")})
+
 public class SmsProvider extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,19 +50,16 @@ public class SmsProvider extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "name")
     private boolean name;
     @Size(max = 45)
     @Column(name = "description")
     private String description;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "addres")
     private String addres;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "port")
     private String port;

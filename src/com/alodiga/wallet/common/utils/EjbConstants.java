@@ -12,6 +12,7 @@ public class EjbConstants {
     public static final String PROMOTION_EJB = "ejb/wallet/PromotionEJB";
     public static final String REPORT_EJB = "ejb/wallet/ReportEJB";
     public static final String TRANSACTION_EJB = "ejb/wallet/TransactionEJB";
+    public static final String TRANSACTION_TIMER_EJB = "ejb/wallet/TransactionTimerEJB";
     public static final String USER_EJB = "ejb/wallet/UserEJB";
     public static final String UTILS_EJB = "ejb/wallet/UtilsEJB";
     public static final String PERSON_EJB = "ejb/wallet/PersonEJB";
@@ -53,6 +54,7 @@ public class EjbConstants {
     public static final String PARAM_BUSINESS_CATEGORY_ID = "businessCategoryId";
     public static final String PARAM_STATUS_TRANSACTION_APPROVE_REQUEST_ID = "statusTransactionApproveRequestId";
     public static final String PARAM_CODE = "code";
+    public static final String PARAM_NAME = "name";
     public static final String PARAM_REQUEST_NUMBER = "requestNumber";
     public static final String PARAM_DOCUMENT_TYPE_ID = "documentTypeId";
     public static final String PARAM_PERSON_ID = "personId";
@@ -66,5 +68,11 @@ public class EjbConstants {
     public static final String PARAM_PERSON_TYPE_ID = "personTypeId";
     public static final String PARAM_CURRENT_PASSWORD = "currentPassword";
     public static final String PARAM_USER_ID = "userId";
+    public static final String PARAM_LOGIN = "login";
+    public static final String PARAM_EMPLOYEE = "employeeId";
+    public static final String TRANSACTION_TYPE_KEY = "transactionTypeId";
+    public static final String COMISSION_PRODUCT_KEY = "value";
+    public static final String PARAM_MCC_CODE = "mccCode";
+    public static final String PARAM_HOLI_DAY_DATE = "holidayDate";
     
 }

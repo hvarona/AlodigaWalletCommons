@@ -15,9 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.BankHasProduct;
@@ -36,9 +34,9 @@ import javax.persistence.ManyToOne;
 @NamedQueries({
     @NamedQuery(name = "BankHasProduct.findAll", query = "SELECT b FROM BankHasProduct b")
     , @NamedQuery(name = "BankHasProduct.findById", query = "SELECT b FROM BankHasProduct b WHERE b.id = :id")
-    , @NamedQuery(name = "BankHasProduct.findByProductId", query = "SELECT b FROM BankHasProduct b WHERE b.productId = :productId")
-    , @NamedQuery(name = "BankHasProduct.findByProductIdAndBankId", query = "SELECT b FROM BankHasProduct b WHERE b.productId = :productId AND b.bankId = :bankId")
-    , @NamedQuery(name = "BankHasProduct.findByBankId", query = "SELECT b FROM BankHasProduct b WHERE b.bankId = :bankId")
+    , @NamedQuery(name = "BankHasProduct.findByProductId", query = "SELECT b FROM BankHasProduct b WHERE b.productId.id = :productId")
+    , @NamedQuery(name = "BankHasProduct.findByProductIdAndBankId", query = "SELECT b FROM BankHasProduct b WHERE b.productId.id = :productId AND b.bankId.id = :bankId")
+    , @NamedQuery(name = "BankHasProduct.findByBankId", query = "SELECT b FROM BankHasProduct b WHERE b.bankId.id = :bankId")
     , @NamedQuery(name = QueryConstants.BANK_BY_PRODUCT, query = "SELECT b FROM BankHasProduct b WHERE b.productId.id = :productId")})
 public class BankHasProduct extends AbstractWalletEntity implements Serializable {
 

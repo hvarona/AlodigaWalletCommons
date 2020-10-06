@@ -22,7 +22,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -59,14 +58,13 @@ public class PasswordChangeRequest extends AbstractWalletEntity implements Seria
     private Date requestDate;
     @Column(name = "indApproved")
     private Boolean indApproved;
-    @Size(max = 255)
+    @Size(max = 80)
     @Column(name = "currentPassword")
     private String currentPassword;
-    @Size(max = 255)
+    @Size(max = 80)
     @Column(name = "newPassword")
     private String newPassword;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "createDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;

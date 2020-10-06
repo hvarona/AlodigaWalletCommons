@@ -23,11 +23,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Close;
 import com.alodiga.wallet.common.model.Transaction;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -46,6 +46,9 @@ import com.alodiga.wallet.common.model.Transaction;
     @NamedQuery(name = "Close.findByTotalToUser", query = "SELECT c FROM Close c WHERE c.totalToUser = :totalToUser"),
     @NamedQuery(name = "Close.findByStatus", query = "SELECT c FROM Close c WHERE c.status = :status")})
 public class Close extends AbstractWalletEntity implements Serializable {
+
+    @OneToMany(mappedBy = "closeId")
+    private Collection<Transaction> transactionCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -177,5 +180,15 @@ public class Close extends AbstractWalletEntity implements Serializable {
     @Override
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
+    }
+
+    @XmlTransient
+    @JsonIgnore
+    public Collection<Transaction> getTransactionCollection() {
+        return transactionCollection;
+    }
+
+    public void setTransactionCollection(Collection<Transaction> transactionCollection) {
+        this.transactionCollection = transactionCollection;
     }
 }

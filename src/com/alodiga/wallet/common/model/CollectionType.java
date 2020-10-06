@@ -23,7 +23,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -41,6 +40,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "CollectionType.findById", query = "SELECT c FROM CollectionType c WHERE c.id = :id"),
     @NamedQuery(name = "CollectionType.findBycountryId", query = "SELECT c FROM CollectionType c WHERE c.countryId.id = :countryId"),
     @NamedQuery(name = "CollectionType.findByDescription", query = "SELECT c FROM CollectionType c WHERE c.description = :description"),
+    @NamedQuery(name = QueryConstants.COLLECTION_TYPE_BY_COUNTRY_BY_PERSON_TYPE, query = "SELECT c FROM CollectionType c WHERE c.countryId.id=:countryId AND c.personTypeId.id =:personTypeId"),
     @NamedQuery(name = QueryConstants.COLLECTION_TYPE_BY_COUNTRY, query = "SELECT c FROM CollectionType c WHERE c.countryId.id=:countryId")})
 public class CollectionType extends AbstractWalletEntity implements Serializable {
 
@@ -51,15 +51,15 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "collectionTypeId")
-    private Collection<CollectionsRequest> collectionsRequestCollection;
     @JoinColumn(name = "countryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Country countryId;
+    @JoinColumn(name = "personTypeId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private PersonType personTypeId;
 
     public CollectionType() {
     }
@@ -89,22 +89,20 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
         this.description = description;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<CollectionsRequest> getCollectionsRequestCollection() {
-        return collectionsRequestCollection;
-    }
-
-    public void setCollectionsRequestCollection(Collection<CollectionsRequest> collectionsRequestCollection) {
-        this.collectionsRequestCollection = collectionsRequestCollection;
-    }
-
     public Country getCountryId() {
         return countryId;
     }
 
     public void setCountryId(Country countryId) {
         this.countryId = countryId;
+    }
+    
+    public PersonType getPersonTypeId() {
+        return personTypeId;
+    }
+
+    public void setPersonTypeId(PersonType personTypeId) {
+        this.personTypeId = personTypeId;
     }
 
     @Override

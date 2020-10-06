@@ -57,8 +57,6 @@ public class Preference extends AbstractWalletEntity implements Serializable {
     @Lob
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "preferenceId")
-    private Collection<PreferenceField> preferenceFieldCollection;
 
     public Preference() {
     }
@@ -104,15 +102,6 @@ public class Preference extends AbstractWalletEntity implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @XmlTransient
-    public Collection<PreferenceField> getPreferenceFieldCollection() {
-        return preferenceFieldCollection;
-    }
-
-    public void setPreferenceFieldCollection(Collection<PreferenceField> preferenceFieldCollection) {
-        this.preferenceFieldCollection = preferenceFieldCollection;
     }
 
     @Override

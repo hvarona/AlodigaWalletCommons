@@ -18,7 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.ParameterType;
@@ -39,7 +38,9 @@ import com.alodiga.wallet.common.model.ReportParameter;
     @NamedQuery(name = "ReportParameter.findByRequired", query = "SELECT r FROM ReportParameter r WHERE r.required = :required"),
     @NamedQuery(name = "ReportParameter.findByIndexOrder", query = "SELECT r FROM ReportParameter r WHERE r.indexOrder = :indexOrder"),
     @NamedQuery(name = "ReportParameter.findByDefaultValue", query = "SELECT r FROM ReportParameter r WHERE r.defaultValue = :defaultValue")})
+
 public class ReportParameter extends AbstractWalletEntity implements Serializable {
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,7 +55,7 @@ public class ReportParameter extends AbstractWalletEntity implements Serializabl
     private boolean required;
     @Basic(optional = false)
     @Column(name = "indexOrder")
-    private int indexOrder;
+    private Integer indexOrder;
     @Column(name = "defaultValue")
     private String defaultValue;
     @JoinColumn(name = "reportId", referencedColumnName = "id")
@@ -102,11 +103,11 @@ public class ReportParameter extends AbstractWalletEntity implements Serializabl
         this.required = required;
     }
 
-    public int getIndexOrder() {
+    public Integer getIndexOrder() {
         return indexOrder;
     }
 
-    public void setIndexOrder(int indexOrder) {
+    public void setIndexOrder(Integer indexOrder) {
         this.indexOrder = indexOrder;
     }
 

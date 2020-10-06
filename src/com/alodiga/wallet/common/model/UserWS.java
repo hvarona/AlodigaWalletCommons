@@ -13,10 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.model.UserWS;
 
 /**
@@ -30,18 +28,16 @@ import com.alodiga.wallet.common.model.UserWS;
     @NamedQuery(name = "UserWS.findAll", query = "SELECT u FROM UserWS u")
     , @NamedQuery(name = "UserWS.findByUsuario", query = "SELECT u FROM UserWS u WHERE u.usuario = :usuario")
     , @NamedQuery(name = "UserWS.findByPassword", query = "SELECT u FROM UserWS u WHERE u.password = :password")
-    , @NamedQuery(name = "UserWS.findByUserANDPassword", query = "SELECT u FROM UserWS u")})
+    , @NamedQuery(name = "UserWS.findByUserANDPassword", query = "SELECT u FROM UserWS u WHERE u.usuario = :usuario AND u.password = :password")})
 public class UserWS implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "usuario")
     private String usuario;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "password")
     private String password;

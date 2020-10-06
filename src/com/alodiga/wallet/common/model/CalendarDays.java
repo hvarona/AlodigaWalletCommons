@@ -5,6 +5,9 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -13,6 +16,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -34,8 +39,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "CalendarDays.findByHolidayDate", query = "SELECT c FROM CalendarDays c WHERE c.holidayDate = :holidayDate")
     , @NamedQuery(name = "CalendarDays.findByDescription", query = "SELECT c FROM CalendarDays c WHERE c.description = :description")
     , @NamedQuery(name = "CalendarDays.findByCreateDate", query = "SELECT c FROM CalendarDays c WHERE c.createDate = :createDate")
-    , @NamedQuery(name = "CalendarDays.findByUpdateDate", query = "SELECT c FROM CalendarDays c WHERE c.updateDate = :updateDate")})
-public class CalendarDays implements Serializable {
+    , @NamedQuery(name = "CalendarDays.findByUpdateDate", query = "SELECT c FROM CalendarDays c WHERE c.updateDate = :updateDate")
+    , @NamedQuery(name = QueryConstants.HOLI_DAY_EXIST_IN_BD_CALENDAR_DAYS, query = "SELECT c FROM CalendarDays c WHERE c.holidayDate = :holidayDate AND c.countryId = :countryId")})
+public class CalendarDays extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,18 +49,23 @@ public class CalendarDays implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
+    @Basic(optional = false)
     @Column(name = "holidayDate")
     @Temporal(TemporalType.DATE)
     private Date holidayDate;
     @Size(max = 50)
     @Column(name = "description")
     private String description;
+    @Basic(optional = false)
     @Column(name = "createDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
     @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
+    @JoinColumn(name = "countryId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Country countryId;
 
     public CalendarDays() {
     }
@@ -103,6 +114,14 @@ public class CalendarDays implements Serializable {
         this.updateDate = updateDate;
     }
 
+    public Country getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(Country countryId) {
+        this.countryId = countryId;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -126,6 +145,16 @@ public class CalendarDays implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.CalendarDays[ id=" + id + " ]";
+    }
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }

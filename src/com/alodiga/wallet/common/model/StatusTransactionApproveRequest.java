@@ -21,7 +21,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -49,13 +48,11 @@ public class StatusTransactionApproveRequest extends AbstractWalletEntity implem
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "description")
     private String description;
     @Basic(optional = false)    
     @Size(min = 1, max = 10)
-    @NotNull
     @Column(name = "code")
     private String code;
     
@@ -134,4 +131,5 @@ public class StatusTransactionApproveRequest extends AbstractWalletEntity implem
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+    
 }
