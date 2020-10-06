@@ -12,6 +12,7 @@ public class EjbConstants {
     public static final String PROMOTION_EJB = "ejb/wallet/PromotionEJB";
     public static final String REPORT_EJB = "ejb/wallet/ReportEJB";
     public static final String TRANSACTION_EJB = "ejb/wallet/TransactionEJB";
+    public static final String TRANSACTION_TIMER_EJB = "ejb/wallet/TransactionTimerEJB";
     public static final String USER_EJB = "ejb/wallet/UserEJB";
     public static final String UTILS_EJB = "ejb/wallet/UtilsEJB";
     public static final String PERSON_EJB = "ejb/wallet/PersonEJB";

@@ -1318,4 +1318,17 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Transacciones Billetera MÃ
 -- author: Jorge Pinto
 -- Fecha: 28/09/2020
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Bank operations', `description`='Bank operations' WHERE `permissionId`='50' AND `languageId`='1';
-UPDATE `alodigaWallet`.`permission_data` SET `alias`='Operaciones Bancarias', `description`='Operaciones Bancarias' WHERE `permissionId`='50' AND `languageId`='2';';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Operaciones Bancarias', `description`='Operaciones Bancarias' WHERE `permissionId`='50' AND `languageId`='2';
+
+
+-- Agregar Servicios Automatico al menu
+-- author: Yamelis Almea
+-- Fecha: 06/10/2020
+
+
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('154', '5', 'AutomaticServices', 'dailyClosing', 'AutomaticServices', '1');
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('154', '1');
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('154', '1', 'Automatic Services', 'Automatic Services');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('154', '2', 'Servicios Automaticos', 'Servicios Automaticos');
