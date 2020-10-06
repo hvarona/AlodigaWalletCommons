@@ -1318,4 +1318,10 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Transacciones Billetera M�
 -- author: Jorge Pinto
 -- Fecha: 28/09/2020
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Bank operations', `description`='Bank operations' WHERE `permissionId`='50' AND `languageId`='1';
-UPDATE `alodigaWallet`.`permission_data` SET `alias`='Operaciones Bancarias', `description`='Operaciones Bancarias' WHERE `permissionId`='50' AND `languageId`='2';';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Operaciones Bancarias', `description`='Operaciones Bancarias' WHERE `permissionId`='50' AND `languageId`='2';
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 02/19/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Recharge Approval Requests', `description`='Recharge Approval Requests' WHERE `permissionId`='81' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Solicitudes de Aprobación de Recarga', `description`='Solicitudes de Aprobación de Recarga' WHERE `permissionId`='81' AND `languageId`='2';
