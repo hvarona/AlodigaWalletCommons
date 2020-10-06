@@ -21,7 +21,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -50,15 +49,12 @@ public class BusinessCategory extends AbstractWalletEntity implements Serializab
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 80)
     @Column(name = "description")
     private String description;
     @Size(max = 10)
     @Column(name = "mccCode")
     private String mccCode;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessCategoryId")
-    private Collection<BusinessSubCategory> businessSubCategoryCollection;
 
     public BusinessCategory() {
     }
@@ -94,16 +90,6 @@ public class BusinessCategory extends AbstractWalletEntity implements Serializab
 
     public void setMccCode(String mccCode) {
         this.mccCode = mccCode;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<BusinessSubCategory> getBusinessSubCategoryCollection() {
-        return businessSubCategoryCollection;
-    }
-
-    public void setBusinessSubCategoryCollection(Collection<BusinessSubCategory> businessSubCategoryCollection) {
-        this.businessSubCategoryCollection = businessSubCategoryCollection;
     }
 
     @Override

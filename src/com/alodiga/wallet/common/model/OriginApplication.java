@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -20,7 +21,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -50,7 +50,6 @@ public class OriginApplication extends AbstractWalletEntity implements Serializa
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 6)
     @Column(name = "code")
     private String code;

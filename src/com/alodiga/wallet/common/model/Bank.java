@@ -19,7 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -35,10 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Bank.findById", query = "SELECT b FROM Bank b WHERE b.id = :id")
     , @NamedQuery(name = "Bank.findByName", query = "SELECT b FROM Bank b WHERE b.name = :name")
     , @NamedQuery(name = "Bank.findByAbaCode", query = "SELECT b FROM Bank b WHERE b.abaCode = :abaCode")
-
     , @NamedQuery(name = "Bank.findByCountryId", query = "SELECT b FROM Bank b WHERE b.countryId.id = :countryId")
-
     , @NamedQuery(name = "Bank.findBySwiftCode", query = "SELECT b FROM Bank b WHERE b.swiftCode = :swiftCode")})
+
 public class Bank extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,7 +46,6 @@ public class Bank extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;

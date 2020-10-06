@@ -24,7 +24,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -47,6 +46,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PhonePerson.findByUpdateDate", query = "SELECT p FROM PhonePerson p WHERE p.updateDate = :updateDate"),
     @NamedQuery(name = QueryConstants.PHONES_BY_MAIN, query = "SELECT p FROM PhonePerson p WHERE p.personId.id=:personId AND p.indMainPhone=true"),
     @NamedQuery(name = QueryConstants.PHONES_BY_PERSON, query = "SELECT p FROM PhonePerson p WHERE p.personId.id = :personId")})
+
 public class PhonePerson extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,7 +62,6 @@ public class PhonePerson extends AbstractWalletEntity implements Serializable {
     @Column(name = "areaCode")
     private String areaCode;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "numberPhone")
     private String numberPhone;

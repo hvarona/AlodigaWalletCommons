@@ -20,7 +20,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Commission;
@@ -28,8 +27,8 @@ import com.alodiga.wallet.common.model.Promotion;
 import com.alodiga.wallet.common.model.Transaction;
 import com.alodiga.wallet.common.model.TransactionType;
 import com.alodiga.wallet.common.utils.QueryConstants;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -55,7 +54,6 @@ public class TransactionType extends AbstractWalletEntity implements Serializabl
     @Column(name = "value")
     private String value;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 6)
     @Column(name = "code")
     private String code;
@@ -143,4 +141,5 @@ public class TransactionType extends AbstractWalletEntity implements Serializabl
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

@@ -7,10 +7,8 @@ package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,18 +18,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -67,11 +60,9 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Basic(optional = false)
-    
+    @Basic(optional = false)    
     @Column(name = "transactionNumber")
     private String transactionNumber;
-    
     @Column(name = "totalAmount")
     private Float totalAmount;
     @Column(name = "totalTax")
@@ -119,23 +110,14 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "productId", referencedColumnName = "id")
     @ManyToOne
     private Product productId;
-    
     @JoinColumn(name = "closeId", referencedColumnName = "id")
     @ManyToOne
     private Close closeId;
-    
     @Column(name = "indClosed")
     private Boolean indClosed;
-    
     @JoinColumn(name = "dailyClosingId", referencedColumnName = "id")
     @ManyToOne
     private DailyClosing dailyClosingId;
-    @Column(name = "businessId")
-    private long businessId;
-    @Column(name = "businessDestinationId")
-    private long businessDestinationId;
-    @Column(name = "transactionBusinessId")
-    private long transactionBusinessId;
     //Only by result transaction list by APP
     @Transient
     private String commisionAmount;
@@ -143,6 +125,12 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     private String destinationUser;
     @Transient
     private String transactionType;  
+    @Column(name = "transactionBusinessId")
+    private BigInteger transactionBusinessId;
+    @Column(name = "businessId")
+    private BigInteger businessId;
+    @Column(name = "businessDestinationId")
+    private BigInteger businessDestinationId;
 
     public Transaction() {
     }
@@ -297,32 +285,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     public void setCloseId(Close closeId) {
         this.closeId = closeId;
     }
-
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Transaction)) {
-            return false;
-        }
-        Transaction other = (Transaction) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "dto.Transaction[ id=" + id + " ]";
-    }    
     
     //Only response APP
 
@@ -358,7 +320,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
         this.totalTax = totalTax;
     }
 
-
     public Float getPromotionAmount() {
         return promotionAmount;
     }
@@ -373,17 +334,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
 
     public void setTotalAlopointsUsed(Float totalAlopointsUsed) {
         this.totalAlopointsUsed = totalAlopointsUsed;
-    }
-
-    
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
     }
 
     public String getTransactionNumber() {
@@ -418,30 +368,63 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
         this.dailyClosingId = dailyClosingId;
     }
 
-    public long getBusinessId() {
-		return businessId;
-	}
+    public BigInteger getTransactionBusinessId() {
+        return transactionBusinessId;
+    }
 
-	public void setBusinessId(long businessId) {
-		this.businessId = businessId;
-	}
+    public void setTransactionBusinessId(BigInteger transactionBusinessId) {
+        this.transactionBusinessId = transactionBusinessId;
+    }
 
-	public long getTransactionBusinessId() {
-  		return transactionBusinessId;
-  	}
+    public BigInteger getBusinessId() {
+        return businessId;
+    }
 
-  	public void setTransactionBusinessId(long transactionBusinessId) {
-  		this.transactionBusinessId = transactionBusinessId;
-  	}
+    public void setBusinessId(BigInteger businessId) {
+        this.businessId = businessId;
+    }
 
-	public long getBusinessDestinationId() {
-		return businessDestinationId;
-	}
+    public BigInteger getBusinessDestinationId() {
+        return businessDestinationId;
+    }
 
-	public void setBusinessDestinationId(long businessDestinationId) {
-		this.businessDestinationId = businessDestinationId;
-	}
+    public void setBusinessDestinationId(BigInteger businessDestinationId) {
+        this.businessDestinationId = businessDestinationId;
+    } 	
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Transaction)) {
+            return false;
+        }
+        Transaction other = (Transaction) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "dto.Transaction[ id=" + id + " ]";
+    }    
+    
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
   	
-  	
-  
 }

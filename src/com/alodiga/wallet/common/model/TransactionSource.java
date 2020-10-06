@@ -18,7 +18,12 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import java.util.Collection;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -32,6 +37,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "TransactionSource.findById", query = "SELECT t FROM TransactionSource t WHERE t.id = :id"),
     @NamedQuery(name = "TransactionSource.findByName", query = "SELECT t FROM TransactionSource t WHERE t.name = :name")})
 public class TransactionSource extends AbstractWalletEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -116,4 +122,5 @@ public class TransactionSource extends AbstractWalletEntity implements Serializa
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+
 }

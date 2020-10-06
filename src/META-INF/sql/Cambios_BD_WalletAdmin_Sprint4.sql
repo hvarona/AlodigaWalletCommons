@@ -1133,14 +1133,19 @@ ALTER TABLE `alodigawallet`.`account_bank`
 ADD COLUMN `businessId` BIGINT(20) NULL DEFAULT NULL AFTER `createDate`,
 CHANGE COLUMN `UnifiedRegistryId` `UnifiedRegistryId` BIGINT(20) NULL DEFAULT NULL ;
 
-
 -- Agregar campo en tabla daily_closing
--- author: Yamelis Almea
--- Fecha: 02/10/2020
+-- author: Jesús Gómez
+-- Fecha: 01/10/2020
 ALTER TABLE `alodigaWallet`.`daily_closing`
 ADD COLUMN `transactionsAmount` FLOAT NOT NULL AFTER `totalTransactions`;
 
+
+ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
+CHANGE COLUMN `UnifiedRegistryUserId` `UnifiedRegistryUserId` BIGINT(20) NULL ;
+
 -- Insertar en las preferencias hora de cierre de la billetera
+-- author: Yamelis Almea
+-- Fecha: 06/10/2020
 INSERT INTO `alodigawallet`.`preference_field` (`id`, `name`, `preferenceId`, `enabled`, `preferenceTypeId`) VALUES ('26', 'WALLET_CLOSING_TIME', '3', '1', '1');
 
 INSERT INTO `alodigawallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('27', '25', '1', 'Max number card of enabled');
@@ -1149,5 +1154,3 @@ INSERT INTO `alodigawallet`.`preference_field_data` (`id`, `preferenceFieldId`, 
 INSERT INTO `alodigawallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('30', '26', '2', 'Hora de cierre de la billetera');
 
 INSERT INTO `alodigawallet`.`preference_value` (`id`, `value`, `preferenceFieldId`, `preferenceClassficationId`, `createDate`, `updateDate`, `enabled`) VALUES ('140', '11:38:00', '26', '1', '2020-10-06 12:49:06', '2020-10-06 12:49:06', '1');
-
-

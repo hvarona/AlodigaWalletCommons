@@ -17,15 +17,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.Country;
-import com.alodiga.wallet.common.model.Language;
-import com.alodiga.wallet.common.model.ValidationCollection;
 
 /**
  *
@@ -44,8 +39,6 @@ import com.alodiga.wallet.common.model.ValidationCollection;
     , @NamedQuery(name = "ValidationCollection.findByAdditional", query = "SELECT v FROM ValidationCollection v WHERE v.additional = :additional")})
 public class ValidationCollection extends AbstractWalletEntity implements Serializable {
 
-    
-            
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,12 +46,10 @@ public class ValidationCollection extends AbstractWalletEntity implements Serial
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "status")
     private String status;
