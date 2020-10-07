@@ -271,6 +271,7 @@ public class Constants {
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_INCOMPLET= "RECINC";
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_PENDING= "PENDIE";
     public static final String ORIGIN_APPLICATION_PORTAL_NEGOCIOS_CODE= "PORNEG";
+    public static final String ORIGIN_APPLICATION_WALLET_ADMIN_WEB_CODE= "AWAWEB";
     public static final String CURRENT_PASSWORD = "currentPassword";
     public static final String USER_KEY = "userId";
     public static final String COUNTRY_KEY ="countryId";

@@ -157,4 +157,14 @@ public class EjbUtils {
           return null;
         }
       }
+    
+    public static boolean isWeekEnd(Date date) {
+    	boolean valid = false;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); 
+    	if (dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY)
+    		valid = true;
+        return valid;
+    }
 }
