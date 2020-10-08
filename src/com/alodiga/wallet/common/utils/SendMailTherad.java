@@ -43,6 +43,8 @@ public class SendMailTherad extends Thread {
     private User user;
     private String newPassword;
     private Enterprise enterprise;
+    private Float amountTransaction;
+    private int totalTransaction;
 
     /**
      * Método que devuelve el número de ítems (números aleatorios) existentes en
@@ -128,6 +130,16 @@ public class SendMailTherad extends Thread {
         this.sendType = sendType;
 
     }
+    
+    public SendMailTherad(String idioma,Float amountTransaction, int totalTransaction, String userDestinationName, String emailUser,Integer sendType) {
+    	this.idioma = idioma;
+    	this.amountTransaction = amountTransaction;
+    	this.totalTransaction = totalTransaction;
+        this.userDestinationName = userDestinationName;
+        this.emailUser = emailUser;
+        this.sendType = sendType;
+
+    }
 
     public void run() {
         Mail mail = null;
@@ -181,6 +193,10 @@ public class SendMailTherad extends Thread {
             case Constants.SEND_TYPE_EMAIL_RECOVER_PASSWORD:
                 // code block 
             	mail = Utils.getUserRecoveryPasswordMail(user, newPassword, enterprise);
+                break;
+            case Constants.SEND_TYPE_EMAIL_DAILY_CLOSING_WALLET:
+                // code block 
+                mail = Utils.sendMailDailyClosing("ES", amountTransaction, totalTransaction, userDestinationName, emailUser);
                 break;
         }
 
