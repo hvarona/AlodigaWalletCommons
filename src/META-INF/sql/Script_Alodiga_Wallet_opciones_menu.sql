@@ -1322,7 +1322,7 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Operaciones Bancarias', `d
 
 -- Cambios nombre de Menu
 -- author: Jorge Pinto
--- Fecha: 02/19/2020
+-- Fecha: 02/10/2020
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Recharge Approval Requests', `description`='Recharge Approval Requests' WHERE `permissionId`='81' AND `languageId`='1';
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Solicitudes de Aprobación de Recarga', `description`='Solicitudes de Aprobación de Recarga' WHERE `permissionId`='81' AND `languageId`='2';
 
@@ -1338,3 +1338,8 @@ INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('154', '1', 'Automatic Services', 'Automatic Services');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('154', '2', 'Servicios Automaticos', 'Servicios Automaticos');
 
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 08/10/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Withdrawal Approval Requests', `description`='Withdrawal Approval Requests' WHERE `permissionId`='77' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Solicitudes de Aprobación de Retiro', `description`='Solicitudes de Aprobación de Retiro' WHERE `permissionId`='77' AND `languageId`='2';
