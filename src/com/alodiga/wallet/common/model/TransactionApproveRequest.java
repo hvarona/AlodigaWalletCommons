@@ -44,7 +44,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "TransactionApproveRequest.findByApprovedRequestDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.approvedRequestDate = :approvedRequestDate")
     , @NamedQuery(name = "TransactionApproveRequest.findByObservations", query = "SELECT t FROM TransactionApproveRequest t WHERE t.observations = :observations")
     , @NamedQuery(name = "TransactionApproveRequest.findByBusinessId", query = "SELECT t FROM TransactionApproveRequest t WHERE t.businessId = :businessId")
-    , @NamedQuery(name = QueryConstants.TRANSACTION_APPROVE_REQUEST_BY_STATUS, query = "SELECT t FROM TransactionApproveRequest t  WHERE t.statusTransactionApproveRequestId.id= :statusTransactionApproveRequestId AND t.requestNumber like CONCAT('%',:requestNumber,'%')")})
+    , @NamedQuery(name = QueryConstants.TRANSACTION_APPROVE_REQUEST_BY_STATUS, query = "SELECT t FROM TransactionApproveRequest t  WHERE t.requestNumber like CONCAT('%',:requestNumber,'%')")})
 
 public class TransactionApproveRequest extends AbstractWalletEntity implements Serializable {
 

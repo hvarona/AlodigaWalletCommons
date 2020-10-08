@@ -1322,6 +1322,24 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Operaciones Bancarias', `d
 
 -- Cambios nombre de Menu
 -- author: Jorge Pinto
--- Fecha: 02/19/2020
+-- Fecha: 02/10/2020
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Recharge Approval Requests', `description`='Recharge Approval Requests' WHERE `permissionId`='81' AND `languageId`='1';
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Solicitudes de Aprobación de Recarga', `description`='Solicitudes de Aprobación de Recarga' WHERE `permissionId`='81' AND `languageId`='2';
+
+-- Agregar Servicios Automatico al menu
+-- author: Yamelis Almea
+-- Fecha: 06/10/2020
+
+
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('154', '5', 'AutomaticServices', 'dailyClosing', 'AutomaticServices', '1');
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('154', '1');
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('154', '1', 'Automatic Services', 'Automatic Services');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('154', '2', 'Servicios Automaticos', 'Servicios Automaticos');
+
+-- Cambios nombre de Menu
+-- author: Jorge Pinto
+-- Fecha: 08/10/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Withdrawal Approval Requests', `description`='Withdrawal Approval Requests' WHERE `permissionId`='77' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Solicitudes de Aprobación de Retiro', `description`='Solicitudes de Aprobación de Retiro' WHERE `permissionId`='77' AND `languageId`='2';
