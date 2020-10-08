@@ -1139,5 +1139,24 @@ CHANGE COLUMN `UnifiedRegistryId` `UnifiedRegistryId` BIGINT(20) NULL DEFAULT NU
 ALTER TABLE `alodigaWallet`.`daily_closing`
 ADD COLUMN `transactionsAmount` FLOAT NOT NULL AFTER `totalTransactions`;
 
+-- Modificar campo UnifiedRegistryUserId para que acepte null en tabla transaction_approve_request
+-- author: Jesús Gómez
+-- Fecha: 05/10/2020
 ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
 CHANGE COLUMN `UnifiedRegistryUserId` `UnifiedRegistryUserId` BIGINT(20) NULL ;
+
+-- Modificar FK productId para que acepte NULL en tabla balance_history
+-- author: Jesús Gómez
+-- Fecha: 05/10/2020
+ALTER TABLE `alodigaWallet`.`balance_history` 
+DROP FOREIGN KEY `fk_balance_has_product`;
+ALTER TABLE `alodigaWallet`.`balance_history` 
+CHANGE COLUMN `oldAmount` `oldAmount` FLOAT(20,2) NULL ,
+CHANGE COLUMN `currentAmount` `currentAmount` FLOAT(20,2) NULL ,
+CHANGE COLUMN `date` `date` DATETIME NULL ,
+CHANGE COLUMN `productId` `productId` BIGINT(20) NULL ,
+CHANGE COLUMN `version` `version` BIGINT(20) NULL ;
+ALTER TABLE `alodigaWallet`.`balance_history` 
+ADD CONSTRAINT `fk_balance_has_product`
+  FOREIGN KEY (`productId`)
+  REFERENCES `alodigaWallet`.`product` (`id`);

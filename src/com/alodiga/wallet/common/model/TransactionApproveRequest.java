@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.alodiga.wallet.common.model;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.utils.QueryConstants;
@@ -24,8 +23,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -60,7 +57,6 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
     @Column(name = "UnifiedRegistryUserId")
     private BigInteger unifiedRegistryUserId;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "createDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
@@ -68,12 +64,9 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
     @Column(name = "requestNumber")
     private String requestNumber;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "requestDate")
     @Temporal(TemporalType.DATE)
     private Date requestDate;
@@ -82,7 +75,6 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
     @Column(name = "approvedRequestDate")
     @Temporal(TemporalType.DATE)
     private Date approvedRequestDate;
-    @Size(max = 1000)
     @Column(name = "observations")
     private String observations;
     @Column(name = "businessId")
