@@ -310,6 +310,7 @@ public class Constants {
     public static final String PARAM_MCC_CODE = "mccCode";
     public static final String STATUS_KEY = "statusCardId";
     public static final int REVIEW_REQUEST_TYPE = 1;
+    public static final String APPLICATION_COMISSION = "indApplicationCommission";
     
     //PLAID
     public static final String CLIENTID = "5eea3c83ca4e880014b64ce2";
