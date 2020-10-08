@@ -1146,11 +1146,12 @@ CHANGE COLUMN `UnifiedRegistryUserId` `UnifiedRegistryUserId` BIGINT(20) NULL ;
 -- Insertar en las preferencias hora de cierre de la billetera
 -- author: Yamelis Almea
 -- Fecha: 06/10/2020
-INSERT INTO `alodigawallet`.`preference_field` (`id`, `name`, `preferenceId`, `enabled`, `preferenceTypeId`) VALUES ('26', 'WALLET_CLOSING_TIME', '3', '1', '1');
+INSERT INTO `alodigaWallet`.`preference_field` (`id`, `name`, `preferenceId`, `enabled`, `preferenceTypeId`) VALUES ('26', 'WALLET_CLOSING_TIME', '3', '1', '1');
 
-INSERT INTO `alodigawallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('27', '25', '1', 'Max number card of enabled');
-INSERT INTO `alodigawallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('28', '25', '2', 'Cantidad maxima de tarjetas habiltar');
-INSERT INTO `alodigawallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('29', '26', '1', 'Wallet closing time');
-INSERT INTO `alodigawallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('30', '26', '2', 'Hora de cierre de la billetera');
+INSERT INTO `alodigaWallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('27', '25', '1', 'Max number card of enabled');
+INSERT INTO `alodigaWallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('28', '25', '2', 'Cantidad maxima de tarjetas habiltar');
+INSERT INTO `alodigaWallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('29', '26', '1', 'Wallet closing time');
+INSERT INTO `alodigaWallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('30', '26', '2', 'Hora de cierre de la billetera');
 
-INSERT INTO `alodigawallet`.`preference_value` (`id`, `value`, `preferenceFieldId`, `preferenceClassficationId`, `createDate`, `updateDate`, `enabled`) VALUES ('140', '11:38:00', '26', '1', '2020-10-06 12:49:06', '2020-10-06 12:49:06', '1');
+INSERT INTO `alodigaWallet`.`preference_value` (`id`, `value`, `preferenceFieldId`, `preferenceClassficationId`, `createDate`, `updateDate`, `enabled`) VALUES ('140', '11:38:00', '26', '1', '2020-10-06 12:49:06', '2020-10-06 12:49:06', '1');
+
