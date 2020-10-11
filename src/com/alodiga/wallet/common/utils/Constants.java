@@ -142,6 +142,7 @@ public class Constants {
     public static final int SEND_TYPE_EMAIL_TRASNFER_CARD_TO_CARD = 11;
     public static final int SEND_TYPE_EMAIL_TRASNFER_CARD_TO_CARD_RECIBER = 12;
     public static final int SEND_TYPE_EMAIL_RECOVER_PASSWORD = 13;
+    public static final int SEND_TYPE_EMAIL_DAILY_CLOSING_WALLET = 14;
 
     // constantes SendTypeSMS
     public static final int SEND_TYPE_SMS_REGISTER = 20;
@@ -328,6 +329,9 @@ public class Constants {
     
     //StreetType
     public static Integer STREET_TYPE = 1;
+    
+    //Enterprise Alodiga
+    public static final Long ENTERPRISE_ID_USA = 1L;
     
     
     
