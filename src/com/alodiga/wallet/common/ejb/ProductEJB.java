@@ -87,6 +87,8 @@ public interface ProductEJB extends WalletGenericEJB {
    
    public List<TransactionApproveRequest> getTransactionApproveRequestByParams(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;    
    
+   public List<TransactionApproveRequest> searchTransactionApproveRequestByParamsMWAR(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;    
+   
    public TransactionApproveRequest loadTransactionApproveRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
    
    public TransactionApproveRequest saveTransactionApproveRequest(TransactionApproveRequest transactionApproveRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
