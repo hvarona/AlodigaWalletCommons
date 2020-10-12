@@ -80,3 +80,19 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Solicitudes de Aprobación
 -- Fecha: 09/10/2020
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Configure Commissions by Product', `description`='Configure Commissions by Product' WHERE `permissionId`='58' AND `languageId`='1';
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Configurar Comisiones por Producto', `description`='Configurar Comisiones por Producto' WHERE `permissionId`='58' AND `languageId`='2';
+
+-- Actualizar el grupo principal para las opciones de preferencias
+-- author: Jesús Gómez
+-- Fecha: 12/10/2020
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = 7 WHERE `id`=26;
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = 7 WHERE `id`=53;
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId` = 7 WHERE `id`=145;
+
+-- Cambios de nombres de opciones en Menu Configurar Preferencias
+-- author: Jesús Gómez
+-- Fecha: 12/10/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Type of Data', `description`='Types of data associated with preferences' WHERE `permissionId`='155' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Tipos de Datos', `description`='Tipos de datos asociados a las preferencias' WHERE `permissionId`='155' AND `languageId`='2';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Preferences Types', `description`='Preferences Types' WHERE `permissionId`='159' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Tipos de Preferencias', `description`='Tipos de Preferencias' WHERE `permissionId`='159' AND `languageId`='2';
+
