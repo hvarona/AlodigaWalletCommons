@@ -50,38 +50,39 @@ public class BalanceHistory  extends AbstractWalletEntity implements Serializabl
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Basic(optional = false)
+    
     @Column(name = "userId")
     private long userId;
-    @Basic(optional = false)
+    
     @Column(name = "businessId")
     private long businessId;
-    @Basic(optional = false)
+    
     @Column(name = "transactionBusinessId")
     private long transactionBusinessId;
-    @Basic(optional = false)
     @Column(name = "oldAmount")
     private float oldAmount;
-    @Basic(optional = false)
+    
     @Column(name = "currentAmount")
     private float currentAmount;
-    @Basic(optional = false)
+    
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    @Basic(optional = false)
+    
     @Column(name = "version")
     private long version;
+    
     @Column(name = "adjusmentInfo")
     private String adjusmentInfo;
+
     @JoinColumn(name = "transactionId", referencedColumnName = "id")
     @ManyToOne
     private Transaction transactionId;
+    
     @JoinColumn(name = "productId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Product productId;
 
     public BalanceHistory() {
