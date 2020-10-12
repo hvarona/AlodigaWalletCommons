@@ -18,10 +18,10 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Estatus de Tarjetas', `des
 -- Cambios nombre de Menu
 -- author: Jorge Pinto
 -- Fecha: 18/09/2020
-UPDATE `alodigaWallet`.`permission_data` SET `alias`='Auditoría del Sistema', `description`='Auditoría del Sistema' WHERE `id`='67';
-UPDATE `alodigaWallet`.`permission_data` SET `alias`='System Audit', `description`='System Audit' WHERE `id`='68';
-UPDATE `alodigaWallet`.`permission_data` SET `alias`='Perfiles de Usuario', `description`='Perfiles de Usuario' WHERE `id`='9';
-UPDATE `alodigaWallet`.`permission_data` SET `alias`='User Profiles', `description`='User Profiles' WHERE `id`='10';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Auditoría del Sistema', `description`='Auditoría del Sistema' WHERE `permissionId`='34' AND `languageId`='2';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='System Audit', `description`='System Audit' WHERE `permissionId`='34' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Perfiles de Usuario', `description`='Perfiles de Usuario' WHERE `permissionId`='1' AND `languageId`='2';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='User Profiles', `description`='User Profiles' WHERE `permissionId`='1' AND `languageId`='1';
 
 -- Cambios nombre de Menu
 -- author: Jorge Pinto
@@ -54,8 +54,8 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Administrar Días Feriados
 -- Cambios nombre de Menu
 -- author: Jorge Pinto
 -- Fecha: 26/09/2020
-UPDATE `alodigaWallet`.`permission_data` SET `alias`='Mobile Wallet Transactions', `description`='Mobile Wallet Transactions' WHERE `permissionId`='52' AND `languageId`='1';
-UPDATE `alodigaWallet`.`permission_data` SET `alias`='Transacciones Billetera Móvil', `description`='Transacciones Billetera Móvil' WHERE `permissionId`='52' AND `languageId`='2';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Check Transactions', `description`='Check Transactions' WHERE `permissionId`='52' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Consultar Transacciones', `description`='Consultar las transacciones efectuadas en la Billetera Móvil y en el Portal de Negocios' WHERE `permissionId`='52' AND `languageId`='2';
 
 -- Cambios nombre de Menu
 -- author: Jorge Pinto
@@ -74,3 +74,9 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Solicitudes de Aprobación
 -- Fecha: 08/10/2020
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Withdrawal Approval Requests', `description`='Withdrawal Approval Requests' WHERE `permissionId`='77' AND `languageId`='1';
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Solicitudes de Aprobación de Retiro', `description`='Solicitudes de Aprobación de Retiro' WHERE `permissionId`='77' AND `languageId`='2';
+
+-- Cambios nombre de Menu Comisiones
+-- author: Jesús Gómez
+-- Fecha: 09/10/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Configure Commissions by Product', `description`='Configure Commissions by Product' WHERE `permissionId`='58' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Configurar Comisiones por Producto', `description`='Configurar Comisiones por Producto' WHERE `permissionId`='58' AND `languageId`='2';
