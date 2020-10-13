@@ -96,3 +96,10 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Tipos de Datos', `descript
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Preferences Types', `description`='Preferences Types' WHERE `permissionId`='159' AND `languageId`='1';
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Tipos de Preferencias', `description`='Tipos de Preferencias' WHERE `permissionId`='159' AND `languageId`='2';
 
+-- Cambios nombre de Preferencias
+-- author: Jorge Pinto
+-- Fecha: 13/10/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Manage Preferences', `description`='Manage Preferences' WHERE `permissionId`='145' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Administrar Preferencias', `description`='Administrar Preferencias' WHERE `permissionId`='145' AND `languageId`='2';
+
+
