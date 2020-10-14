@@ -673,3 +673,19 @@ UPDATE `alodigaWallet`.`person_classification` SET `description`='Natural Busine
 UPDATE `alodigaWallet`.`person_classification` SET `description`='Legal Business Applicant', `code`='LEBUAP' WHERE `id`='2';
 UPDATE `alodigaWallet`.`person_classification` SET `description`='Employee', `code`='EMPLOY' WHERE `id`='3';
 UPDATE `alodigaWallet`.`person_classification` SET `description`='User', `code`='USER' WHERE `id`='4';
+
+-- Cambios para agregar el preference_type correspondiente a cada preference_field
+-- author: Yamelis Almea
+-- Fecha: 14/10/2020
+INSERT INTO `alodigawallet`.`preference_type` (`id`, `type`) VALUES ('6', 'BOOLEAN');
+
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '2' WHERE (`id` = '1');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '2' WHERE (`id` = '4');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '1' WHERE (`id` = '7');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '6' WHERE (`id` = '9');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '2' WHERE (`id` = '10');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '2' WHERE (`id` = '20');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '2' WHERE (`id` = '21');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '1' WHERE (`id` = '22');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '1' WHERE (`id` = '23');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '3' WHERE (`id` = '26');
