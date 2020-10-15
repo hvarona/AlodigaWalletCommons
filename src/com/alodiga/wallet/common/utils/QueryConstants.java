@@ -93,6 +93,7 @@ public class QueryConstants {
     public static final String PARAM_TITLE = "title";
     public static final String PARAM_TICKET_ID = "ticketId";
     public static final String PARAM_STATUS = "status";
+    public static final String PARAM_STATUS_SOURCE_ID = "transactionSourceId";
     public static final String PARAM_DISTRIBUTOR_LOGIN = "distributorLogin";
     public static final String PARAM_USER_LOGIN = "userLogin";
     public static final String PARAM_USER_RESPONDER_LOGIN = "userResponderLogin";
@@ -212,4 +213,5 @@ public class QueryConstants {
     public static final String CODE_EXIST_IN_BD_PREFERENCE_FIELD = "codeExistInBdPreferenceField";
     public static final String CODE_EXIST_IN_BD_TRANSACTION_TYPE = "codeExistInBdTransactionType";
     public static final String HOLI_DAY_EXIST_IN_BD_CALENDAR_DAYS = "holiDayExistInBdCalendarDays";
+    public static final String PARAM_PERMISSION_ID = "permissionId";
 }

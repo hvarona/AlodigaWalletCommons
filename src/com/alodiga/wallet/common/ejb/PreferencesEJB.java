@@ -31,6 +31,8 @@ public interface PreferencesEJB extends WalletGenericEJB {
 
     public List<Preference> getPreference(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
     
+    public Preference savePreference(Preference preference) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
     public List<PreferenceField> getPreferenceFields(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
 
     public List<PreferenceField> getPreferenceFieldsByCode(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
@@ -55,6 +57,8 @@ public interface PreferencesEJB extends WalletGenericEJB {
 
     public PreferenceType savePreferenceType(EJBRequest request) throws GeneralException, NullParameterException;
 
+    public PreferenceType savePreferencesType(PreferenceType preferenceType) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
     public PreferenceValue savePreferenceValue(EJBRequest request) throws GeneralException, NullParameterException;
 
     public List<PreferenceValue> savePreferenceValues(List<PreferenceValue> preferenceValues,List<PreferenceControl> preferenceControls) throws GeneralException, NullParameterException;

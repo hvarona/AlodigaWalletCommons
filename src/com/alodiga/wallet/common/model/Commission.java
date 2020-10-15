@@ -40,7 +40,7 @@ import com.alodiga.wallet.common.utils.QueryConstants;
     @NamedQuery(name = "Commission.findByProductTransactionType", query = "SELECT c FROM Commission c WHERE c.productId.id = :productId AND c.transactionTypeId.id = :transactionTypeId AND c.endingDate is null"),
     @NamedQuery(name = "Commission.findByValue", query = "SELECT c FROM Commission c WHERE c.value = :value"),
     @NamedQuery(name = QueryConstants.COMMISSION_BY_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id= :productId"),
-    @NamedQuery(name = QueryConstants.COMMISSION_BY_TRANSACTIONTYPE_AND_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id = :productId AND c.transactionTypeId.id = :transactionTypeId AND c.endingDate is null")})
+    @NamedQuery(name = QueryConstants.COMMISSION_BY_TRANSACTIONTYPE_AND_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id = :productId AND c.transactionTypeId.id = :transactionTypeId AND c.indApplicationCommission = :indApplicationCommission  AND c.endingDate is null")})
 public class Commission extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

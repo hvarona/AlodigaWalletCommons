@@ -23,10 +23,6 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.BalanceHistory;
-import com.alodiga.wallet.common.model.Product;
-import com.alodiga.wallet.common.model.Transaction;
-
 
 /**
  *
@@ -46,6 +42,7 @@ import com.alodiga.wallet.common.model.Transaction;
     @NamedQuery(name = "BalanceHistory.findByVersion", query = "SELECT b FROM BalanceHistory b WHERE b.version = :version"),
     @NamedQuery(name = "BalanceHistory.lastDateByUser", query = "SELECT MAX(b.date) FROM BalanceHistory b WHERE b.userId = :userId"),
     @NamedQuery(name = "BalanceHistory.findByAdjusmentInfo", query = "SELECT b FROM BalanceHistory b WHERE b.adjusmentInfo = :adjusmentInfo")})
+
 public class BalanceHistory  extends AbstractWalletEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
