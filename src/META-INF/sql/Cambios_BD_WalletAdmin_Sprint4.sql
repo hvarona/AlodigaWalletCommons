@@ -1029,7 +1029,6 @@ ADD COLUMN `businessDestinationId` BIGINT(10) NULL DEFAULT NULL AFTER `businessI
 -- Cambios para generar transactionNumber
 -- author: Yamelis Almea
 -- Fecha: 21/09/2020
-
 ALTER TABLE `alodigaWallet`.`transaction_type` 
 ADD COLUMN `code` VARCHAR(6) NOT NULL AFTER `value`;
 
@@ -1139,19 +1138,25 @@ CHANGE COLUMN `UnifiedRegistryId` `UnifiedRegistryId` BIGINT(20) NULL DEFAULT NU
 ALTER TABLE `alodigaWallet`.`daily_closing`
 ADD COLUMN `transactionsAmount` FLOAT NOT NULL AFTER `totalTransactions`;
 
-
+-- Modificar campo UnifiedRegistryUserId para que acepte null en tabla transaction_approve_request
+-- author: Jesús Gómez
+-- Fecha: 05/10/2020
 ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
 CHANGE COLUMN `UnifiedRegistryUserId` `UnifiedRegistryUserId` BIGINT(20) NULL ;
 
--- Insertar en las preferencias hora de cierre de la billetera
--- author: Yamelis Almea
--- Fecha: 06/10/2020
-INSERT INTO `alodigaWallet`.`preference_field` (`id`, `name`, `preferenceId`, `enabled`, `preferenceTypeId`) VALUES ('26', 'WALLET_CLOSING_TIME', '3', '1', '1');
-
-INSERT INTO `alodigaWallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('27', '25', '1', 'Max number card of enabled');
-INSERT INTO `alodigaWallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('28', '25', '2', 'Cantidad maxima de tarjetas habiltar');
-INSERT INTO `alodigaWallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('29', '26', '1', 'Wallet closing time');
-INSERT INTO `alodigaWallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('30', '26', '2', 'Hora de cierre de la billetera');
-
-INSERT INTO `alodigaWallet`.`preference_value` (`id`, `value`, `preferenceFieldId`, `preferenceClassficationId`, `createDate`, `updateDate`, `enabled`) VALUES ('140', '11:38:00', '26', '1', '2020-10-06 12:49:06', '2020-10-06 12:49:06', '1');
+-- Modificar FK productId para que acepte NULL en tabla balance_history
+-- author: Jesús Gómez
+-- Fecha: 05/10/2020
+ALTER TABLE `alodigaWallet`.`balance_history` 
+DROP FOREIGN KEY `fk_balance_has_product`;
+ALTER TABLE `alodigaWallet`.`balance_history` 
+CHANGE COLUMN `oldAmount` `oldAmount` FLOAT(20,2) NULL ,
+CHANGE COLUMN `currentAmount` `currentAmount` FLOAT(20,2) NULL ,
+CHANGE COLUMN `date` `date` DATETIME NULL ,
+CHANGE COLUMN `productId` `productId` BIGINT(20) NULL ,
+CHANGE COLUMN `version` `version` BIGINT(20) NULL ;
+ALTER TABLE `alodigaWallet`.`balance_history` 
+ADD CONSTRAINT `fk_balance_has_product`
+  FOREIGN KEY (`productId`)
+  REFERENCES `alodigaWallet`.`product` (`id`);
 
