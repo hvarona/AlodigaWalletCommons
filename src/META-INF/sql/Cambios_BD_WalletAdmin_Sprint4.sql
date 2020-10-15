@@ -1160,15 +1160,3 @@ ADD CONSTRAINT `fk_balance_has_product`
   FOREIGN KEY (`productId`)
   REFERENCES `alodigaWallet`.`product` (`id`);
 
-  -- Agregar FK en tabla natural_person
--- author: Jesús Gómez
--- Fecha: 14/10/2020
-ALTER TABLE `alodigaWallet`.`natural_person`
-ADD COLUMN `legalRepresentativeId` BIGINT NULL AFTER `documentsPersonTypeId`;
-ALTER TABLE `alodigaWallet`.`natural_person`
-ADD CONSTRAINT `fk_naturalPerson_legalRepresentative1`
-FOREIGN KEY (`legalRepresentativeId`)
-REFERENCES `alodigaWallet`.`legal_representative` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION;
-

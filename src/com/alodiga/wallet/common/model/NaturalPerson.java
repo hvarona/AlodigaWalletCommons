@@ -97,9 +97,6 @@ public class NaturalPerson extends AbstractWalletEntity implements Serializable 
     @JoinColumn(name = "personId", referencedColumnName = "id")
     @OneToOne(optional = false)
     private Person personId;
-    @JoinColumn(name = "legalRepresentativeId", referencedColumnName = "id")
-    @ManyToOne
-    private LegalRepresentative legalRepresentativeId;
     @JoinColumn(name = "professionId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Profession professionId;
@@ -232,14 +229,6 @@ public class NaturalPerson extends AbstractWalletEntity implements Serializable 
 
     public void setPersonId(Person personId) {
         this.personId = personId;
-    }
-
-    public LegalRepresentative getLegalRepresentativeId() {
-        return legalRepresentativeId;
-    }
-
-    public void setLegalRepresentativeId(LegalRepresentative legalRepresentativeId) {
-        this.legalRepresentativeId = legalRepresentativeId;
     }
 
     public Profession getProfessionId() {
