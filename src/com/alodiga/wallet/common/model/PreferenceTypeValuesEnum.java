@@ -6,7 +6,9 @@ public enum PreferenceTypeValuesEnum {
     FLOAT(2L, "0.0"),
     STRING(3L, "NONE"),
     DATE(4L, "0000-00-00"),
-    PERIOD(5L, "DAY");
+    PERIOD(5L, "DAY"),
+	BOOLEAN(6L, "TRUE");
+	
     private Long value;
     private String defaultValue;
 
