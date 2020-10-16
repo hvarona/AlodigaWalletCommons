@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.utils.QueryConstants;
+import javax.persistence.Basic;
 
 /**
  *
@@ -41,36 +42,31 @@ import com.alodiga.wallet.common.utils.QueryConstants;
     @NamedQuery(name = "Commission.findByValue", query = "SELECT c FROM Commission c WHERE c.value = :value"),
     @NamedQuery(name = QueryConstants.COMMISSION_BY_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id= :productId"),
     @NamedQuery(name = QueryConstants.COMMISSION_BY_TRANSACTIONTYPE_AND_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id = :productId AND c.transactionTypeId.id = :transactionTypeId AND c.indApplicationCommission = :indApplicationCommission  AND c.endingDate is null")})
+
 public class Commission extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "id")
-    private Long id;
-    
+    private Long id;    
     @Column(name = "beginningDate")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date beginningDate;
-    
+    private Date beginningDate;    
     @Column(name = "endingDate")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date endingDate;
-    
+    private Date endingDate;    
     @Column(name = "isPercentCommision")
-    private short isPercentCommision;
-    
+    private short isPercentCommision;    
     @Column(name = "value")
-    private float value;
-    
+    private float value;    
     @JoinColumn(name = "transactionTypeId", referencedColumnName = "id")
     @ManyToOne
-    private TransactionType transactionTypeId;
-    
+    private TransactionType transactionTypeId;    
     @JoinColumn(name = "productId", referencedColumnName = "id")
     @ManyToOne
-    private Product productId;
-    
+    private Product productId;    
     @Column(name = "indApplicationCommission")
     private int indApplicationCommission;
 

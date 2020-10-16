@@ -16,6 +16,7 @@ import com.alodiga.wallet.common.model.Address;
 import com.alodiga.wallet.common.model.AddressType;
 import com.alodiga.wallet.common.model.Bank;
 import com.alodiga.wallet.common.model.BusinessAffiliationRequest;
+import com.alodiga.wallet.common.model.BusinessCategory;
 import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.CivilStatus;
 import com.alodiga.wallet.common.model.CollectionType;
@@ -76,7 +77,6 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     public RequestHasCollectionRequest saveRequestHasCollectionsRequest(RequestHasCollectionRequest requestHasCollectionsRequest) throws NullParameterException, GeneralException;
     
     public List<StatusApplicant> getStatusApplicant(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-    
     public StatusApplicant loadStatusApplicant(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     public PhoneType loadPhoneType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
@@ -84,25 +84,20 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     public BusinessAffiliationRequest loadBusinessAffiliationRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     public Bank loadBank(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
     public AccountTypeBank loadAccountTypeBank(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
     public List<Bank> getBanks (EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;    
-    
     public List<AccountTypeBank> getAccountTypeBanks (EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
     public List<AccountBank> getAccountBanks(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-   
     public AccountBank loadAccountBank(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
     public AccountBank saveAccountBank(AccountBank accountBank) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     public List<Currency> getCurrencies(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-    
     public Currency loadCurrency(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     public List<StatusAccountBank> getStatusAccountBanks(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-    
     public StatusAccountBank loadStatusAccountBank(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public BusinessCategory loadBusinessCategory(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<BusinessCategory> getBusinessCategories(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
 }
 
