@@ -6,10 +6,7 @@
 package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,16 +16,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.utils.QueryConstants;
+import javax.persistence.Basic;
 
 /**
  *
@@ -47,6 +42,7 @@ import com.alodiga.wallet.common.utils.QueryConstants;
     @NamedQuery(name = "Commission.findByValue", query = "SELECT c FROM Commission c WHERE c.value = :value"),
     @NamedQuery(name = QueryConstants.COMMISSION_BY_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id= :productId"),
     @NamedQuery(name = QueryConstants.COMMISSION_BY_TRANSACTIONTYPE_AND_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id = :productId AND c.transactionTypeId.id = :transactionTypeId AND c.indApplicationCommission = :indApplicationCommission  AND c.endingDate is null")})
+
 public class Commission extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,27 +50,23 @@ public class Commission extends AbstractWalletEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Long id;
-    @Basic(optional = false)
+    private Long id;    
     @Column(name = "beginningDate")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date beginningDate;
+    private Date beginningDate;    
     @Column(name = "endingDate")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date endingDate;
-    @Basic(optional = false)
+    private Date endingDate;    
     @Column(name = "isPercentCommision")
-    private short isPercentCommision;
-    @Basic(optional = false)
+    private short isPercentCommision;    
     @Column(name = "value")
-    private float value;
+    private float value;    
     @JoinColumn(name = "transactionTypeId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private TransactionType transactionTypeId;
+    @ManyToOne
+    private TransactionType transactionTypeId;    
     @JoinColumn(name = "productId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Product productId;
-    @Basic(optional = false)
+    @ManyToOne
+    private Product productId;    
     @Column(name = "indApplicationCommission")
     private int indApplicationCommission;
 
