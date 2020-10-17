@@ -689,7 +689,7 @@ INSERT INTO `alodigaWallet`.`preference_value` (`id`, `value`, `preferenceFieldI
 -- Agregar tipo de reporte TRANSACTION en tabla report_type
 -- author: Yamelis Almea
 -- Fecha: 09/10/2020
-INSERT INTO `alodigaWallet`.`report_type` (`name`, `description`) VALUES (`TRANSACTION`, `Reportes de Transacciones`);
+INSERT INTO `alodigaWallet`.`report_type` (`name`, `description`) VALUES ("TRANSACTION", "Reportes de Transacciones");
 
 -- Cambios para agregar el preference_type correspondiente a cada preference_field
 -- author: Yamelis Almea
