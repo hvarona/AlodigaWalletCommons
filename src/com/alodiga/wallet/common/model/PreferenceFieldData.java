@@ -12,10 +12,19 @@ import javax.persistence.Table;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
 @Table(name = "preference_field_data")
+@XmlRootElement
+@NamedQueries({
+     @NamedQuery(name = QueryConstants.PREFERENCE_FIELD_DATA_BY_PREFERENCE, query = "SELECT p FROM PreferenceFieldData p WHERE p.preferenceField.id = :preferenceFieldId")})   
+
 public class PreferenceFieldData extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
