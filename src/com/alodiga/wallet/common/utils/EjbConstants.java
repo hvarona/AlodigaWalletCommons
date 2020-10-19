@@ -75,5 +75,6 @@ public class EjbConstants {
     public static final String PARAM_MCC_CODE = "mccCode";
     public static final String PARAM_HOLI_DAY_DATE = "holidayDate";
     public static final String PARAM_APPLICATION_COMISSION = "indApplicationCommission";
+    public static final String PARAM_PREFERENCE_FIELD_ID = "preferenceFieldId";
     
 }
