@@ -177,8 +177,8 @@ public class Constants {
     public static final Long SPANISH_LANGUAGE = 1L;
     public static final Long ENGLISH_LANGUAGE = 2L;
     
-    public static final int SPANISH = 1;
-    public static final int ENGLISH = 2;
+    public static final int SPANISH = 2;
+    public static final int ENGLISH = 1;
     
     //Preference Classification
     public static final Long CLIENT_CLASSIFICATION = 1L;
