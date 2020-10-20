@@ -707,3 +707,14 @@ UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '1' WHERE (`i
 UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '1' WHERE (`id` = '23');
 UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '3' WHERE (`id` = '26');
 
+-- Cambios para agregar datos en el campo code de Language
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+UPDATE `alodigaWallet`.`language` SET `code`='ENGLI' WHERE `id`='1';
+UPDATE `alodigaWallet`.`language` SET `code`='SPANI' WHERE `id`='2';
+
+-- Cambios para agregar datos en el campo code de preference_classification
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+UPDATE `alodigaWallet`.`preference_classification` SET `code`='CLIEN' WHERE `id`='1';
+UPDATE `alodigaWallet`.`preference_classification` SET `code`='NEGOC' WHERE `id`='2';
