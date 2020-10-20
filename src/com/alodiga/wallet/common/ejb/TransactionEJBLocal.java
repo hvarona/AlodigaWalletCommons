@@ -1,5 +1,6 @@
 package com.alodiga.wallet.common.ejb;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 import com.alodiga.wallet.common.exception.EmptyListException;
@@ -15,6 +16,6 @@ import com.alodiga.wallet.common.model.DailyClosing;
 @Local
 public interface TransactionEJBLocal extends WalletGenericEJB {
     
-public List<DailyClosing> closingDailyTransactionWallet(EJBRequest request) throws RegisterNotFoundException, EmptyListException, GeneralException, NullParameterException;      
+	public DailyClosing closingDailyTransactionWallet(Date closingDate) throws GeneralException, NullParameterException;       
     
 }

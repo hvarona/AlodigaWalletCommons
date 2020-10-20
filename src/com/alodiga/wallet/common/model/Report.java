@@ -29,6 +29,9 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Report;
 import com.alodiga.wallet.common.model.ReportParameter;
 import com.alodiga.wallet.common.model.ReportType;
+import java.util.List;
+import javax.persistence.FetchType;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -44,6 +47,7 @@ import com.alodiga.wallet.common.model.ReportType;
     @NamedQuery(name = "Report.findByWebServiceUrl", query = "SELECT r FROM Report r WHERE r.webServiceUrl = :webServiceUrl"),
     @NamedQuery(name = "Report.findByEnabled", query = "SELECT r FROM Report r WHERE r.enabled = :enabled")})
 public class Report extends AbstractWalletEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,8 +72,10 @@ public class Report extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "reportTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private ReportType reportTypeId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reportId")
-    private Collection<ReportParameter> reportParameterCollection;
+    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<ReportHasProfile> reportHasProfiles;
+    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    private List<ReportParameter> reportParameters;
 
     public Report() {
     }
@@ -141,13 +147,20 @@ public class Report extends AbstractWalletEntity implements Serializable {
         this.reportTypeId = reportTypeId;
     }
 
-    @XmlTransient
-    public Collection<ReportParameter> getReportParameterCollection() {
-        return reportParameterCollection;
+    public List<ReportHasProfile> getReportHasProfiles() {
+        return reportHasProfiles;
     }
 
-    public void setReportParameterCollection(Collection<ReportParameter> reportParameterCollection) {
-        this.reportParameterCollection = reportParameterCollection;
+    public void setReportHasProfiles(List<ReportHasProfile> reportHasProfiles) {
+        this.reportHasProfiles = reportHasProfiles;
+    }
+
+    public List<ReportParameter> getReportParameters() {
+        return reportParameters;
+    }
+
+    public void setReportParameters(List<ReportParameter> reportParameters) {
+        this.reportParameters = reportParameters;
     }
 
     @Override
@@ -184,4 +197,5 @@ public class Report extends AbstractWalletEntity implements Serializable {
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+
 }

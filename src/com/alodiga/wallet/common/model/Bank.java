@@ -5,10 +5,10 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,34 +18,28 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 
 /**
  *
- * @author usuario
+ * @author jose
  */
 @Entity
 @Table(name = "bank")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Bank.findAll", query = "SELECT b FROM Bank b"),
-    @NamedQuery(name = "Bank.findById", query = "SELECT b FROM Bank b WHERE b.id = :id"),
-    @NamedQuery(name = "Bank.findByName", query = "SELECT b FROM Bank b WHERE b.name = :name"),
-    @NamedQuery(name = "Bank.findByCountryIdBank", query = "SELECT b FROM Bank b WHERE b.countryId.id = :countryId"),
-    @NamedQuery(name = "Bank.findGroupByCountry", query = "SELECT b FROM Bank b GROUP BY b.countryId.id"),
-    @NamedQuery(name = "Bank.findByAba", query = "SELECT b FROM Bank b WHERE b.aba = :aba")})
+    @NamedQuery(name = "Bank.findAll", query = "SELECT b FROM Bank b")
+    , @NamedQuery(name = "Bank.findById", query = "SELECT b FROM Bank b WHERE b.id = :id")
+    , @NamedQuery(name = "Bank.findByName", query = "SELECT b FROM Bank b WHERE b.name = :name")
+    , @NamedQuery(name = "Bank.findByCountryIdBank", query = "SELECT b FROM Bank b WHERE b.countryId.id = :countryId")
+    , @NamedQuery(name = "Bank.findByAbaCode", query = "SELECT b FROM Bank b WHERE b.abaCode = :abaCode")
+    , @NamedQuery(name = "Bank.findByCountryId", query = "SELECT b FROM Bank b WHERE b.countryId.id = :countryId")
+    , @NamedQuery(name = "Bank.findBySwiftCode", query = "SELECT b FROM Bank b WHERE b.swiftCode = :swiftCode")})
+
 public class Bank extends AbstractWalletEntity implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bankId")
-    private Collection<BankOperation> bankOperationCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,23 +47,22 @@ public class Bank extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "name")
     private String name;
+    @Size(max = 30)
+    @Column(name = "abaCode")
+    private String abaCode;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "aba")
-    private String aba;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bankId")
-    private Collection<UserHasBank> userHasBankCollection;
-    @JoinColumn(name = "enterpriseId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Enterprise enterpriseId;
+    @Size(min = 1, max = 20)
+    @Column(name = "SwiftCode")
+    private String swiftCode;
     @JoinColumn(name = "countryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Country countryId;
+    @JoinColumn(name = "enterpriseId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Enterprise enterpriseId;
 
     public Bank() {
     }
@@ -78,10 +71,10 @@ public class Bank extends AbstractWalletEntity implements Serializable {
         this.id = id;
     }
 
-    public Bank(Long id, String name, String aba) {
+    public Bank(Long id, String name, String swiftCode) {
         this.id = id;
         this.name = name;
-        this.aba = aba;
+        this.swiftCode = swiftCode;
     }
 
     public Long getId() {
@@ -100,30 +93,20 @@ public class Bank extends AbstractWalletEntity implements Serializable {
         this.name = name;
     }
 
-    public String getAba() {
-        return aba;
+    public String getAbaCode() {
+        return abaCode;
     }
 
-    public void setAba(String aba) {
-        this.aba = aba;
+    public void setAbaCode(String abaCode) {
+        this.abaCode = abaCode;
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<UserHasBank> getUserHasBankCollection() {
-        return userHasBankCollection;
+    public String getSwiftCode() {
+        return swiftCode;
     }
 
-    public void setUserHasBankCollection(Collection<UserHasBank> userHasBankCollection) {
-        this.userHasBankCollection = userHasBankCollection;
-    }
-
-    public Enterprise getEnterpriseId() {
-        return enterpriseId;
-    }
-
-    public void setEnterpriseId(Enterprise enterpriseId) {
-        this.enterpriseId = enterpriseId;
+    public void setSwiftCode(String swiftCode) {
+        this.swiftCode = swiftCode;
     }
 
     public Country getCountryId() {
@@ -132,6 +115,14 @@ public class Bank extends AbstractWalletEntity implements Serializable {
 
     public void setCountryId(Country countryId) {
         this.countryId = countryId;
+    }
+
+    public Enterprise getEnterpriseId() {
+        return enterpriseId;
+    }
+
+    public void setEnterpriseId(Enterprise enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 
     @Override
@@ -156,17 +147,7 @@ public class Bank extends AbstractWalletEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.model.Bank[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<BankOperation> getBankOperationCollection() {
-        return bankOperationCollection;
-    }
-
-    public void setBankOperationCollection(Collection<BankOperation> bankOperationCollection) {
-        this.bankOperationCollection = bankOperationCollection;
+        return "com.alodiga.wallet.common.model.Bank[ id=" + id + " ]";
     }
 
     @Override
@@ -178,5 +159,5 @@ public class Bank extends AbstractWalletEntity implements Serializable {
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
-
+    
 }

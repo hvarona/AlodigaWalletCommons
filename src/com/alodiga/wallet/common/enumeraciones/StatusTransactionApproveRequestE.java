@@ -7,7 +7,7 @@ package com.alodiga.wallet.common.enumeraciones;
 
 public enum StatusTransactionApproveRequestE {
 
-        PENDIEN(1, "Pendiente", "PENDIEN"),
+        PENDIEN(1, "Pendiente", "PENDIE"),
 	APROBA(2, "Aprobada", "APROBA"),
 	RECHAZ(3, "Rechazada", "RECHAZ");
         

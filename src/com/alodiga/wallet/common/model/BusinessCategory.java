@@ -7,6 +7,7 @@ package com.alodiga.wallet.common.model;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -20,7 +21,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -37,7 +37,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "BusinessCategory.findAll", query = "SELECT b FROM BusinessCategory b")
     , @NamedQuery(name = "BusinessCategory.findById", query = "SELECT b FROM BusinessCategory b WHERE b.id = :id")
     , @NamedQuery(name = "BusinessCategory.findByDescription", query = "SELECT b FROM BusinessCategory b WHERE b.description = :description")
-    , @NamedQuery(name = "BusinessCategory.findByMccCode", query = "SELECT b FROM BusinessCategory b WHERE b.mccCode = :mccCode")})
+    , @NamedQuery(name = "BusinessCategory.findByMccCode", query = "SELECT b FROM BusinessCategory b WHERE b.mccCode = :mccCode")
+    , @NamedQuery(name = QueryConstants.CODEMCC_EXIST_IN_BD_BUSINESS_CATEGORY, query = "SELECT b FROM BusinessCategory b WHERE b.mccCode = :mccCode")})
+
 public class BusinessCategory extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,15 +49,12 @@ public class BusinessCategory extends AbstractWalletEntity implements Serializab
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 80)
     @Column(name = "description")
     private String description;
     @Size(max = 10)
     @Column(name = "mccCode")
     private String mccCode;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessCategoryId")
-    private Collection<BusinessSubCategory> businessSubCategoryCollection;
 
     public BusinessCategory() {
     }
@@ -91,16 +90,6 @@ public class BusinessCategory extends AbstractWalletEntity implements Serializab
 
     public void setMccCode(String mccCode) {
         this.mccCode = mccCode;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<BusinessSubCategory> getBusinessSubCategoryCollection() {
-        return businessSubCategoryCollection;
-    }
-
-    public void setBusinessSubCategoryCollection(Collection<BusinessSubCategory> businessSubCategoryCollection) {
-        this.businessSubCategoryCollection = businessSubCategoryCollection;
     }
 
     @Override

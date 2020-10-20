@@ -665,3 +665,56 @@ ADD UNIQUE INDEX `name_UNIQUE` (`name` ASC);
 -- author: Moises Graterol
 -- Fecha: 31/08/2020
 UPDATE `alodigaWallet`.`country` SET `shortName`='ANT' WHERE `id`='9';
+
+-- Cambios person_classification
+-- author: Jorge Pinto
+-- Fecha: 23/09/2020
+UPDATE `alodigaWallet`.`person_classification` SET `description`='Natural Business Applicant', `code`='NABUAP' WHERE `id`='1';
+UPDATE `alodigaWallet`.`person_classification` SET `description`='Legal Business Applicant', `code`='LEBUAP' WHERE `id`='2';
+UPDATE `alodigaWallet`.`person_classification` SET `description`='Employee', `code`='EMPLOY' WHERE `id`='3';
+UPDATE `alodigaWallet`.`person_classification` SET `description`='User', `code`='USER' WHERE `id`='4';
+
+-- Insertar en las preferencias hora de cierre de la billetera
+-- author: Yamelis Almea
+-- Fecha: 06/10/2020
+INSERT INTO `alodigaWallet`.`preference_field` (`id`, `name`, `preferenceId`, `enabled`, `preferenceTypeId`) VALUES ('25', 'MAX_NUMBER_OF_CARDS_ENABLED', '3', '1', '1');
+INSERT INTO `alodigaWallet`.`preference_field` (`id`, `name`, `preferenceId`, `enabled`, `preferenceTypeId`) VALUES ('26', 'WALLET_CLOSING_TIME', '3', '1', '1');
+INSERT INTO `alodigaWallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('27', '25', '1', 'Max number card of enabled');
+INSERT INTO `alodigaWallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('28', '25', '2', 'Cantidad maxima de tarjetas habiltar');
+INSERT INTO `alodigaWallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('29', '26', '1', 'Wallet closing time');
+INSERT INTO `alodigaWallet`.`preference_field_data` (`id`, `preferenceFieldId`, `languageId`, `description`) VALUES ('30', '26', '2', 'Hora de cierre de la billetera');
+INSERT INTO `alodigaWallet`.`preference_value` (`id`, `value`, `preferenceFieldId`, `preferenceClassficationId`, `createDate`, `updateDate`, `enabled`) VALUES ('136', '5', '25', '2', '2020-10-06 12:49:06', '2020-10-06 12:49:06', '1');
+INSERT INTO `alodigaWallet`.`preference_value` (`id`, `value`, `preferenceFieldId`, `preferenceClassficationId`, `createDate`, `updateDate`, `enabled`) VALUES ('140', '11:38:00', '26', '1', '2020-10-06 12:49:06', '2020-10-06 12:49:06', '1');
+
+-- Agregar tipo de reporte TRANSACTION en tabla report_type
+-- author: Yamelis Almea
+-- Fecha: 09/10/2020
+INSERT INTO `alodigaWallet`.`report_type` (`name`, `description`) VALUES ("TRANSACTION", "Reportes de Transacciones");
+
+-- Cambios para agregar el preference_type correspondiente a cada preference_field
+-- author: Yamelis Almea
+-- Fecha: 14/10/2020
+INSERT INTO `alodigawallet`.`preference_type` (`id`, `type`) VALUES ('6', 'BOOLEAN');
+
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '2' WHERE (`id` = '1');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '2' WHERE (`id` = '4');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '1' WHERE (`id` = '7');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '6' WHERE (`id` = '9');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '2' WHERE (`id` = '10');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '2' WHERE (`id` = '20');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '2' WHERE (`id` = '21');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '1' WHERE (`id` = '22');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '1' WHERE (`id` = '23');
+UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '3' WHERE (`id` = '26');
+
+-- Cambios para agregar datos en el campo code de Language
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+UPDATE `alodigaWallet`.`language` SET `code`='ENGLI' WHERE `id`='1';
+UPDATE `alodigaWallet`.`language` SET `code`='SPANI' WHERE `id`='2';
+
+-- Cambios para agregar datos en el campo code de preference_classification
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+UPDATE `alodigaWallet`.`preference_classification` SET `code`='CLIEN' WHERE `id`='1';
+UPDATE `alodigaWallet`.`preference_classification` SET `code`='NEGOC' WHERE `id`='2';

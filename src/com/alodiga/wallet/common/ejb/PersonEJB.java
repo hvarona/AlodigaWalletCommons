@@ -88,13 +88,16 @@ public interface PersonEJB extends WalletGenericEJB {
     //Employee
     public List<Employee> getEmployee(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public Employee saveEmployee(Employee employee)  throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<Employee> searchEmployee(String name) throws EmptyListException, GeneralException, NullParameterException;
     
     //Tabla de PersonClassification 
     public PersonClassification loadPersonClassification(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     //ComercialAgency
     public List<ComercialAgency> getComercialAgency(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
+    
+    public ComercialAgency loadComercialAgency(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
     //EmployedPosition
     public List<EmployedPosition> getEmployedPosition(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
@@ -103,6 +106,7 @@ public interface PersonEJB extends WalletGenericEJB {
     public List<PasswordChangeRequest> getPasswordChangeRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public PasswordChangeRequest loadPasswordChangeRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public PasswordChangeRequest savePasswordChangeRequest(PasswordChangeRequest passwordChangeRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<PasswordChangeRequest> getSearchPasswordChangeRequest(String name) throws EmptyListException, GeneralException, NullParameterException;
     
     //CivilStatus
     public CivilStatus loadCivilStatus(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;

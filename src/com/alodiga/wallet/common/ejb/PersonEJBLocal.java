@@ -67,6 +67,7 @@ public interface PersonEJBLocal extends WalletGenericEJB {
     public List<Person> getPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public Person loadPerson(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public Person savePerson(Person person) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<Employee> searchEmployee(String name) throws EmptyListException, GeneralException, NullParameterException;
     
     //Natural Person
     public List<NaturalPerson> getNaturalPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
@@ -94,6 +95,8 @@ public interface PersonEJBLocal extends WalletGenericEJB {
     //ComercialAgency
     public List<ComercialAgency> getComercialAgency(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
+    public ComercialAgency loadComercialAgency(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
     //EmployedPosition
     public List<EmployedPosition> getEmployedPosition(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
@@ -101,6 +104,7 @@ public interface PersonEJBLocal extends WalletGenericEJB {
     public List<PasswordChangeRequest> getPasswordChangeRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public PasswordChangeRequest loadPasswordChangeRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public PasswordChangeRequest savePasswordChangeRequest(PasswordChangeRequest passwordChangeRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<PasswordChangeRequest> getSearchPasswordChangeRequest(String name) throws EmptyListException, GeneralException, NullParameterException;
     
     //CivilStatus
     public CivilStatus loadCivilStatus(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;

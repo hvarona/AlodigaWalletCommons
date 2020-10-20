@@ -6,10 +6,7 @@
 package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,17 +16,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.utils.QueryConstants;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Basic;
 
 /**
  *
@@ -46,42 +40,35 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "Commission.findByIsPercentCommision", query = "SELECT c FROM Commission c WHERE c.isPercentCommision = :isPercentCommision"),
     @NamedQuery(name = "Commission.findByProductTransactionType", query = "SELECT c FROM Commission c WHERE c.productId.id = :productId AND c.transactionTypeId.id = :transactionTypeId AND c.endingDate is null"),
     @NamedQuery(name = "Commission.findByValue", query = "SELECT c FROM Commission c WHERE c.value = :value"),
-    @NamedQuery(name = QueryConstants.COMMISSION_BY_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id= :productId")})
+    @NamedQuery(name = QueryConstants.COMMISSION_BY_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id= :productId"),
+    @NamedQuery(name = QueryConstants.COMMISSION_BY_TRANSACTIONTYPE_AND_PRODUCT, query = "SELECT c FROM Commission c WHERE c.productId.id = :productId AND c.transactionTypeId.id = :transactionTypeId AND c.indApplicationCommission = :indApplicationCommission  AND c.endingDate is null")})
+
 public class Commission extends AbstractWalletEntity implements Serializable {
 
-    @OneToMany(mappedBy = "commisionId")
-    private Collection<BankOperation> bankOperationCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Long id;
-    @Basic(optional = false)
+    private Long id;    
     @Column(name = "beginningDate")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date beginningDate;
+    private Date beginningDate;    
     @Column(name = "endingDate")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date endingDate;
-    @Basic(optional = false)
+    private Date endingDate;    
     @Column(name = "isPercentCommision")
-    private short isPercentCommision;
-    @Basic(optional = false)
+    private short isPercentCommision;    
     @Column(name = "value")
-    private float value;
+    private float value;    
     @JoinColumn(name = "transactionTypeId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private TransactionType transactionTypeId;
+    @ManyToOne
+    private TransactionType transactionTypeId;    
     @JoinColumn(name = "productId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Product productId;
-    @Basic(optional = false)
-    @NotNull
+    @ManyToOne
+    private Product productId;    
     @Column(name = "indApplicationCommission")
     private int indApplicationCommission;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "commissionId")
-    private Collection<CommissionItem> commissionItemCollection;
 
     public Commission() {
     }
@@ -152,14 +139,13 @@ public class Commission extends AbstractWalletEntity implements Serializable {
     public void setProductId(Product productId) {
         this.productId = productId;
     }
-
-    @XmlTransient
-    public Collection<CommissionItem> getCommissionItemCollection() {
-        return commissionItemCollection;
+    
+    public int getIndApplicationCommission() {
+        return indApplicationCommission;
     }
 
-    public void setCommissionItemCollection(Collection<CommissionItem> commissionItemCollection) {
-        this.commissionItemCollection = commissionItemCollection;
+    public void setIndApplicationCommission(int indApplicationCommission) {
+        this.indApplicationCommission = indApplicationCommission;
     }
 
     @Override
@@ -187,16 +173,6 @@ public class Commission extends AbstractWalletEntity implements Serializable {
         return "dto.Commission[ id=" + id + " ]";
     }
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<BankOperation> getBankOperationCollection() {
-        return bankOperationCollection;
-    }
-
-    public void setBankOperationCollection(Collection<BankOperation> bankOperationCollection) {
-        this.bankOperationCollection = bankOperationCollection;
-    }
-
     @Override
     public Object getPk() {
         return getId();
@@ -205,14 +181,6 @@ public class Commission extends AbstractWalletEntity implements Serializable {
     @Override
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
-    }
-
-    public int getIndApplicationCommission() {
-        return indApplicationCommission;
-    }
-
-    public void setIndApplicationCommission(int indApplicationCommission) {
-        this.indApplicationCommission = indApplicationCommission;
     }
 
 }

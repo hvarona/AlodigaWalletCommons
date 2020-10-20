@@ -17,10 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 
@@ -52,7 +50,6 @@ public class Address extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "zipCode")
     private String zipCode;
@@ -71,7 +68,6 @@ public class Address extends AbstractWalletEntity implements Serializable {
     @Column(name = "urbanization")
     private String urbanization;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "addressLine1")
     private String addressLine1;
@@ -79,7 +75,6 @@ public class Address extends AbstractWalletEntity implements Serializable {
     @Column(name = "addressLine2")
     private String addressLine2;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "indMainAddress")
     private boolean indMainAddress;
     @JoinColumn(name = "addressTypeId", referencedColumnName = "id")

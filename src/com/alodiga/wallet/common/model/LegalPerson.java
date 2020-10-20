@@ -24,7 +24,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -62,7 +61,6 @@ public class LegalPerson extends AbstractWalletEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "identificationNumber")
     private String identificationNumber;
@@ -70,7 +68,6 @@ public class LegalPerson extends AbstractWalletEntity implements Serializable {
     @Column(name = "tradeName")
     private String tradeName;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 80)
     @Column(name = "businessName")
     private String businessName;
@@ -93,7 +90,6 @@ public class LegalPerson extends AbstractWalletEntity implements Serializable {
     @ManyToOne
     private LegalRepresentative legalRepresentativeId;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "payedCapital")
     private float payedCapital;
     @JoinColumn(name = "statusApplicantId", referencedColumnName = "id")

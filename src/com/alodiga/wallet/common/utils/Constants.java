@@ -122,6 +122,8 @@ public class Constants {
     public static final Long sTransationType = 2l;
     public static final Long sTransactionSource = 2l;
     public static final String sTransactionConcept = "Payment Shop";
+    public static final Long preferenceClassficationUser = 1l;
+    public static final Long preferenceClassficationBusiness = 2l;
 
     public static final String ALODIGA_WALLET_USUARIO_API = "usuarioWS";
     public static final String ALODIGA_WALLET_PASSWORD_API = "passwordWS";
@@ -140,6 +142,7 @@ public class Constants {
     public static final int SEND_TYPE_EMAIL_TRASNFER_CARD_TO_CARD = 11;
     public static final int SEND_TYPE_EMAIL_TRASNFER_CARD_TO_CARD_RECIBER = 12;
     public static final int SEND_TYPE_EMAIL_RECOVER_PASSWORD = 13;
+    public static final int SEND_TYPE_EMAIL_DAILY_CLOSING_WALLET = 14;
 
     // constantes SendTypeSMS
     public static final int SEND_TYPE_SMS_REGISTER = 20;
@@ -173,6 +176,13 @@ public class Constants {
     //Language
     public static final Long SPANISH_LANGUAGE = 1L;
     public static final Long ENGLISH_LANGUAGE = 2L;
+    
+    public static final int SPANISH = 2;
+    public static final int ENGLISH = 1;
+    
+    //Preference Classification
+    public static final Long CLIENT_CLASSIFICATION = 1L;
+    public static final Long BUSINESS_CLASSIFICATION = 2L;
 
     //Integrator Name
     public static final String INTEGRATOR_SIMBOX = "Simbox";
@@ -248,6 +258,8 @@ public class Constants {
 
     public static final int ORIGIN_APPLICATION_ID = 1;
     public static final String PRODUCT_KEY = "productId";
+    public static final String COMISSION_PRODUCT_KEY = "value";
+    public static final String TRANSACTION_TYPE_KEY = "transactionTypeId";
     public static final String DOCUMENT_TYPE_KEY = "documentTypeId";
     public static final int DOCUMENT_TYPE_MANUAL_WITHDRAWAL_APPROVAL = 2;
     public static final String BUSINESS_CATEGORY_ID = "businessCategoryId";
@@ -258,6 +270,7 @@ public class Constants {
     public static final int ORIGIN_APPLICATION_WALLET_ADMIN_WEB_ID = 2;
     public static final String PERSON_KEY = "personId";
     public static final String PERSON_TYPE_KEY = "personTypeId";
+    public static final String BUSINESS_TYPE_KEY = "businessTypeId";
     public static final int PHONE_TYPE_ROOM = 1;
     public static final int PHONE_TYPE_MOBILE = 2;
     public static final String NATURAL_PERSON_KEY = "naturalPersonId";
@@ -266,9 +279,14 @@ public class Constants {
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_INCOMPLET= "RECINC";
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_PENDING= "PENDIE";
     public static final String ORIGIN_APPLICATION_PORTAL_NEGOCIOS_CODE= "PORNEG";
+    public static final String ORIGIN_APPLICATION_WALLET_ADMIN_WEB_CODE= "AWAWEB";
     public static final String CURRENT_PASSWORD = "currentPassword";
     public static final String USER_KEY = "userId";
     public static final String COUNTRY_KEY ="countryId";
+    public static final String PARAM_LOGIN = "login";
+    public static final String HOLI_DAY_DATE_KEY= "holidayDate";
+    public static final String PREFERENCE_KEY = "preferenceId";
+    public static final String PREFERENCE_FIELD_KEY = "preferenceFieldId";
     
     public static final int STATUS_APPLICANT_ACTIVE = 1;
     public static final int STATUS_APPLICANT_BLACK_LIST_OK = 2;
@@ -299,8 +317,10 @@ public class Constants {
     //Parámetros de las consultas de BD
     public static final String PARAM_CODE = "code";
     public static final String PARAM_NAME = "name";
+    public static final String PARAM_MCC_CODE = "mccCode";
     public static final String STATUS_KEY = "statusCardId";
     public static final int REVIEW_REQUEST_TYPE = 1;
+    public static final String APPLICATION_COMISSION = "indApplicationCommission";
     
     //PLAID
     public static final String CLIENTID = "5eea3c83ca4e880014b64ce2";
@@ -308,6 +328,7 @@ public class Constants {
     
     //PersonClassification
     public static Integer CLASSIFICATION_PERSON_EMPLOYEE = 3; 
+    public static Integer CLASSIFICATION_PERSON_USER = 4;
     
     //AddressType
     public static Integer RESIDENCE_ADDRESS_TYPE = 1;
@@ -317,6 +338,9 @@ public class Constants {
     
     //StreetType
     public static Integer STREET_TYPE = 1;
+    
+    //Enterprise Alodiga
+    public static final Long ENTERPRISE_ID_USA = 1L;
     
     
     

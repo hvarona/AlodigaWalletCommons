@@ -21,13 +21,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.BalanceHistory;
-import com.alodiga.wallet.common.model.Product;
-import com.alodiga.wallet.common.model.Transaction;
-
 
 /**
  *
@@ -40,42 +35,43 @@ import com.alodiga.wallet.common.model.Transaction;
     @NamedQuery(name = "BalanceHistory.findAll", query = "SELECT b FROM BalanceHistory b"),
     @NamedQuery(name = "BalanceHistory.findById", query = "SELECT b FROM BalanceHistory b WHERE b.id = :id"),
     @NamedQuery(name = "BalanceHistory.findByUserId", query = "SELECT b FROM BalanceHistory b WHERE b.userId = :userId"),
+    @NamedQuery(name = "BalanceHistory.findByBusinessId", query = "SELECT b FROM BalanceHistory b WHERE b.businessId = :businessId"),
     @NamedQuery(name = "BalanceHistory.findByOldAmount", query = "SELECT b FROM BalanceHistory b WHERE b.oldAmount = :oldAmount"),
     @NamedQuery(name = "BalanceHistory.findByCurrentAmount", query = "SELECT b FROM BalanceHistory b WHERE b.currentAmount = :currentAmount"),
     @NamedQuery(name = "BalanceHistory.findByDate", query = "SELECT b FROM BalanceHistory b WHERE b.date = :date"),
     @NamedQuery(name = "BalanceHistory.findByVersion", query = "SELECT b FROM BalanceHistory b WHERE b.version = :version"),
     @NamedQuery(name = "BalanceHistory.lastDateByUser", query = "SELECT MAX(b.date) FROM BalanceHistory b WHERE b.userId = :userId"),
     @NamedQuery(name = "BalanceHistory.findByAdjusmentInfo", query = "SELECT b FROM BalanceHistory b WHERE b.adjusmentInfo = :adjusmentInfo")})
+
 public class BalanceHistory  extends AbstractWalletEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Long id;
-    @Basic(optional = false)
+    private Long id;  
     @Column(name = "userId")
-    private long userId;
-    @Basic(optional = false)
+    private long userId;    
+    @Column(name = "businessId")
+    private long businessId;   
+    @Column(name = "transactionBusinessId")
+    private long transactionBusinessId;
     @Column(name = "oldAmount")
-    private float oldAmount;
-    @Basic(optional = false)
+    private float oldAmount;    
     @Column(name = "currentAmount")
-    private float currentAmount;
-    @Basic(optional = false)
+    private float currentAmount;   
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
-    @Basic(optional = false)
+    private Date date;    
     @Column(name = "version")
-    private long version;
+    private long version;    
     @Column(name = "adjusmentInfo")
     private String adjusmentInfo;
     @JoinColumn(name = "transactionId", referencedColumnName = "id")
     @ManyToOne
-    private Transaction transactionId;
+    private Transaction transactionId;    
     @JoinColumn(name = "productId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Product productId;
 
     public BalanceHistory() {
@@ -85,9 +81,10 @@ public class BalanceHistory  extends AbstractWalletEntity implements Serializabl
         this.id = id;
     }
 
-    public BalanceHistory(Long id, long userId, float oldAmount, float currentAmount, Date date, long version) {
+    public BalanceHistory(Long id, long userId,long businessId, float oldAmount, float currentAmount, Date date, long version) {
         this.id = id;
         this.userId = userId;
+        this.businessId = businessId;
         this.oldAmount = oldAmount;
         this.currentAmount = currentAmount;
         this.date = date;
@@ -110,7 +107,23 @@ public class BalanceHistory  extends AbstractWalletEntity implements Serializabl
         this.userId = userId;
     }
 
-    public float getOldAmount() {
+    public long getBusinessId() {
+		return businessId;
+	}
+
+	public void setBusinessId(long businessId) {
+		this.businessId = businessId;
+	}
+
+	public long getTransactionBusinessId() {
+		return transactionBusinessId;
+	}
+
+	public void setTransactionBusinessId(long transactionBusinessId) {
+		this.transactionBusinessId = transactionBusinessId;
+	}
+
+	public float getOldAmount() {
         return oldAmount;
     }
 

@@ -35,12 +35,15 @@ public class QueryConstants {
     public static final String SOLICITUDES_BY_USER_RESPONDER = "solicitudesByUserResponder";
     public static final String SOLICITUDES_BY_DISTRIBUTOR_RESPONDER = "solicitudesByDistributorResponder";
     public static final String COMMISSION_BY_PRODUCT = "commissionByProduct";
+    public static final String COMMISSION_BY_TRANSACTIONTYPE_AND_PRODUCT ="comissionByTransactionTypeAndProduct";
+    public static final String EXCHANGE_RATE_BY_PRODUCT = "exchangeRateByProduct";
     public static final String BANK_BY_PRODUCT = "bankByProduct";
     public static final String TRANSACTION_BY_DISTRIBUTOR = "transactionByDistributor";
     public static final String TRANSACTION_BY_CUSTOMER = "transactionByCostumer";
     public static final String REPORT_BY_PROFILE = "reportByProfile";
     public static final String BUSINESS_SUB_CATEGORY_BY_CATEGORY = "businessSubCategoryByCategory";
     public static final String BUSINESS_TYPE_BY_ID = "businessTypeById";
+    public static final String BUSINESS_SERVICE_TYPE_BY_BUSINESS_TYPE = "businessServiceTypeByBusinessType";
     public static final String TRANSACTION_APPROVE_REQUEST_BY_STATUS = "transactionApproveRequestByStatus";
     public static final String CODE_BY_STATUS = "codeByStatus";
     public static final String PERSON_CLASSIFICATION_BY_CODE = "personClassificationByCode";
@@ -90,6 +93,7 @@ public class QueryConstants {
     public static final String PARAM_TITLE = "title";
     public static final String PARAM_TICKET_ID = "ticketId";
     public static final String PARAM_STATUS = "status";
+    public static final String PARAM_STATUS_SOURCE_ID = "transactionSourceId";
     public static final String PARAM_DISTRIBUTOR_LOGIN = "distributorLogin";
     public static final String PARAM_USER_LOGIN = "userLogin";
     public static final String PARAM_USER_RESPONDER_LOGIN = "userResponderLogin";
@@ -166,7 +170,9 @@ public class QueryConstants {
     public static final String PARAM_BANK_ID = "bankId";
     public static final String PARAM_BUSSINESS_ID = "bussinessId";
     public static final String PERSON_TYPE_BY_COUNTRY = "personTypeByCountry";
+    public static final String PERSON_TYPE_ID = "personTypeId";
     public static final String COLLECTION_TYPE_BY_COUNTRY = "CollectionTypeByCountry";
+    public static final String COLLECTION_TYPE_BY_COUNTRY_BY_PERSON_TYPE = "CollectionTypeByCountryByPersonType";
     public static final String REVIEW_OFAC_BY_REQUEST = "reviewOfacByRequest";
     public static final String PARAM_REQUEST_NUMBER = "requestNumber";
     public static final String PARAM_CODE = "code";
@@ -180,6 +186,8 @@ public class QueryConstants {
     public static final String LEGAL_PERSON_BY_LEGAL_REPRESENTATIVE = "legalPersonByLegalRepresentative";
     public static final String PARAM_IND_NATURAL_PERSON = "indNaturalPerson";
     public static final String PERSON_TYPE_BY_COUNTRY_BY_IND_NATURAL_PERSON = "personTypeByCountryByIndNaturalPerson";
+    public static final String PERSON_TYPE_BY_COUNTRY_BY_ORIGIN_APPLICATION = "personTypeByCountryByOriginApplication";
+    public static final String PERSON_TYPE_BY_COUNTRY_BY_ORIGIN_APPLICATION_PORTAL = "personTypeByCountryByOriginApplicationPortal";
     public static final String PARAM_BUSINESS_TYPE_ID = "businessTypeId";
     public static final String REVIEW_REQUEST_BY_REQUEST = "reviewRequestByRequest";
     public static final String PARAM_BUSINESS_AFFILIATION_REQUEST_ID = "businessAffiliationRequestId";
@@ -193,9 +201,18 @@ public class QueryConstants {
     public static final String COLLECTIONS_BY_PERSON_TYPE = "collectionsByPersonType";
     public static final String DOCUMENTS_BY_COUNTRY = "documentsByCountry";
     public static final String PHONES_BY_MAIN = "phonesByMain";
+    public static final String LOGIN_EXIST_IN_BD = "loginExistInBD";
+    public static final String EMPLOYEE_EXIST_IN_BD = "EmployeeExistInBD";
     public static final String VALIDATE_PASSWORD = "validatePassword";
     public static final String CLASSIFICATION_ID = "classificationId";
     public static final String CODE_EXIST_IN_BD_COUNTRY = "codeExistInBdCountry";
     public static final String NAME_EXIST_IN_BD_COUNTRY = "nameExistInBdCountry";
-    
+    public static final String CODEMCC_EXIST_IN_BD_BUSINESS_CATEGORY="codeMCCExistInBdBusinessCategory";
+    public static final String CODEMCC_EXIST_IN_BD_BUSINESS_SUB_CATEGORY="codeMCCExistInBdBusinessSubCategory";
+    public static final String CODE_EXIST_IN_BD_BUSINESS_SERVICE_TYPE="codeExistInBdBusinessServiceType";
+    public static final String CODE_EXIST_IN_BD_PREFERENCE_FIELD = "codeExistInBdPreferenceField";
+    public static final String CODE_EXIST_IN_BD_TRANSACTION_TYPE = "codeExistInBdTransactionType";
+    public static final String HOLI_DAY_EXIST_IN_BD_CALENDAR_DAYS = "holiDayExistInBdCalendarDays";
+    public static final String PARAM_PERMISSION_ID = "permissionId";
+    public static final String PREFERENCE_FIELD_DATA_BY_PREFERENCE = "preferenceFieldDataByPreference";
 }

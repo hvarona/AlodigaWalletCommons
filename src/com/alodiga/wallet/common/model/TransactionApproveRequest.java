@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package com.alodiga.wallet.common.model;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -23,8 +23,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -35,16 +33,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "transaction_approve_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TransactionApproveRequest.findAll", query = "SELECT t FROM TransactionApproveRequest t"),
-    @NamedQuery(name = "TransactionApproveRequest.findById", query = "SELECT t FROM TransactionApproveRequest t WHERE t.id = :id"),
-    @NamedQuery(name = "TransactionApproveRequest.findByCreateDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.createDate = :createDate"),
-    @NamedQuery(name = "TransactionApproveRequest.findByUpdateDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.updateDate = :updateDate"),
-    @NamedQuery(name = "TransactionApproveRequest.findByRequestNumber", query = "SELECT t FROM TransactionApproveRequest t WHERE t.requestNumber = :requestNumber"),
-    @NamedQuery(name = "TransactionApproveRequest.findByRequestDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.requestDate = :requestDate"),
-    @NamedQuery(name = "TransactionApproveRequest.findByIndApproveRequest", query = "SELECT t FROM TransactionApproveRequest t WHERE t.indApproveRequest = :indApproveRequest"),
-    @NamedQuery(name = "TransactionApproveRequest.findByApprovedRequestDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.approvedRequestDate = :approvedRequestDate"),
-    @NamedQuery(name = "TransactionApproveRequest.findByObservations", query = "SELECT t FROM TransactionApproveRequest t WHERE t.observations = :observations"),
-    @NamedQuery(name = QueryConstants.TRANSACTION_APPROVE_REQUEST_BY_STATUS, query = "SELECT t FROM TransactionApproveRequest t  WHERE t.statusTransactionApproveRequestId.id= :statusTransactionApproveRequestId AND t.requestNumber like CONCAT('%',:requestNumber,'%')")})
+    @NamedQuery(name = "TransactionApproveRequest.findAll", query = "SELECT t FROM TransactionApproveRequest t")
+    , @NamedQuery(name = "TransactionApproveRequest.findById", query = "SELECT t FROM TransactionApproveRequest t WHERE t.id = :id")
+    , @NamedQuery(name = "TransactionApproveRequest.findByUnifiedRegistryUserId", query = "SELECT t FROM TransactionApproveRequest t WHERE t.unifiedRegistryUserId = :unifiedRegistryUserId")
+    , @NamedQuery(name = "TransactionApproveRequest.findByCreateDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.createDate = :createDate")
+    , @NamedQuery(name = "TransactionApproveRequest.findByUpdateDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.updateDate = :updateDate")
+    , @NamedQuery(name = "TransactionApproveRequest.findByRequestNumber", query = "SELECT t FROM TransactionApproveRequest t WHERE t.requestNumber = :requestNumber")
+    , @NamedQuery(name = "TransactionApproveRequest.findByRequestDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.requestDate = :requestDate")
+    , @NamedQuery(name = "TransactionApproveRequest.findByIndApproveRequest", query = "SELECT t FROM TransactionApproveRequest t WHERE t.indApproveRequest = :indApproveRequest")
+    , @NamedQuery(name = "TransactionApproveRequest.findByApprovedRequestDate", query = "SELECT t FROM TransactionApproveRequest t WHERE t.approvedRequestDate = :approvedRequestDate")
+    , @NamedQuery(name = "TransactionApproveRequest.findByObservations", query = "SELECT t FROM TransactionApproveRequest t WHERE t.observations = :observations")
+    , @NamedQuery(name = "TransactionApproveRequest.findByBusinessId", query = "SELECT t FROM TransactionApproveRequest t WHERE t.businessId = :businessId")
+    , @NamedQuery(name = QueryConstants.TRANSACTION_APPROVE_REQUEST_BY_STATUS, query = "SELECT t FROM TransactionApproveRequest t  WHERE t.requestNumber like CONCAT('%',:requestNumber,'%')")})
+
 public class TransactionApproveRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,8 +54,9 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
+    @Column(name = "UnifiedRegistryUserId")
+    private BigInteger unifiedRegistryUserId;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "createDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
@@ -62,12 +64,9 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
     @Column(name = "requestNumber")
     private String requestNumber;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "requestDate")
     @Temporal(TemporalType.DATE)
     private Date requestDate;
@@ -76,9 +75,13 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
     @Column(name = "approvedRequestDate")
     @Temporal(TemporalType.DATE)
     private Date approvedRequestDate;
-    @Size(max = 1000)
     @Column(name = "observations")
     private String observations;
+    @Column(name = "businessId")
+    private BigInteger businessId;
+    @JoinColumn(name = "bankOperationId", referencedColumnName = "id")
+    @ManyToOne
+    private BankOperation bankOperationId;
     @JoinColumn(name = "productId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Product productId;
@@ -91,13 +94,6 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
     @JoinColumn(name = "userApprovedRequestId", referencedColumnName = "id")
     @ManyToOne
     private User userApprovedRequestId;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "UnifiedRegistryUserId")
-    private long unifiedRegistryUserId;
-    @JoinColumn(name = "bankOperationId", referencedColumnName = "id")
-    @ManyToOne
-    private BankOperation bankOperationId;
 
     public TransactionApproveRequest() {
     }
@@ -119,6 +115,14 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public BigInteger getUnifiedRegistryUserId() {
+        return unifiedRegistryUserId;
+    }
+
+    public void setUnifiedRegistryUserId(BigInteger unifiedRegistryUserId) {
+        this.unifiedRegistryUserId = unifiedRegistryUserId;
     }
 
     public Date getCreateDate() {
@@ -175,6 +179,22 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
 
     public void setObservations(String observations) {
         this.observations = observations;
+    }
+
+    public BigInteger getBusinessId() {
+        return businessId;
+    }
+
+    public void setBusinessId(BigInteger businessId) {
+        this.businessId = businessId;
+    }
+
+    public BankOperation getBankOperationId() {
+        return bankOperationId;
+    }
+
+    public void setBankOperationId(BankOperation bankOperationId) {
+        this.bankOperationId = bankOperationId;
     }
 
     public Product getProductId() {
@@ -234,23 +254,6 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
         return "com.alodiga.wallet.common.model.TransactionApproveRequest[ id=" + id + " ]";
     }
 
-    public long getUnifiedRegistryUserId() {
-        return unifiedRegistryUserId;
-    }
-
-    public void setUnifiedRegistryUserId(long unifiedRegistryUserId) {
-        this.unifiedRegistryUserId = unifiedRegistryUserId;
-    }
-
-    public BankOperation getBankOperationId() {
-        return bankOperationId;
-    }
-
-    public void setBankOperationId(BankOperation bankOperationId) {
-        this.bankOperationId = bankOperationId;
-    }
-    
-
     @Override
     public Object getPk() {
         return getId();
@@ -260,4 +263,6 @@ public class TransactionApproveRequest extends AbstractWalletEntity implements S
     public String getTableName() throws TableNotFoundException {
         return super.getTableName(this.getClass());
     }
+    
+    
 }

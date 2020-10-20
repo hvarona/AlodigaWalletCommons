@@ -955,3 +955,226 @@ ADD CONSTRAINT `fk_transaction_dailyClosing1`
  REFERENCES `alodigaWallet`.`daily_closing` (`id`)
  ON DELETE NO ACTION
  ON UPDATE NO ACTION;
+
+-- Agregar campo en tabla Bank
+-- author: Jesús Gómez
+-- Fecha: 10/09/2020
+ALTER TABLE `alodigaWallet`.`bank` 
+CHANGE COLUMN `aba` `aba` VARCHAR(30) NULL,
+ADD COLUMN `SwiftCode` VARCHAR(20) NOT NULL AFTER `aba`;
+
+ALTER TABLE `alodigaWallet`.`bank` 
+CHANGE COLUMN `countryId` `countryId` BIGINT(30) NOT NULL AFTER `id`,
+CHANGE COLUMN `enterpriseId` `enterpriseId` BIGINT(20) NOT NULL AFTER `swiftCode`,
+CHANGE COLUMN `aba` `abaCode` VARCHAR(30) NULL DEFAULT NULL;
+
+-- Agregar FK en tabla collection_type
+-- author: Jesús Gómez
+-- Fecha: 14/09/2020
+SET FOREIGN_KEY_CHECKS=0;
+ALTER TABLE `alodigaWallet`.`collection_type`
+ADD COLUMN `personTypeId` INT(11) NOT NULL,
+ALTER TABLE `alodigaWallet`.`collection_type`
+ADD CONSTRAINT `fk_collectionType_personType1`
+ FOREIGN KEY (`personTypeId`)
+ REFERENCES `alodigaWallet`.`person_type` (`id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+ SET FOREIGN_KEY_CHECKS=1;
+
+-- Cambios para incluir el transaccionBusinessId que se genera en el portal de negocio
+-- author: Yamelis Almea
+-- Fecha: 17/09/2020
+
+ALTER TABLE `alodigaWallet`.`balance_history` 
+ADD COLUMN `businessId` BIGINT(10) NULL DEFAULT NULL AFTER `adjusmentInfo`,
+CHANGE COLUMN `userId` `userId` BIGINT(10) NULL DEFAULT NULL ;
+
+ALTER TABLE `alodigaWallet`.`balance_history` 
+ADD COLUMN `transactionBusinessId` BIGINT(20) NULL DEFAULT NULL AFTER `businessId`;
+
+ALTER TABLE `alodigaWallet`.`transaction` 
+ADD COLUMN `transactionBusinessId` BIGINT(20) NULL DEFAULT NULL AFTER `concept`;
+
+
+CREATE TABLE `alodigaWallet`.`business_has_product` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `productId` bigint(3) NOT NULL,
+  `businessId` bigint(10) NOT NULL,
+  `beginningDate` datetime NOT NULL,
+  `endingDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_product_has_provider_product2` (`productId`),
+  KEY `fk_product_has_provider_business)id` (`businessId`)
+) ENGINE=InnoDB;
+
+-- Cambios para incluir el businessId para retiro manual y transferencia de saldo de un negocio a una cuenta personal. Se agrego un nuevo tipo de transaccion para identificar las transaciones de retiro manual del negocio.
+-- author: Yamelis Almea
+-- Fecha: 19/09/2020
+
+INSERT INTO `alodigaWallet`.`transaction_type` (`id`, `value`) VALUES ('11', 'BUSINESS_ WITHDRAWALS_MANUAL');
+
+ALTER TABLE `alodigaWallet`.`bank_operation` 
+ADD COLUMN `businessId` BIGINT(10) NULL AFTER `additional2`;
+
+ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
+ADD COLUMN `businessId` BIGINT(10) NULL AFTER `userApprovedRequestId`;
+
+ALTER TABLE `alodigaWallet`.`transaction` 
+ADD COLUMN `businessId` BIGINT(10) NULL DEFAULT NULL AFTER `dailyClosingId`;
+
+ALTER TABLE `alodigaWallet`.`transaction` 
+ADD COLUMN `businessDestinationId` BIGINT(10) NULL DEFAULT NULL AFTER `businessId`;
+
+-- Cambios para generar transactionNumber
+-- author: Yamelis Almea
+-- Fecha: 21/09/2020
+ALTER TABLE `alodigaWallet`.`transaction_type` 
+ADD COLUMN `code` VARCHAR(6) NOT NULL AFTER `value`;
+
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'PROREC' WHERE (`id` = '1');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'PROPAY' WHERE (`id` = '2');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'PROTRA' WHERE (`id` = '3');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'PROEXC' WHERE (`id` = '4');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'WITMAN' WHERE (`id` = '5');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'MANREC' WHERE (`id` = '6');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'TOPREC' WHERE (`id` = '7');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'TRACAR' WHERE (`id` = '8');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'TRAREM' WHERE (`id` = '9');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'PURBAL' WHERE (`id` = '10');
+UPDATE `alodigaWallet`.`transaction_type` SET `code` = 'BUSWIM' WHERE (`id` = '11');
+
+
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('4', 'PRODUCT_RECHARGE', 'PROREC');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('5', 'PRODUCT_PAYMENT', 'PROPAY');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('6', 'PRODUCT_TRANSFER', 'PROTRA');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('7', 'PRODUCT_EXCHANGE', 'PROEXC');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('8', 'WITHDRAWALS_MANUAL', 'WITMAN');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('9', 'MANUAL_RECHARGE', 'MANREC');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('10', 'TOP_UP_RECHARGE', 'TOPREC');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('11', 'TRANSFER_CARD_TO_CARD', 'TRACAR');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('12', 'TRANSFER_REMITTANCE', 'TRAREM');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('13', 'PURCHASE_BALANCE', 'PURBAL');
+INSERT INTO `alodigaWallet`.`document_type` (`id`, `name`, `acronym`) VALUES ('14', 'BUSINESS_ WITHDRAWALS_MANUAL', 'BUSWIM');
+
+INSERT INTO `alodigaWallet`.`sequences` (`id`, `initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('8', '1', '1', '14', '3');
+
+-- Cambios para incluir el accountBankId del portal de negocio para el retiro manual 
+-- author: Yamelis Almea
+-- Fecha: 21/09/2020
+ALTER TABLE `alodigaWallet`.`bank_operation` 
+ADD COLUMN `accountBankBusinessId` BIGINT(10) NULL DEFAULT NULL AFTER `businessId`;
+
+-- Agregar nuevas campos en la tabla preference_field 
+-- author: Jesús Gómez
+-- Fecha: 22/09/2020
+ALTER TABLE `alodigaWallet`.`preference_field`
+ADD COLUMN `description` VARCHAR(80) NULL AFTER `name`,
+ADD COLUMN `code` VARCHAR(10) NULL AFTER `description`;
+
+-- Modificar tamaños de campos en la tabla password_change_request 
+-- author: Jesús Gómez
+-- Fecha: 23/09/2020
+ALTER TABLE `alodigaWallet`.`password_change_request` 
+CHANGE COLUMN `currentPassword` `currentPassword` VARCHAR(80) NULL DEFAULT NULL ,
+CHANGE COLUMN `newPassword` `newPassword` VARCHAR(80) NULL DEFAULT NULL ;
+
+-- Colocar campos obligatorios en la tabla calendar_days 
+-- author: Jesús Gómez
+-- Fecha: 23/09/2020
+ALTER TABLE `alodigaWallet`.`calendar_days` 
+CHANGE COLUMN `holidayDate` `holidayDate` DATE NOT NULL ,
+CHANGE COLUMN `createDate` `createDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+
+-- Agregar campo en la tabla transaction_type 
+-- author: Jesús Gómez
+-- Fecha: 23/09/2020
+ALTER TABLE `alodigaWallet`.`transaction_type` 
+ADD COLUMN `description` VARCHAR(80) NULL AFTER `code`;
+
+-- Agregar campo code en la tabla transaction_source 
+-- author: Jesús Gómez
+-- Fecha: 24/09/2020
+ALTER TABLE `alodigaWallet`.`transaction_source`
+ADD COLUMN `code` VARCHAR(10) NULL AFTER `name`;
+
+-- Eliminar FK en tabla daily_closing
+-- author: Jesús Gómez
+-- Fecha: 29/09/2020
+ALTER TABLE `alodigaWallet`.`daily_closing`
+DROP FOREIGN KEY `fk_daily_closing_daily_closing_type1`;
+ALTER TABLE `alodigaWallet`.`daily_closing`
+DROP COLUMN `dailyClosingTypeId`,
+DROP INDEX `fk_daily_closing_daily_closing_type1_idx`;
+
+-- Eliminar tabla daily_closing_type
+-- author: Jesús Gómez
+-- Fecha: 29/09/2020
+DROP TABLE `alodigaWallet`.`daily_closing_type`;
+
+-- Agregar FK en tabla daily_closing
+-- author: Jesús Gómez
+-- Fecha: 29/09/2020
+ALTER TABLE `alodigaWallet`.`daily_closing`
+ADD COLUMN `originApplicationId` INT NOT NULL AFTER `totalTransactions`;
+ALTER TABLE `alodigaWallet`.`daily_closing`
+ADD CONSTRAINT `fk_dailyClosing_originApplication1`
+FOREIGN KEY (`originApplicationId`)
+REFERENCES `alodigaWallet`.`origin_application` (`id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+-- Agregar Incluir businessId en la tabla accountBank
+-- author: Yamelis Almea
+-- Fecha: 30/09/2020
+
+ALTER TABLE `alodigawallet`.`account_bank` 
+ADD COLUMN `businessId` BIGINT(20) NULL DEFAULT NULL AFTER `createDate`,
+CHANGE COLUMN `UnifiedRegistryId` `UnifiedRegistryId` BIGINT(20) NULL DEFAULT NULL ;
+
+-- Agregar campo en tabla daily_closing
+-- author: Jesús Gómez
+-- Fecha: 01/10/2020
+ALTER TABLE `alodigaWallet`.`daily_closing`
+ADD COLUMN `transactionsAmount` FLOAT NOT NULL AFTER `totalTransactions`;
+
+-- Modificar campo UnifiedRegistryUserId para que acepte null en tabla transaction_approve_request
+-- author: Jesús Gómez
+-- Fecha: 05/10/2020
+ALTER TABLE `alodigaWallet`.`transaction_approve_request` 
+CHANGE COLUMN `UnifiedRegistryUserId` `UnifiedRegistryUserId` BIGINT(20) NULL ;
+
+-- Modificar FK productId para que acepte NULL en tabla balance_history
+-- author: Jesús Gómez
+-- Fecha: 05/10/2020
+ALTER TABLE `alodigaWallet`.`balance_history` 
+DROP FOREIGN KEY `fk_balance_has_product`;
+ALTER TABLE `alodigaWallet`.`balance_history` 
+CHANGE COLUMN `oldAmount` `oldAmount` FLOAT(20,2) NULL ,
+CHANGE COLUMN `currentAmount` `currentAmount` FLOAT(20,2) NULL ,
+CHANGE COLUMN `date` `date` DATETIME NULL ,
+CHANGE COLUMN `productId` `productId` BIGINT(20) NULL ,
+CHANGE COLUMN `version` `version` BIGINT(20) NULL ;
+ALTER TABLE `alodigaWallet`.`balance_history` 
+ADD CONSTRAINT `fk_balance_has_product`
+  FOREIGN KEY (`productId`)
+  REFERENCES `alodigaWallet`.`product` (`id`);
+
+-- Modificar campo value para que acepte null en tabla preference_value
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+ALTER TABLE `alodigaWallet`.`preference_value` 
+CHANGE COLUMN `value` `value` VARCHAR(45) NULL DEFAULT NULL ;
+
+-- Incluir code en la tabla language
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+ALTER TABLE `alodigaWallet`.`language` 
+ADD COLUMN `code` VARCHAR(10) NULL DEFAULT NULL AFTER `description`;
+
+-- Incluir code en la tabla preference_classification
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+ALTER TABLE `alodigaWallet`.`preference_classification` 
+ADD COLUMN `code` VARCHAR(10) NULL DEFAULT NULL AFTER `name`;
+

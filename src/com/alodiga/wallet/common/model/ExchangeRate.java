@@ -23,12 +23,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 
 /**
  *
@@ -43,12 +43,10 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
     @NamedQuery(name = "ExchangeRate.findByValue", query = "SELECT e FROM ExchangeRate e WHERE e.value = :value"),
     @NamedQuery(name = "ExchangeRate.findByProduct", query = "SELECT e FROM ExchangeRate e WHERE e.productId.id = :productId AND e.endingDate is null"),
     @NamedQuery(name = "ExchangeRate.findByBeginningDate", query = "SELECT e FROM ExchangeRate e WHERE e.beginningDate = :beginningDate"),
-    @NamedQuery(name = "ExchangeRate.findByEndingDate", query = "SELECT e FROM ExchangeRate e WHERE e.endingDate = :endingDate")})
-public class ExchangeRate extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "ExchangeRate.findByEndingDate", query = "SELECT e FROM ExchangeRate e WHERE e.endingDate = :endingDate"),
+    @NamedQuery(name = QueryConstants.EXCHANGE_RATE_BY_PRODUCT, query = "SELECT e FROM ExchangeRate e WHERE e.productId.id = :productId AND e.endingDate is null")})
 
-    @JoinColumn(name = "productId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Product productId;
+public class ExchangeRate extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -57,7 +55,6 @@ public class ExchangeRate extends AbstractWalletEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "value")
     private float value;
     @Column(name = "beginningDate")
@@ -66,8 +63,9 @@ public class ExchangeRate extends AbstractWalletEntity implements Serializable {
     @Column(name = "endingDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date endingDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "exchangeRateId")
-    private Collection<ExchangeDetail> exchangeDetailCollection;
+    @JoinColumn(name = "productId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Product productId;
 
     public ExchangeRate() {
     }
@@ -111,16 +109,6 @@ public class ExchangeRate extends AbstractWalletEntity implements Serializable {
 
     public void setEndingDate(Date endingDate) {
         this.endingDate = endingDate;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<ExchangeDetail> getExchangeDetailCollection() {
-        return exchangeDetailCollection;
-    }
-
-    public void setExchangeDetailCollection(Collection<ExchangeDetail> exchangeDetailCollection) {
-        this.exchangeDetailCollection = exchangeDetailCollection;
     }
 
     @Override

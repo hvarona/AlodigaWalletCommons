@@ -23,7 +23,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -42,7 +41,10 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "PersonType.findByDescription", query = "SELECT p FROM PersonType p WHERE p.description = :description"),
     @NamedQuery(name = "PersonType.findBycountryId", query = "SELECT p FROM PersonType p WHERE p.countryId.id = :countryId"),
     @NamedQuery(name = QueryConstants.PERSON_TYPE_BY_COUNTRY, query = "SELECT p FROM PersonType p WHERE p.countryId.id=:countryId"),
-    		@NamedQuery(name = QueryConstants.PERSON_TYPE_BY_COUNTRY_BY_IND_NATURAL_PERSON,query ="SELECT p FROM PersonType p WHERE p.countryId.id=:countryId AND p.originApplicationId.id=:originApplicationId AND p.indNaturalPerson=:indNaturalPerson")})
+    @NamedQuery(name = QueryConstants.PERSON_TYPE_BY_COUNTRY_BY_IND_NATURAL_PERSON,query ="SELECT p FROM PersonType p WHERE p.countryId.id=:countryId AND p.originApplicationId.id=:originApplicationId AND p.indNaturalPerson=:indNaturalPerson"),
+    @NamedQuery(name = QueryConstants.PERSON_TYPE_BY_COUNTRY_BY_ORIGIN_APPLICATION_PORTAL,query ="SELECT p FROM PersonType p WHERE p.countryId.id=:countryId AND p.originApplicationId.id=3"),
+    @NamedQuery(name = QueryConstants.PERSON_TYPE_BY_COUNTRY_BY_ORIGIN_APPLICATION,query ="SELECT p FROM PersonType p WHERE p.countryId.id=:countryId AND p.originApplicationId.id=:originApplicationId")})
+
 public class PersonType extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

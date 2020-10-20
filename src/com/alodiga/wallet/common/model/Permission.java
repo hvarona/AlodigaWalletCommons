@@ -10,12 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.PermissionData;
 import com.alodiga.wallet.common.model.PermissionGroup;
-
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -24,11 +22,10 @@ import javax.persistence.NamedQuery;
 @Entity
 @Table(name = "permission")
 @NamedQueries({
-    @NamedQuery(name = "Permission.findAll", query = "SELECT p FROM Permission p WHERE p.enabled =1")
-    ,
-    @NamedQuery(name = "Permission.findById", query = "SELECT p FROM Permission p WHERE p.id = :id")
-    ,
+    @NamedQuery(name = "Permission.findAll", query = "SELECT p FROM Permission p WHERE p.enabled =1"),
+    @NamedQuery(name = "Permission.findById", query = "SELECT p FROM Permission p WHERE p.id = :id"),
     @NamedQuery(name = "Permission.findByGroupId", query = "SELECT p FROM Permission p WHERE p.permissionGroup.id = :groupId ORDER BY p.id DESC")})
+
 public class Permission extends AbstractWalletEntity implements Serializable {
 
     public static String LOG_IN = "User has logged in.";
@@ -173,7 +170,28 @@ public class Permission extends AbstractWalletEntity implements Serializable {
     public static Long ADD_OF_HOLIDAYS = 138L;
     public static Long EDIT_OF_HOLIDAYS = 139L;
     public static Long VIEW_OF_HOLIDAYS = 140L;
-    
+    public static Long LIST_PERSON_TYPE = 141L;
+    public static Long ADD_PERSON_TYPE = 142L;
+    public static Long EDIT_PERSON_TYPE = 143L;
+    public static Long VIEW_PERSON_TYPE = 144L;
+    public static Long LIST_PREFERENCE = 145L;
+    public static Long ADD_PREFERENCE = 146L;
+    public static Long EDIT_PREFERENCE = 147L;
+    public static Long VIEW_PREFERENCE = 148L;
+    public static Long MANAGEMENT_REPORT = 149L;
+    public static Long LIST_TRANSACTION_TYPE = 150L;
+    public static Long ADD_TRANSACTION_TYPE = 151L;
+    public static Long EDIT_TRANSACTION_TYPE = 152L;
+    public static Long VIEW_TRANSACTION_TYPE = 153L;
+    public static Long AUTOMATIC_SERVICES = 154L;
+    public static Long LIST_PREFERENCE_TYPE = 155L;
+    public static Long ADD_PREFERENCE_TYPE = 156L;
+    public static Long EDIT_PREFERENCE_TYPE = 157L;
+    public static Long VIEW_PREFERENCE_TYPE = 158L;
+    public static Long LIST_BASIC_PREFERENCE = 159L;
+    public static Long ADD_BASIC_PREFERENCE = 160L;
+    public static Long EDIT_BASIC_PREFERENCE = 161L;
+    public static Long VIEW_BASIC_PREFERENCE = 162L;
 
     private static final long serialVersionUID = 1L;
     @Id

@@ -22,8 +22,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -52,19 +50,15 @@ public class AccountBank implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "UnifiedRegistryId")
     private long unifiedRegistryId;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
     @Column(name = "accountNumber")
     private String accountNumber;
     @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "createDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
@@ -77,8 +71,8 @@ public class AccountBank implements Serializable {
     @JoinColumn(name = "statusAccountBankId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private StatusAccountBank statusAccountBankId;
-    @OneToMany(mappedBy = "accountBankId")
-    private Collection<BankOperation> bankOperationCollection;
+    @Column(name = "businessId")
+    private long businessId;
 
     public AccountBank() {
     }
@@ -157,18 +151,17 @@ public class AccountBank implements Serializable {
     public void setStatusAccountBankId(StatusAccountBank statusAccountBankId) {
         this.statusAccountBankId = statusAccountBankId;
     }
+     
 
-    @XmlTransient
-    @JsonIgnore
-    public Collection<BankOperation> getBankOperationCollection() {
-        return bankOperationCollection;
-    }
+    public long getBusinessId() {
+		return businessId;
+	}
 
-    public void setBankOperationCollection(Collection<BankOperation> bankOperationCollection) {
-        this.bankOperationCollection = bankOperationCollection;
-    }
+	public void setBusinessId(long businessId) {
+		this.businessId = businessId;
+	}
 
-    @Override
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

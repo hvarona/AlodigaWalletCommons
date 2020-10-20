@@ -19,7 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -40,11 +39,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public class StatusAccountBank implements Serializable {
 
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "code")
     private String code;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,12 +49,9 @@ public class StatusAccountBank implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "description")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusAccountBankId")
-    private Collection<AccountBank> accountBankCollection;
 
     public StatusAccountBank() {
     }
@@ -85,16 +79,6 @@ public class StatusAccountBank implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<AccountBank> getAccountBankCollection() {
-        return accountBankCollection;
-    }
-
-    public void setAccountBankCollection(Collection<AccountBank> accountBankCollection) {
-        this.accountBankCollection = accountBankCollection;
     }
 
     @Override

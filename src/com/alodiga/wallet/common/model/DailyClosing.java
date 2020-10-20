@@ -5,6 +5,8 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -22,7 +24,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -43,16 +44,16 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     , @NamedQuery(name = "DailyClosing.findByTotalTransactions", query = "SELECT d FROM DailyClosing d WHERE d.totalTransactions = :totalTransactions")
     , @NamedQuery(name = "DailyClosing.findByCreateDate", query = "SELECT d FROM DailyClosing d WHERE d.createDate = :createDate")
     , @NamedQuery(name = "DailyClosing.findByUpdateDate", query = "SELECT d FROM DailyClosing d WHERE d.updateDate = :updateDate")})
-public class DailyClosing implements Serializable {
+
+public class DailyClosing extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Basic(optional = false)
-    @NotNull
+    @Basic(optional = false)    
     @Column(name = "closingDate")
     @Temporal(TemporalType.DATE)
     private Date closingDate;
@@ -70,12 +71,13 @@ public class DailyClosing implements Serializable {
     @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "dailyClosingTypeId", referencedColumnName = "id")
+    @JoinColumn(name = "originApplicationId", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private DailyClosingType dailyClosingTypeId;
-    @OneToMany(mappedBy = "dailyClosingId")
-    private Collection<Transaction> transactionCollection;
-
+    private OriginApplication originApplicationId;
+    @Basic(optional = false)
+    @Column(name = "transactionsAmount")
+    private float transactionsAmount;   
+    
     public DailyClosing() {
     }
 
@@ -127,6 +129,22 @@ public class DailyClosing implements Serializable {
     public void setTotalTransactions(Integer totalTransactions) {
         this.totalTransactions = totalTransactions;
     }
+    
+    public float getTransactionsAmount() {
+        return transactionsAmount;
+    }
+
+    public void setTransactionsAmount(float transactionsAmount) {
+        this.transactionsAmount = transactionsAmount;
+    }
+    
+    public OriginApplication getOriginApplicationId() {
+        return originApplicationId;
+    }
+
+    public void setOriginApplicationId(OriginApplication originApplicationId) {
+        this.originApplicationId = originApplicationId;
+    }
 
     public Date getCreateDate() {
         return createDate;
@@ -143,25 +161,7 @@ public class DailyClosing implements Serializable {
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
-
-    public DailyClosingType getDailyClosingTypeId() {
-        return dailyClosingTypeId;
-    }
-
-    public void setDailyClosingTypeId(DailyClosingType dailyClosingTypeId) {
-        this.dailyClosingTypeId = dailyClosingTypeId;
-    }
-
-    @XmlTransient
-    @JsonIgnore
-    public Collection<Transaction> getTransactionCollection() {
-        return transactionCollection;
-    }
-
-    public void setTransactionCollection(Collection<Transaction> transactionCollection) {
-        this.transactionCollection = transactionCollection;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -185,6 +185,15 @@ public class DailyClosing implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.DailyClosing[ id=" + id + " ]";
+    }
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }
