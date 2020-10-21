@@ -1160,15 +1160,21 @@ ADD CONSTRAINT `fk_balance_has_product`
   FOREIGN KEY (`productId`)
   REFERENCES `alodigaWallet`.`product` (`id`);
 
-  -- Agregar FK en tabla natural_person
--- author: Jesús Gómez
--- Fecha: 14/10/2020
-ALTER TABLE `alodigaWallet`.`natural_person`
-ADD COLUMN `legalRepresentativeId` BIGINT NULL AFTER `documentsPersonTypeId`;
-ALTER TABLE `alodigaWallet`.`natural_person`
-ADD CONSTRAINT `fk_naturalPerson_legalRepresentative1`
-FOREIGN KEY (`legalRepresentativeId`)
-REFERENCES `alodigaWallet`.`legal_representative` (`id`)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION;
+-- Modificar campo value para que acepte null en tabla preference_value
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+ALTER TABLE `alodigaWallet`.`preference_value` 
+CHANGE COLUMN `value` `value` VARCHAR(45) NULL DEFAULT NULL ;
+
+-- Incluir code en la tabla language
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+ALTER TABLE `alodigaWallet`.`language` 
+ADD COLUMN `code` VARCHAR(10) NULL DEFAULT NULL AFTER `description`;
+
+-- Incluir code en la tabla preference_classification
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+ALTER TABLE `alodigaWallet`.`preference_classification` 
+ADD COLUMN `code` VARCHAR(10) NULL DEFAULT NULL AFTER `name`;
 

@@ -204,6 +204,8 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     public List<Commission> getCommissionByProductAndTranssactionType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
+    public List<Commission> searchCommissionByProduct(String name) throws EmptyListException, GeneralException, NullParameterException;
+     
     //TransactionType
     public List<TransactionType> getTransactionType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 

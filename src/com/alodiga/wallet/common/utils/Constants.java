@@ -176,6 +176,13 @@ public class Constants {
     //Language
     public static final Long SPANISH_LANGUAGE = 1L;
     public static final Long ENGLISH_LANGUAGE = 2L;
+    
+    public static final int SPANISH = 2;
+    public static final int ENGLISH = 1;
+    
+    //Preference Classification
+    public static final Long CLIENT_CLASSIFICATION = 1L;
+    public static final Long BUSINESS_CLASSIFICATION = 2L;
 
     //Integrator Name
     public static final String INTEGRATOR_SIMBOX = "Simbox";
@@ -278,6 +285,8 @@ public class Constants {
     public static final String COUNTRY_KEY ="countryId";
     public static final String PARAM_LOGIN = "login";
     public static final String HOLI_DAY_DATE_KEY= "holidayDate";
+    public static final String PREFERENCE_KEY = "preferenceId";
+    public static final String PREFERENCE_FIELD_KEY = "preferenceFieldId";
     
     public static final int STATUS_APPLICANT_ACTIVE = 1;
     public static final int STATUS_APPLICANT_BLACK_LIST_OK = 2;
