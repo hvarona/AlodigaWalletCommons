@@ -68,7 +68,7 @@ public class PreferenceField extends AbstractWalletEntity implements Serializabl
     @JoinColumn(name = "preferenceId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Preference preferenceId;
-    @OneToMany(mappedBy = "preferenceField", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "preferenceField", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<PreferenceFieldData> preferenceFieldData;
     @Size(max = 80)
     @Column(name = "description")
