@@ -26,6 +26,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+
 /**
  *
  * @author jose
@@ -41,7 +44,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     , @NamedQuery(name = "AccountBank.findByAccountNumber", query = "SELECT a FROM AccountBank a WHERE a.accountNumber = :accountNumber")
     , @NamedQuery(name = "AccountBank.findByUpdateDate", query = "SELECT a FROM AccountBank a WHERE a.updateDate = :updateDate")
     , @NamedQuery(name = "AccountBank.findByCreateDate", query = "SELECT a FROM AccountBank a WHERE a.createDate = :createDate")})
-public class AccountBank implements Serializable {
+public class AccountBank extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -183,6 +186,16 @@ public class AccountBank implements Serializable {
     @Override
     public String toString() {
         return "com.alodiga.wallet.common.model.AccountBank[ id=" + id + " ]";
+    }
+    
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }
