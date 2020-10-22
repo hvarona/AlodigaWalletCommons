@@ -23,17 +23,16 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = "PermissionHasProfile.findAll", query = "SELECT php FROM PermissionHasProfile php"),
 @NamedQuery(name = "PermissionHasProfile.findById", query = "SELECT php FROM PermissionHasProfile php where php.id = :id"),
 @NamedQuery(name = "PermissionHasProfile.findByProfileId", query = "SELECT php.permission FROM PermissionHasProfile php WHERE php.profile.id=:profileId ORDER BY php.id DESC")})
+
 public class PermissionHasProfile extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //bi-directional many-to-one association to Permission
     @ManyToOne
     @JoinColumn(name = "permissionId")
     private Permission permission;
-    //bi-directional many-to-one association to Profile
     @ManyToOne
     @JoinColumn(name = "profileId")
     private Profile profile;

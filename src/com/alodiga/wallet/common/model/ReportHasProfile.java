@@ -5,6 +5,7 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -27,8 +28,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "report_has_profile")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ReportHasProfile.findAll", query = "SELECT r FROM ReportHasProfile r")
-    , @NamedQuery(name = "ReportHasProfile.findById", query = "SELECT r FROM ReportHasProfile r WHERE r.id = :id")})
+    @NamedQuery(name = "ReportHasProfile.findAll", query = "SELECT r FROM ReportHasProfile r"),
+    @NamedQuery(name = "ReportHasProfile.findById", query = "SELECT r FROM ReportHasProfile r WHERE r.id = :id"),
+    @NamedQuery(name = QueryConstants.DELETE_REPORT_PROFILE, query = "DELETE FROM ReportHasProfile rp WHERE rp.reportId.id=:reportId")})
+
 public class ReportHasProfile implements Serializable {
 
     private static final long serialVersionUID = 1L;

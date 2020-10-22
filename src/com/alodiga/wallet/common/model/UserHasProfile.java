@@ -25,70 +25,65 @@ import com.alodiga.wallet.common.model.User;
  */
 @Entity
 @Table(name="user_has_profile")
+
 public class UserHasProfile extends AbstractWalletEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	private Timestamp beginningDate;
-
-	private Timestamp endingDate;
-
-	//bi-directional many-to-one association to Profile
+	
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Timestamp beginningDate;
+    private Timestamp endingDate;
     @ManyToOne
-	@JoinColumn(name="userId")
-	private User user;
-    
-	//bi-directional many-to-one association to Profile
+    @JoinColumn(name="userId")
+    private User user;
     @ManyToOne
-	@JoinColumn(name="profileId")
-	private Profile profile;
+    @JoinColumn(name="profileId")
+    private Profile profile;
 
 
     public UserHasProfile() {
     }
 
-	public Long getId() {
-		return this.id;
-	}
+    public Long getId() {
+            return this.id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+            this.id = id;
+    }
 
-	public Timestamp getBeginningDate() {
-		return this.beginningDate;
-	}
+    public Timestamp getBeginningDate() {
+            return this.beginningDate;
+    }
 
-	public void setBeginningDate(Timestamp beginningDate) {
-		this.beginningDate = beginningDate;
-	}
+    public void setBeginningDate(Timestamp beginningDate) {
+            this.beginningDate = beginningDate;
+    }
 
-	public Timestamp getEndingDate() {
-		return this.endingDate;
-	}
+    public Timestamp getEndingDate() {
+            return this.endingDate;
+    }
 
-	public void setEndingDate(Timestamp endingDate) {
-		this.endingDate = endingDate;
-	}
+    public void setEndingDate(Timestamp endingDate) {
+            this.endingDate = endingDate;
+    }
 
-	public Profile getProfile() {
-		return this.profile;
-	}
+    public Profile getProfile() {
+            return this.profile;
+    }
 
-	public void setProfile(Profile profile) {
-		this.profile = profile;
-	}
+    public void setProfile(Profile profile) {
+            this.profile = profile;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public User getUser() {
+            return user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+            this.user = user;
+    }
 
     @Override
     public Object getPk() {

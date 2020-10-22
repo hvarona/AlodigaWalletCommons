@@ -175,6 +175,7 @@ public class QueryConstants {
     public static final String COLLECTION_TYPE_BY_COUNTRY_BY_PERSON_TYPE = "CollectionTypeByCountryByPersonType";
     public static final String REVIEW_OFAC_BY_REQUEST = "reviewOfacByRequest";
     public static final String PARAM_REQUEST_NUMBER = "requestNumber";
+    public static final String PARAM_TRANSACTION_APPROVE_REQUEST = "transactionApproveRequest";
     public static final String PARAM_CODE = "code";
     public static final String PARAM_STATUS_TRANSACTION_APPROVE_REQUEST_ID = "statusTransactionApproveRequestId";
     public static final String SEQUENCES_BY_DOCUMENT_TYPE = "Sequences.findByDocumentType";
@@ -214,4 +215,5 @@ public class QueryConstants {
     public static final String CODE_EXIST_IN_BD_TRANSACTION_TYPE = "codeExistInBdTransactionType";
     public static final String HOLI_DAY_EXIST_IN_BD_CALENDAR_DAYS = "holiDayExistInBdCalendarDays";
     public static final String PARAM_PERMISSION_ID = "permissionId";
+    public static final String PREFERENCE_FIELD_DATA_BY_PREFERENCE = "preferenceFieldDataByPreference";
 }

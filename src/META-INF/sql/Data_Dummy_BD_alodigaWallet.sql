@@ -689,7 +689,7 @@ INSERT INTO `alodigaWallet`.`preference_value` (`id`, `value`, `preferenceFieldI
 -- Agregar tipo de reporte TRANSACTION en tabla report_type
 -- author: Yamelis Almea
 -- Fecha: 09/10/2020
-INSERT INTO `alodigaWallet`.`report_type` (`name`, `description`) VALUES (`TRANSACTION`, `Reportes de Transacciones`);
+INSERT INTO `alodigaWallet`.`report_type` (`name`, `description`) VALUES ("TRANSACTION", "Reportes de Transacciones");
 
 -- Cambios para agregar el preference_type correspondiente a cada preference_field
 -- author: Yamelis Almea
@@ -708,6 +708,19 @@ UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '1' WHERE (`i
 UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '3' WHERE (`id` = '26');
 
 
+-- Cambios para agregar datos en el campo code de Language
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+UPDATE `alodigaWallet`.`language` SET `code`='ENGLI' WHERE `id`='1';
+UPDATE `alodigaWallet`.`language` SET `code`='SPANI' WHERE `id`='2';
+
+-- Cambios para agregar datos en el campo code de preference_classification
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+UPDATE `alodigaWallet`.`preference_classification` SET `code`='CLIEN' WHERE `id`='1';
+UPDATE `alodigaWallet`.`preference_classification` SET `code`='NEGOC' WHERE `id`='2';
+
+
 -- Cambios eliminar data para las preferencias especificas
 -- author: Yamelis Almea
 -- Fecha: 22/10/2020
@@ -716,3 +729,4 @@ delete FROM alodigaWallet.preference_value  where bussinessId=1 and preferenceCl
 delete FROM alodigaWallet.preference_value  where bussinessId=2 and preferenceClassficationId=1;
 
 UPDATE `alodigaWallet`.`preference_field` SET `preferenceId` = '2' WHERE (`id` = '19');
+
