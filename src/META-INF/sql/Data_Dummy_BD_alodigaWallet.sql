@@ -707,3 +707,12 @@ UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '1' WHERE (`i
 UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '1' WHERE (`id` = '23');
 UPDATE `alodigawallet`.`preference_field` SET `preferenceTypeId` = '3' WHERE (`id` = '26');
 
+
+-- Cambios eliminar data para las preferencias especificas
+-- author: Yamelis Almea
+-- Fecha: 22/10/2020
+delete FROM alodigaWallet.preference_control where id>0;
+delete FROM alodigaWallet.preference_value  where bussinessId=1 and preferenceClassficationId=1;
+delete FROM alodigaWallet.preference_value  where bussinessId=2 and preferenceClassficationId=1;
+
+UPDATE `alodigaWallet`.`preference_field` SET `preferenceId` = '2' WHERE (`id` = '19');
