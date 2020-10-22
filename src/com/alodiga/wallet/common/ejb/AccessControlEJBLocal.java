@@ -25,6 +25,8 @@ public interface AccessControlEJBLocal extends WalletGenericEJBLocal {
 
     public List<Permission> getPermissions(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
+    public List<Permission> getPermissionOrderByAsc(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
     public List<Profile> getProfiles(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     public Permission loadPermission(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;

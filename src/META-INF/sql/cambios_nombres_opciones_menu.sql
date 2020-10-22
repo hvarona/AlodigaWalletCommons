@@ -103,3 +103,9 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Manage Preferences', `desc
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Administrar Preferencias', `description`='Administrar Preferencias' WHERE `permissionId`='145' AND `languageId`='2';
 
 
+-- Cambios nombre de Comisiones
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Manage Rates Operations', `description`='Manage Rates Operations' WHERE `permissionId`='58' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Administrar Tarifas de Operaciones', `description`='Administrar Tarifas de Operaciones' WHERE `permissionId`='58' AND `languageId`='2';
+

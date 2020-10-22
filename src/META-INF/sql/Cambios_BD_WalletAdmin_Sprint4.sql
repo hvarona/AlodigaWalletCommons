@@ -1163,5 +1163,21 @@ ADD CONSTRAINT `fk_balance_has_product`
 ALTER TABLE `alodigaWallet`.`preference_value` 
 CHANGE COLUMN `updateDate` `updateDate` DATETIME NULL,
 CHANGE COLUMN `value` `value` VARCHAR(45) NULL;
+-- Modificar campo value para que acepte null en tabla preference_value
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+ALTER TABLE `alodigaWallet`.`preference_value` 
+CHANGE COLUMN `value` `value` VARCHAR(45) NULL DEFAULT NULL ;
 
+-- Incluir code en la tabla language
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+ALTER TABLE `alodigaWallet`.`language` 
+ADD COLUMN `code` VARCHAR(10) NULL DEFAULT NULL AFTER `description`;
+
+-- Incluir code en la tabla preference_classification
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+ALTER TABLE `alodigaWallet`.`preference_classification` 
+ADD COLUMN `code` VARCHAR(10) NULL DEFAULT NULL AFTER `name`;
 
