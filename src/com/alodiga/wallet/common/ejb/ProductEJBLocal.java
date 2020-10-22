@@ -83,20 +83,14 @@ public interface ProductEJBLocal extends WalletGenericEJBLocal {
     public List<BankHasProduct> getBankHasProductByID(BankHasProduct bankHasProduct) throws GeneralException, EmptyListException, NullParameterException;
  
     //TransactionApproveRequest
-    
-    public List<TransactionApproveRequest> getTransactionApproveRequestByParams(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;    
-    
-    public List<TransactionApproveRequest> searchTransactionApproveRequestByParamsMWAR(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;    
-    
-    public TransactionApproveRequest loadTransactionApproveRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
-    public TransactionApproveRequest saveTransactionApproveRequest(TransactionApproveRequest transactionApproveRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
-    public List<StatusTransactionApproveRequest> getStatusTransactionApproveRequests(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
-    
-    public StatusTransactionApproveRequest loadStatusTransactionApproveRequestbyCode(EJBRequest request)throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
-    public TransactionApproveRequest updateTransactionApproveRequest(TransactionApproveRequest transactionApproveRequest)throws RegisterNotFoundException, NullParameterException, GeneralException, NegativeBalanceException;
-    
-    public BalanceHistory saveBalanceHistory(BalanceHistory balancehistory) throws GeneralException, NullParameterException;
+   public List<TransactionApproveRequest> getTransactionApproveRequest(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
+   public List<TransactionApproveRequest> getTransactionApproveRequestByParams(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;    
+   public List<TransactionApproveRequest> searchTransactionApproveRequestByParamsMWAR(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;       
+   public TransactionApproveRequest loadTransactionApproveRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;   
+   public TransactionApproveRequest saveTransactionApproveRequest(TransactionApproveRequest transactionApproveRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
+   public List<StatusTransactionApproveRequest> getStatusTransactionApproveRequests(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;   
+   public StatusTransactionApproveRequest loadStatusTransactionApproveRequestbyCode(EJBRequest request)throws RegisterNotFoundException, NullParameterException, GeneralException;
+   public TransactionApproveRequest updateTransactionApproveRequest(TransactionApproveRequest transactionApproveRequest)throws RegisterNotFoundException, NullParameterException, GeneralException, NegativeBalanceException;   
+   public BalanceHistory saveBalanceHistory(BalanceHistory balancehistory) throws GeneralException, NullParameterException;
+   
 }

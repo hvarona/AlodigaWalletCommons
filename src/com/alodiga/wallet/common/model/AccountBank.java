@@ -52,7 +52,6 @@ public class AccountBank implements Serializable {
     @Basic(optional = false)
     @Column(name = "UnifiedRegistryId")
     private long unifiedRegistryId;
-    @Basic(optional = false)
     @Column(name = "accountNumber")
     private String accountNumber;
     @Column(name = "updateDate")

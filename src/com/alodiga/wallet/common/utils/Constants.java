@@ -267,6 +267,7 @@ public class Constants {
     public static final String STATUS_TRANSACTIONS_APPR = "APPR";
     public static final String STATUS_TRANSACTIONS_REJE = "REJE";
     public static final String REQUEST_NUMBER_MANUAL_WITHDRAWAL = "MW";
+    public static final String TRANSACTION_APPROVE_REQUEST_RECHARGE = "MR";
     public static final int ORIGIN_APPLICATION_WALLET_ADMIN_WEB_ID = 2;
     public static final String PERSON_KEY = "personId";
     public static final String PERSON_TYPE_KEY = "personTypeId";
@@ -308,6 +309,8 @@ public class Constants {
     public static final int STATUS_REQUEST_COLLECTIONS_WITHOUT_APPROVAL = 8;
     public static final int STATUS_ACCOUNT_BANK = 1;
     public static final int DOCUMENT_TYPE_RENEWAL_PASSWORD = 3;
+    public static final Long PREFERENCE_CLASSIFICATION_BUSINESS = 2l;
+    public static final Long PREFERENCE_TRANSACTION_ID = 3l;
     
     
     

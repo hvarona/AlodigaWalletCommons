@@ -40,7 +40,9 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
     @NamedQuery(name = "PreferenceValue.findByValue", query = "SELECT p FROM PreferenceValue p WHERE p.value = :value"),
     @NamedQuery(name = "PreferenceValue.findByCreateDate", query = "SELECT p FROM PreferenceValue p WHERE p.createDate = :createDate"),
     @NamedQuery(name = "PreferenceValue.findByUpdateDate", query = "SELECT p FROM PreferenceValue p WHERE p.updateDate = :updateDate")})
+
 public class PreferenceValue extends AbstractWalletEntity implements Serializable {
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
