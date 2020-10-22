@@ -1128,7 +1128,7 @@ ON UPDATE NO ACTION;
 -- author: Yamelis Almea
 -- Fecha: 30/09/2020
 
-ALTER TABLE `alodigawallet`.`account_bank` 
+ALTER TABLE `alodigaWallet`.`account_bank` 
 ADD COLUMN `businessId` BIGINT(20) NULL DEFAULT NULL AFTER `createDate`,
 CHANGE COLUMN `UnifiedRegistryId` `UnifiedRegistryId` BIGINT(20) NULL DEFAULT NULL ;
 
@@ -1159,4 +1159,9 @@ ALTER TABLE `alodigaWallet`.`balance_history`
 ADD CONSTRAINT `fk_balance_has_product`
   FOREIGN KEY (`productId`)
   REFERENCES `alodigaWallet`.`product` (`id`);
+
+ALTER TABLE `alodigaWallet`.`preference_value` 
+CHANGE COLUMN `updateDate` `updateDate` DATETIME NULL,
+CHANGE COLUMN `value` `value` VARCHAR(45) NULL;
+
 
