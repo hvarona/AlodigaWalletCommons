@@ -28,6 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+
 /**
  *
  * @author jose
@@ -188,6 +191,16 @@ public class AccountBank extends AbstractWalletEntity implements Serializable {
         return "com.alodiga.wallet.common.model.AccountBank[ id=" + id + " ]";
     }
 
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
+    }
+    
     @Override
     public Object getPk() {
         return getId();
