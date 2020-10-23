@@ -38,6 +38,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     , @NamedQuery(name = "StatusAccountBank.findById", query = "SELECT s FROM StatusAccountBank s WHERE s.id = :id")
     , @NamedQuery(name = QueryConstants.STATUS_ACCOUNT_BANK_BY_CODE, query = "SELECT p FROM StatusAccountBank p WHERE p.code = :code")    
     , @NamedQuery(name = "StatusAccountBank.findByDescription", query = "SELECT s FROM StatusAccountBank s WHERE s.description = :description")})
+
 public class StatusAccountBank extends AbstractWalletEntity implements Serializable {
 
     @Basic(optional = false)
@@ -114,6 +115,16 @@ public class StatusAccountBank extends AbstractWalletEntity implements Serializa
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
     @Override
