@@ -201,14 +201,4 @@ public class AccountBank extends AbstractWalletEntity implements Serializable {
         return super.getTableName(this.getClass());
     }
     
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
-    
 }

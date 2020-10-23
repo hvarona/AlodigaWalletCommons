@@ -9,7 +9,7 @@ package com.alodiga.wallet.common.enumeraciones;
  *
  * @author jose
  */
-public enum TransactionSourceE {
+public enum TransactionTypeE {
 
     APPBIL(1, "APP BILLETERA", "APPBIL"),
     PORNEG(2, "PORTAL DE NEGOCIOS", "PORNEG");
@@ -18,7 +18,7 @@ public enum TransactionSourceE {
     private String transactionSourceDescription;
     private String transactionSourceCode; 
     
-    private TransactionSourceE(int id, String transactionSourceDescription, String transactionSourceCode) {
+    private TransactionTypeE(int id, String transactionSourceDescription, String transactionSourceCode) {
         this.id = id;
         this.transactionSourceDescription = transactionSourceDescription;
         this.transactionSourceCode = transactionSourceCode;
