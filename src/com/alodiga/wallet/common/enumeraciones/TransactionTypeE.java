@@ -9,19 +9,28 @@ package com.alodiga.wallet.common.enumeraciones;
  *
  * @author jose
  */
-public enum TransactionSourceE {
+public enum TransactionTypeE {
 
-    APPBIL(1, "APP BILLETERA", "APPBIL"),
-    PORNEG(2, "PORTAL DE NEGOCIOS", "PORNEG");
+    PROREC(1, "PRODUCT_RECHARGE", "PROREC"),
+    PROPAY(2, "PRODUCT_PAYMENT", "PROPAY"),
+    PROTRA(3, "PRODUCT_TRANSFER", "PROTRA"),
+    PROEXC(4, "PRODUCT_EXCHANGE", "PROEXC"),
+    WITMAN(5, "WITHDRAWALS_MANUAL", "WITMAN"),
+    MANREC(6, "MANUAL_RECHARGE", "MANREC"),
+    TOPREC(7, "TOP_UP_RECHARGE", "TOPREC"),
+    TRACAR(8, "TRANSFER_CARD_TO_CARD", "TRACAR"),
+    TRAREM(9, "TRANSFER_REMITTANCE", "TRAREM"),
+    PURBAL(10, "PURCHASE_BALANCE", "PURBAL"),
+    BUSWIM(11, "BUSINESS_ WITHDRAWALS_MANUAL", "BUSWIM");
     
     private int id;
-    private String transactionSourceDescription;
-    private String transactionSourceCode; 
+    private String transactionTypeValue;
+    private String transactionTypeCode; 
     
-    private TransactionSourceE(int id, String transactionSourceDescription, String transactionSourceCode) {
+    private TransactionTypeE(int id, String transactionTypeValue, String transactionTypeCode) {
         this.id = id;
-        this.transactionSourceDescription = transactionSourceDescription;
-        this.transactionSourceCode = transactionSourceCode;
+        this.transactionTypeValue= transactionTypeValue;
+        this.transactionTypeCode = transactionTypeCode;
     }
 
     public int getId() {
@@ -32,20 +41,20 @@ public enum TransactionSourceE {
         this.id = id;
     }
 
-    public String getTransactionSourceDescription() {
-        return transactionSourceDescription;
+    public String getTransactionTypeValue() {
+        return transactionTypeValue;
     }
 
-    public void setTransactionSourceDescription(String transactionSourceDescription) {
-        this.transactionSourceDescription = transactionSourceDescription;
+    public void setTransactionTypeValue(String transactionTypeValue) {
+        this.transactionTypeValue = transactionTypeValue;
     }
 
-    public String getTransactionSourceCode() {
-        return transactionSourceCode;
+    public String getTransactionTypeCode() {
+        return transactionTypeCode;
     }
 
-    public void setTransactionSourceCode(String transactionSourceCode) {
-        this.transactionSourceCode = transactionSourceCode;
+    public void setTransactionTypeCode(String transactionTypeCode) {
+        this.transactionTypeCode = transactionTypeCode;
     }
     
     
