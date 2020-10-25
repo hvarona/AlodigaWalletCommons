@@ -85,6 +85,7 @@ public interface ProductEJBLocal extends WalletGenericEJBLocal {
     //TransactionApproveRequest
    public List<TransactionApproveRequest> getTransactionApproveRequest(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
    public List<TransactionApproveRequest> getTransactionApproveRequestByParams(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;    
+   public List<TransactionApproveRequest> getTransactionApproveRequestByStatus(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
    public List<TransactionApproveRequest> searchTransactionApproveRequestByParamsMWAR(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;       
    public TransactionApproveRequest loadTransactionApproveRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;   
    public TransactionApproveRequest saveTransactionApproveRequest(TransactionApproveRequest transactionApproveRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
