@@ -62,6 +62,8 @@ public interface PreferencesEJBLocal extends WalletGenericEJBLocal {
 
     public PreferenceType savePreferencesType(PreferenceType preferenceType) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
+    public List<PreferenceType> getPreferenceTypeByType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     public PreferenceValue savePreferenceValue(PreferenceValue preferenceValue) throws GeneralException, NullParameterException;
 
     public List<PreferenceValue> savePreferenceValues(List<PreferenceValue> preferenceValues,List<PreferenceControl> preferenceControls) throws GeneralException, NullParameterException;
