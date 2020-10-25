@@ -47,9 +47,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "BankOperation.findAll", query = "SELECT b FROM BankOperation b"), 
     @NamedQuery(name = "BankOperation.findById", query = "SELECT b FROM BankOperation b WHERE b.id = :id"),
     @NamedQuery(name = "BankOperation.findByUserSourceId", query = "SELECT b FROM BankOperation b WHERE b.userSourceId = :userSourceId"),
-    @NamedQuery(name = "BankOperation.findByBankOperationNumber", query = "SELECT b FROM BankOperation b WHERE b.bankOperationNumber = :bankOperationNumber"),
-    @NamedQuery(name = "BankOperation.findByAdditional", query = "SELECT b FROM BankOperation b WHERE b.additional = :additional"),
-    @NamedQuery(name = "BankOperation.findByAdditional2", query = "SELECT b FROM BankOperation b WHERE b.additional2 = :additional2")})
+    @NamedQuery(name = "BankOperation.findByBankOperationNumber", query = "SELECT b FROM BankOperation b WHERE b.bankOperationNumber = :bankOperationNumber")})
 
 public class BankOperation extends AbstractWalletEntity implements Serializable {
 
