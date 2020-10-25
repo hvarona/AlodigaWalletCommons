@@ -41,6 +41,7 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
     , @NamedQuery(name = "Address.findByAddressLine1", query = "SELECT a FROM Address a WHERE a.addressLine1 = :addressLine1")
     , @NamedQuery(name = "Address.findByAddressLine2", query = "SELECT a FROM Address a WHERE a.addressLine2 = :addressLine2")
     , @NamedQuery(name = "Address.findByIndMainAddress", query = "SELECT a FROM Address a WHERE a.indMainAddress = :indMainAddress")})
+
 public class Address extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

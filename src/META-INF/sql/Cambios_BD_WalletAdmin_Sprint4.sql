@@ -1160,14 +1160,13 @@ ADD CONSTRAINT `fk_balance_has_product`
   FOREIGN KEY (`productId`)
   REFERENCES `alodigaWallet`.`product` (`id`);
 
-ALTER TABLE `alodigaWallet`.`preference_value` 
-CHANGE COLUMN `updateDate` `updateDate` DATETIME NULL,
-CHANGE COLUMN `value` `value` VARCHAR(45) NULL;
--- Modificar campo value para que acepte null en tabla preference_value
+
+-- Modificar campos en tabla preference_value
 -- author: Jorge Pinto
 -- Fecha: 20/10/2020
 ALTER TABLE `alodigaWallet`.`preference_value` 
-CHANGE COLUMN `value` `value` VARCHAR(45) NULL DEFAULT NULL ;
+CHANGE COLUMN `value` `value` VARCHAR(45) NULL DEFAULT NULL,
+CHANGE COLUMN `updateDate` `updateDate` DATETIME NULL;
 
 -- Incluir code en la tabla language
 -- author: Jorge Pinto
