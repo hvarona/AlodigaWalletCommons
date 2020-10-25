@@ -216,4 +216,5 @@ public class QueryConstants {
     public static final String HOLI_DAY_EXIST_IN_BD_CALENDAR_DAYS = "holiDayExistInBdCalendarDays";
     public static final String PARAM_PERMISSION_ID = "permissionId";
     public static final String PREFERENCE_FIELD_DATA_BY_PREFERENCE = "preferenceFieldDataByPreference";
+    public static final String PREFERENCE_TYPE_BY_TYPE ="preferenceTypeByType";
 }
