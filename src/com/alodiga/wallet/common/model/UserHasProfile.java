@@ -2,7 +2,6 @@ package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,10 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.Enterprise;
 import com.alodiga.wallet.common.model.Profile;
 import com.alodiga.wallet.common.model.User;
 

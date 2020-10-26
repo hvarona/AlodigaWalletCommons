@@ -28,7 +28,6 @@ import com.alodiga.wallet.common.model.CommissionItem;
 import com.alodiga.wallet.common.model.Country;
 import com.alodiga.wallet.common.model.County;
 import com.alodiga.wallet.common.model.Currency;
-import com.alodiga.wallet.common.model.Enterprise;
 import com.alodiga.wallet.common.model.ExchangeRate;
 import com.alodiga.wallet.common.model.Language;
 import com.alodiga.wallet.common.model.OriginApplication;
@@ -101,17 +100,6 @@ public interface UtilsEJB extends WalletGenericEJB {
     public Currency loadCurrency(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public Currency saveCurrency(Currency currency) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
-    //Enterprise
-    public List<Enterprise> getEnterprises(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
-    public List<Enterprise> getEnterprises() throws EmptyListException, GeneralException, NullParameterException;
-
-    public Enterprise loadEnterprisebyId(Long enterpriseId) throws GeneralException;
-
-    public Enterprise loadEnterprise(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
-    public Enterprise saveEnterprise(EJBRequest request) throws NullParameterException, GeneralException;
 
     public void deleteEnterpriseHasTinType(Long enterpriseId) throws NullParameterException, GeneralException;
 
