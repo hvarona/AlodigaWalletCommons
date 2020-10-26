@@ -20,11 +20,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.model.Currency;
-import com.alodiga.wallet.common.model.Enterprise;
 
 /**
  *
@@ -38,6 +36,7 @@ import com.alodiga.wallet.common.model.Enterprise;
     @NamedQuery(name = "Currency.findById", query = "SELECT c FROM Currency c WHERE c.id = :id"),
     @NamedQuery(name = "Currency.findByName", query = "SELECT c FROM Currency c WHERE c.name = :name"),
     @NamedQuery(name = "Currency.findBySymbol", query = "SELECT c FROM Currency c WHERE c.symbol = :symbol")})
+
 public class Currency extends AbstractWalletEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
