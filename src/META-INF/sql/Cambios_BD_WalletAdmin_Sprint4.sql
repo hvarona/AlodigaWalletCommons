@@ -1180,3 +1180,21 @@ ADD COLUMN `code` VARCHAR(10) NULL DEFAULT NULL AFTER `description`;
 ALTER TABLE `alodigaWallet`.`preference_classification` 
 ADD COLUMN `code` VARCHAR(10) NULL DEFAULT NULL AFTER `name`;
 
+
+
+-- Modificacion en la tabla product para aceptar valores null en enterpriseId y productIntegrationTypeId
+-- author: Jorge Pinto
+ALTER TABLE `alodigaWallet`.`product` 
+DROP FOREIGN KEY `fk_product_enterprise1`,
+DROP FOREIGN KEY `fk_product_integrationType1`;
+ALTER TABLE `alodigaWallet`.`product` 
+CHANGE COLUMN `enterpriseId` `enterpriseId` BIGINT(3) NULL DEFAULT NULL ,
+CHANGE COLUMN `productIntegrationTypeId` `productIntegrationTypeId` BIGINT(3) NULL DEFAULT NULL ;
+ALTER TABLE `alodigaWallet`.`product` 
+ADD CONSTRAINT `fk_product_enterprise1`
+  FOREIGN KEY (`enterpriseId`)
+  REFERENCES `alodigaWallet`.`enterprise` (`id`),
+ADD CONSTRAINT `fk_product_integrationType1`
+  FOREIGN KEY (`productIntegrationTypeId`)
+  REFERENCES `alodigaWallet`.`product_integration_type` (`id`);
+
