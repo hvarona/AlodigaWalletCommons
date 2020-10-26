@@ -17,7 +17,6 @@ import com.alodiga.wallet.common.model.Category;
 import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.Product;
 import com.alodiga.wallet.common.model.ProductData;
-import com.alodiga.wallet.common.model.ProductIntegrationType;
 import com.alodiga.wallet.common.model.Provider;
 import com.alodiga.wallet.common.model.StatusTransactionApproveRequest;
 import com.alodiga.wallet.common.model.TransactionApproveRequest;
@@ -73,9 +72,6 @@ public interface ProductEJBLocal extends WalletGenericEJBLocal {
 
     //Period
     public List<Period> getPeriods(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
-
-    //ProductIntegrationType
-    public List<ProductIntegrationType> getProductIntegrationType(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
  
     //BankHasProduct
     public List<BankHasProduct> getBankHasProduct(EJBRequest request) throws EmptyListException,GeneralException, NullParameterException;

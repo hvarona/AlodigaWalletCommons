@@ -1,15 +1,12 @@
 package com.alodiga.wallet.common.manager;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
-
 import com.alodiga.wallet.common.ejb.PreferencesEJB;
 import com.alodiga.wallet.common.ejb.UtilsEJB;
 import com.alodiga.wallet.common.genericEJB.EJBRequest;
-import com.alodiga.wallet.common.model.Enterprise;
 import com.alodiga.wallet.common.model.PreferenceClassification;
 import com.alodiga.wallet.common.model.PreferenceFieldEnum;
 import com.alodiga.wallet.common.utils.EJBServiceLocator;
