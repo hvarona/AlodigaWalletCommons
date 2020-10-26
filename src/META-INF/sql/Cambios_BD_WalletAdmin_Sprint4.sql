@@ -1160,14 +1160,13 @@ ADD CONSTRAINT `fk_balance_has_product`
   FOREIGN KEY (`productId`)
   REFERENCES `alodigaWallet`.`product` (`id`);
 
-ALTER TABLE `alodigaWallet`.`preference_value` 
-CHANGE COLUMN `updateDate` `updateDate` DATETIME NULL,
-CHANGE COLUMN `value` `value` VARCHAR(45) NULL;
--- Modificar campo value para que acepte null en tabla preference_value
+
+-- Modificar campos en tabla preference_value
 -- author: Jorge Pinto
 -- Fecha: 20/10/2020
 ALTER TABLE `alodigaWallet`.`preference_value` 
-CHANGE COLUMN `value` `value` VARCHAR(45) NULL DEFAULT NULL ;
+CHANGE COLUMN `value` `value` VARCHAR(45) NULL DEFAULT NULL,
+CHANGE COLUMN `updateDate` `updateDate` DATETIME NULL;
 
 -- Incluir code en la tabla language
 -- author: Jorge Pinto
@@ -1180,4 +1179,107 @@ ADD COLUMN `code` VARCHAR(10) NULL DEFAULT NULL AFTER `description`;
 -- Fecha: 20/10/2020
 ALTER TABLE `alodigaWallet`.`preference_classification` 
 ADD COLUMN `code` VARCHAR(10) NULL DEFAULT NULL AFTER `name`;
+
+
+-- Cambios en BD según lo acordado en reunión efectuada con: Kerwin Gómez y Milagros Ríos
+-- author: Jesús Gómez
+-- Fecha: 25/10/2020
+
+-- Nota: ejecutar los cambios a medida que vayan modificando las pantallas, ejb, y clases de BD
+-- ya realicé estos cambios en la opción de Bancos, los demás están pendientes.
+-- Con respecto a los cambios de la tabla bank_operation pueden realizar los cambios.
+
+-- Eliminar varios campos en tabla bank_operation
+ALTER TABLE `alodigaWallet`.`bank_operation` 
+DROP COLUMN `additional2`,
+DROP COLUMN `additional`;
+
+-- Crear tabla status_bank_operation
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`status_bank_operation` (
+  `id` BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NOT NULL,
+  `code` VARCHAR(10) NULL,
+  `createDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+-- Agregar campos en tabla bank_operation
+ALTER TABLE `alodigaWallet`.`bank_operation` 
+ADD COLUMN `statusBankOperationId` BIGINT NULL AFTER `commisionId`,
+ADD COLUMN `observations` VARCHAR(1000) NULL AFTER `statusBankOperationId`,
+ADD COLUMN `createDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP AFTER `observations`,
+ADD COLUMN `updateDate` TIMESTAMP NULL AFTER `createDate`;
+
+-- Agregar FK en tabla bank_operation
+ALTER TABLE `alodigaWallet`.`bank_operation`
+ADD CONSTRAINT `fk_bankOperation_statusBankOperation1`
+FOREIGN KEY (`statusBankOperationId`)
+REFERENCES `alodigaWallet`.`status_bank_operation` (`id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+
+-- Eliminar FK de empresa en tabla bank
+ALTER TABLE `alodigaWallet`.`bank` 
+DROP FOREIGN KEY `fk_bank_has_enterprise_id`;
+ALTER TABLE `alodigaWallet`.`bank` 
+DROP COLUMN `enterpriseId`,
+DROP INDEX `fk_bank_has_enterprise_id`;
+
+-- Nota: Hasta aquí pueden ejecutar los cambios sin problemas. Los demás cambios hacerlos a medida que vayan cambiando las pantallas
+
+-- Eliminar varios campos en tabla product
+ALTER TABLE `alodigaWallet`.`product` 
+DROP FOREIGN KEY `fk_product_integrationType1`,
+DROP FOREIGN KEY `fk_product_enterprise1`;
+ALTER TABLE `alodigaWallet`.`product` 
+DROP COLUMN `accessNumberUrl`,
+DROP COLUMN `ratesUrl`,
+DROP COLUMN `productIntegrationTypeId`,
+DROP COLUMN `enterpriseId`,
+DROP INDEX `fk_product_enterprise1` ,
+DROP INDEX `fk_product_integration_type1`;
+
+-- Eliminar tabla enterprise
+DROP TABLE `alodigaWallet`.`enterprise`; 
+
+-- Eliminar tabla product_integration_type
+DROP TABLE `alodigaWallet`.`product_integration_type`; 
+
+-- Eliminar varios campos en tabla transaction
+ALTER TABLE `alodigaWallet`.`transaction` 
+DROP FOREIGN KEY `fk_transaction_has_close_id`;
+ALTER TABLE `alodigaWallet`.`transaction` 
+DROP COLUMN `closeId`,
+DROP COLUMN `additional2`,
+DROP COLUMN `additional`,
+DROP INDEX `fk_transaction_has_close_id`;
+
+-- Eliminar tabla close
+DROP TABLE `alodigaWallet`.`close`; 
+
+
+
+
+
+
+
+
+
+-- Modificacion en la tabla product para aceptar valores null en enterpriseId y productIntegrationTypeId
+-- author: Jorge Pinto
+ALTER TABLE `alodigaWallet`.`product` 
+DROP FOREIGN KEY `fk_product_enterprise1`,
+DROP FOREIGN KEY `fk_product_integrationType1`;
+ALTER TABLE `alodigaWallet`.`product` 
+CHANGE COLUMN `enterpriseId` `enterpriseId` BIGINT(3) NULL DEFAULT NULL ,
+CHANGE COLUMN `productIntegrationTypeId` `productIntegrationTypeId` BIGINT(3) NULL DEFAULT NULL ;
+ALTER TABLE `alodigaWallet`.`product` 
+ADD CONSTRAINT `fk_product_enterprise1`
+  FOREIGN KEY (`enterpriseId`)
+  REFERENCES `alodigaWallet`.`enterprise` (`id`),
+ADD CONSTRAINT `fk_product_integrationType1`
+  FOREIGN KEY (`productIntegrationTypeId`)
+  REFERENCES `alodigaWallet`.`product_integration_type` (`id`);
 

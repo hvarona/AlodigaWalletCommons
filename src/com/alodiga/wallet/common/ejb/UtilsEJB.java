@@ -266,15 +266,6 @@ public interface UtilsEJB extends WalletGenericEJB {
     public List<BusinessServiceType> getBusinessServiceTypeByBusinessType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public BusinessServiceType saveBusinessServiceType(BusinessServiceType businessServiceType) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public List<BusinessServiceType> getBusinessServiceTypeValidateCode(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
-    //TransactionApproveRequest
-    public List<TransactionApproveRequest> getTransactionApproveRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
-    public List<TransactionApproveRequest> getTransactionApproveRequestByStatus(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
-    public TransactionApproveRequest loadTransactionApproveRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
-    public TransactionApproveRequest saveTransactionApproveRequest(TransactionApproveRequest transactionApproveRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //StatusTransactionApproveRequest
     public List<StatusTransactionApproveRequest> getStatusTransactionApproveRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
@@ -302,6 +293,8 @@ public interface UtilsEJB extends WalletGenericEJB {
     public CollectionsRequest loadCollectionsRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public CollectionsRequest saveCollectionsRequest(CollectionsRequest collectionsRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    
+    public List<CollectionsRequest> searchCollectionsRequestByCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
     
     //StatusBusinessAffiliationRequest
     public List<StatusBusinessAffiliationRequest> getStatusBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
