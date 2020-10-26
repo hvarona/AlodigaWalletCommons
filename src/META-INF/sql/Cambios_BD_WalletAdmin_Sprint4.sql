@@ -1,4 +1,4 @@
--- Cambios relacionados con esquema de solicitudes de afiliación del negocio
+y-- Cambios relacionados con esquema de solicitudes de afiliación del negocio
 -- author: Jesús Gómez
 -- Fecha: 03/08/2020
 CREATE TABLE IF NOT EXISTS `alodigaWallet`.`person_classification` (
@@ -1184,11 +1184,6 @@ ADD COLUMN `code` VARCHAR(10) NULL DEFAULT NULL AFTER `name`;
 -- Cambios en BD según lo acordado en reunión efectuada con: Kerwin Gómez y Milagros Ríos
 -- author: Jesús Gómez
 -- Fecha: 25/10/2020
-
--- Nota: ejecutar los cambios a medida que vayan modificando las pantallas, ejb, y clases de BD
--- ya realicé estos cambios en la opción de Bancos, los demás están pendientes.
--- Con respecto a los cambios de la tabla bank_operation pueden realizar los cambios.
-
 -- Eliminar varios campos en tabla bank_operation
 ALTER TABLE `alodigaWallet`.`bank_operation` 
 DROP COLUMN `additional2`,
@@ -1225,8 +1220,6 @@ DROP FOREIGN KEY `fk_bank_has_enterprise_id`;
 ALTER TABLE `alodigaWallet`.`bank` 
 DROP COLUMN `enterpriseId`,
 DROP INDEX `fk_bank_has_enterprise_id`;
-
--- Nota: Hasta aquí pueden ejecutar los cambios sin problemas. Los demás cambios hacerlos a medida que vayan cambiando las pantallas
 
 -- Eliminar varios campos en tabla product
 ALTER TABLE `alodigaWallet`.`product` 
