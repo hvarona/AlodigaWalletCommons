@@ -4,13 +4,9 @@
  * and open the template in the editor.
  */
 package com.alodiga.wallet.common.utils;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import javax.activation.DataHandler;
-
-import com.alodiga.wallet.common.model.Enterprise;
 
 /**
  *
@@ -32,7 +28,6 @@ public class Mail implements Serializable {
     private ArrayList<String> attachments;
     /** Lista de datahandler para adjuntar**/
     private ArrayList<DataHandler> dataHandlers;
-    private Enterprise enterprise;
 
     public Mail() {
         bcc = new ArrayList<String>();
@@ -150,11 +145,4 @@ public class Mail implements Serializable {
         this.dataHandlers = dataHandlers;
     }
 
-    public Enterprise getEnterprise() {
-        return enterprise;
-    }
-
-    public void setEnterprise(Enterprise enterprise) {
-        this.enterprise = enterprise;
-    }
 }
