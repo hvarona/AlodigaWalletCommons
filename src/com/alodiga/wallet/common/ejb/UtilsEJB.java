@@ -20,7 +20,6 @@ import com.alodiga.wallet.common.model.BusinessType;
 import com.alodiga.wallet.common.model.BusinessServiceType;
 import com.alodiga.wallet.common.model.CalendarDays;
 import com.alodiga.wallet.common.model.City;
-import com.alodiga.wallet.common.model.Close;
 import com.alodiga.wallet.common.model.CollectionType;
 import com.alodiga.wallet.common.model.CollectionsRequest;
 import com.alodiga.wallet.common.model.Commission;
@@ -101,8 +100,6 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     public Currency saveCurrency(Currency currency) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
-    public void deleteEnterpriseHasTinType(Long enterpriseId) throws NullParameterException, GeneralException;
-
     //Language
     public List<Language> getLanguages() throws EmptyListException, GeneralException, NullParameterException;
 
@@ -164,13 +161,6 @@ public interface UtilsEJB extends WalletGenericEJB {
     public Transaction loadTransaction(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public Transaction saveTransaction(Transaction transaction) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
-    //Close
-    public List<Close> getClose(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
-    public Close loadClose(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
-    public Close saveClose(Close close) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //BankOperation
     public List<BankOperation> getBankOperationsByParams(EJBRequest request) throws NullParameterException, GeneralException, EmptyListException;
