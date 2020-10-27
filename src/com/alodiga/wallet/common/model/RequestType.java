@@ -6,9 +6,8 @@
 package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,29 +15,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.utils.QueryConstants;
 
 /**
  *
  * @author jose
  */
 @Entity
-@Table(name = "status_business_affiliation_request")
+@Table(name = "request_type")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "StatusBusinessAffiliationRequest.findAll", query = "SELECT s FROM StatusBusinessAffiliationRequest s"),
-    @NamedQuery(name = "StatusBusinessAffiliationRequest.findById", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.id = :id"),
-    @NamedQuery(name = "StatusBusinessAffiliationRequest.findByDescription", query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.description = :description"),
-    @NamedQuery(name = QueryConstants.STATUS_BUSINESS_AFFILIATON_REQUEST_BY_CODE, query = "SELECT s FROM StatusBusinessAffiliationRequest s WHERE s.code = :code")})
-public class StatusBusinessAffiliationRequest extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "RequestType.findAll", query = "SELECT r FROM RequestType r")
+    , @NamedQuery(name = "RequestType.findById", query = "SELECT r FROM RequestType r WHERE r.id = :id")
+    , @NamedQuery(name = "RequestType.findByDescription", query = "SELECT r FROM RequestType r WHERE r.description = :description")
+    , @NamedQuery(name = "RequestType.findByCode", query = "SELECT r FROM RequestType r WHERE r.code = :code")
+    , @NamedQuery(name = "RequestType.findByCreateDate", query = "SELECT r FROM RequestType r WHERE r.createDate = :createDate")
+    , @NamedQuery(name = "RequestType.findByUpdateDate", query = "SELECT r FROM RequestType r WHERE r.updateDate = :updateDate")})
+public class RequestType implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,23 +45,36 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
-    @Size(max = 10)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "code")
     private String code;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "createDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+    @Column(name = "updateDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateDate;
 
-    public StatusBusinessAffiliationRequest() {
+    public RequestType() {
     }
 
-    public StatusBusinessAffiliationRequest(Integer id) {
+    public RequestType(Integer id) {
         this.id = id;
     }
 
-    public StatusBusinessAffiliationRequest(Integer id, String description) {
+    public RequestType(Integer id, String description, String code, Date createDate) {
         this.id = id;
         this.description = description;
+        this.code = code;
+        this.createDate = createDate;
     }
 
     public Integer getId() {
@@ -81,13 +92,29 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     public String getCode() {
         return code;
     }
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     @Override
@@ -100,10 +127,10 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof StatusBusinessAffiliationRequest)) {
+        if (!(object instanceof RequestType)) {
             return false;
         }
-        StatusBusinessAffiliationRequest other = (StatusBusinessAffiliationRequest) object;
+        RequestType other = (RequestType) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -112,17 +139,7 @@ public class StatusBusinessAffiliationRequest extends AbstractWalletEntity imple
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.StatusBusinessAffiliationRequets[ id=" + id + " ]";
+        return "com.alodiga.wallet.common.model.RequestType[ id=" + id + " ]";
     }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
-
+    
 }
