@@ -24,7 +24,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 
@@ -33,16 +32,17 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
  * @author jose
  */
 @Entity
-@Table(name = "business_affiliation_request")
+@Table(name = "affiliation_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BusinessAffiliationRequest.findAll", query = "SELECT b FROM BusinessAffiliationRequest b")
-    , @NamedQuery(name = "BusinessAffiliationRequest.findById", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.id = :id")
-    , @NamedQuery(name = "BusinessAffiliationRequest.findByNumberRequest", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.numberRequest = :numberRequest")
-    , @NamedQuery(name = "BusinessAffiliationRequest.findByDateRequest", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.dateRequest = :dateRequest")
-    , @NamedQuery(name = "BusinessAffiliationRequest.findByCreateDate", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.createDate = :createDate")
-    , @NamedQuery(name = "BusinessAffiliationRequest.findByUpdateDate", query = "SELECT b FROM BusinessAffiliationRequest b WHERE b.updateDate = :updateDate")})
-public class BusinessAffiliationRequest extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "AffiliationRequest.findAll", query = "SELECT a FROM AffiliationRequest a")
+    , @NamedQuery(name = "AffiliationRequest.findById", query = "SELECT a FROM AffiliationRequest a WHERE a.id = :id")
+    , @NamedQuery(name = "AffiliationRequest.findByNumberRequest", query = "SELECT a FROM AffiliationRequest a WHERE a.numberRequest = :numberRequest")
+    , @NamedQuery(name = "AffiliationRequest.findByDateRequest", query = "SELECT a FROM AffiliationRequest a WHERE a.dateRequest = :dateRequest")
+    , @NamedQuery(name = "AffiliationRequest.findByCreateDate", query = "SELECT a FROM AffiliationRequest a WHERE a.createDate = :createDate")
+    , @NamedQuery(name = "AffiliationRequest.findByUpdateDate", query = "SELECT a FROM AffiliationRequest a WHERE a.updateDate = :updateDate")})
+
+public class AffiliationRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -56,29 +56,35 @@ public class BusinessAffiliationRequest extends AbstractWalletEntity implements 
     @Column(name = "dateRequest")
     @Temporal(TemporalType.DATE)
     private Date dateRequest;
+    @JoinColumn(name = "businessPersonId", referencedColumnName = "id")
+    @OneToOne
+    private Person businessPersonId;
+    @JoinColumn(name = "userRegisterUnifiedId", referencedColumnName = "id")
+    @OneToOne
+    private Person userRegisterUnifiedId;
+    @JoinColumn(name = "statusRequestId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private StatusRequest statusRequestId;
+    @JoinColumn(name = "requestTypeId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private RequestType requestTypeId;
     @Column(name = "createDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
     @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessAffiliationRequestId")
-    private ReviewBusinessAffiliationRequest reviewBusinessAffiliationRequest;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessAffiliationRequestId")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "affiliationRequestId")
+    private ReviewAffiliationRequest reviewAffiliationRequest;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "affiliationRequestId")
     private RequestHasCollectionRequest requestHasCollectionRequest;
-    @JoinColumn(name = "businessPersonId", referencedColumnName = "id")
-    @OneToOne(optional = false)
-    private Person businessPersonId;
-    @JoinColumn(name = "statusBusinessAffiliationRequestId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private StatusBusinessAffiliationRequest statusBusinessAffiliationRequestId;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessAffiliationRequestId")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "affiliationRequestId")
     private ReviewOfac reviewOfac;
 
-    public BusinessAffiliationRequest() {
+    public AffiliationRequest() {
     }
 
-    public BusinessAffiliationRequest(Long id) {
+    public AffiliationRequest(Long id) {
         this.id = id;
     }
 
@@ -122,14 +128,6 @@ public class BusinessAffiliationRequest extends AbstractWalletEntity implements 
         this.updateDate = updateDate;
     }
 
-    public ReviewBusinessAffiliationRequest getReviewBusinessAffiliationRequest() {
-        return reviewBusinessAffiliationRequest;
-    }
-
-    public void setReviewBusinessAffiliationRequest(ReviewBusinessAffiliationRequest reviewBusinessAffiliationRequest) {
-        this.reviewBusinessAffiliationRequest = reviewBusinessAffiliationRequest;
-    }
-
     public RequestHasCollectionRequest getRequestHasCollectionRequest() {
         return requestHasCollectionRequest;
     }
@@ -145,13 +143,37 @@ public class BusinessAffiliationRequest extends AbstractWalletEntity implements 
     public void setBusinessPersonId(Person businessPersonId) {
         this.businessPersonId = businessPersonId;
     }
-
-    public StatusBusinessAffiliationRequest getStatusBusinessAffiliationRequestId() {
-        return statusBusinessAffiliationRequestId;
+    
+        public Person getUserRegisterUnifiedId() {
+        return userRegisterUnifiedId;
     }
 
-    public void setStatusBusinessAffiliationRequestId(StatusBusinessAffiliationRequest statusBusinessAffiliationRequestId) {
-        this.statusBusinessAffiliationRequestId = statusBusinessAffiliationRequestId;
+    public void setUserRegisterUnifiedId(Person userRegisterUnifiedId) {
+        this.userRegisterUnifiedId = userRegisterUnifiedId;
+    }
+
+    public RequestType getRequestTypeId() {
+        return requestTypeId;
+    }
+
+    public void setRequestTypeId(RequestType requestTypeId) {
+        this.requestTypeId = requestTypeId;
+    }
+
+    public StatusRequest getStatusRequestId() {
+        return statusRequestId;
+    }
+
+    public void setStatusRequestId(StatusRequest statusRequestId) {
+        this.statusRequestId = statusRequestId;
+    }
+
+    public ReviewAffiliationRequest getReviewAffiliationRequest() {
+        return reviewAffiliationRequest;
+    }
+
+    public void setReviewAffiliationRequest(ReviewAffiliationRequest reviewAffiliationRequest) {
+        this.reviewAffiliationRequest = reviewAffiliationRequest;
     }
 
     @Override
@@ -164,10 +186,10 @@ public class BusinessAffiliationRequest extends AbstractWalletEntity implements 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BusinessAffiliationRequest)) {
+        if (!(object instanceof AffiliationRequest)) {
             return false;
         }
-        BusinessAffiliationRequest other = (BusinessAffiliationRequest) object;
+        AffiliationRequest other = (AffiliationRequest) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
