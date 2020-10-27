@@ -17,7 +17,6 @@ import com.alodiga.wallet.common.model.Category;
 import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.Product;
 import com.alodiga.wallet.common.model.ProductData;
-import com.alodiga.wallet.common.model.ProductIntegrationType;
 import com.alodiga.wallet.common.model.Provider;
 import com.alodiga.wallet.common.model.StatusTransactionApproveRequest;
 import com.alodiga.wallet.common.model.Transaction;
@@ -74,9 +73,6 @@ public interface ProductEJB extends WalletGenericEJB {
     
     //Period
     public List<Period> getPeriods(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
-   
-    //ProductIntegrationType
-    public List<ProductIntegrationType> getProductIntegrationType(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
  
    //BankHasProduct
    public List<BankHasProduct> getBankHasProduct(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
@@ -86,6 +82,7 @@ public interface ProductEJB extends WalletGenericEJB {
    //TransactionApproveRequest
    public List<TransactionApproveRequest> getTransactionApproveRequest(EJBRequest request) throws GeneralException, EmptyListException, NullParameterException;
    public List<TransactionApproveRequest> getTransactionApproveRequestByParams(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;    
+   public List<TransactionApproveRequest> getTransactionApproveRequestByStatus(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
    public List<TransactionApproveRequest> searchTransactionApproveRequestByParamsMWAR(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;       
    public TransactionApproveRequest loadTransactionApproveRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;   
    public TransactionApproveRequest saveTransactionApproveRequest(TransactionApproveRequest transactionApproveRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
