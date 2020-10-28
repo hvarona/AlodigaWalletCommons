@@ -34,6 +34,7 @@ import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.Product;
 import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
+import com.alodiga.wallet.common.model.RequestType;
 import com.alodiga.wallet.common.model.ReviewAffiliationRequest;
 import com.alodiga.wallet.common.model.ReviewOfac;
 import com.alodiga.wallet.common.model.ReviewType;
@@ -274,4 +275,8 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
 
     //TransactionSource
     public List<TransactionSource> getTransactionSource(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    //Request Type
+    public List<RequestType> getRequestType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
 }

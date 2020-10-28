@@ -37,6 +37,7 @@ import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
 import com.alodiga.wallet.common.model.ReviewAffiliationRequest;
 import com.alodiga.wallet.common.model.ReviewOfac;
 import com.alodiga.wallet.common.model.ReviewType;
+import com.alodiga.wallet.common.model.RequestType;
 import com.alodiga.wallet.common.model.Sequences;
 import com.alodiga.wallet.common.model.Sms;
 import com.alodiga.wallet.common.model.State;
@@ -391,4 +392,8 @@ public interface UtilsEJB extends WalletGenericEJB {
     
     public List<CalendarDays> getCalendarDaysByCountryAndDate(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
+    //Request Type
+    public List<RequestType> getRequestType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+
+    
 }
