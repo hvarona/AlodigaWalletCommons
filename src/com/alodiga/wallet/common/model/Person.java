@@ -86,7 +86,7 @@ public class Person extends AbstractWalletEntity implements Serializable {
     @ManyToOne(optional = false)
     private PersonType personTypeId;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessPersonId")
-    private BusinessAffiliationRequest businessAffiliationRequest;
+    private AffiliationRequest businessAffiliationRequest;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
     private ReviewOfac reviewOfac;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
@@ -189,11 +189,11 @@ public class Person extends AbstractWalletEntity implements Serializable {
         this.personTypeId = personTypeId;
     }
 
-    public BusinessAffiliationRequest getBusinessAffiliationRequest() {
+    public AffiliationRequest getBusinessAffiliationRequest() {
         return businessAffiliationRequest;
     }
 
-    public void setBusinessAffiliationRequest(BusinessAffiliationRequest businessAffiliationRequest) {
+    public void setBusinessAffiliationRequest(AffiliationRequest businessAffiliationRequest) {
         this.businessAffiliationRequest = businessAffiliationRequest;
     }
 

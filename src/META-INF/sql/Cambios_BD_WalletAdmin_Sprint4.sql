@@ -1250,3 +1250,149 @@ DROP INDEX `fk_transaction_has_close_id`;
 
 -- Eliminar tabla close
 DROP TABLE `alodigaWallet`.`close`; 
+
+-- Cambios en BD para registrar Solicitudes de Registro de Usuarios Billetera
+-- author: Jesús Gómez
+-- Fecha: 26/10/2020
+SET FOREIGN_KEY_CHECKS=0;
+-- Crear tabla request_type
+CREATE TABLE IF NOT EXISTS `alodigaWallet`.`request_type` (
+  `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(50) NOT NULL,
+  `code` VARCHAR(10) NOT NULL,
+  `createDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateDate` TIMESTAMP NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+INSERT INTO `alodigaWallet`.`request_type` (`description`, `code`, `createDate`) VALUES ('Solicitudes de Afiliación de Negocios', 'SOAFNE', '2020-10-26 19:00:00');
+INSERT INTO `alodigaWallet`.`request_type` (`description`, `code`, `createDate`) VALUES ('Solicitudes de Registro de Usuarios de Billetera ', 'SORUBI', '2020-10-26 19:00:00');
+
+-- Cambiar nombre de tabla business_affiliation_request
+RENAME TABLE `alodigaWallet`.`business_affiliation_request` TO `alodigaWallet`.`affiliation_request`;
+
+-- Cambiar nombre de tabla status_business_affiliation_request
+RENAME TABLE `alodigaWallet`.`status_business_affiliation_request` TO `alodigaWallet`.`status_request`;
+
+-- Cambiar nombre de tabla review_business_affiliation_request
+RENAME TABLE `alodigaWallet`.`review_business_affiliation_request` TO `alodigaWallet`.`review_affiliation_request`;
+
+-- Eliminar FK de statusBusinessAffiliationId en tabla affiliation_request
+ALTER TABLE `alodigaWallet`.`affiliation_request` 
+DROP FOREIGN KEY `fk_business_affiliation_requets_status_business_affiliation_r1`;
+ALTER TABLE `alodigaWallet`.`affiliation_request` 
+DROP COLUMN `statusBusinessAffiliationRequestId`,
+DROP INDEX `fk_business_affiliation_requets_status_business_affiliation_idx`;
+
+-- Agregar FK statusRequestId en tabla affiliation_request
+ALTER TABLE `alodigaWallet`.`affiliation_request` 
+ADD COLUMN `statusRequestId` INT NOT NULL AFTER `dateRequest`;
+ALTER TABLE `alodigaWallet`.`affiliation_request`
+ADD CONSTRAINT `fk_affiliationRequest_statusRequest1`
+FOREIGN KEY (`statusRequestId`)
+REFERENCES `alodigaWallet`.`status_request` (`id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+UPDATE alodigaWallet.affiliation_request SET statusRequestId = 1 where id > 0;
+
+-- Agregar FK userRegisterUnifiedId en tabla affiliation_request
+ALTER TABLE `alodigaWallet`.`affiliation_request` 
+ADD COLUMN `userRegisterUnifiedId` BIGINT NULL AFTER `businessPersonId`;
+ALTER TABLE `alodigaWallet`.`affiliation_request`
+ADD CONSTRAINT `fk_affiliationRequest_person2`
+FOREIGN KEY (`userRegisterUnifiedId`)
+REFERENCES `alodigaWallet`.`person` (`id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+-- Agregar FK requestTypeId en tabla affiliation_request
+ALTER TABLE `alodigaWallet`.`affiliation_request` 
+ADD COLUMN `requestTypeId` INT NOT NULL AFTER `statusRequestId`;
+ALTER TABLE `alodigaWallet`.`affiliation_request`
+ADD CONSTRAINT `fk_affiliationRequest_requestType1`
+FOREIGN KEY (`requestTypeId`)
+REFERENCES `alodigaWallet`.`request_type` (`id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+-- Modificar FK businessPersonId para que acepte NULL
+ALTER TABLE `alodigaWallet`.`affiliation_request` 
+DROP FOREIGN KEY `fk_business_affiliation_requets_person1`;
+ALTER TABLE `alodigaWallet`.`affiliation_request` 
+CHANGE COLUMN `businessPersonId` `businessPersonId` BIGINT(20) NULL;
+ALTER TABLE `alodigaWallet`.`affiliation_request` 
+ADD CONSTRAINT `fk_affiliationRequest_person1`
+  FOREIGN KEY (`businessPersonId`)
+  REFERENCES `alodigaWallet`.`person` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+-- Colocar numberRequest y dateRequest como NOT NULL en tabla affiliation_request 
+ALTER TABLE `alodigaWallet`.`affiliation_request` 
+CHANGE COLUMN `numberRequest` `numberRequest` VARCHAR(40) NOT NULL ,
+CHANGE COLUMN `dateRequest` `dateRequest` DATE NOT NULL ,
+DROP INDEX `businessPersonId`;
+
+-- Eliminar FK de businessAffiliationRequestId en tabla review_ofac
+ALTER TABLE `alodigaWallet`.`review_ofac` 
+DROP FOREIGN KEY `fk_review_ofac_business_affiliation_request1`;
+ALTER TABLE `alodigaWallet`.`review_ofac` 
+DROP COLUMN `businessAffiliationRequestId`,
+DROP INDEX `fk_review_ofac_business_affiliation_requets1_idx`;
+
+-- Agregar FK affiliationRequestsId en tabla review_ofac
+ALTER TABLE `alodigaWallet`.`review_ofac` 
+ADD COLUMN `affiliationRequestId` BIGINT NULL AFTER `personId`;
+ALTER TABLE `alodigaWallet`.`review_ofac`
+ADD CONSTRAINT `fk_reviewOfac_affiliationRequests1`
+FOREIGN KEY (`affiliationRequestId`)
+REFERENCES `alodigaWallet`.`affiliation_request` (`id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+-- Agregar FK requestTypeId en tabla collections_request
+ALTER TABLE `alodigaWallet`.`collections_request` 
+ADD COLUMN `requestTypeId` INT NOT NULL AFTER `personTypeId`;
+ALTER TABLE `alodigaWallet`.`collections_request`
+ADD CONSTRAINT `fk_collectionsRequest_requestType1`
+FOREIGN KEY (`requestTypeId`)
+REFERENCES `alodigaWallet`.`request_type` (`id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+-- Eliminar FK de businessAffiliationRequestId en tabla request_has_collection_request
+ALTER TABLE `alodigaWallet`.`request_has_collection_request` 
+DROP FOREIGN KEY `fk_request_has_collection_request_business1`;
+ALTER TABLE `alodigaWallet`.`request_has_collection_request` 
+DROP COLUMN `businessAffiliationRequestId`,
+DROP INDEX `fk_request_has_collection_request_business_affiliation_requ_idx`;
+
+-- Agregar FK affiliationRequestId en tabla request_has_collection_request
+ALTER TABLE `alodigaWallet`.`request_has_collection_request` 
+ADD COLUMN `affiliationRequestId` BIGINT NOT NULL AFTER `collectionsRequestId`;
+ALTER TABLE `alodigaWallet`.`request_has_collection_request`
+ADD CONSTRAINT `fk_requestHasCollectionRequest_affiliationRequests1`
+FOREIGN KEY (`affiliationRequestId`)
+REFERENCES `alodigaWallet`.`affiliation_request` (`id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+-- Eliminar FK de businessAffiliationRequestId en tabla review_affiliation_request
+ALTER TABLE `alodigaWallet`.`review_affiliation_request` 
+DROP FOREIGN KEY `fk_review_business_affiliation_request_business_affiliation_r1`;
+ALTER TABLE `alodigaWallet`.`review_affiliation_request` 
+DROP COLUMN `businessAffiliationRequestId`,
+DROP INDEX `fk_review_business_affiliation_request_business_affiliation_idx`;
+
+-- Agregar FK affiliationRequestId en tabla review_affiliation_request
+ALTER TABLE `alodigaWallet`.`review_affiliation_request` 
+ADD COLUMN `affiliationRequestId` BIGINT NOT NULL AFTER `id`;
+ALTER TABLE `alodigaWallet`.`review_affiliation_request`
+ADD CONSTRAINT `fk_reviewAffiliationRequest_affiliationRequests1`
+FOREIGN KEY (`affiliationRequestId`)
+REFERENCES `alodigaWallet`.`affiliation_request` (`id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+SET FOREIGN_KEY_CHECKS=1;

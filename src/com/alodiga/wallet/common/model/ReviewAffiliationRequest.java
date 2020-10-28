@@ -32,19 +32,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author jose
  */
 @Entity
-@Table(name = "review_business_affiliation_request")
+@Table(name = "review_affiliation_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findAll", query = "SELECT r FROM ReviewBusinessAffiliationRequest r"),
-    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findById", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.id = :id"),
-    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByReviewDate", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.reviewDate = :reviewDate"),
-    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByObservations", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.observations = :observations"),
-    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByIndApproved", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.indApproved = :indApproved"),
-    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByCreateDate", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.createDate = :createDate"),
-    @NamedQuery(name = "ReviewBusinessAffiliationRequest.findByUpdateDate", query = "SELECT r FROM ReviewBusinessAffiliationRequest r WHERE r.updateDate = :updateDate"),
-    @NamedQuery(name = QueryConstants.REVIEW_REQUEST_BY_REQUEST, query = "SELECT r FROM ReviewBusinessAffiliationRequest r where r.businessAffiliationRequestId.id = :businessAffiliationRequestId AND r.reviewTypeId.id = :reviewTypeId")})
+    @NamedQuery(name = "ReviewAffiliationRequest.findAll", query = "SELECT r FROM ReviewAffiliationRequest r"),
+    @NamedQuery(name = "ReviewAffiliationRequest.findById", query = "SELECT r FROM ReviewAffiliationRequest r WHERE r.id = :id"),
+    @NamedQuery(name = "ReviewAffiliationRequest.findByReviewDate", query = "SELECT r FROM ReviewAffiliationRequest r WHERE r.reviewDate = :reviewDate"),
+    @NamedQuery(name = "ReviewAffiliationRequest.findByObservations", query = "SELECT r FROM ReviewAffiliationRequest r WHERE r.observations = :observations"),
+    @NamedQuery(name = "ReviewsAffiliationRequest.findByIndApproved", query = "SELECT r FROM ReviewAffiliationRequest r WHERE r.indApproved = :indApproved"),
+    @NamedQuery(name = "ReviewAffiliationRequest.findByCreateDate", query = "SELECT r FROM ReviewAffiliationRequest r WHERE r.createDate = :createDate"),
+    @NamedQuery(name = "ReviewAffiliationRequest.findByUpdateDate", query = "SELECT r FROM ReviewAffiliationRequest r WHERE r.updateDate = :updateDate"),
+    @NamedQuery(name = QueryConstants.REVIEW_REQUEST_BY_REQUEST, query = "SELECT r FROM ReviewAffiliationRequest r where r.affiliationRequestId.id = :businessAffiliationRequestId AND r.reviewTypeId.id = :reviewTypeId")})
 
-public class ReviewBusinessAffiliationRequest extends AbstractWalletEntity implements Serializable {
+public class ReviewAffiliationRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -66,9 +66,9 @@ public class ReviewBusinessAffiliationRequest extends AbstractWalletEntity imple
     @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "businessAffiliationRequestId", referencedColumnName = "id")
+    @JoinColumn(name = "affiliationRequestId", referencedColumnName = "id")
     @OneToOne(optional = false)
-    private BusinessAffiliationRequest businessAffiliationRequestId;
+    private AffiliationRequest affiliationRequestId;
     @JoinColumn(name = "reviewTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private ReviewType reviewTypeId;
@@ -76,10 +76,10 @@ public class ReviewBusinessAffiliationRequest extends AbstractWalletEntity imple
     @ManyToOne(optional = false)
     private User userReviewId;
 
-    public ReviewBusinessAffiliationRequest() {
+    public ReviewAffiliationRequest() {
     }
 
-    public ReviewBusinessAffiliationRequest(Long id) {
+    public ReviewAffiliationRequest(Long id) {
         this.id = id;
     }
 
@@ -131,12 +131,12 @@ public class ReviewBusinessAffiliationRequest extends AbstractWalletEntity imple
         this.updateDate = updateDate;
     }
 
-    public BusinessAffiliationRequest getBusinessAffiliationRequestId() {
-        return businessAffiliationRequestId;
+    public AffiliationRequest getAffiliationRequestId() {
+        return affiliationRequestId;
     }
 
-    public void setBusinessAffiliationRequestId(BusinessAffiliationRequest businessAffiliationRequestId) {
-        this.businessAffiliationRequestId = businessAffiliationRequestId;
+    public void setAffiliationRequestId(AffiliationRequest affiliationRequestId) {
+        this.affiliationRequestId = affiliationRequestId;
     }
 
     public ReviewType getReviewTypeId() {
@@ -165,10 +165,10 @@ public class ReviewBusinessAffiliationRequest extends AbstractWalletEntity imple
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ReviewBusinessAffiliationRequest)) {
+        if (!(object instanceof ReviewAffiliationRequest)) {
             return false;
         }
-        ReviewBusinessAffiliationRequest other = (ReviewBusinessAffiliationRequest) object;
+        ReviewAffiliationRequest other = (ReviewAffiliationRequest) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

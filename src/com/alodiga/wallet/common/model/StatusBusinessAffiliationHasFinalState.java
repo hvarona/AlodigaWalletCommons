@@ -53,10 +53,10 @@ public class StatusBusinessAffiliationHasFinalState extends AbstractWalletEntity
     private Date updateDate;
     @JoinColumn(name = "statusBusinessAffiliationRequetsId", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private StatusBusinessAffiliationRequest statusBusinessAffiliationRequetsId;
+    private StatusRequest statusBusinessAffiliationRequetsId;
     @JoinColumn(name = "finalStateId", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private StatusBusinessAffiliationRequest finalStateId;
+    private StatusRequest finalStateId;
 
     public StatusBusinessAffiliationHasFinalState() {
     }
@@ -94,19 +94,19 @@ public class StatusBusinessAffiliationHasFinalState extends AbstractWalletEntity
         this.updateDate = updateDate;
     }
 
-    public StatusBusinessAffiliationRequest getStatusBusinessAffiliationRequetsId() {
+    public StatusRequest getStatusBusinessAffiliationRequetsId() {
         return statusBusinessAffiliationRequetsId;
     }
 
-    public void setStatusBusinessAffiliationRequetsId(StatusBusinessAffiliationRequest statusBusinessAffiliationRequetsId) {
+    public void setStatusBusinessAffiliationRequetsId(StatusRequest statusBusinessAffiliationRequetsId) {
         this.statusBusinessAffiliationRequetsId = statusBusinessAffiliationRequetsId;
     }
 
-    public StatusBusinessAffiliationRequest getFinalStateId() {
+    public StatusRequest getFinalStateId() {
         return finalStateId;
     }
 
-    public void setFinalStateId(StatusBusinessAffiliationRequest finalStateId) {
+    public void setFinalStateId(StatusRequest finalStateId) {
         this.finalStateId = finalStateId;
     }
 
