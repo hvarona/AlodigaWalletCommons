@@ -13,7 +13,7 @@ import com.alodiga.wallet.common.model.Bank;
 import com.alodiga.wallet.common.model.BankOperation;
 import com.alodiga.wallet.common.model.BankOperationMode;
 import com.alodiga.wallet.common.model.BankOperationType;
-import com.alodiga.wallet.common.model.BusinessAffiliationRequest;
+import com.alodiga.wallet.common.model.AffiliationRequest;
 import com.alodiga.wallet.common.model.BusinessCategory;
 import com.alodiga.wallet.common.model.BusinessSubCategory;
 import com.alodiga.wallet.common.model.BusinessType;
@@ -34,7 +34,7 @@ import com.alodiga.wallet.common.model.Period;
 import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.Product;
 import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
-import com.alodiga.wallet.common.model.ReviewBusinessAffiliationRequest;
+import com.alodiga.wallet.common.model.ReviewAffiliationRequest;
 import com.alodiga.wallet.common.model.ReviewOfac;
 import com.alodiga.wallet.common.model.ReviewType;
 import com.alodiga.wallet.common.model.Sequences;
@@ -43,7 +43,7 @@ import com.alodiga.wallet.common.model.State;
 import com.alodiga.wallet.common.model.StatusCard;
 import com.alodiga.wallet.common.model.StatusCardHasFinalState;
 import com.alodiga.wallet.common.model.StatusBusinessAffiliationHasFinalState;
-import com.alodiga.wallet.common.model.StatusBusinessAffiliationRequest;
+import com.alodiga.wallet.common.model.StatusRequest;
 import com.alodiga.wallet.common.model.StatusTransactionApproveRequest;
 import com.alodiga.wallet.common.model.Transaction;
 import com.alodiga.wallet.common.model.TransactionApproveRequest;
@@ -275,11 +275,11 @@ public interface UtilsEJB extends WalletGenericEJB {
     public List<CollectionsRequest> searchCollectionsRequestByCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
     
     //StatusBusinessAffiliationRequest
-    public List<StatusBusinessAffiliationRequest> getStatusBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public List<StatusRequest> getStatusBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
-    public StatusBusinessAffiliationRequest loadStatusBusinessAffiliationRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public StatusRequest loadStatusBusinessAffiliationRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
-    public StatusBusinessAffiliationRequest saveStatusBusinessAffiliationRequest(StatusTransactionApproveRequest statusTransactionApproveRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public StatusRequest saveStatusBusinessAffiliationRequest(StatusTransactionApproveRequest statusTransactionApproveRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //StatusBusinessAffiliationHasFinalState
     public List<StatusBusinessAffiliationHasFinalState> getStatusBusinessAffiliationHasFinalState(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
@@ -291,20 +291,20 @@ public interface UtilsEJB extends WalletGenericEJB {
     public boolean validateStatusBusinessAffiliationHasFinalState(Integer statusId, Integer finalId) throws GeneralException, NullParameterException;
 
     //BusinessAffiliationRequest
-    public List<BusinessAffiliationRequest> getBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public List<AffiliationRequest> getBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
-    public BusinessAffiliationRequest loadBusinessAffiliationRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public AffiliationRequest loadBusinessAffiliationRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
-    public BusinessAffiliationRequest saveBusinessAffiliationRequest(BusinessAffiliationRequest businessAffiliationRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public AffiliationRequest saveBusinessAffiliationRequest(AffiliationRequest businessAffiliationRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //ReviewBusinessAffiliationRequest
-    public List<ReviewBusinessAffiliationRequest> getReviewBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public List<ReviewAffiliationRequest> getReviewBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
-    public List<ReviewBusinessAffiliationRequest> getReviewBusinessRequestByRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public List<ReviewAffiliationRequest> getReviewBusinessRequestByRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
-    public ReviewBusinessAffiliationRequest loadReviewBusinessAffiliationRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public ReviewAffiliationRequest loadReviewBusinessAffiliationRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
-    public ReviewBusinessAffiliationRequest saveReviewBusinessAffiliationRequest(ReviewBusinessAffiliationRequest reviewBusinessAffiliationRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public ReviewAffiliationRequest saveReviewBusinessAffiliationRequest(ReviewAffiliationRequest reviewBusinessAffiliationRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //RequestHasCollectionsRequest
     public List<RequestHasCollectionRequest> getRequestsHasCollectionsRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
@@ -319,7 +319,7 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     public void updateBusinessAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
-    public StatusBusinessAffiliationRequest loadStatusBusinessAffiliationRequestByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
+    public StatusRequest loadStatusBusinessAffiliationRequestByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
     
     //PersonType
     public PersonType savePersonType (PersonType personType)  throws RegisterNotFoundException, NullParameterException, GeneralException;

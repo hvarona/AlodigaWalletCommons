@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "CollectionsRequest.findById", query = "SELECT c FROM CollectionsRequest c WHERE c.id = :id"),
     @NamedQuery(name = "CollectionsRequest.findBycollectionTypeId", query = "SELECT c FROM CollectionsRequest c WHERE c.collectionTypeId.id = :collectionTypeId"),
     @NamedQuery(name = QueryConstants.COLLECTIONS_BY_PERSON_TYPE, query = "SELECT c FROM CollectionsRequest c WHERE c.personTypeId.id=:personTypeId")})
+
 public class CollectionsRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,6 +49,9 @@ public class CollectionsRequest extends AbstractWalletEntity implements Serializ
     @JoinColumn(name = "personTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private PersonType personTypeId;
+    @JoinColumn(name = "requestTypeId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private RequestType requestTypeId;
 
     public CollectionsRequest() {
     }
@@ -78,6 +82,14 @@ public class CollectionsRequest extends AbstractWalletEntity implements Serializ
 
     public void setPersonTypeId(PersonType personTypeId) {
         this.personTypeId = personTypeId;
+    }
+
+    public RequestType getRequestTypeId() {
+        return requestTypeId;
+    }
+
+    public void setRequestTypeId(RequestType requestTypeId) {
+        this.requestTypeId = requestTypeId;
     }
 
     @Override
