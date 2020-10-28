@@ -1234,19 +1234,19 @@ DROP INDEX `fk_product_enterprise1` ,
 DROP INDEX `fk_product_integration_type1`;
 
 -- Eliminar tabla enterprise
-DROP TABLE `alodigaWallet`.`enterprise`; 
+  DROP TABLE `alodigaWallet`.`enterprise`; 
 
--- Eliminar tabla product_integration_type
-DROP TABLE `alodigaWallet`.`product_integration_type`; 
+  -- Eliminar tabla product_integration_type
+  DROP TABLE `alodigaWallet`.`product_integration_type`; 
 
--- Eliminar varios campos en tabla transaction
-ALTER TABLE `alodigaWallet`.`transaction` 
-DROP FOREIGN KEY `fk_transaction_has_close_id`;
-ALTER TABLE `alodigaWallet`.`transaction` 
-DROP COLUMN `closeId`,
-DROP COLUMN `additional2`,
-DROP COLUMN `additional`,
-DROP INDEX `fk_transaction_has_close_id`;
+  -- Eliminar varios campos en tabla transaction
+  ALTER TABLE `alodigaWallet`.`transaction` 
+  DROP FOREIGN KEY `fk_transaction_has_close_id`;
+  ALTER TABLE `alodigaWallet`.`transaction` 
+  DROP COLUMN `closeId`,
+  DROP COLUMN `additional2`,
+  DROP COLUMN `additional`,
+  DROP INDEX `fk_transaction_has_close_id`;
 
 -- Eliminar tabla close
 DROP TABLE `alodigaWallet`.`close`; 
