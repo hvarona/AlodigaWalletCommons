@@ -26,6 +26,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 
 /**
  *
@@ -40,7 +41,9 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
     , @NamedQuery(name = "AffiliationRequest.findByNumberRequest", query = "SELECT a FROM AffiliationRequest a WHERE a.numberRequest = :numberRequest")
     , @NamedQuery(name = "AffiliationRequest.findByDateRequest", query = "SELECT a FROM AffiliationRequest a WHERE a.dateRequest = :dateRequest")
     , @NamedQuery(name = "AffiliationRequest.findByCreateDate", query = "SELECT a FROM AffiliationRequest a WHERE a.createDate = :createDate")
-    , @NamedQuery(name = "AffiliationRequest.findByUpdateDate", query = "SELECT a FROM AffiliationRequest a WHERE a.updateDate = :updateDate")})
+    , @NamedQuery(name = "AffiliationRequest.findByUpdateDate", query = "SELECT a FROM AffiliationRequest a WHERE a.updateDate = :updateDate")
+    , @NamedQuery(name = QueryConstants.AFFILIATION_REQUEST_BY_REQUEST_TYPE_ID, query = "SELECT a FROM AffiliationRequest a WHERE a.requestTypeId.id = :requestTypeId")})
+
 
 public class AffiliationRequest extends AbstractWalletEntity implements Serializable {
 
