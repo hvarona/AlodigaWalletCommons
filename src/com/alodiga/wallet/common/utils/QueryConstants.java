@@ -175,6 +175,7 @@ public class QueryConstants {
     public static final String COLLECTION_TYPE_BY_COUNTRY_BY_PERSON_TYPE = "CollectionTypeByCountryByPersonType";
     public static final String REVIEW_OFAC_BY_REQUEST = "reviewOfacByRequest";
     public static final String PARAM_REQUEST_NUMBER = "requestNumber";
+    public static final String PARAM_NUMBER_REQUEST = "numberRequest";
     public static final String PARAM_TRANSACTION_APPROVE_REQUEST = "transactionApproveRequest";
     public static final String PARAM_CODE = "code";
     public static final String PARAM_STATUS_TRANSACTION_APPROVE_REQUEST_ID = "statusTransactionApproveRequestId";
@@ -217,4 +218,5 @@ public class QueryConstants {
     public static final String PARAM_PERMISSION_ID = "permissionId";
     public static final String PREFERENCE_FIELD_DATA_BY_PREFERENCE = "preferenceFieldDataByPreference";
     public static final String PREFERENCE_TYPE_BY_TYPE ="preferenceTypeByType";
+    public static final String PARAM_REQUEST_TYPE ="requestTypeId";
 }
