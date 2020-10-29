@@ -73,6 +73,8 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     private BigInteger userSourceId;
     @Column(name = "bankOperationNumber")
     private String bankOperationNumber;
+    @Column(name = "responsible")
+    private String responsible;
     @Column(name = "observations")
     private String observations;
     @JoinColumn(name = "commisionId", referencedColumnName = "id")
@@ -135,6 +137,14 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
 
     public void setBankOperationNumber(String bankOperationNumber) {
         this.bankOperationNumber = bankOperationNumber;
+    }
+    
+    public String getResponsible() {
+        return responsible;
+    }
+
+    public void setResponsible(String responsible) {
+        this.responsible = responsible;
     }
 
     public Commission getCommisionId() {
