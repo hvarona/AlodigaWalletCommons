@@ -4466,4 +4466,28 @@ INSERT INTO `alodigaWallet`.`city` (`stateId`, `name`) VALUES
 ('84', 'Cody'),
 ('84', 'Rawlins');
 
+-- Tabla comercial_agency
+SET @CityCaracasId = 0;
+SELECT id INTO @CityCaracasId FROM alodigaWallet.city where name = "Chacao";
+INSERT INTO `alodigaWallet`.`comercial_agency` (`name`, `cityId`) VALUES ('CCT', @CityCaracasId);
+
+-- Tabla person_type
+INSERT INTO `alodigaWallet`.`person_type` (`description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('Persona Natural', '1', '2', '1');
+
+-- Tabla documents_person_type
+INSERT INTO `alodigaWallet`.`pdocuments_person_type` (`description`,`personTypeId`,`codeIdentification`,) VALUES ('Cedula de Identidad Venezolano', '1', 'CI');
+
+-- Tabla person
+INSERT INTO `alodigaWallet`.`person` (`email`, `personTypeId`, `personClassificationId`, `countryId`, `createDate`) VALUES ('jgomez@alodiga.com', '1', '3', '1', '2020-10-28 12:09:22');
+
+-- Tabla employee
+INSERT INTO `alodigaWallet`.`employee` (`identificationNumber`, `documentsPersonTypeId`, `firstNames`, `lastNames`, `personId`, `employedPositionId`, `comercialAgencyId`) VALUES ('12345678', '1', 'Jesus', 'Gomez', '1', '1', '1') ;
+
+-- Tabla User
+INSERT INTO `alodigaWallet`.`user`(`login`, `password`, `firstName`, `lastName`, `creationDate`, `email`, `phoneNumber`, `receiveTopUpNotification`, `enabled`, `documentsPersonTypeId`, `identificationNumber`, `personId`, `authorizedEmployeeId`, `employeeId`) VALUES
+('jgomez', 'e10adc3949ba59abbe56e057f20f883e', 'Jesus', 'Gomez','2020-10-26 21:28:42', 'jgomez@alodiga.com', '584142063128', '1', '1', '1', '12345678', '1', '0', '1');
+
+-- Tabla user_has_profile
+INSERT INTO `alodigaWallet`.`user_has_profile`(`profileId`, `userId`, `beginningDate`, `endingDate`) VALUES ('1', '1', '2020-10-25 11:38:57', NULL);
+
 SET FOREIGN_KEY_CHECKS=1;
