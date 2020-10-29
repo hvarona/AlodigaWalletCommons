@@ -38,7 +38,9 @@ public interface PersonEJB extends WalletGenericEJB {
     public DocumentsPersonType loadDocumentsPersonType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public DocumentsPersonType saveDocumentsPersonType(DocumentsPersonType documentsPersonType) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public List<DocumentsPersonType> getDocumentsPersonByCountry(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
+    public List<DocumentsPersonType> searchDocumentsPersonTypeByCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
+    
+    
     //Tabla de PersonType
     public List<PersonType> getPersonTypes(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public List<PersonType> getPersonTypeByCountry(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;

@@ -211,7 +211,8 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public List<AffiliationRequest> getAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public AffiliationRequest loadAffiliationRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public AffiliationRequest saveAffiliationRequest(AffiliationRequest affiliationRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
+    public List<AffiliationRequest> searchAffiliationRequestByParams(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;
+    
     //ReviewAffiliationRequest
     public List<ReviewAffiliationRequest> getReviewAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public List<ReviewAffiliationRequest> getReviewRequestByRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
