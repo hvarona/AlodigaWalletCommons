@@ -60,9 +60,6 @@ public class Bank extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "countryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Country countryId;
-    @JoinColumn(name = "enterpriseId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Enterprise enterpriseId;
 
     public Bank() {
     }
@@ -115,14 +112,6 @@ public class Bank extends AbstractWalletEntity implements Serializable {
 
     public void setCountryId(Country countryId) {
         this.countryId = countryId;
-    }
-
-    public Enterprise getEnterpriseId() {
-        return enterpriseId;
-    }
-
-    public void setEnterpriseId(Enterprise enterpriseId) {
-        this.enterpriseId = enterpriseId;
     }
 
     @Override

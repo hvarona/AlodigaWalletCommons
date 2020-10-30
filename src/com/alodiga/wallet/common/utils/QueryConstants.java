@@ -45,6 +45,7 @@ public class QueryConstants {
     public static final String BUSINESS_TYPE_BY_ID = "businessTypeById";
     public static final String BUSINESS_SERVICE_TYPE_BY_BUSINESS_TYPE = "businessServiceTypeByBusinessType";
     public static final String TRANSACTION_APPROVE_REQUEST_BY_STATUS = "transactionApproveRequestByStatus";
+    public static final String AFFILIATION_REQUEST_BY_REQUEST_TYPE_ID = "affiliationRequestByRequestTypeId";
     public static final String CODE_BY_STATUS = "codeByStatus";
     public static final String PERSON_CLASSIFICATION_BY_CODE = "personClassificationByCode";
     public static final String STATUS_ACCOUNT_BANK_BY_CODE = "statusAcountBankByCode";
@@ -175,6 +176,8 @@ public class QueryConstants {
     public static final String COLLECTION_TYPE_BY_COUNTRY_BY_PERSON_TYPE = "CollectionTypeByCountryByPersonType";
     public static final String REVIEW_OFAC_BY_REQUEST = "reviewOfacByRequest";
     public static final String PARAM_REQUEST_NUMBER = "requestNumber";
+    public static final String PARAM_NUMBER_REQUEST = "numberRequest";
+    public static final String PARAM_TRANSACTION_APPROVE_REQUEST = "transactionApproveRequest";
     public static final String PARAM_CODE = "code";
     public static final String PARAM_STATUS_TRANSACTION_APPROVE_REQUEST_ID = "statusTransactionApproveRequestId";
     public static final String SEQUENCES_BY_DOCUMENT_TYPE = "Sequences.findByDocumentType";
@@ -182,7 +185,7 @@ public class QueryConstants {
     public static final String PHONES_BY_PERSON = "phonesByPerson";
     public static final String PERSON_HAS_ADDRESS_BY_PERSON = "personHasAddressByPerson";
     public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_REQUEST_BY_COLLECTION_REQUEST = "RequestHasCollectionsRequestByRequestsByCollectionRequest";
-    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST = "requestHasCollectionsRequestByBusinessAffiliationRequest";
+    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_AFFILIATON_REQUEST = "requestHasCollectionsRequestByBusinessAffiliationRequest";
     public static final String LEGAL_PERSON_BY_LEGAL_REPRESENTATIVE = "legalPersonByLegalRepresentative";
     public static final String PARAM_IND_NATURAL_PERSON = "indNaturalPerson";
     public static final String PERSON_TYPE_BY_COUNTRY_BY_IND_NATURAL_PERSON = "personTypeByCountryByIndNaturalPerson";
@@ -190,12 +193,12 @@ public class QueryConstants {
     public static final String PERSON_TYPE_BY_COUNTRY_BY_ORIGIN_APPLICATION_PORTAL = "personTypeByCountryByOriginApplicationPortal";
     public static final String PARAM_BUSINESS_TYPE_ID = "businessTypeId";
     public static final String REVIEW_REQUEST_BY_REQUEST = "reviewRequestByRequest";
-    public static final String PARAM_BUSINESS_AFFILIATION_REQUEST_ID = "businessAffiliationRequestId";
+    public static final String PARAM_AFFILIATION_REQUEST_ID = "affiliationRequestId";
     public static final String PARAM_REVIEW_TYPE_ID = "reviewTypeId";
     public static final String PARAM_PERSON_ID = "personId";
     public static final String PARAM_LEGAL_REPRESENTATIVE_ID = "legalRepresentativeId";
-    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST_COMPLET = "RequestHasCollectionsRequestByBusinessAffiliationRequestComplet";
-    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST_INCOMPLET = "RequestHasCollectionsRequestByBusinessAffiliationRequestInComplet";
+    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_AFFILIATON_REQUEST_COMPLET = "RequestHasCollectionsRequestByBusinessAffiliationRequestComplet";
+    public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_AFFILIATON_REQUEST_INCOMPLET = "RequestHasCollectionsRequestByBusinessAffiliationRequestInComplet";
     public static final String STATUS_BUSINESS_AFFILIATON_REQUEST_BY_CODE = "StatusBusinessAffiliationRequestByCode";
     public static final String CARDSTATUS_BY_ID = "cardStatusById";
     public static final String COLLECTIONS_BY_PERSON_TYPE = "collectionsByPersonType";
@@ -215,4 +218,6 @@ public class QueryConstants {
     public static final String HOLI_DAY_EXIST_IN_BD_CALENDAR_DAYS = "holiDayExistInBdCalendarDays";
     public static final String PARAM_PERMISSION_ID = "permissionId";
     public static final String PREFERENCE_FIELD_DATA_BY_PREFERENCE = "preferenceFieldDataByPreference";
+    public static final String PREFERENCE_TYPE_BY_TYPE ="preferenceTypeByType";
+    public static final String PARAM_REQUEST_TYPE ="requestTypeId";
 }

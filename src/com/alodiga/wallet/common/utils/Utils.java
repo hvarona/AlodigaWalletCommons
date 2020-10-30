@@ -2,7 +2,6 @@ package com.alodiga.wallet.common.utils;
 
 import com.alodiga.wallet.common.exception.GeneralException;
 import com.alodiga.wallet.common.model.BalanceHistory;
-import com.alodiga.wallet.common.model.Enterprise;
 import com.alodiga.wallet.common.model.Transaction;
 import com.alodiga.wallet.common.model.User;
 import com.ericsson.alodiga.ws.Usuario;
@@ -1414,7 +1413,7 @@ public class Utils {
         return mail;
     }
         
-     public static Mail getUserRecoveryPasswordMail(User user, String newPassword, Enterprise enterprise) {
+     public static Mail getUserRecoveryPasswordMail(User user, String newPassword) {
 
             String hello = "Hola";
             String subject = "Alodiga: Recuperación de clave.";
@@ -1498,7 +1497,6 @@ public class Utils {
                             + "</div></th></tr>"
                             + "</table></div></body></html>";
             Mail mail = new Mail();
-            mail.setEnterprise(enterprise);
             mail.setSubject(subject);
             mail.setFrom(ALODIGA_WALLET_ADDRESS);
             mail.setBody(body);

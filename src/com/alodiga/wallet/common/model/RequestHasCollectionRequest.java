@@ -42,10 +42,10 @@ import com.alodiga.wallet.common.utils.QueryConstants;
     @NamedQuery(name = "RequestHasCollectionRequest.findByImageFileUrl", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.imageFileUrl = :imageFileUrl"),
     @NamedQuery(name = "RequestHasCollectionRequest.findByObservations", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.observations = :observations"),
     @NamedQuery(name = "RequestHasCollectionRequest.findByIndApproved", query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.indApproved = :indApproved"),
-    @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_REQUEST_BY_COLLECTION_REQUEST, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId AND r.collectionsRequestId.id=:collectionsRequestId"),
-    @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId"),
-    @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST_COMPLET, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId AND r.indApproved is null or r.indApproved=0"),
-    @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_BUSINESS_AFFILIATON_REQUEST_INCOMPLET, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.businessAffiliationRequestId.id=:businessAffiliationRequestId AND r.indApproved=0")})
+    @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_REQUEST_BY_COLLECTION_REQUEST, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.affiliationRequestId.id=:affiliationRequestId AND r.collectionsRequestId.id=:collectionsRequestId"),
+    @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_AFFILIATON_REQUEST, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.affiliationRequestId.id=:affiliationRequestId"),
+    @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_AFFILIATON_REQUEST_COMPLET, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.affiliationRequestId.id=:affiliationRequestId AND r.indApproved is null or r.indApproved=0"),
+    @NamedQuery(name = QueryConstants.REQUEST_HAS_COLLECTION_REQUEST_BY_AFFILIATON_REQUEST_INCOMPLET, query = "SELECT r FROM RequestHasCollectionRequest r WHERE r.affiliationRequestId.id=:affiliationRequestId AND r.indApproved=0")})
 
 public class RequestHasCollectionRequest extends AbstractWalletEntity implements Serializable {
 
@@ -69,9 +69,9 @@ public class RequestHasCollectionRequest extends AbstractWalletEntity implements
     private String observations;
     @Column(name = "indApproved")
     private Short indApproved;
-    @JoinColumn(name = "businessAffiliationRequestId", referencedColumnName = "id")
+    @JoinColumn(name = "affiliationRequestId", referencedColumnName = "id")
     @OneToOne(optional = false)
-    private BusinessAffiliationRequest businessAffiliationRequestId;
+    private AffiliationRequest affiliationRequestId;
     @JoinColumn(name = "collectionsRequestId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private CollectionsRequest collectionsRequestId;
@@ -131,12 +131,12 @@ public class RequestHasCollectionRequest extends AbstractWalletEntity implements
         this.indApproved = indApproved;
     }
 
-    public BusinessAffiliationRequest getBusinessAffiliationRequestId() {
-        return businessAffiliationRequestId;
+    public AffiliationRequest getAffiliationRequestId() {
+        return affiliationRequestId;
     }
 
-    public void setBusinessAffiliationRequestId(BusinessAffiliationRequest businessAffiliationRequestId) {
-        this.businessAffiliationRequestId = businessAffiliationRequestId;
+    public void setAffiliationRequestId(AffiliationRequest affiliationRequestId) {
+        this.affiliationRequestId = affiliationRequestId;
     }
 
     public CollectionsRequest getCollectionsRequestId() {

@@ -18,65 +18,77 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.Product;
-import com.alodiga.wallet.common.model.ProductIntegrationType;
-import org.codehaus.jackson.annotate.JsonIgnore;
+import com.alodiga.wallet.common.utils.QueryConstants;
 
 /**
  *
- * @author usuario
+ * @author jose
  */
 @Entity
-@Table(name = "product_integration_type")
+@Table(name = "status_request")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProductIntegrationType.findAll", query = "SELECT p FROM ProductIntegrationType p"),
-    @NamedQuery(name = "ProductIntegrationType.findById", query = "SELECT p FROM ProductIntegrationType p WHERE p.id = :id"),
-    @NamedQuery(name = "ProductIntegrationType.findByName", query = "SELECT p FROM ProductIntegrationType p WHERE p.name = :name")})
-public class ProductIntegrationType extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "StatusRequest.findAll", query = "SELECT s FROM StatusRequest s"),
+    @NamedQuery(name = "StatusRequest.findById", query = "SELECT s FROM StatusRequest s WHERE s.id = :id"),
+    @NamedQuery(name = "StatusRequest.findByDescription", query = "SELECT s FROM StatusRequest s WHERE s.description = :description"),
+    @NamedQuery(name = QueryConstants.STATUS_BUSINESS_AFFILIATON_REQUEST_BY_CODE, query = "SELECT s FROM StatusRequest s WHERE s.code = :code")})
+public class StatusRequest extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
     @Basic(optional = false)
-    @Column(name = "name")
-    private String name;
+    @Size(min = 1, max = 50)
+    @Column(name = "description")
+    private String description;
+    @Size(max = 10)
+    @Column(name = "code")
+    private String code;
 
-    public ProductIntegrationType() {
+    public StatusRequest() {
     }
 
-    public ProductIntegrationType(Long id) {
+    public StatusRequest(Integer id) {
         this.id = id;
     }
 
-    public ProductIntegrationType(Long id, String name) {
+    public StatusRequest(Integer id, String description) {
         this.id = id;
-        this.name = name;
+        this.description = description;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    public String getCode() {
+        return code;
     }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     @Override
     public int hashCode() {
@@ -88,10 +100,10 @@ public class ProductIntegrationType extends AbstractWalletEntity implements Seri
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductIntegrationType)) {
+        if (!(object instanceof StatusRequest)) {
             return false;
         }
-        ProductIntegrationType other = (ProductIntegrationType) object;
+        StatusRequest other = (StatusRequest) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -100,9 +112,9 @@ public class ProductIntegrationType extends AbstractWalletEntity implements Seri
 
     @Override
     public String toString() {
-        return "dto.ProductIntegrationType[ id=" + id + " ]";
+        return "com.alodiga.wallet.common.model.StatusBusinessAffiliationRequets[ id=" + id + " ]";
     }
-    
+
     @Override
     public Object getPk() {
         return getId();

@@ -47,9 +47,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "BankOperation.findAll", query = "SELECT b FROM BankOperation b"), 
     @NamedQuery(name = "BankOperation.findById", query = "SELECT b FROM BankOperation b WHERE b.id = :id"),
     @NamedQuery(name = "BankOperation.findByUserSourceId", query = "SELECT b FROM BankOperation b WHERE b.userSourceId = :userSourceId"),
-    @NamedQuery(name = "BankOperation.findByBankOperationNumber", query = "SELECT b FROM BankOperation b WHERE b.bankOperationNumber = :bankOperationNumber"),
-    @NamedQuery(name = "BankOperation.findByAdditional", query = "SELECT b FROM BankOperation b WHERE b.additional = :additional"),
-    @NamedQuery(name = "BankOperation.findByAdditional2", query = "SELECT b FROM BankOperation b WHERE b.additional2 = :additional2")})
+    @NamedQuery(name = "BankOperation.findByBankOperationNumber", query = "SELECT b FROM BankOperation b WHERE b.bankOperationNumber = :bankOperationNumber")})
 
 public class BankOperation extends AbstractWalletEntity implements Serializable {
 
@@ -75,10 +73,10 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     private BigInteger userSourceId;
     @Column(name = "bankOperationNumber")
     private String bankOperationNumber;
-    @Column(name = "additional")
-    private String additional;
-    @Column(name = "additional2")
-    private String additional2;
+    @Column(name = "responsible")
+    private String responsible;
+    @Column(name = "observations")
+    private String observations;
     @JoinColumn(name = "commisionId", referencedColumnName = "id")
     @ManyToOne
     private Commission commisionId;
@@ -91,6 +89,8 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     @JoinColumn(name = "bankId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Bank bankId;
+    @JoinColumn(name = "statusBankOperationId", referencedColumnName = "id")
+    private StatusBankOperation statusBankOperationId;
     @JoinColumn(name = "bankOperationTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private BankOperationType bankOperationTypeId;
@@ -101,6 +101,12 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     private BigInteger businessId;
     @Column(name = "accountBankBusinessId")
     private BigInteger accountBankBusinessId;
+    @Column(name = "createDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+    @Column(name = "updateDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateDate;
 
     public BankOperation() {
     }
@@ -132,21 +138,13 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
     public void setBankOperationNumber(String bankOperationNumber) {
         this.bankOperationNumber = bankOperationNumber;
     }
-
-    public String getAdditional() {
-        return additional;
+    
+    public String getResponsible() {
+        return responsible;
     }
 
-    public void setAdditional(String additional) {
-        this.additional = additional;
-    }
-
-    public String getAdditional2() {
-        return additional2;
-    }
-
-    public void setAdditional2(String additional2) {
-        this.additional2 = additional2;
+    public void setResponsible(String responsible) {
+        this.responsible = responsible;
     }
 
     public Commission getCommisionId() {
@@ -195,6 +193,38 @@ public class BankOperation extends AbstractWalletEntity implements Serializable 
 
     public void setBankOperationModeId(BankOperationMode bankOperationModeId) {
         this.bankOperationModeId = bankOperationModeId;
+    }
+
+    public String getObservations() {
+        return observations;
+    }
+
+    public void setObservations(String observations) {
+        this.observations = observations;
+    }
+
+    public StatusBankOperation getStatusBankOperationId() {
+        return statusBankOperationId;
+    }
+
+    public void setStatusBankOperationId(StatusBankOperation statusBankOperationId) {
+        this.statusBankOperationId = statusBankOperationId;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     @Override

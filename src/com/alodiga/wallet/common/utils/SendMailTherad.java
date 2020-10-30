@@ -7,9 +7,7 @@ package com.alodiga.wallet.common.utils;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.alodiga.wallet.common.model.BalanceHistory;
-import com.alodiga.wallet.common.model.Enterprise;
 import com.alodiga.wallet.common.model.Transaction;
 import com.alodiga.wallet.common.model.User;
 import com.ericsson.alodiga.ws.Usuario;
@@ -42,7 +40,6 @@ public class SendMailTherad extends Thread {
     private Float amountExchange;
     private User user;
     private String newPassword;
-    private Enterprise enterprise;
     private Float amountTransaction;
     private int totalTransaction;
 
@@ -122,11 +119,10 @@ public class SendMailTherad extends Thread {
 
     }
     
-    public SendMailTherad(String idioma,User user, String newPassword,Enterprise enterprise, Integer sendType) {
+    public SendMailTherad(String idioma,User user, String newPassword,Integer sendType) {
     	this.idioma = idioma;
         this.user = user;
         this.newPassword = newPassword;
-        this.enterprise = enterprise;
         this.sendType = sendType;
 
     }
@@ -192,7 +188,7 @@ public class SendMailTherad extends Thread {
                 break;
             case Constants.SEND_TYPE_EMAIL_RECOVER_PASSWORD:
                 // code block 
-            	mail = Utils.getUserRecoveryPasswordMail(user, newPassword, enterprise);
+            	mail = Utils.getUserRecoveryPasswordMail(user, newPassword);
                 break;
             case Constants.SEND_TYPE_EMAIL_DAILY_CLOSING_WALLET:
                 // code block 

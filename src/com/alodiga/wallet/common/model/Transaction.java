@@ -48,10 +48,9 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
     @NamedQuery(name = "Transaction.findByTopUpDescription", query = "SELECT t FROM Transaction t WHERE t.topUpDescription = :topUpDescription"),
     @NamedQuery(name = "Transaction.findByBillPaymentDescription", query = "SELECT t FROM Transaction t WHERE t.billPaymentDescription = :billPaymentDescription"),
     @NamedQuery(name = "Transaction.findByExternalId", query = "SELECT t FROM Transaction t WHERE t.externalId = :externalId"),
-    @NamedQuery(name = "Transaction.findByAdditional", query = "SELECT t FROM Transaction t WHERE t.additional = :additional"),
     @NamedQuery(name = "Transaction.findByBusinessId", query = "SELECT t FROM Transaction t WHERE t.businessId = :businessId OR t.businessDestinationId = :businessDestinationId ORDER BY t.id DESC"),
-    @NamedQuery(name = "Transaction.findByBusinessIdBetweenDate", query = "SELECT t FROM Transaction t WHERE (t.businessId = :businessId OR t.businessDestinationId = :businessDestinationId)  and t.creationDate between :from AND :to ORDER BY t.id DESC"),
-    @NamedQuery(name = "Transaction.findByAdditional2", query = "SELECT t FROM Transaction t WHERE t.additional2 = :additional2")})
+    @NamedQuery(name = "Transaction.findByBusinessIdBetweenDate", query = "SELECT t FROM Transaction t WHERE (t.businessId = :businessId OR t.businessDestinationId = :businessDestinationId)  and t.creationDate between :from AND :to ORDER BY t.id DESC")})
+
 public class Transaction extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -94,10 +93,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     private String billPaymentDescription;
     @Column(name = "externalId")
     private String externalId;
-    @Column(name = "additional")
-    private String additional;
-    @Column(name = "additional2")
-    private String additional2;
     @JoinColumn(name = "transactionTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private TransactionType transactionTypeId;
@@ -110,9 +105,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "productId", referencedColumnName = "id")
     @ManyToOne
     private Product productId;
-    @JoinColumn(name = "closeId", referencedColumnName = "id")
-    @ManyToOne
-    private Close closeId;
     @Column(name = "indClosed")
     private Boolean indClosed;
     @JoinColumn(name = "dailyClosingId", referencedColumnName = "id")
@@ -230,22 +222,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
         this.externalId = externalId;
     }
 
-    public String getAdditional() {
-        return additional;
-    }
-
-    public void setAdditional(String additional) {
-        this.additional = additional;
-    }
-
-    public String getAdditional2() {
-        return additional2;
-    }
-
-    public void setAdditional2(String additional2) {
-        this.additional2 = additional2;
-    }
-
     public TransactionType getTransactionTypeId() {
         return transactionTypeId;
     }
@@ -276,14 +252,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
 
     public void setProductId(Product productId) {
         this.productId = productId;
-    }
-
-    public Close getCloseId() {
-        return closeId;
-    }
-
-    public void setCloseId(Close closeId) {
-        this.closeId = closeId;
     }
     
     //Only response APP

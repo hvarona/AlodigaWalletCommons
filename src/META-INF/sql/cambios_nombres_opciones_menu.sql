@@ -102,4 +102,51 @@ UPDATE `alodigaWallet`.`permission_data` SET `alias`='Tipos de Preferencias', `d
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Manage Preferences', `description`='Manage Preferences' WHERE `permissionId`='145' AND `languageId`='1';
 UPDATE `alodigaWallet`.`permission_data` SET `alias`='Administrar Preferencias', `description`='Administrar Preferencias' WHERE `permissionId`='145' AND `languageId`='2';
 
+-- Cambios nombre de Administrar Tarifas de Operaciones
+-- author: Jorge Pinto
+-- Fecha: 20/10/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Manage Rates Operations', `description`='Manage Rates Operations' WHERE `permissionId`='58' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Administrar Tarifas de Operaciones', `description`='Administrar Tarifas de Operaciones' WHERE `permissionId`='58' AND `languageId`='2';
+
+-- Cambios nombre de Recaudos por Tipo de Solicitud
+-- author: Jorge Pinto
+-- Fecha: 28/10/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Collections Type of Request', `description`='Collections Type of Request' WHERE `permissionId`='85' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Recaudos por Tipo de Solicitud', `description`='Recaudos por Tipo de Solicitud' WHERE `permissionId`='85' AND `languageId`='2';
+
+-- Actualizar el grupo principal para  Documentos por Tipo de Persona
+-- author: Jorge Pinto
+-- Fecha: 28/10/2020
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='1' WHERE `id`='61';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='1' WHERE `id`='62';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='1' WHERE `id`='63';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='1' WHERE `id`='64';
+
+-- Nuevo menu principal Administrat Tablas Solicitudes
+-- author: Jorge Pinto
+-- Fecha: 28/10/2020
+INSERT INTO `alodigaWallet`.`permission_group` (`name`, `enabled`) VALUES ('Manage Tables Requests', '1');
+INSERT INTO `alodigaWallet`.`permission_group_data` (`permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('8', '1', 'Manage Tables Requests', 'Manage Tables Requests');
+INSERT INTO `alodigaWallet`.`permission_group_data` (`permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('8', '2', 'Administrar Tablas Solicitudes', 'Administrar Tablas Solicitudes');
+
+-- Actualizar el grupo principal para Tipos de Recaudos, Prerelaciones Estatus Solicitud y Recaudos Solicitud de Aafiliación
+-- author: Jorge Pinto
+-- Fecha: 28/10/2020
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='73';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='74';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='75';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='76';
+
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='85';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='86';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='87';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='88';
+
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='89';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='90';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='91';
+UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='92';
+
+
+
 

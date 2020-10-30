@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ReviewOfac.findByObservations", query = "SELECT r FROM ReviewOfac r WHERE r.observations = :observations"),
     @NamedQuery(name = "ReviewOfac.findByCreateDate", query = "SELECT r FROM ReviewOfac r WHERE r.createDate = :createDate"),
     @NamedQuery(name = "ReviewOfac.findByUpdateDate", query = "SELECT r FROM ReviewOfac r WHERE r.updateDate = :updateDate"),
-    @NamedQuery(name = QueryConstants.REVIEW_OFAC_BY_REQUEST, query = "SELECT r FROM ReviewOfac r WHERE r.personId.id = :personId AND r.businessAffiliationRequestId.id = :businessAffiliationRequestId")})
+    @NamedQuery(name = QueryConstants.REVIEW_OFAC_BY_REQUEST, query = "SELECT r FROM ReviewOfac r WHERE r.personId.id = :personId AND r.affiliationRequestId.id = :businessAffiliationRequestId")})
 public class ReviewOfac extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,9 +62,9 @@ public class ReviewOfac extends AbstractWalletEntity implements Serializable {
     @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "businessAffiliationRequestId", referencedColumnName = "id")
+    @JoinColumn(name = "affiliationRequestId", referencedColumnName = "id")
     @OneToOne(optional = false)
-    private BusinessAffiliationRequest businessAffiliationRequestId;
+    private AffiliationRequest affiliationRequestId;
     @JoinColumn(name = "personId", referencedColumnName = "id")
     @OneToOne(optional = false)
     private Person personId;
@@ -124,12 +124,12 @@ public class ReviewOfac extends AbstractWalletEntity implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public BusinessAffiliationRequest getBusinessAffiliationRequestId() {
-        return businessAffiliationRequestId;
+    public AffiliationRequest getAffiliationRequestId() {
+        return affiliationRequestId;
     }
 
-    public void setBusinessAffiliationRequestId(BusinessAffiliationRequest businessAffiliationRequestId) {
-        this.businessAffiliationRequestId = businessAffiliationRequestId;
+    public void setAffiliationRequestId(AffiliationRequest affiliationRequestId) {
+        this.affiliationRequestId = affiliationRequestId;
     }
 
     public Person getPersonId() {

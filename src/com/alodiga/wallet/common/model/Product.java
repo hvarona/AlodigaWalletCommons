@@ -42,16 +42,13 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Product.findByTaxInclude", query = "SELECT p FROM Product p WHERE p.taxInclude = :taxInclude"),
     @NamedQuery(name = "Product.findByEnabled", query = "SELECT p FROM Product p WHERE p.enabled = :enabled"),
     @NamedQuery(name = "Product.findByReferenceCode", query = "SELECT p FROM Product p WHERE p.referenceCode = :referenceCode"),
-    @NamedQuery(name = "Product.findByRatesUrl", query = "SELECT p FROM Product p WHERE p.ratesUrl = :ratesUrl"),
-    @NamedQuery(name = "Product.findByAccessNumberUrl", query = "SELECT p FROM Product p WHERE p.accessNumberUrl = :accessNumberUrl"),
     @NamedQuery(name = "Product.findByIsFree", query = "SELECT p FROM Product p WHERE p.isFree = :isFree"),
     @NamedQuery(name = "Product.findByIsAlocashProduct", query = "SELECT p FROM Product p WHERE p.isAlocashProduct = :isAlocashProduct"),
     @NamedQuery(name = "Product.findByIsPayTopUp", query = "SELECT p FROM Product p WHERE p.isPayTopUp = :isPayTopUp"),
     @NamedQuery(name = "Product.findByIsExchangeProduct", query = "SELECT p FROM Product p WHERE p.isExchangeProduct = :isExchangeProduct")})
 public class Product extends AbstractWalletEntity implements Serializable {
 
-    public static final String NAME = "name";
-    
+    public static final String NAME = "name";    
     public static final Long ALOCOIN_PRODUCT = 1L ;
     public static final Long ALODIGA_BALANCE = 2L ;
     public static final Long PREPAID_CARD = 3L ;
@@ -77,10 +74,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
     @Basic(optional = false)
     @Column(name = "symbol")
     private String symbol;
-    @Column(name = "ratesUrl")
-    private String ratesUrl;
-    @Column(name = "accessNumberUrl")
-    private String accessNumberUrl;
     @Basic(optional = false)
     @Column(name = "isFree")
     private boolean isFree;
@@ -98,12 +91,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "categoryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Category categoryId;
-    @JoinColumn(name = "productIntegrationTypeId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private ProductIntegrationType productIntegrationTypeId;
-    @JoinColumn(name = "enterpriseId", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Enterprise enterpriseId;
     @Column(name = "indHasAssociatedBank")
     private Boolean indHasAssociatedBank;
     @Transient
@@ -172,22 +159,6 @@ public class Product extends AbstractWalletEntity implements Serializable {
         this.referenceCode = referenceCode;
     }
 
-    public String getRatesUrl() {
-        return ratesUrl;
-    }
-
-    public void setRatesUrl(String ratesUrl) {
-        this.ratesUrl = ratesUrl;
-    }
-
-    public String getAccessNumberUrl() {
-        return accessNumberUrl;
-    }
-
-    public void setAccessNumberUrl(String accessNumberUrl) {
-        this.accessNumberUrl = accessNumberUrl;
-    }
-
     public boolean getIsFree() {
         return isFree;
     }
@@ -245,24 +216,7 @@ public class Product extends AbstractWalletEntity implements Serializable {
 
     public void setCategoryId(Category categoryId) {
         this.categoryId = categoryId;
-    }
-
-    public ProductIntegrationType getProductIntegrationTypeId() {
-        return productIntegrationTypeId;
-    }
-
-    public void setProductIntegrationTypeId(ProductIntegrationType productIntegrationTypeId) {
-        this.productIntegrationTypeId = productIntegrationTypeId;
-    }
-
-    public Enterprise getEnterpriseId() {
-        return enterpriseId;
-    }
-
-    public void setEnterpriseId(Enterprise enterpriseId) {
-        this.enterpriseId = enterpriseId;
-    }
-    
+    }    
 
     @Override
     public int hashCode() {
