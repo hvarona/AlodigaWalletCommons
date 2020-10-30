@@ -260,7 +260,7 @@ public interface UtilsEJB extends WalletGenericEJB {
     //BusinessType
     public List<BusinessType> getBusinessType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public BusinessType saveBusinessType(BusinessType businessType) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
+    public BusinessType saveNewBusinessType(BusinessType businessType) throws RegisterNotFoundException, NullParameterException, GeneralException,DuplicateEntryException;
     //BusinessServiceType
     public List<BusinessServiceType> getBusinessServiceType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public List<BusinessServiceType> getBusinessServiceTypeByBusinessType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
