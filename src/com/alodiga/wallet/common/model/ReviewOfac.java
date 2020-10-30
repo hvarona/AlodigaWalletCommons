@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ReviewOfac.findByObservations", query = "SELECT r FROM ReviewOfac r WHERE r.observations = :observations"),
     @NamedQuery(name = "ReviewOfac.findByCreateDate", query = "SELECT r FROM ReviewOfac r WHERE r.createDate = :createDate"),
     @NamedQuery(name = "ReviewOfac.findByUpdateDate", query = "SELECT r FROM ReviewOfac r WHERE r.updateDate = :updateDate"),
-    @NamedQuery(name = QueryConstants.REVIEW_OFAC_BY_REQUEST, query = "SELECT r FROM ReviewOfac r WHERE r.personId.id = :personId AND r.affiliationRequestId.id = :businessAffiliationRequestId")})
+    @NamedQuery(name = QueryConstants.REVIEW_OFAC_BY_REQUEST, query = "SELECT r FROM ReviewOfac r WHERE r.personId.id = :personId AND r.affiliationRequestId.id = :affiliationRequestId")})
 public class ReviewOfac extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
