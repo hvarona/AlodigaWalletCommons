@@ -1254,3 +1254,25 @@ INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `al
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('161', '2', 'Editar Preferencias Básicas', 'Editar Preferencias Básicas');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('162', '1', 'View Basic Preference', 'View Basic Preference');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('162', '2', 'Ver Preferencias Básicas', 'Ver Preferencias Básicas');
+
+-- Agregar opciones del menu de Preferencias Basicas
+-- author: Jorge Pinto
+-- Fecha: 10/10/2020
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('163', '6', 'listUsersAffiliationRequests', 'affiliation_request', 'listUsersAffiliationRequests', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('164', '6', 'AddUsersAffiliationRequests', 'affiliation_request', 'AddUsersAffiliationRequests', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('165', '6', 'EditUsersAffiliationRequests', 'affiliation_request', 'EditUsersAffiliationRequests', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('166', '6', 'ViewUsersAffiliationRequests', 'affiliation_request', 'ViewUsersAffiliationRequests', '1');
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('163', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('164', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('165', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('166', '1');
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('163', '1', 'User Affiliation Requests', 'User Affiliation Requests');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('163', '2', 'Solicitudes de Afiliación Usuarios', 'Solicitudes de Afiliación Usuarios');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('164', '1', 'Add User Affiliation Requests', 'Add User Affiliation Requests');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('164', '2', 'Agregar Solicitudes de Afiliación Usuarios', 'Agregar Solicitudes de Afiliación Usuarios');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('165', '1', 'Edit User Affiliation Requests', 'Edit User Affiliation Requests');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('165', '2', 'Editar Solicitudes de Afiliación Usuarios', 'Editar Solicitudes de Afiliación Usuarios');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('166', '1', 'View User Affiliation Requests', 'View User Affiliation Requests');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('166', '2', 'Ver Solicitudes de Afiliación Usuarios', 'Ver Solicitudes de Afiliación Usuarios');
