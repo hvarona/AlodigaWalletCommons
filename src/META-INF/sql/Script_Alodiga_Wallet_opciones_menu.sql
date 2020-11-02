@@ -1263,9 +1263,9 @@ INSERT INTO `alodigaWallet`.`permission_group_data` (`permissionGroupId`, `langu
 INSERT INTO `alodigaWallet`.`permission_group_data` (`permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('8', '2', 'Administrar Tablas Solicitudes', 'Administrar Tablas Solicitudes');
 
 
--- Agregar opciones del menu de Preferencias Basicas
+-- Agregar opciones del menu de Solicitudes de Afiliación de Registro de Usuario
 -- author: Jorge Pinto
--- Fecha: 10/10/2020
+-- Fecha: 29/10/2020
 INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('163', '6', 'listUsersAffiliationRequests', 'affiliation_request', 'listUsersAffiliationRequests', '1');
 INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('164', '6', 'AddUsersAffiliationRequests', 'affiliation_request', 'AddUsersAffiliationRequests', '1');
 INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('165', '6', 'EditUsersAffiliationRequests', 'affiliation_request', 'EditUsersAffiliationRequests', '1');
