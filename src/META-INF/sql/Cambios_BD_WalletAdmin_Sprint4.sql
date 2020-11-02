@@ -1396,3 +1396,17 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 SET FOREIGN_KEY_CHECKS=1;
+
+-- Agregar campo responsible en tabla bank_operation
+-- author: Jesús Gómez
+-- Fecha: 29/10/2020
+ALTER TABLE `alodigaWallet`.`bank_operation`
+ADD COLUMN `responsible` VARCHAR(50) NULL AFTER `observations`;
+
+-- Agregar campos en tabla preference_value
+-- author: Jesús Gómez
+-- Fecha: 02/11/2020
+ALTER TABLE `alodigaWallet`.`preference_value`
+ADD COLUMN `beginningDate` DATE NULL AFTER `value`,
+ADD COLUMN `endingDate` DATE NULL AFTER `beginningDate`,
+ADD COLUMN `isPercentage` TINYINT(1) NULL AFTER `endingDate`;
