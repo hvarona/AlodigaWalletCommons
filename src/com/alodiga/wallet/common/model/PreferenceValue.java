@@ -52,13 +52,14 @@ public class PreferenceValue extends AbstractWalletEntity implements Serializabl
     @Basic(optional = false)
     @Column(name = "value")
     private String value;
-    @Basic(optional = false)
-    @Column(name = "createDate")
+    @Column(name = "beginningDate")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
-    @Column(name = "updateDate")
+    private Date beginningDate;    
+    @Column(name = "endingDate")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updateDate;
+    private Date endingDate;    
+    @Column(name = "isPercentage")
+    private Boolean isPercentage;   
     @JoinColumn(name = "preferenceFieldId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private PreferenceField preferenceFieldId;
@@ -78,6 +79,13 @@ public class PreferenceValue extends AbstractWalletEntity implements Serializabl
     @Basic(optional = false)
     @Column(name = "enabled")
     private boolean enabled;
+    @Basic(optional = false)
+    @Column(name = "createDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+    @Column(name = "updateDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateDate;
 
     public PreferenceValue() {
     }
@@ -107,6 +115,30 @@ public class PreferenceValue extends AbstractWalletEntity implements Serializabl
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Date getBeginningDate() {
+        return beginningDate;
+    }
+
+    public void setBeginningDate(Date beginningDate) {
+        this.beginningDate = beginningDate;
+    }
+
+    public Date getEndingDate() {
+        return endingDate;
+    }
+
+    public void setEndingDate(Date endingDate) {
+        this.endingDate = endingDate;
+    }
+
+    public Boolean getIsPercentage() {
+        return isPercentage;
+    }
+
+    public void setIsPercentage(Boolean isPercentage) {
+        this.isPercentage = isPercentage;
     }
 
     public PreferenceField getPreferenceFieldId() {
