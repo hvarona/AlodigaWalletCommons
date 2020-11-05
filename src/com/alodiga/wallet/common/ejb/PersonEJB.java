@@ -70,6 +70,8 @@ public interface PersonEJB extends WalletGenericEJB {
     public List<Person> getPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public Person loadPerson(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public Person savePerson(Person person) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public List<Person> getPersonByPersonClassificationId(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
     
     //Natural Person
     public List<NaturalPerson> getNaturalPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
