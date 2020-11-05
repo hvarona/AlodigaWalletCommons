@@ -140,6 +140,12 @@ UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='90';
 UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='91';
 UPDATE `alodigaWallet`.`permission` SET `permissionGroupId`='8' WHERE `id`='92';
 
+-- Actualizar el grupo principal para Tipos de Recaudos, Prerelaciones Estatus Solicitud y Recaudos Solicitud de Aafiliación
+-- author: Jorge Pinto
+-- Fecha: 04/11/2020
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='OFAC Business Review', `description`='OFAC Business Review' WHERE `permissionId`='117' AND `languageId`='1';
+UPDATE `alodigaWallet`.`permission_data` SET `alias`='Revisión OFAC Negocios', `description`='Revisión OFAC Negocios' WHERE `permissionId`='117' AND `languageId`='2';
+
 
 
 
