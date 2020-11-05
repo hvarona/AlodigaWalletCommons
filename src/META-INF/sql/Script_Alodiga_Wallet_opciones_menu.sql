@@ -1255,9 +1255,16 @@ INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `al
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('162', '1', 'View Basic Preference', 'View Basic Preference');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('162', '2', 'Ver Preferencias Básicas', 'Ver Preferencias Básicas');
 
--- Agregar opciones del menu de Preferencias Basicas
+-- Nuevo menu principal Administrar Tablas Solicitudes
 -- author: Jorge Pinto
--- Fecha: 10/10/2020
+-- Fecha: 28/10/2020
+INSERT INTO `alodigaWallet`.`permission_group` (`name`, `enabled`) VALUES ('Manage Tables Requests', '1');
+INSERT INTO `alodigaWallet`.`permission_group_data` (`permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('8', '1', 'Manage Tables Requests', 'Manage Tables Requests');
+INSERT INTO `alodigaWallet`.`permission_group_data` (`permissionGroupId`, `languageId`, `alias`, `description`) VALUES ('8', '2', 'Administrar Tablas Solicitudes', 'Administrar Tablas Solicitudes');
+
+-- Agregar opciones del menu de Solicitudes de Afiliación de Registro de Usuario
+-- author: Jorge Pinto
+-- Fecha: 29/10/2020
 INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('163', '6', 'listUsersAffiliationRequests', 'affiliation_request', 'listUsersAffiliationRequests', '1');
 INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('164', '6', 'AddUsersAffiliationRequests', 'affiliation_request', 'AddUsersAffiliationRequests', '1');
 INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('165', '6', 'EditUsersAffiliationRequests', 'affiliation_request', 'EditUsersAffiliationRequests', '1');
@@ -1276,3 +1283,26 @@ INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `al
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('165', '2', 'Editar Solicitudes de Afiliación Usuarios', 'Editar Solicitudes de Afiliación Usuarios');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('166', '1', 'View User Affiliation Requests', 'View User Affiliation Requests');
 INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('166', '2', 'Ver Solicitudes de Afiliación Usuarios', 'Ver Solicitudes de Afiliación Usuarios');
+
+
+-- Agregar opciones del Revisión OFAC Usuarios Billetera
+-- author: Jorge Pinto
+-- Fecha: 04/11/2020
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('167', '6', 'ListApplicantOFACUser', 'person', 'listApplicantOFACUser', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('168', '6', 'AddApplicantOFACUser', 'person', 'AddApplicantOFACUser', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('169', '6', 'EditApplicantOFACUser', 'person', 'EditApplicantOFACUser', '1');
+INSERT INTO `alodigaWallet`.`permission` (`id`, `permissionGroupId`, `action`, `entity`, `name`, `enabled`) VALUES ('170', '6', 'ViewApplicantOFACUser', 'person', 'ViewApplicantOFACUser', '1');
+
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('167', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('168', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('169', '1');
+INSERT INTO `alodigaWallet`.`permission_has_profile` (`permissionId`, `profileId`) VALUES ('170', '1');
+
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('167', '1', 'OFAC Wallet Users Review', 'OFAC Wallet Users Review');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('167', '2', 'Revisión OFAC Usuarios Billetera', 'Revisión OFAC Usuarios Billetera');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('168', '1', 'Add Applicant OFAC User', 'Add Applicant OFAC User');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('168', '2', 'Agregar Solicitante Usuario Billetera OFAC ', 'Agregar Solicitante Usuario Billetera OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('169', '1', 'Edit Applicant OFAC User', 'Edit Applicant OFAC User');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('169', '2', 'Editar Solicitante Usuario Billetera OFAC', 'Editar Solicitante Usuario Billetera OFAC');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('170', '1', 'View Applicant OFAC User', 'View OApplicant OFAC User');
+INSERT INTO `alodigaWallet`.`permission_data` (`permissionId`, `languageId`, `alias`, `description`) VALUES ('170', '2', 'Ver Solicitante Usuario Billetera OFAC', 'Ver Solicitante Usuario Billetera OFAC');

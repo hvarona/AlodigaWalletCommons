@@ -220,4 +220,6 @@ public class QueryConstants {
     public static final String PREFERENCE_FIELD_DATA_BY_PREFERENCE = "preferenceFieldDataByPreference";
     public static final String PREFERENCE_TYPE_BY_TYPE ="preferenceTypeByType";
     public static final String PARAM_REQUEST_TYPE ="requestTypeId";
+    public static final String PERSON_CLASSIFICATION_BY_ID = "personClassificationById";
+    public static final String PARAM_PERSON_CLASSIFICATION_ID = "personClassificationId";
 }

@@ -7,6 +7,7 @@ package com.alodiga.wallet.common.model;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -44,7 +45,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     , @NamedQuery(name = "Person.findByEmail", query = "SELECT p FROM Person p WHERE p.email = :email")
     , @NamedQuery(name = "Person.findByWebSite", query = "SELECT p FROM Person p WHERE p.webSite = :webSite")
     , @NamedQuery(name = "Person.findByCreateDate", query = "SELECT p FROM Person p WHERE p.createDate = :createDate")
-    , @NamedQuery(name = "Person.findByUpdateDate", query = "SELECT p FROM Person p WHERE p.updateDate = :updateDate")})
+    , @NamedQuery(name = "Person.findByUpdateDate", query = "SELECT p FROM Person p WHERE p.updateDate = :updateDate")
+    , @NamedQuery(name = QueryConstants.PERSON_CLASSIFICATION_BY_ID, query = "SELECT p FROM Person p WHERE p.personClassificationId.id = :personClassificationId")})
 public class Person extends AbstractWalletEntity implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
@@ -86,7 +88,7 @@ public class Person extends AbstractWalletEntity implements Serializable {
     @ManyToOne(optional = false)
     private PersonType personTypeId;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "businessPersonId")
-    private AffiliationRequest businessAffiliationRequest;
+    private AffiliationRequest affiliationRequest;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
     private ReviewOfac reviewOfac;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "personId")
@@ -189,12 +191,12 @@ public class Person extends AbstractWalletEntity implements Serializable {
         this.personTypeId = personTypeId;
     }
 
-    public AffiliationRequest getBusinessAffiliationRequest() {
-        return businessAffiliationRequest;
+    public AffiliationRequest getAffiliationRequest() {
+        return affiliationRequest;
     }
 
-    public void setBusinessAffiliationRequest(AffiliationRequest businessAffiliationRequest) {
-        this.businessAffiliationRequest = businessAffiliationRequest;
+    public void setAffiliationRequest(AffiliationRequest affiliationRequest) {
+        this.affiliationRequest = affiliationRequest;
     }
 
     @Override

@@ -10,7 +10,8 @@ public enum PersonClassificationE {
 	NABUAP(1, "Natural Business Applicant", "NABUAP"),
 	LEBUAP(2, "Legal Business Applicant", "LEBUAP"),
         EMPLEA(3, "Employee", "EMPLEA"),
-        USER(4, "User", "USER");
+        USER(4, "User", "USER"),
+        REUNUS(5, "Register Unified User", "Register Unified User");
 	
     private int id;
     private String personClassificationDescription;
