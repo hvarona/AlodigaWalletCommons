@@ -4,11 +4,12 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-//import com.alodiga.wallet.common.ejb.BusinessEJB;
+import com.alodiga.wallet.common.ejb.BusinessEJB;
 import com.alodiga.wallet.common.ejb.BusinessPortalEJB;
 import com.alodiga.wallet.common.ejb.PersonEJB;
 import com.alodiga.wallet.common.ejb.ProductEJB;
 import com.alodiga.wallet.common.ejb.UtilsEJB;
+import com.alodiga.wallet.common.enumeraciones.DocumentTypeE;
 import com.alodiga.wallet.common.exception.EmptyListException;
 import com.alodiga.wallet.common.exception.GeneralException;
 import com.alodiga.wallet.common.exception.NullParameterException;
@@ -41,6 +42,7 @@ import com.alodiga.wallet.common.model.Sequences;
 import com.alodiga.wallet.common.model.State;
 import com.alodiga.wallet.common.model.StatusApplicant;
 import com.alodiga.wallet.common.model.StreetType;
+import com.alodiga.wallet.common.utils.Constants;
 import com.alodiga.wallet.common.utils.EjbConstants;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -69,11 +71,11 @@ public class BusinessPortalTest extends TestCase {
             props.setProperty("java.naming.factory.initial", "com.sun.enterprise.naming.SerialInitContextFactory");
             props.setProperty("java.naming.factory.url.pkgs", "com.sun.enterprise.naming");
             props.setProperty("java.naming.factory.state", "com.sun.corba.ee.impl.presentation.rmi.JNDIStateFactoryImpl");
-            props.setProperty("org.omg.CORBA.ORBInitialHost", "localhost");
+            props.setProperty("org.omg.CORBA.ORBInitialHost", "192.168.3.20");
             props.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
             InitialContext intialContext = new InitialContext(props);
             businessPortalEJB = (BusinessPortalEJB) intialContext.lookup(EjbConstants.BUSINESS_PORTAL_EJB);
-//        businessEJB = (BusinessEJB) intialContext.lookup(EjbConstants.BUSINESS_EJB);
+ //       businessEJB = (BusinessEJB) intialContext.lookup(EjbConstants.BUSINESS_EJB);
             utilsEJB = (UtilsEJB) intialContext.lookup(EjbConstants.UTILS_EJB);
             personEJB = (PersonEJB) intialContext.lookup(EjbConstants.PERSON_EJB);
             productEJB = (ProductEJB) intialContext.lookup(EjbConstants.PRODUCT_EJB);
@@ -199,14 +201,15 @@ public class BusinessPortalTest extends TestCase {
         try {
             List<Sequences> sequenceses;
             EJBRequest request = new EJBRequest();
-            request.setParam(1);
-            DocumentType documentType = businessPortalEJB.loadDocumentType(request);
             Map<String, Object> params = new HashMap<String, Object>();
-            params.put(EjbConstants.PARAM_DOCUMENT_TYPE_ID, documentType.getId());
+            String acronym = DocumentTypeE.BUAFRQ.getDocumentTypeAcronym();
+            Integer documentTypeId = utilsEJB.getDocumentTypeByCode(acronym);
+            params = new HashMap<String, Object>();
+            params.put(EjbConstants.PARAM_DOCUMENT_TYPE_ID, documentTypeId);
             request = new EJBRequest();
             request.setParams(params);
             sequenceses = businessPortalEJB.getSequencesByDocumentType(request);
-            System.out.println(sequenceses.size());
+            //System.out.println(sequenceses.size());
             assertTrue(true);
         } catch (EmptyListException e) {
             fail("Error EmptyListException en testGetPersonTypesBycountryId. " + e);
@@ -296,6 +299,7 @@ public class BusinessPortalTest extends TestCase {
             RequestType requestType = new RequestType();
             requestType.setCode("SOAFNE");
             requestType.setDescription("Solicitudes de Afiliación de Negocios");
+            requestType.setId(1);
             
             PhonePerson phonePerson = new PhonePerson();
             phonePerson.setAreaCode("0212");
@@ -307,6 +311,8 @@ public class BusinessPortalTest extends TestCase {
             PhoneType phoneType = personEJB.loadPhoneType(request);
             phonePerson.setPhoneTypeId(phoneType);
             phonePerson.setNumberPhone("6712325");
+            phonePerson.setIndMainPhone(Boolean.FALSE);
+            
             //Address
             Address address = new Address();
             address.setCountryId(city.getStateId().getCountryId());

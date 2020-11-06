@@ -44,7 +44,7 @@ import com.alodiga.wallet.common.model.StreetType;
 import com.alodiga.wallet.common.model.TransactionApproveRequest;	
 
 
-@SuppressWarnings(value = {"all"})
+
 @Remote
 public interface BusinessPortalEJB extends WalletGenericEJB {
 
@@ -68,7 +68,7 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     public OriginApplication loadOriginApplication(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     //Secuencias de los Documentos
-    public List<Sequences> getSequencesByDocumentType (EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;    
+    public List<Sequences> getSequencesByDocumentType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;    
     public String generateNumberSequence(List<Sequences> sequence, int originApplication) throws GeneralException, RegisterNotFoundException, NullParameterException;
     public Sequences saveSequences(Sequences sequence) throws RegisterNotFoundException, NullParameterException, GeneralException;
        
