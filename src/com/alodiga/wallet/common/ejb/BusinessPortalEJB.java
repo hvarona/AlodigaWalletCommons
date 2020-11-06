@@ -34,6 +34,7 @@ import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.PhonePerson;
 import com.alodiga.wallet.common.model.PhoneType;
 import com.alodiga.wallet.common.model.Profession;
+import com.alodiga.wallet.common.model.PreferenceValue;
 import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
 import com.alodiga.wallet.common.model.Sequences;
 import com.alodiga.wallet.common.model.State;
@@ -41,6 +42,7 @@ import com.alodiga.wallet.common.model.StatusAccountBank;
 import com.alodiga.wallet.common.model.StatusApplicant;
 import com.alodiga.wallet.common.model.StreetType;
 import com.alodiga.wallet.common.model.TransactionApproveRequest;	
+import java.util.Date;
 
 
 @SuppressWarnings(value = {"all"})
@@ -52,6 +54,7 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     public  List<DocumentsPersonType> getDocumentPersonTypesBypersonTypeId(Long personTypeId)throws EmptyListException, GeneralException, NullParameterException;  
     public List<CollectionType> getCollectionTypesBycountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
     public List<CollectionsRequest> getCollectionRequestsBycollectionTypeId(Long collectionTypeId) throws EmptyListException, GeneralException, NullParameterException;
+    public List<CollectionsRequest> getCollectionRequestsByPersonTypeId(Long personTypeId) throws EmptyListException, GeneralException, NullParameterException;
     public List<Country> getCountries() throws EmptyListException, GeneralException, NullParameterException;
     public List<State> getStatesByCountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
     public List<City> getCitiesByStateId(Long stateId) throws EmptyListException, GeneralException, NullParameterException;
@@ -98,5 +101,10 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     
     public BusinessCategory loadBusinessCategory(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public List<BusinessCategory> getBusinessCategories(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<PreferenceValue> getValueByBusinessId(Long businessId) throws EmptyListException, GeneralException, NullParameterException;
+    public List<PreferenceValue> getValueByBusinessIdAndDate(Long businessId, Date createDate) throws EmptyListException, GeneralException, NullParameterException;
+    
+    
 }
 
