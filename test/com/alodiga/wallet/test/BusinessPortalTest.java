@@ -16,7 +16,7 @@ import com.alodiga.wallet.common.exception.RegisterNotFoundException;
 import com.alodiga.wallet.common.genericEJB.EJBRequest;
 import com.alodiga.wallet.common.model.Address;
 import com.alodiga.wallet.common.model.AddressType;
-import com.alodiga.wallet.common.model.BusinessAffiliationRequest;
+import com.alodiga.wallet.common.model.AffiliationRequest;
 import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.CivilStatus;
 import com.alodiga.wallet.common.model.CollectionType;
@@ -324,7 +324,7 @@ public class BusinessPortalTest extends TestCase {
             address.setUrbanization("urbanization");
             StreetType streetType = personEJB.loadStreetType(request);
             address.setStreetTypeId(streetType);
-            BusinessAffiliationRequest a = businessPortalEJB.saveBusinessAffiliationRequest(person, naturalPerson, legalPerson, phonePerson, address);
+            AffiliationRequest a = businessPortalEJB.saveBusinessAffiliationRequest(person, naturalPerson, legalPerson, phonePerson, address);
             System.out.println(a.toString());
             assertTrue(true);
         } catch (RegisterNotFoundException e) {
@@ -342,8 +342,8 @@ public class BusinessPortalTest extends TestCase {
             RequestHasCollectionRequest requestHasCollectionRequest = new RequestHasCollectionRequest();
             EJBRequest request = new EJBRequest();
             request.setParam(2L);
-            BusinessAffiliationRequest businessAffiliationRequestId = utilsEJB.loadBusinessAffiliationRequest(request);
-            requestHasCollectionRequest.setBusinessAffiliationRequestId(businessAffiliationRequestId);
+            AffiliationRequest businessAffiliationRequestId = utilsEJB.loadAffiliationRequest(request);
+            requestHasCollectionRequest.setAffiliationRequestId(businessAffiliationRequestId);
             request = new EJBRequest();
             request.setParam(6);
             CollectionsRequest collectionsRequestId = utilsEJB.loadCollectionsRequest(request);
@@ -425,7 +425,7 @@ public class BusinessPortalTest extends TestCase {
 	  	EJBRequest request = new EJBRequest();
 		request.setParam(2L);
 		try {
-			businessPortalEJB.loadBusinessAffiliationRequest(request);
+			businessPortalEJB.loadAffiliationRequest(request);
 			assertTrue(true);
 		} catch (RegisterNotFoundException e) {
 			fail("Error RegisterNotFoundException en testBusinessAffiliationRequest. " + e);
