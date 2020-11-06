@@ -313,10 +313,7 @@ public class Constants {
     public static final int STATUS_ACCOUNT_BANK = 1;
     public static final int DOCUMENT_TYPE_RENEWAL_PASSWORD = 3;
     public static final Long PREFERENCE_CLASSIFICATION_BUSINESS = 2l;
-    public static final Long PREFERENCE_TRANSACTION_ID = 3l;
-    
-    
-    
+    public static final Long PREFERENCE_TRANSACTION_ID = 3l;  
     public static final int NATURAL_PERSON = 1;
     public static final int LEGAL_PERSON = 2;
     

@@ -79,5 +79,6 @@ public class EjbConstants {
     public static final String PARAM_APPLICATION_COMISSION = "indApplicationCommission";
     public static final String PARAM_PREFERENCE_FIELD_ID = "preferenceFieldId";
     public static final String PARAM_TYPE = "type";
+    public static final String PARAM_PERSON_CLASSIFICATION_ID = "personClassificationId";
     
 }
