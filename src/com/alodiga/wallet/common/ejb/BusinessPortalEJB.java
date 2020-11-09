@@ -103,7 +103,7 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     public List<BusinessCategory> getBusinessCategories(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
     
     public List<PreferenceValue> getValueByBusinessId(Long businessId) throws EmptyListException, GeneralException, NullParameterException;
-    public List<PreferenceValue> getValueByBusinessIdAndDate(Long businessId, Date createDate) throws EmptyListException, GeneralException, NullParameterException;
+    public List<PreferenceValue> getValueByBusinessIdAndDate(Long businessId, Date discountRateDate) throws EmptyListException, GeneralException, NullParameterException;
     
     
 }
