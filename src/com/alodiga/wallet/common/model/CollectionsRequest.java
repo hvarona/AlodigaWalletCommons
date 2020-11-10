@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "CollectionsRequest.findAll", query = "SELECT c FROM CollectionsRequest c"),
     @NamedQuery(name = "CollectionsRequest.findById", query = "SELECT c FROM CollectionsRequest c WHERE c.id = :id"),
     @NamedQuery(name = "CollectionsRequest.findBycollectionTypeId", query = "SELECT c FROM CollectionsRequest c WHERE c.collectionTypeId.id = :collectionTypeId"),
+    @NamedQuery(name = "CollectionsRequest.findBypersonTypeId", query = "SELECT c FROM CollectionsRequest c WHERE  c.personTypeId.id=:personTypeId"),
     @NamedQuery(name = QueryConstants.COLLECTIONS_BY_PERSON_TYPE, query = "SELECT c FROM CollectionsRequest c WHERE c.personTypeId.id=:personTypeId")})
 
 public class CollectionsRequest extends AbstractWalletEntity implements Serializable {
@@ -52,6 +53,9 @@ public class CollectionsRequest extends AbstractWalletEntity implements Serializ
     @JoinColumn(name = "requestTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private RequestType requestTypeId;
+    @Basic(optional = false)
+    @Column(name = "enabled")
+    private boolean enabled;
 
     public CollectionsRequest() {
     }
@@ -90,6 +94,14 @@ public class CollectionsRequest extends AbstractWalletEntity implements Serializ
 
     public void setRequestTypeId(RequestType requestTypeId) {
         this.requestTypeId = requestTypeId;
+    }
+    
+    public boolean getEnabled() {
+        return this.enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override

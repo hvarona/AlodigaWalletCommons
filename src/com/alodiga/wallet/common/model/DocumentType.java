@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "DocumentType.findAll", query = "SELECT d FROM DocumentType d"),
     @NamedQuery(name = "DocumentType.findById", query = "SELECT d FROM DocumentType d WHERE d.id = :id"),
+    @NamedQuery(name = "DocumentType.findByAcronym", query = "SELECT d FROM DocumentType d WHERE d.acronym = :acronym"),
     @NamedQuery(name = "DocumentType.findByName", query = "SELECT d FROM DocumentType d WHERE d.name = :name")})
 public class DocumentType extends AbstractWalletEntity implements Serializable {
 

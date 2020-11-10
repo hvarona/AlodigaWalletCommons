@@ -8,7 +8,9 @@ package com.alodiga.wallet.common.enumeraciones;
 public enum DocumentTypeE {
 
 	MRAR(1, "Manual Recharge Approval Request", "MRAR"),
-	MWAR(2, "Manual Withdrawal Approval Request", "MWAR");
+	MWAR(2, "Manual Withdrawal Approval Request", "MWAR"),
+        BUAFRQ(15, "BUSINESS_AFFILITION_REQUEST", "BUAFRQ"),
+        USREAR(16, "USER_REGISTER_AFILIATION_REQUEST", "USREAR");
 	
     private int id;
     private String documentTypeName;
