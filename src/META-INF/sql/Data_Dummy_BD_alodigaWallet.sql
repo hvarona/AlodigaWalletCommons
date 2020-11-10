@@ -730,3 +730,18 @@ delete FROM alodigaWallet.preference_value  where bussinessId=2 and preferenceCl
 
 UPDATE `alodigaWallet`.`preference_field` SET `preferenceId` = '2' WHERE (`id` = '19');
 
+
+-- Data dummy para Guardar afiliacion natural person
+-- author: Graterol Moises
+-- Fecha: 06/11/2020
+INSERT INTO `alodigaWallet`.`person_classification` (`description`, `code`) VALUES ('Register Unified User','REUNUS');
+
+
+INSERT INTO `alodigaWallet`.`document_type` (`name`, `acronym`) VALUES ('BUSINESS_AFFILITION_REQUEST', 'BUAFRQ');
+
+
+INSERT INTO `alodigaWallet`.`document_type` (`name`, `acronym`) VALUES ('USER_REGISTER_AFILIATION_REQUEST', 'USREAR');
+
+INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '15', '3');
+
+INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '16', '1');

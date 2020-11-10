@@ -34,16 +34,19 @@ import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.PhonePerson;
 import com.alodiga.wallet.common.model.PhoneType;
 import com.alodiga.wallet.common.model.Profession;
+import com.alodiga.wallet.common.model.PreferenceValue;
 import com.alodiga.wallet.common.model.RequestHasCollectionRequest;
+import com.alodiga.wallet.common.model.RequestType;
 import com.alodiga.wallet.common.model.Sequences;
 import com.alodiga.wallet.common.model.State;
 import com.alodiga.wallet.common.model.StatusAccountBank;
 import com.alodiga.wallet.common.model.StatusApplicant;
 import com.alodiga.wallet.common.model.StreetType;
 import com.alodiga.wallet.common.model.TransactionApproveRequest;	
+import java.util.Date;
 
 
-@SuppressWarnings(value = {"all"})
+
 @Remote
 public interface BusinessPortalEJB extends WalletGenericEJB {
 
@@ -52,6 +55,7 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     public  List<DocumentsPersonType> getDocumentPersonTypesBypersonTypeId(Long personTypeId)throws EmptyListException, GeneralException, NullParameterException;  
     public List<CollectionType> getCollectionTypesBycountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
     public List<CollectionsRequest> getCollectionRequestsBycollectionTypeId(Long collectionTypeId) throws EmptyListException, GeneralException, NullParameterException;
+    public List<CollectionsRequest> getCollectionRequestsByPersonTypeId(Long personTypeId) throws EmptyListException, GeneralException, NullParameterException;
     public List<Country> getCountries() throws EmptyListException, GeneralException, NullParameterException;
     public List<State> getStatesByCountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
     public List<City> getCitiesByStateId(Long stateId) throws EmptyListException, GeneralException, NullParameterException;
@@ -67,12 +71,12 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     public OriginApplication loadOriginApplication(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     
     //Secuencias de los Documentos
-    public List<Sequences> getSequencesByDocumentType (EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;    
+    public List<Sequences> getSequencesByDocumentType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;    
     public String generateNumberSequence(List<Sequences> sequence, int originApplication) throws GeneralException, RegisterNotFoundException, NullParameterException;
     public Sequences saveSequences(Sequences sequence) throws RegisterNotFoundException, NullParameterException, GeneralException;
        
     //Guardar Solicitud de Afiliación del Negocio
-    public AffiliationRequest saveBusinessAffiliationRequest(Person person, NaturalPerson naturalPerson,LegalPerson legalPerson, PhonePerson phonePerson, Address address)throws NullParameterException, GeneralException;
+    public AffiliationRequest saveNaturalPersonAffiliationRequest(Person person, NaturalPerson naturalPerson,RequestType requestType, PhonePerson phonePerson, Address address)throws NullParameterException, GeneralException;
     public RequestHasCollectionRequest saveRequestHasCollectionsRequest(RequestHasCollectionRequest requestHasCollectionsRequest) throws NullParameterException, GeneralException;
     
     public List<StatusApplicant> getStatusApplicant(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
@@ -98,5 +102,10 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
     
     public BusinessCategory loadBusinessCategory(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public List<BusinessCategory> getBusinessCategories(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
+    
+    public List<PreferenceValue> getValueByBusinessId(Long businessId) throws EmptyListException, GeneralException, NullParameterException;
+    public List<PreferenceValue> getValueByBusinessIdAndDate(Long businessId, Date discountRateDate) throws EmptyListException, GeneralException, NullParameterException;
+    
+    
 }
 
