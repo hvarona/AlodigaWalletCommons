@@ -53,6 +53,9 @@ public class CollectionsRequest extends AbstractWalletEntity implements Serializ
     @JoinColumn(name = "requestTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private RequestType requestTypeId;
+    @Basic(optional = false)
+    @Column(name = "enabled")
+    private boolean enabled;
 
     public CollectionsRequest() {
     }
@@ -91,6 +94,14 @@ public class CollectionsRequest extends AbstractWalletEntity implements Serializ
 
     public void setRequestTypeId(RequestType requestTypeId) {
         this.requestTypeId = requestTypeId;
+    }
+    
+    public boolean getEnabled() {
+        return this.enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override

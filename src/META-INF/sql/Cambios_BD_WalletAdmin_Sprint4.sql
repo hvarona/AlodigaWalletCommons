@@ -1410,3 +1410,9 @@ ALTER TABLE `alodigaWallet`.`preference_value`
 ADD COLUMN `beginningDate` DATE NULL AFTER `value`,
 ADD COLUMN `endingDate` DATE NULL AFTER `beginningDate`,
 ADD COLUMN `isPercentage` TINYINT(1) NULL AFTER `endingDate`;
+
+-- Agregar campo enable en tabla collections_request
+-- author: Jorge Pinto
+-- Fecha: 09/11/2020
+ALTER TABLE `alodigaWallet`.`collections_request` 
+ADD COLUMN `enabled` TINYINT(1) NOT NULL AFTER `requestTypeId`;
