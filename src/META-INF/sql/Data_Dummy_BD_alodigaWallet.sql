@@ -730,3 +730,9 @@ delete FROM alodigaWallet.preference_value  where bussinessId=2 and preferenceCl
 
 UPDATE `alodigaWallet`.`preference_field` SET `preferenceId` = '2' WHERE (`id` = '19');
 
+
+-- Agregar fecha de inicio a las preferencias existentes en base de datos
+-- author: Yamelis Almea
+-- Fecha: 09/11/2020
+update alodigawallet.preference_value set beginningDate='2020-01-01 00:00:00' where id>0;
+update alodigawallet.preference_value set isPercentage=0 where id>0;
