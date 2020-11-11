@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
@@ -27,6 +28,7 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
  */
 @Entity
 @Table(name = "street_type")
+@XmlType(name = "maw_street_type")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "StreetType.findAll", query = "SELECT s FROM StreetType s")
