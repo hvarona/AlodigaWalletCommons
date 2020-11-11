@@ -30,6 +30,7 @@ import com.alodiga.wallet.common.model.LegalPerson;
 import com.alodiga.wallet.common.model.NaturalPerson;
 import com.alodiga.wallet.common.model.OriginApplication;
 import com.alodiga.wallet.common.model.Person;
+import com.alodiga.wallet.common.model.PersonClassification;
 import com.alodiga.wallet.common.model.PersonType;
 import com.alodiga.wallet.common.model.PhonePerson;
 import com.alodiga.wallet.common.model.PhoneType;
@@ -77,6 +78,7 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
        
     //Guardar Solicitud de Afiliación del Negocio
     public AffiliationRequest saveNaturalPersonAffiliationRequest(Person person, NaturalPerson naturalPerson,RequestType requestType, PhonePerson phonePerson, Address address)throws NullParameterException, GeneralException;
+    public Person createPerson(Person person, PersonClassification personClassification);
     public RequestHasCollectionRequest saveRequestHasCollectionsRequest(RequestHasCollectionRequest requestHasCollectionsRequest) throws NullParameterException, GeneralException;
     
     public List<StatusApplicant> getStatusApplicant(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
