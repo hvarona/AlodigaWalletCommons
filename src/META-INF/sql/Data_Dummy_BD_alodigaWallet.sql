@@ -731,6 +731,7 @@ delete FROM alodigaWallet.preference_value  where bussinessId=2 and preferenceCl
 UPDATE `alodigaWallet`.`preference_field` SET `preferenceId` = '2' WHERE (`id` = '19');
 
 
+
 -- Data dummy para Guardar afiliacion natural person
 -- author: Graterol Moises
 -- Fecha: 06/11/2020
@@ -745,3 +746,10 @@ INSERT INTO `alodigaWallet`.`document_type` (`name`, `acronym`) VALUES ('USER_RE
 INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '15', '3');
 
 INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '1', '16', '1');
+
+
+-- Agregar fecha de inicio a las preferencias existentes en base de datos
+-- author: Yamelis Almea
+-- Fecha: 09/11/2020
+update alodigawallet.preference_value set beginningDate='2020-01-01 00:00:00' where id>0;
+update alodigawallet.preference_value set isPercentage=0 where id>0;
