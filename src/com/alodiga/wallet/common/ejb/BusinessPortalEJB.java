@@ -78,7 +78,6 @@ public interface BusinessPortalEJB extends WalletGenericEJB {
        
     //Guardar Solicitud de Afiliación del Negocio
     public AffiliationRequest saveNaturalPersonAffiliationRequest(Person person, NaturalPerson naturalPerson,RequestType requestType, PhonePerson phonePerson, Address address)throws NullParameterException, GeneralException;
-    public Person createPerson(Person person, PersonClassification personClassification);
     public RequestHasCollectionRequest saveRequestHasCollectionsRequest(RequestHasCollectionRequest requestHasCollectionsRequest) throws NullParameterException, GeneralException;
     
     public List<StatusApplicant> getStatusApplicant(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
