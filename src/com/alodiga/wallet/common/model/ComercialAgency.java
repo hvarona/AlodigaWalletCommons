@@ -23,6 +23,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
@@ -31,6 +32,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  */
 @Entity
 @Table(name = "comercial_agency")
+@XmlType(name = "maw_comercial_agency")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ComercialAgency.findAll", query = "SELECT c FROM ComercialAgency c")
