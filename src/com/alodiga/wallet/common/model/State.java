@@ -30,6 +30,7 @@ import com.alodiga.wallet.common.model.City;
 import com.alodiga.wallet.common.model.Country;
 import com.alodiga.wallet.common.model.County;
 import com.alodiga.wallet.common.model.State;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
@@ -37,6 +38,7 @@ import com.alodiga.wallet.common.model.State;
  */
 @Entity
 @Table(name = "state")
+@XmlType(name = "maw_state")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "State.findAll", query = "SELECT s FROM State s"),

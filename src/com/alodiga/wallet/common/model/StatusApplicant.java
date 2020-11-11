@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
@@ -26,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "status_applicant")
+@XmlType(name = "maw_status_applicant")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "StatusApplicant.findAll", query = "SELECT s FROM StatusApplicant s"),

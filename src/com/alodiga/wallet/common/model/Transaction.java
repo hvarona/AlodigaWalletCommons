@@ -25,6 +25,7 @@ import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
@@ -32,6 +33,7 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
  */
 @Entity
 @Table(name = "transaction")
+@XmlType(name = "maw_transaction")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Transaction.findAll", query = "SELECT t FROM Transaction t"),

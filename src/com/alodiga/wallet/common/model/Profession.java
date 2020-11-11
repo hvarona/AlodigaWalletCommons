@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
@@ -31,6 +32,7 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
  */
 @Entity
 @Table(name = "profession")
+@XmlType(name = "maw_profession")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Profession.findAll", query = "SELECT p FROM Profession p")
