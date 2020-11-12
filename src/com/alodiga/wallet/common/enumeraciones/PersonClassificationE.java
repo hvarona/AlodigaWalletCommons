@@ -11,7 +11,7 @@ public enum PersonClassificationE {
 	LEBUAP(2, "Legal Business Applicant", "LEBUAP"),
         EMPLEA(3, "Employee", "EMPLEA"),
         USER(4, "User", "USER"),
-        REUNUS(5, "Register Unified User", "Register Unified User");
+        REUNUS(5, "Register Unified User", "REUNUS");
 	
     private int id;
     private String personClassificationDescription;

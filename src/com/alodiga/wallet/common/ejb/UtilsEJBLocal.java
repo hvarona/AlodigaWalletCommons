@@ -27,6 +27,7 @@ import com.alodiga.wallet.common.model.Country;
 import com.alodiga.wallet.common.model.County;
 import com.alodiga.wallet.common.model.Currency;
 import com.alodiga.wallet.common.model.DailyClosing;
+import com.alodiga.wallet.common.model.DocumentType;
 import com.alodiga.wallet.common.model.ExchangeRate;
 import com.alodiga.wallet.common.model.Language;
 import com.alodiga.wallet.common.model.OriginApplication;
@@ -53,7 +54,7 @@ import com.alodiga.wallet.common.model.TransactionType;
 import java.util.Date;
 import javax.ejb.Local;
 
-@SuppressWarnings(value = {"all"})
+
 @Local
 public interface UtilsEJBLocal extends WalletGenericEJB {
 
@@ -170,7 +171,7 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     //BusinessType
     public List<BusinessType> getBusinessType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public BusinessType saveBusinessType(BusinessType businessType) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
+    public BusinessType saveNewBusinessType(BusinessType businessType) throws RegisterNotFoundException, NullParameterException, GeneralException,DuplicateEntryException;
     //BusinessServiceType
     public List<BusinessServiceType> getBusinessServiceType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public List<BusinessServiceType> getBusinessServiceTypeByBusinessType(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
@@ -259,7 +260,10 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     //OriginApplication
     public List<OriginApplication> getOriginApplications(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public OriginApplication loadOriginApplicationByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
-
+    
+    //DocumentType
+    //public DocumentType getDocumentTypeByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
+    public Integer getDocumentTypeByCode(String code) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
     //Sequences
     public List<Sequences> getSequences(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public List<Sequences> getSequencesByDocumentType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
