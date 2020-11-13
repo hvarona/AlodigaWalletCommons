@@ -24,6 +24,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import com.alodiga.wallet.common.utils.QueryConstants;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
@@ -31,6 +32,7 @@ import com.alodiga.wallet.common.utils.QueryConstants;
  */
 @Entity
 @Table(name = "country")
+@XmlType(name = "maw_country")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c INNER JOIN State s ON c.id = s.countryId.id"),
