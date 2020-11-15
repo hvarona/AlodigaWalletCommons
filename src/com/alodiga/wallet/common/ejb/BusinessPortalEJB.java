@@ -52,30 +52,30 @@ import java.util.Date;
 @Remote
 public interface BusinessPortalEJB extends WalletGenericEJB {
 
-    //Getters de Lista
-	public List<AccountBank> getAccountBanksByBusiness(Long businessId)throws EmptyListException, GeneralException, NullParameterException;
-	public List<AccountTypeBank> getAccountTypeBanks(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-	public List<AddressType> getAddressType(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-	public List<Bank> getBanks (EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-	public List<BusinessCategory> getBusinessCategories(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-	public List<City> getCitiesByStateId(Long stateId) throws EmptyListException, GeneralException, NullParameterException;
-  public List<CivilStatus> getCivilStatus(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-	public List<CollectionType> getCollectionTypesBycountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
-	public List<CollectionsRequest> getCollectionRequestsBycollectionTypeId(Long collectionTypeId) throws EmptyListException, GeneralException, NullParameterException;
-	public List<CollectionsRequest> getCollectionRequestsByPersonTypeId(Long personTypeId) throws EmptyListException, GeneralException, NullParameterException;
-	public List<Country> getCountries() throws EmptyListException, GeneralException, NullParameterException;
-	public List<Currency> getCurrencies(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-	public List<DocumentsPersonType> getDocumentPersonTypesBypersonTypeId(Long personTypeId)throws EmptyListException, GeneralException, NullParameterException;
-  public List<EdificationType> getEdificationType(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-  public List<PersonType> getPersonTypesBycountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
-  public List<PhoneType> getPhoneType(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-  public List<Profession> getProfession(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-  public List<State> getStatesByCountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
-  public List<StatusAccountBank> getStatusAccountBanks(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-  public List<StatusApplicant> getStatusApplicant(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-  public List<StreetType> getStreetType(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-  public List<PreferenceValue> getValueByBusinessId(Long businessId) throws EmptyListException, GeneralException, NullParameterException;
-  public List<PreferenceValue> getValueByBusinessIdAndDate(Long businessId, Date discountRateDate) throws EmptyListException, GeneralException, NullParameterException;
+//Getters de Lista
+public List<AccountBank> getAccountBanksByBusiness(Long businessId)throws EmptyListException, GeneralException, NullParameterException;
+public List<AccountTypeBank> getAccountTypeBanks(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+public List<AddressType> getAddressType(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
+public List<Bank> getBanks (EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+public List<BusinessCategory> getBusinessCategories(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
+public List<City> getCitiesByStateId(Long stateId) throws EmptyListException, GeneralException, NullParameterException;
+public List<CivilStatus> getCivilStatus(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+public List<CollectionType> getCollectionTypesBycountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
+public List<CollectionsRequest> getCollectionRequestsBycollectionTypeId(Long collectionTypeId) throws EmptyListException, GeneralException, NullParameterException;
+public List<CollectionsRequest> getCollectionRequestsByPersonTypeId(Long personTypeId) throws EmptyListException, GeneralException, NullParameterException;
+public List<Country> getCountries() throws EmptyListException, GeneralException, NullParameterException;
+public List<Currency> getCurrencies(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
+public List<DocumentsPersonType> getDocumentPersonTypesBypersonTypeId(Long personTypeId)throws EmptyListException, GeneralException, NullParameterException;
+public List<EdificationType> getEdificationType(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
+public List<PersonType> getPersonTypesBycountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
+public List<PhoneType> getPhoneType(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
+public List<Profession> getProfession(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
+public List<State> getStatesByCountryId(Long countryId) throws EmptyListException, GeneralException, NullParameterException;
+public List<StatusAccountBank> getStatusAccountBanks(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
+public List<StatusApplicant> getStatusApplicant(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
+public List<StreetType> getStreetType(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
+public List<PreferenceValue> getValueByBusinessId(Long businessId) throws EmptyListException, GeneralException, NullParameterException;
+public List<PreferenceValue> getValueByBusinessIdAndDate(Long businessId, Date discountRateDate) throws EmptyListException, GeneralException, NullParameterException;
     
   //Getters Individuales
   public AccountBank loadAccountBankById(Long id) throws RegisterNotFoundException, NullParameterException, GeneralException;
