@@ -301,7 +301,7 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     public List<AffiliationRequest> searchAffiliationRequestByParams(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;
     
-    public List<AffiliationRequest> getTransactionApproveRequestByType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public List<AffiliationRequest> getAffiliationRequestByRequestByType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
     //ReviewAffiliationRequest
     public List<ReviewAffiliationRequest> getReviewAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;

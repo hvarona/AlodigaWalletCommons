@@ -208,7 +208,7 @@ public class BusinessPortalTest extends TestCase {
             params.put(EjbConstants.PARAM_DOCUMENT_TYPE_ID, documentTypeId);
             request = new EJBRequest();
             request.setParams(params);
-            sequenceses = businessPortalEJB.getSequencesByDocumentType(request);
+//            sequenceses = businessPortalEJB.getSequencesByDocumentType(request);
             //System.out.println(sequenceses.size());
             assertTrue(true);
         } catch (EmptyListException e) {
@@ -228,14 +228,14 @@ public class BusinessPortalTest extends TestCase {
             Sequences sequenceses = new Sequences();
             EJBRequest request = new EJBRequest();
             request.setParam(1);
-            DocumentType documentType = businessPortalEJB.loadDocumentType(request);
-            sequenceses.setDocumentTypeId(documentType);
+//            DocumentType documentType = businessPortalEJB.loadDocumentType(request);
+//            sequenceses.setDocumentTypeId(documentType);
             sequenceses.setCurrentValue(10);
             sequenceses.setInitialValue(1);
             request = new EJBRequest();
             request.setParam(1);
-            OriginApplication originApplication = businessPortalEJB.loadOriginApplication(request);
-            sequenceses.setOriginApplicationId(originApplication);
+//            OriginApplication originApplication = businessPortalEJB.loadOriginApplication(request);
+//            sequenceses.setOriginApplicationId(originApplication);
             Sequences sequences = businessPortalEJB.saveSequences(sequenceses);
             System.out.println(sequences.toString());
             assertTrue(true);
