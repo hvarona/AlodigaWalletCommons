@@ -222,4 +222,6 @@ public class QueryConstants {
     public static final String PARAM_REQUEST_TYPE ="requestTypeId";
     public static final String PERSON_CLASSIFICATION_BY_ID = "personClassificationById";
     public static final String PARAM_PERSON_CLASSIFICATION_ID = "personClassificationId";
+    public static final String PARAM_NAME = "name";
+    public static final String PARAM_STATUS_APPLICANT_ID = "statusApplicantId";
 }
