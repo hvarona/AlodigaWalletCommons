@@ -753,3 +753,8 @@ INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `docume
 -- Fecha: 09/11/2020
 update alodigawallet.preference_value set beginningDate='2020-01-01 00:00:00' where id>0;
 update alodigawallet.preference_value set isPercentage=0 where id>0;
+
+-- Agregar Legal Representatives en clasificacion de persona
+-- author: Jorge Pinto
+-- Fecha: 13/11/2020
+INSERT INTO `alodigaWallet`.`person_classification` (`description`, `code`) VALUES ('Legal Representatives', 'LEGREP');
