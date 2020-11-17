@@ -46,6 +46,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Product.findByIsAlocashProduct", query = "SELECT p FROM Product p WHERE p.isAlocashProduct = :isAlocashProduct"),
     @NamedQuery(name = "Product.findByIsPayTopUp", query = "SELECT p FROM Product p WHERE p.isPayTopUp = :isPayTopUp"),
     @NamedQuery(name = "Product.findByIsExchangeProduct", query = "SELECT p FROM Product p WHERE p.isExchangeProduct = :isExchangeProduct")})
+
 public class Product extends AbstractWalletEntity implements Serializable {
 
     public static final String NAME = "name";    
@@ -74,6 +75,8 @@ public class Product extends AbstractWalletEntity implements Serializable {
     @Basic(optional = false)
     @Column(name = "symbol")
     private String symbol;
+    @Column(name = "isDefaultProduct")
+    private boolean isDefaultProduct;
     @Basic(optional = false)
     @Column(name = "isFree")
     private boolean isFree;
@@ -91,6 +94,9 @@ public class Product extends AbstractWalletEntity implements Serializable {
     @JoinColumn(name = "categoryId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Category categoryId;
+    @JoinColumn(name = "countryId", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Country countryId;
     @Column(name = "indHasAssociatedBank")
     private Boolean indHasAssociatedBank;
     @Transient
@@ -103,12 +109,13 @@ public class Product extends AbstractWalletEntity implements Serializable {
         this.id = id;
     }
 
-    public Product(Long id, String name, boolean taxInclude, boolean enabled, String referenceCode, boolean isFree, boolean isAlocashProduct,String symbol, boolean isPayTopUp, boolean isExchangeProduct,boolean isRemettence_, boolean  isPaymentInfo, boolean  indHasAssociatedBank) {
+    public Product(Long id, String name, boolean taxInclude, boolean enabled, String referenceCode, boolean isDefaultProduct, boolean isFree, boolean isAlocashProduct,String symbol, boolean isPayTopUp, boolean isExchangeProduct,boolean isRemettence_, boolean  isPaymentInfo, boolean  indHasAssociatedBank) {
         this.id = id;
         this.name = name;
         this.taxInclude = taxInclude;
         this.enabled = enabled;
         this.referenceCode = referenceCode;
+        this.isDefaultProduct = isDefaultProduct;
         this.isFree = isFree;
         this.isAlocashProduct = isAlocashProduct;
         this.symbol = symbol;
@@ -167,6 +174,14 @@ public class Product extends AbstractWalletEntity implements Serializable {
         this.isFree = isFree;
     }
 
+    public boolean isIsDefaultProduct() {
+        return isDefaultProduct;
+    }
+
+    public void setIsDefaultProduct(boolean isDefaultProduct) {
+        this.isDefaultProduct = isDefaultProduct;
+    }
+
     public boolean getIsAlocashProduct() {
         return isAlocashProduct;
     }
@@ -217,6 +232,14 @@ public class Product extends AbstractWalletEntity implements Serializable {
     public void setCategoryId(Category categoryId) {
         this.categoryId = categoryId;
     }    
+
+    public Country getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(Country countryId) {
+        this.countryId = countryId;
+    }
 
     @Override
     public int hashCode() {
