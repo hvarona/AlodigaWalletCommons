@@ -74,8 +74,8 @@ public List<State> getStatesByCountryId(Long countryId) throws EmptyListExceptio
 public List<StatusAccountBank> getStatusAccountBanks(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
 public List<StatusApplicant> getStatusApplicant(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
 public List<StreetType> getStreetType(EJBRequest request)throws EmptyListException, GeneralException, NullParameterException;
-public List<PreferenceValue> getValueByBusinessId(Long businessId) throws EmptyListException, GeneralException, NullParameterException;
-public List<PreferenceValue> getValueByBusinessIdAndDate(Long businessId, Date discountRateDate) throws EmptyListException, GeneralException, NullParameterException;
+public List<PreferenceValue> getDiscountRateByBusiness(Long businessId, Long productId, Long transactionTypeId) throws EmptyListException, GeneralException, NullParameterException;
+public List<PreferenceValue> getDiscountRateByBusinessAndValidityDate(Long businessId, Date validityDate, Long productId, Long transactionTypeId) throws EmptyListException, GeneralException, NullParameterException;
     
   //Getters Individuales
   public AccountBank loadAccountBankById(Long id) throws RegisterNotFoundException, NullParameterException, GeneralException;
