@@ -224,4 +224,5 @@ public class QueryConstants {
     public static final String PARAM_PERSON_CLASSIFICATION_ID = "personClassificationId";
     public static final String PARAM_NAME = "name";
     public static final String PARAM_STATUS_APPLICANT_ID = "statusApplicantId";
+    public static final String LEGAL_PERSON_BY_PERSON = "legalPersonByPerson";
 }
