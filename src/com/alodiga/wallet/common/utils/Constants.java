@@ -125,6 +125,10 @@ public class Constants {
     public static final Long preferenceClassficationUser = 1l;
     public static final Long preferenceClassficationBusiness = 2l;
 
+    //Lista de Preferencias
+    public static final String DISCOUNT_RATE_CODE = "DISRAT";
+    
+    //usuario y Clave Web Services
     public static final String ALODIGA_WALLET_USUARIO_API = "usuarioWS";
     public static final String ALODIGA_WALLET_PASSWORD_API = "passwordWS";
 
