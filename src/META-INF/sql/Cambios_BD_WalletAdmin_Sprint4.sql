@@ -1439,3 +1439,15 @@ SET FOREIGN_KEY_CHECKS=1;
 
 UPDATE alodigaWallet.product SET countryId = (select c.id from alodigaWallet.country c where c.code = 58) 
 WHERE id > 0;
+
+-- Agregar transactionSequence en tabla transaction
+-- author: Jesús Gómez
+-- Fecha: 19/11/2020
+ALTER TABLE `alodigaWallet`.`transaction` 
+ADD COLUMN `transactionSequence` VARCHAR(20) NULL AFTER `transactionNumber`;
+
+-- Agregar campo en tabla product
+-- author: Jesús Gómez
+-- Fecha: 20/11/2020
+ALTER TABLE `alodigaWallet`.`product` 
+ADD COLUMN `isUsePrepaidCard` TINYINT(1) NULL AFTER `isDefaultProduct`;
