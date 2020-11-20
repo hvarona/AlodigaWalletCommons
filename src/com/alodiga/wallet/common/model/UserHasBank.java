@@ -33,7 +33,8 @@ import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
     @NamedQuery(name = "UserHasBank.findAll", query = "SELECT u FROM UserHasBank u"),
     @NamedQuery(name = "UserHasBank.findById", query = "SELECT u FROM UserHasBank u WHERE u.id = :id"),
     @NamedQuery(name = "UserHasBank.findByUserSourceId", query = "SELECT u FROM UserHasBank u WHERE u.userSourceId = :userSourceId"),
-    @NamedQuery(name = "UserHasBank.findByAccountNumber", query = "SELECT u FROM UserHasBank u WHERE u.accountNumber = :accountNumber")})
+    @NamedQuery(name = "UserHasBank.findByAccountNumber", query = "SELECT u FROM UserHasBank u WHERE u.accountNumber = :accountNumber"),
+    @NamedQuery(name = "UserHasBank.findByUserSourceIdAllBank", query = "SELECT u FROM UserHasBank u WHERE u.userSourceId = :userSourceId")})
 
 public class UserHasBank extends AbstractWalletEntity implements Serializable {
     
