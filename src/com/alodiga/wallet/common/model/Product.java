@@ -77,6 +77,8 @@ public class Product extends AbstractWalletEntity implements Serializable {
     private String symbol;
     @Column(name = "isDefaultProduct")
     private boolean isDefaultProduct;
+    @Column(name = "isUsePrepaidCard")
+    private boolean isUsePrepaidCard;
     @Basic(optional = false)
     @Column(name = "isFree")
     private boolean isFree;
@@ -180,6 +182,14 @@ public class Product extends AbstractWalletEntity implements Serializable {
 
     public void setIsDefaultProduct(boolean isDefaultProduct) {
         this.isDefaultProduct = isDefaultProduct;
+    }
+
+    public boolean getIsUsePrepaidCard() {
+        return isUsePrepaidCard;
+    }
+
+    public void setIsUsePrepaidCard(boolean isUsePrepaidCard) {
+        this.isUsePrepaidCard = isUsePrepaidCard;
     }
 
     public boolean getIsAlocashProduct() {

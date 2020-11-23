@@ -64,6 +64,8 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     @Basic(optional = false)    
     @Column(name = "transactionNumber")
     private String transactionNumber;
+    @Column(name = "transactionSequence")
+    private String transactionSequence;
     @Column(name = "totalAmount")
     private Float totalAmount;
     @Column(name = "totalTax")
@@ -149,6 +151,22 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public String getTransactionNumber() {
+        return transactionNumber;
+    }
+
+    public void setTransactionNumber(String transactionNumber) {
+        this.transactionNumber = transactionNumber;
+    }
+
+    public String getTransactionSequence() {
+        return transactionSequence;
+    }
+
+    public void setTransactionSequence(String transactionSequence) {
+        this.transactionSequence = transactionSequence;
     }
 
     public BigInteger getUserSourceId() {
@@ -304,14 +322,6 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
 
     public void setTotalAlopointsUsed(Float totalAlopointsUsed) {
         this.totalAlopointsUsed = totalAlopointsUsed;
-    }
-
-    public String getTransactionNumber() {
-        return transactionNumber;
-    }
-
-    public void setTransactionNumber(String transactionNumber) {
-        this.transactionNumber = transactionNumber;
     }
 
     public Float getTotalAmount() {
