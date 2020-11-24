@@ -9,6 +9,8 @@ public enum DocumentTypeE {
 
 	MRAR(1, "Manual Recharge Approval Request", "MRAR"),
 	MWAR(2, "Manual Withdrawal Approval Request", "MWAR"),
+        PCR(3,"Password Changed Request","PCR"),
+        PROREC(4,"PRODUCT_RECHARGE","PROREC"),
         BUAFRQ(15, "BUSINESS_AFFILITION_REQUEST", "BUAFRQ"),
         USREAR(16, "USER_REGISTER_AFILIATION_REQUEST", "USREAR");
 	
