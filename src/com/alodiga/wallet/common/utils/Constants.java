@@ -350,6 +350,8 @@ public class Constants {
     //Enterprise Alodiga
     public static final Long ENTERPRISE_ID_USA = 1L;
     
+    //Dispertion
+    public static final String DISPERTION_CONCEPT_TRANSFER = "Transfer Dispertion";
     
     
 }
