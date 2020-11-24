@@ -47,7 +47,8 @@ import javax.xml.bind.annotation.XmlType;
     @NamedQuery(name = "LegalPerson.findByRegisterNumber", query = "SELECT l FROM LegalPerson l WHERE l.registerNumber = :registerNumber"),
     @NamedQuery(name = "LegalPerson.findByDateInscriptionRegister", query = "SELECT l FROM LegalPerson l WHERE l.dateInscriptionRegister = :dateInscriptionRegister"),
     @NamedQuery(name = "LegalPerson.findByPayedCapital", query = "SELECT l FROM LegalPerson l WHERE l.payedCapital = :payedCapital"),
-    @NamedQuery(name = QueryConstants.LEGAL_PERSON_BY_LEGAL_REPRESENTATIVE, query = "SELECT l FROM LegalPerson l WHERE l.legalRepresentativeId.id = :legalRepresentativeId")})
+    @NamedQuery(name = QueryConstants.LEGAL_PERSON_BY_LEGAL_REPRESENTATIVE, query = "SELECT l FROM LegalPerson l WHERE l.legalRepresentativeId.id = :legalRepresentativeId"),
+    @NamedQuery(name = QueryConstants.LEGAL_PERSON_BY_PERSON, query = "SELECT l FROM LegalPerson l WHERE l.personId.id = :personId")})
 public class LegalPerson extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -42,6 +42,7 @@ BEGIN
 	-- Solicitante Ana Perez
     /* Verificar el tipo de persona */
 	SELECT COUNT(*) INTO existPersonType FROM alodigaWallet.person_type where countryId = 1 AND originApplicationId = 1  AND indNaturalPerson = 1;
+    select existPersonType;
     IF existPersonType > 0 THEN
 		SELECT id INTO personTypeId FROM alodigaWallet.person_type where countryId = 1 AND originApplicationId = 1  AND indNaturalPerson = 1;
 	ELSE 
@@ -53,7 +54,8 @@ BEGIN
     
     /* Verificar la classificación de la persona */
     SELECT COUNT(*) INTO existClassification FROM alodigaWallet.person_classification where code = "REUNUS";
-	IF existClassification > 0 THEN
+	select existClassification;
+    IF existClassification > 0 THEN
     SELECT id INTO personClassificationId FROM alodigaWallet.person_classification where code = "REUNUS";
 	ELSE 
 		INSERT INTO `alodigaWallet`.`person_classification` 
@@ -63,9 +65,9 @@ BEGIN
     END IF;
     
     /* Guardar el país */
-    SELECT id INTO countryId FROM alodigaWallet.country where name = "VENEZUELA" AND code = '58';
-   
-   /* Guardar la Estado*/
+    SELECT id INTO countryId FROM alodigaWallet.country where name = "VENEZUELA";
+	select countryId;
+   /* Guardar el Estado*/
     SELECT MAX(s.id) INTO stateId FROM `alodigaWallet`.`state` s where countryId = countryId AND name = "DISTRITO CAPITAL";
 	IF stateId > 0 THEN
 		SET stateId = 0;

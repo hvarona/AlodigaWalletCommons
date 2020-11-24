@@ -1416,3 +1416,38 @@ ADD COLUMN `isPercentage` TINYINT(1) NULL AFTER `endingDate`;
 -- Fecha: 09/11/2020
 ALTER TABLE `alodigaWallet`.`collections_request` 
 ADD COLUMN `enabled` TINYINT(1) NOT NULL AFTER `requestTypeId`;
+
+-- Agregar campo en tabla product
+-- author: Jesús Gómez
+-- Fecha: 17/11/2020
+ALTER TABLE `alodigaWallet`.`product` 
+ADD COLUMN `isDefaultProduct` TINYINT(1) NULL AFTER `isFree`;
+
+-- Agregar FK countryId en tabla product
+-- author: Jesús Gómez
+-- Fecha: 17/11/2020
+SET FOREIGN_KEY_CHECKS=0;
+ALTER TABLE `alodigaWallet`.`product` 
+ADD COLUMN `countryId` BIGINT NOT NULL AFTER `categoryId`;
+ALTER TABLE `alodigaWallet`.`product`
+ADD CONSTRAINT `fk_product_country1`
+FOREIGN KEY (`countryId`)
+REFERENCES `alodigaWallet`.`country` (`id`)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+SET FOREIGN_KEY_CHECKS=1;
+
+UPDATE alodigaWallet.product SET countryId = (select c.id from alodigaWallet.country c where c.code = 58) 
+WHERE id > 0;
+
+-- Agregar transactionSequence en tabla transaction
+-- author: Jesús Gómez
+-- Fecha: 19/11/2020
+ALTER TABLE `alodigaWallet`.`transaction` 
+ADD COLUMN `transactionSequence` VARCHAR(20) NULL AFTER `transactionNumber`;
+
+-- Agregar campo en tabla product
+-- author: Jesús Gómez
+-- Fecha: 20/11/2020
+ALTER TABLE `alodigaWallet`.`product` 
+ADD COLUMN `isUsePrepaidCard` TINYINT(1) NULL AFTER `isDefaultProduct`;

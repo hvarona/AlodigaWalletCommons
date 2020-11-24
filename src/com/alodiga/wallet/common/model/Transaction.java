@@ -152,6 +152,22 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public String getTransactionNumber() {
+        return transactionNumber;
+    }
+
+    public void setTransactionNumber(String transactionNumber) {
+        this.transactionNumber = transactionNumber;
+    }
+
+    public String getTransactionSequence() {
+        return transactionSequence;
+    }
+
+    public void setTransactionSequence(String transactionSequence) {
+        this.transactionSequence = transactionSequence;
+    }
 
     public BigInteger getUserSourceId() {
         return userSourceId;
