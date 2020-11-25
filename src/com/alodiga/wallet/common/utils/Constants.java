@@ -214,6 +214,8 @@ public class Constants {
     public static final Long TRANSFER_CARD_TO_CARD = 8L;
     public static final String TRANSACTION_CONCEPT_TRANSFER_CARD_TO_CARD = "Transfer card to card";
 
+    public static final String DISPERTION_CONCEPT_TRANSFER = "Card_Dispertion";
+
     //Transferencias CARD TO CARD SOURCE
     public static final Long TRANSFER_CARD_TO_CARD_SOURCE = 5L;
 
