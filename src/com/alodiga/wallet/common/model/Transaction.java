@@ -324,6 +324,24 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
         this.totalAlopointsUsed = totalAlopointsUsed;
     }
 
+    public String getTransactionNumber() {
+        return transactionNumber;
+    }
+
+    public void setTransactionNumber(String transactionNumber) {
+        this.transactionNumber = transactionNumber;
+    }
+
+    public String getTransactionSequence() {
+        return transactionSequence;
+    }
+
+    public void setTransactionSequence(String transactionSequence) {
+        this.transactionSequence = transactionSequence;
+    }
+
+    
+    
     public Float getTotalAmount() {
         return totalAmount;
     }
