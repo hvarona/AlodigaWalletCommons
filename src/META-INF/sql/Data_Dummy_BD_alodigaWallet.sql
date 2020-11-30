@@ -758,3 +758,10 @@ update alodigawallet.preference_value set isPercentage=0 where id>0;
 -- author: Jorge Pinto
 -- Fecha: 13/11/2020
 INSERT INTO `alodigaWallet`.`person_classification` (`description`, `code`) VALUES ('Legal Representatives', 'LEGREP');
+
+
+-- Data dummy para Secuencias para el servicio manualRecharge y manualWithdrawls 
+-- author: Jorge Pinto
+-- Fecha: 30/12/2020
+INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '0', '9', '1');
+INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '0', '8', '1');
