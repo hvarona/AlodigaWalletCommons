@@ -758,3 +758,18 @@ update alodigawallet.preference_value set isPercentage=0 where id>0;
 -- author: Jorge Pinto
 -- Fecha: 13/11/2020
 INSERT INTO `alodigaWallet`.`person_classification` (`description`, `code`) VALUES ('Legal Representatives', 'LEGREP');
+
+
+-- Data dummy para Secuencias para el servicio manualRecharge y manualWithdrawls 
+-- author: Jorge Pinto
+-- Fecha: 30/12/2020
+INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '0', '9', '1');
+INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '0', '8', '1');
+INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '0', '7', '1');
+INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '0', '6', '1');
+INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `documentTypeId`, `originApplicationId`) VALUES ('1', '0', '4', '1');
+
+-- Data dummy para status_bank_operation
+-- author: Jorge Pinto
+-- Fecha: 30/12/2020
+INSERT INTO `alodigaWallet`.`status_bank_operation` (`description`, `code`, `createDate`) VALUES ('PENDIENTE', 'PENDIE', '2020-11-30 09:49:20');
