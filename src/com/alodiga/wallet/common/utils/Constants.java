@@ -352,6 +352,7 @@ public class Constants {
     
     //Dispertion
     public static final String DISPERTION_CONCEPT_TRANSFER = "Transfer Dispertion";
+    public static final String LIMIT_ADVANCE_CONCEPT_TRANSFER = "Transfer Limit Advance";
     
     
 }

@@ -60,6 +60,8 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
     @JoinColumn(name = "personTypeId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private PersonType personTypeId;
+    @Column(name = "orden")
+    private Integer orden;
 
     public CollectionType() {
     }
@@ -103,6 +105,14 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
 
     public void setPersonTypeId(PersonType personTypeId) {
         this.personTypeId = personTypeId;
+    }
+
+    public Integer getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Integer orden) {
+        this.orden = orden;
     }
 
     @Override
