@@ -61,8 +61,8 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
     @ManyToOne(optional = false)
     private PersonType personTypeId;
     @Column(name = "orden")
-    private Integer orden;
-
+    private String orden;
+    
     public CollectionType() {
     }
 
@@ -107,13 +107,15 @@ public class CollectionType extends AbstractWalletEntity implements Serializable
         this.personTypeId = personTypeId;
     }
 
-    public Integer getOrden() {
+    public String getOrden() {
         return orden;
     }
 
-    public void setOrden(Integer orden) {
+    public void setOrden(String orden) {
         this.orden = orden;
     }
+    
+    
 
     @Override
     public int hashCode() {

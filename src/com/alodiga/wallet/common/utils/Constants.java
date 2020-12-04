@@ -354,5 +354,12 @@ public class Constants {
     public static final String DISPERTION_CONCEPT_TRANSFER = "Transfer Dispertion";
     public static final String LIMIT_ADVANCE_CONCEPT_TRANSFER = "Transfer Limit Advance";
     
+    //LimitAdvance
+    public static final String LIMIT_ADVANCE_CONCEPT_TRANSFER = "Transfer Limit Advance";
+    
+    
+    public static final Boolean IND_NATURAL_PERSON = true;
+    
+    public static final Boolean MAIN_PHONE_NATURAL_PERSON = true;
     
 }
