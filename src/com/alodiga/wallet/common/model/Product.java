@@ -45,7 +45,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     @NamedQuery(name = "Product.findByIsFree", query = "SELECT p FROM Product p WHERE p.isFree = :isFree"),
     @NamedQuery(name = "Product.findByIsAlocashProduct", query = "SELECT p FROM Product p WHERE p.isAlocashProduct = :isAlocashProduct"),
     @NamedQuery(name = "Product.findByIsPayTopUp", query = "SELECT p FROM Product p WHERE p.isPayTopUp = :isPayTopUp"),
-    @NamedQuery(name = "Product.findByIsExchangeProduct", query = "SELECT p FROM Product p WHERE p.isExchangeProduct = :isExchangeProduct")})
+    @NamedQuery(name = "Product.findByIsExchangeProduct", query = "SELECT p FROM Product p WHERE p.isExchangeProduct = :isExchangeProduct"),
+    @NamedQuery(name = "Product.findByIsDefaultProduct", query = "SELECT p FROM Product p WHERE p.isDefaultProduct = :isDefaultProduct AND p.enabled = 1")})
 
 public class Product extends AbstractWalletEntity implements Serializable {
 

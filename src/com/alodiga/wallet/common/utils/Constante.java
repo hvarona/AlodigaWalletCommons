@@ -147,10 +147,12 @@ public class Constante {
         public static final Long sTransationTypeBusinessManualWithdrawal = 11l;
         public static final Long sDocumentTypeBusinessManualWithdrawal = 14l;
         public static final Long sOriginApplicationPortalBusiness = 3l;
+        public static final Long sStatusBankOperationWithdrawal = 1L;
         
         //Recarga Manual
         public static final Long sTransationTypeManualRecharge = 6l;
         public static final Long sBankOperationTypeRecharge = 2L;
+        public static final Long sStatusBankOperationRecharge = 1L;
         
         //Recargas de TopUp
         public static final Long sTransationTypeTopUP = 7l;

@@ -322,8 +322,8 @@ public class Transaction extends AbstractWalletEntity implements Serializable {
 
     public void setTotalAlopointsUsed(Float totalAlopointsUsed) {
         this.totalAlopointsUsed = totalAlopointsUsed;
-    }
-
+    }    
+    
     public Float getTotalAmount() {
         return totalAmount;
     }
