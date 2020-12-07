@@ -320,6 +320,8 @@ public class Constants {
     public static final Long PREFERENCE_TRANSACTION_ID = 3l;  
     public static final int NATURAL_PERSON = 1;
     public static final int LEGAL_PERSON = 2;
+    public static final Boolean IND_NATURAL_PERSON = true;    
+    public static final Boolean MAIN_PHONE_NATURAL_PERSON = true;
     
     //Parámetros de las consultas de BD
     public static final String PARAM_CODE = "code";
@@ -352,6 +354,9 @@ public class Constants {
     
     //Dispertion
     public static final String DISPERTION_CONCEPT_TRANSFER = "Transfer Dispertion";
+    
+    //LimitAdvance
+    public static final String LIMIT_ADVANCE_CONCEPT_TRANSFER = "Transfer Limit Advance";
     
     
 }

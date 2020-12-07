@@ -197,57 +197,57 @@ public class BusinessPortalTest extends TestCase {
 
     }
 
-    public void _testGetSequencesByDocumentType() {
-        try {
-            List<Sequences> sequenceses;
-            EJBRequest request = new EJBRequest();
-            Map<String, Object> params = new HashMap<String, Object>();
-            String acronym = DocumentTypeE.BUAFRQ.getDocumentTypeAcronym();
-            Integer documentTypeId = utilsEJB.getDocumentTypeByCode(acronym);
-            params = new HashMap<String, Object>();
-            params.put(EjbConstants.PARAM_DOCUMENT_TYPE_ID, documentTypeId);
-            request = new EJBRequest();
-            request.setParams(params);
-            sequenceses = businessPortalEJB.getSequencesByDocumentType(request);
-            //System.out.println(sequenceses.size());
-            assertTrue(true);
-        } catch (EmptyListException e) {
-            fail("Error EmptyListException en testGetPersonTypesBycountryId. " + e);
-        } catch (NullParameterException e) {
-            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
-        } catch (GeneralException e) {
-            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
-        } catch (RegisterNotFoundException e) {
-            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
-        }
+//    public void _testGetSequencesByDocumentType() {
+//        try {
+//            List<Sequences> sequenceses;
+//            EJBRequest request = new EJBRequest();
+//            Map<String, Object> params = new HashMap<String, Object>();
+//            String acronym = DocumentTypeE.BUAFRQ.getDocumentTypeAcronym();
+//            Integer documentTypeId = utilsEJB.getDocumentTypeByCode(acronym);
+//            params = new HashMap<String, Object>();
+//            params.put(EjbConstants.PARAM_DOCUMENT_TYPE_ID, documentTypeId);
+//            request = new EJBRequest();
+//            request.setParams(params);
+//            sequenceses = businessPortalEJB.getSequencesByDocumentType(request);
+//            //System.out.println(sequenceses.size());
+//            assertTrue(true);
+//        } catch (EmptyListException e) {
+//            fail("Error EmptyListException en testGetPersonTypesBycountryId. " + e);
+//        } catch (NullParameterException e) {
+//            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
+//        } catch (GeneralException e) {
+//            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
+//        } catch (RegisterNotFoundException e) {
+//            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
+//        }
+//
+//    }
 
-    }
-
-    public void _testsaveSequences() {
-        try {
-            Sequences sequenceses = new Sequences();
-            EJBRequest request = new EJBRequest();
-            request.setParam(1);
-            DocumentType documentType = businessPortalEJB.loadDocumentType(request);
-            sequenceses.setDocumentTypeId(documentType);
-            sequenceses.setCurrentValue(10);
-            sequenceses.setInitialValue(1);
-            request = new EJBRequest();
-            request.setParam(1);
-            OriginApplication originApplication = businessPortalEJB.loadOriginApplication(request);
-            sequenceses.setOriginApplicationId(originApplication);
-            Sequences sequences = businessPortalEJB.saveSequences(sequenceses);
-            System.out.println(sequences.toString());
-            assertTrue(true);
-        } catch (NullParameterException e) {
-            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
-        } catch (GeneralException e) {
-            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
-        } catch (RegisterNotFoundException e) {
-            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
-        }
-
-    }
+//    public void _testsaveSequences() {
+//        try {
+//            Sequences sequenceses = new Sequences();
+//            EJBRequest request = new EJBRequest();
+//            request.setParam(1);
+//            DocumentType documentType = businessPortalEJB.loadDocumentType(request);
+//            sequenceses.setDocumentTypeId(documentType);
+//            sequenceses.setCurrentValue(10);
+//            sequenceses.setInitialValue(1);
+//            request = new EJBRequest();
+//            request.setParam(1);
+//            OriginApplication originApplication = businessPortalEJB.loadOriginApplication(request);
+//            sequenceses.setOriginApplicationId(originApplication);
+//            Sequences sequences = businessPortalEJB.saveSequences(sequenceses);
+//            System.out.println(sequences.toString());
+//            assertTrue(true);
+//        } catch (NullParameterException e) {
+//            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
+//        } catch (GeneralException e) {
+//            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
+//        } catch (RegisterNotFoundException e) {
+//            fail("Error GeneralException en testGetPersonTypesBycountryId. " + e);
+//        }
+//
+//    }
 
     public void testSaveBusinessAffiliationRequestNaturalPerson() {
         try {
@@ -264,6 +264,8 @@ public class BusinessPortalTest extends TestCase {
             PersonType personType = personEJB.loadPersonType(request);
             person.setPersonTypeId(personType);
             person.setWebSite("www.test.com");
+            
+            
             //Natural Person
             NaturalPerson naturalPerson = new NaturalPerson();
             naturalPerson.setCreateDate(new Timestamp(new Date().getTime()));

@@ -285,5 +285,6 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
 
     //Request Type
     public List<RequestType> getRequestType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
+    public RequestType loadRequestTypeByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
+    
 }
