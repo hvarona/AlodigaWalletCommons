@@ -1451,3 +1451,9 @@ ADD COLUMN `transactionSequence` VARCHAR(20) NULL AFTER `transactionNumber`;
 -- Fecha: 20/11/2020
 ALTER TABLE `alodigaWallet`.`product` 
 ADD COLUMN `isUsePrepaidCard` TINYINT(1) NULL AFTER `isDefaultProduct`;
+
+-- Agregar campo order en tabla collection_type
+-- author: Jesús Gómez
+-- Fecha: 02/12/2020
+ALTER TABLE `alodigaWallet`.`collection_type` 
+ADD COLUMN `orden` INT NULL AFTER `personTypeId`;
