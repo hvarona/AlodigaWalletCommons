@@ -112,7 +112,7 @@ public class Product extends AbstractWalletEntity implements Serializable {
         this.id = id;
     }
 
-    public Product(Long id, String name, boolean taxInclude, boolean enabled, String referenceCode, boolean isDefaultProduct, boolean isFree, boolean isAlocashProduct,String symbol, boolean isPayTopUp, boolean isExchangeProduct,boolean isRemettence_, boolean  isPaymentInfo, boolean  indHasAssociatedBank) {
+    public Product(Long id, String name, boolean taxInclude, boolean enabled, String referenceCode, boolean isDefaultProduct, boolean isFree, boolean isAlocashProduct,String symbol, boolean isPayTopUp, boolean isExchangeProduct,boolean isRemettence_, boolean  isPaymentInfo, boolean  indHasAssociatedBank,  boolean isUsePrepaidCard) {
         this.id = id;
         this.name = name;
         this.taxInclude = taxInclude;
@@ -127,6 +127,7 @@ public class Product extends AbstractWalletEntity implements Serializable {
         this.isRemettence = isRemettence_;
         this.isPaymentInfo = isPaymentInfo;
         this.indHasAssociatedBank= indHasAssociatedBank;
+        this.isUsePrepaidCard = isUsePrepaidCard;
     }
 
     public Long getId() {
