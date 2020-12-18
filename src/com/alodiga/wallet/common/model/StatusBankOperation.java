@@ -5,6 +5,8 @@
  */
 package com.alodiga.wallet.common.model;
 
+import com.alodiga.wallet.common.exception.TableNotFoundException;
+import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -18,9 +20,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
@@ -28,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "status_bank_operation")
+@XmlType(name = "maw_status_bank_operation")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "StatusBankOperation.findAll", query = "SELECT s FROM StatusBankOperation s")
@@ -37,7 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "StatusBankOperation.findByCreateDate", query = "SELECT s FROM StatusBankOperation s WHERE s.createDate = :createDate")
     , @NamedQuery(name = "StatusBankOperation.findByUpdateDate", query = "SELECT s FROM StatusBankOperation s WHERE s.updateDate = :updateDate")})
 
-public class StatusBankOperation implements Serializable {
+public class StatusBankOperation  extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,15 +49,13 @@ public class StatusBankOperation implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "description")
     private String description;
     @Size(max = 10)
     @Column(name = "code")
     private String code;
-    @Basic(optional = false)
-    @NotNull
+    @Basic(optional = false)   
     @Column(name = "createDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
@@ -137,7 +138,19 @@ public class StatusBankOperation implements Serializable {
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.common.model.StatusBankOperation[ id=" + id + " ]";
+        return "StatusBankOperation{" + "id=" + id + ", description=" + description + ", code=" + code + ", createDate=" + createDate + ", updateDate=" + updateDate + '}';
+    }
+
+    
+
+     @Override
+    public Object getPk() {
+        return getId();
+    }
+
+    @Override
+    public String getTableName() throws TableNotFoundException {
+        return super.getTableName(this.getClass());
     }
     
 }
