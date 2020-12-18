@@ -120,7 +120,7 @@ public class Country extends AbstractWalletEntity implements Serializable {
 
     public void setCode_iso3(String code_iso3) {
         this.code_iso3 = code_iso3;
-    }  
+    }
 
     public String getAlternativeName1() {
         return alternativeName1;
