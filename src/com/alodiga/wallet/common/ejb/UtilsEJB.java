@@ -193,8 +193,9 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     public TransactionType saveTransactionType(TransactionType transactionType) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
+    //ComissionItem
     public List<CommissionItem> getCommissionItems(Long transactionId) throws EmptyListException, GeneralException, NullParameterException;
-    
+ 
     //TransactionSource
     public List<TransactionSource> getTransactionSource(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     
@@ -305,7 +306,7 @@ public interface UtilsEJB extends WalletGenericEJB {
     
     public List<AffiliationRequest> getAffiliationRequestByUserByType(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;
     
-    public List<AffiliationRequest> getAffiliationRequestByUser(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;
+    public List<AffiliationRequest> getAffiliationRequestByPerson(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;
     
     //ReviewAffiliationRequest
     public List<ReviewAffiliationRequest> getReviewAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
