@@ -227,4 +227,5 @@ public class QueryConstants {
     public static final String LEGAL_PERSON_BY_PERSON = "legalPersonByPerson";
     public static final String PARAM_USER_REGISTER_ID = "userRegisterUnifiedId";
     public static final String PARAM_BUSINESS_PERSON_ID = "businessPersonId";
+    public static final String PARAM_VALUE = "value";
 }
