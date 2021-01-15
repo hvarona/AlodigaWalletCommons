@@ -59,6 +59,7 @@ public class EjbConstants {
     public static final String PARAM_REQUEST_NUMBER = "requestNumber";
     public static final String PARAM_DOCUMENT_TYPE_ID = "documentTypeId";
     public static final String PARAM_PERSON_ID = "personId";
+    public static final String PARAM_LEGAL_PERSON_ID = "legalPersonId";
     public static final String PARAM_REQUEST_ID = "requestId";
     public static final String PARAM_REQUEST_TYPE ="requestTypeId";
     public static final String PARAM_COLLECTION_REQUEST_ID = "collectionsRequestId";
