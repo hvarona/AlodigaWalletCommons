@@ -42,7 +42,8 @@ import com.alodiga.wallet.common.utils.QueryConstants;
     , @NamedQuery(name = "AffiliationRequest.findByDateRequest", query = "SELECT a FROM AffiliationRequest a WHERE a.dateRequest = :dateRequest")
     , @NamedQuery(name = "AffiliationRequest.findByCreateDate", query = "SELECT a FROM AffiliationRequest a WHERE a.createDate = :createDate")
     , @NamedQuery(name = "AffiliationRequest.findByUpdateDate", query = "SELECT a FROM AffiliationRequest a WHERE a.updateDate = :updateDate")
-    , @NamedQuery(name = QueryConstants.AFFILIATION_REQUEST_BY_REQUEST_TYPE_ID, query = "SELECT a FROM AffiliationRequest a WHERE a.requestTypeId.id = :requestTypeId")})
+    , @NamedQuery(name = QueryConstants.AFFILIATION_REQUEST_BY_REQUEST_TYPE_ID, query = "SELECT a FROM AffiliationRequest a WHERE a.requestTypeId.id = :requestTypeId")
+    , @NamedQuery(name = QueryConstants.AFFILIATION_REQUEST_BY_LEGAL_PERSON, query = "SELECT a FROM AffiliationRequest a WHERE a.businessPersonId.id = :legalPersonId")})
 
 
 public class AffiliationRequest extends AbstractWalletEntity implements Serializable {

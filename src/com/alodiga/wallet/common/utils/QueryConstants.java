@@ -46,6 +46,7 @@ public class QueryConstants {
     public static final String BUSINESS_SERVICE_TYPE_BY_BUSINESS_TYPE = "businessServiceTypeByBusinessType";
     public static final String TRANSACTION_APPROVE_REQUEST_BY_STATUS = "transactionApproveRequestByStatus";
     public static final String AFFILIATION_REQUEST_BY_REQUEST_TYPE_ID = "affiliationRequestByRequestTypeId";
+    public static final String AFFILIATION_REQUEST_BY_LEGAL_PERSON = "affiliationRequestByLegalPerson";
     public static final String CODE_BY_STATUS = "codeByStatus";
     public static final String PERSON_CLASSIFICATION_BY_CODE = "personClassificationByCode";
     public static final String STATUS_ACCOUNT_BANK_BY_CODE = "statusAcountBankByCode";
@@ -197,6 +198,7 @@ public class QueryConstants {
     public static final String PARAM_AFFILIATION_REQUEST_ID = "affiliationRequestId";
     public static final String PARAM_REVIEW_TYPE_ID = "reviewTypeId";
     public static final String PARAM_PERSON_ID = "personId";
+    public static final String PARAM_LEGAL_PERSON_ID = "legalPersonId";
     public static final String PARAM_LEGAL_REPRESENTATIVE_ID = "legalRepresentativeId";
     public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_AFFILIATON_REQUEST_COMPLET = "RequestHasCollectionsRequestByBusinessAffiliationRequestComplet";
     public static final String REQUEST_HAS_COLLECTION_REQUEST_BY_AFFILIATON_REQUEST_INCOMPLET = "RequestHasCollectionsRequestByBusinessAffiliationRequestInComplet";
