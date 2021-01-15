@@ -80,6 +80,7 @@ public class QueryConstants {
     public static final String PARAM_NOW_DATE = "nowDate";
     public static final String PARAM_USER_RESPONDER_ID = "userResponderId";
     public static final String PARAM_COUNTRY_ID = "countryId";
+    public static final String PARAM_COUNTRY_NAME = "countryName";
     public static final String PARAM_STATE_ID = "stateId";
     public static final String PARAM_COUNTY_ID = "countyId";
     public static final String PARAM_ENTERPRISE_ID = "enterpriseId";

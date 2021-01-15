@@ -215,7 +215,10 @@ public interface UtilsEJB extends WalletGenericEJB {
     public CollectionType searchCollectionType(String description) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public List<CollectionType> getSearchCollectionType(String name) throws EmptyListException, GeneralException, NullParameterException;
-
+    
+    public List<CollectionType> getSearchCollectionTypeByOriginAplication(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    
     //BusinessCategory
     public List<BusinessCategory> getBusinessCategory(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
