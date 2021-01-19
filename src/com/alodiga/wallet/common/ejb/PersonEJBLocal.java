@@ -78,6 +78,7 @@ public interface PersonEJBLocal extends WalletGenericEJB {
     public List<Person> searchBusinessApplicantByStatusApplicantAndNumber(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public List<Person> searchRegisterUnifiedByStatusApplicantAndNumber(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public List<Person> searchPersonByLegalPersonAndLegalRepresentative(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    public Person searchPersonByLegalPersonId(Long legalPersonId)  throws EmptyListException, GeneralException, NullParameterException;
     
     //Natural Person
     public List<NaturalPerson> getNaturalPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
