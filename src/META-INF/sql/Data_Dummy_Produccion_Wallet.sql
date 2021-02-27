@@ -1,37 +1,260 @@
 Use alodigaWallet;
 SET FOREIGN_KEY_CHECKS=0;
+
 SET @Delete =  0;
+DELETE FROM account_bank WHERE id >= @Delete;
 DELETE FROM account_type_bank WHERE id >= @Delete;
+DELETE FROM address WHERE id >= @Delete;
 DELETE FROM address_type WHERE id >= @Delete;
+DELETE FROM affiliation_request WHERE id >= @Delete;
+DELETE FROM audit WHERE id >= @Delete;
+DELETE FROM audit_action WHERE id >= @Delete;
+DELETE FROM balance_history WHERE id >= @Delete;
+DELETE FROM bank WHERE id >= @Delete;
+DELETE FROM bank_has_product WHERE id >= @Delete;
+DELETE FROM bank_operation WHERE id >= @Delete;
 DELETE FROM bank_operation_mode WHERE id >= @Delete;
 DELETE FROM bank_operation_type WHERE id >= @Delete;
-DELETE FROM creditcard_type WHERE id >= @Delete;
+DELETE FROM business_affiliation_request WHERE id >= @Delete;
+DELETE FROM business_category WHERE id >= @Delete;
+DELETE FROM business_has_product WHERE id >= @Delete;
+DELETE FROM business_service_type WHERE id >= @Delete;
+DELETE FROM business_sub_category WHERE id >= @Delete;
+DELETE FROM business_type WHERE id >= @Delete;
+DELETE FROM calendar_days WHERE id >= @Delete;
+DELETE FROM card WHERE id >= @Delete;
 DELETE FROM category WHERE id >= @Delete;
+DELETE FROM category_data WHERE id >= @Delete;
+DELETE FROM city WHERE id >= @Delete;
+DELETE FROM civil_status WHERE id >= @Delete;
+DELETE FROM classification_preference WHERE id >= @Delete;
+DELETE FROM close WHERE id >= @Delete;
+DELETE FROM code WHERE id >= @Delete;
+DELETE FROM code_error_transaction_log WHERE id >= @Delete;
+DELETE FROM collections_request WHERE id >= @Delete;
+DELETE FROM collection_type WHERE id >= @Delete;
+DELETE FROM comercial_agency WHERE id >= @Delete;
+DELETE FROM commission WHERE id >= @Delete;
+DELETE FROM commission_item WHERE id >= @Delete;
+DELETE FROM country WHERE id >= @Delete;
+DELETE FROM county WHERE id >= @Delete;
+DELETE FROM creditcard_type WHERE id >= @Delete;
+DELETE FROM cumplimient WHERE id >= @Delete;
+DELETE FROM cumplimient_status WHERE id >= @Delete;
 DELETE FROM currency WHERE id >= @Delete;
+DELETE FROM daily_closing WHERE id >= @Delete;
+DELETE FROM documents_person_type WHERE id >= @Delete;
+DELETE FROM document_type WHERE id >= @Delete;
 DELETE FROM edification_type WHERE id >= @Delete;
 DELETE FROM employed_position WHERE id >= @Delete;
+DELETE FROM employee WHERE id >= @Delete;
+DELETE FROM enterprise WHERE id >= @Delete;
 DELETE FROM event WHERE id >= @Delete;
+DELETE FROM exchange_detail WHERE id >= @Delete;
+DELETE FROM exchange_rate WHERE id >= @Delete;
 DELETE FROM language WHERE id >= @Delete;
+DELETE FROM legal_person WHERE id >= @Delete;
+DELETE FROM legal_representative WHERE id >= @Delete;
+DELETE FROM natural_person WHERE id >= @Delete;
 DELETE FROM origin_application WHERE id >= @Delete;
 DELETE FROM parameter_type WHERE id >= @Delete;
-DELETE FROM payment_type WHERE id >= @Delete;
+DELETE FROM password_change_request WHERE id >= @Delete;
+DELETE FROM payment_info WHERE id >= @Delete;
 DELETE FROM payment_integration_type WHERE id >= @Delete;
+DELETE FROM payment_patner WHERE id >= @Delete;
+DELETE FROM payment_type WHERE id >= @Delete;
+DELETE FROM period WHERE id >= @Delete;
+DELETE FROM person WHERE id >= @Delete;
 DELETE FROM person_classification WHERE id >= @Delete;
+DELETE FROM person_has_address WHERE id >= @Delete;
+DELETE FROM person_type WHERE id >= @Delete;
+DELETE FROM phone_person WHERE id >= @Delete;
 DELETE FROM phone_type WHERE id >= @Delete;
+DELETE FROM preference WHERE id >= @Delete;
 DELETE FROM preference_classification WHERE id >= @Delete;
+DELETE FROM preference_control WHERE id >= @Delete;
+DELETE FROM preference_field WHERE id >= @Delete;
+DELETE FROM preference_field_data WHERE id >= @Delete;
+DELETE FROM preference_type WHERE id >= @Delete;
+DELETE FROM preference_value WHERE id >= @Delete;
+DELETE FROM product WHERE id >= @Delete;
+DELETE FROM product_data WHERE id >= @Delete;
+DELETE FROM product_has_provider WHERE id >= @Delete;
+DELETE FROM product_integration_type WHERE id >= @Delete;
+DELETE FROM profession WHERE id >= @Delete;
 DELETE FROM profile WHERE id >= @Delete;
 DELETE FROM profile_data WHERE id >= @Delete;
-DELETE FROM civil_status WHERE id >= @Delete;
+DELETE FROM promotion WHERE id >= @Delete;
+DELETE FROM promotion_data WHERE id >= @Delete;
+DELETE FROM promotion_item WHERE id >= @Delete;
+DELETE FROM promotion_notification WHERE id >= @Delete;
+DELETE FROM provider WHERE id >= @Delete;
+DELETE FROM report WHERE id >= @Delete;
+DELETE FROM report_has_profile WHERE id >= @Delete;
+DELETE FROM report_parameter WHERE id >= @Delete;
 DELETE FROM report_type WHERE id >= @Delete;
+DELETE FROM request_has_collection_request WHERE id >= @Delete;
+DELETE FROM request_type WHERE id >= @Delete;
+DELETE FROM review_affiliation_request WHERE id >= @Delete;
+DELETE FROM review_ofac WHERE id >= @Delete;
+DELETE FROM reviewType WHERE id >= @Delete;
+DELETE FROM sequences WHERE id >= @Delete;
+DELETE FROM sms WHERE id >= @Delete;
+DELETE FROM sms_provider WHERE id >= @Delete;
+DELETE FROM state WHERE id >= @Delete;
 DELETE FROM status_account_bank WHERE id >= @Delete;
-DELETE FROM status_business_affiliation_request WHERE id >= @Delete;
 DELETE FROM status_applicant WHERE id >= @Delete;
+DELETE FROM status_bank_operation WHERE id >= @Delete;
+DELETE FROM status_business_affiliation_has_final_state WHERE id >= @Delete;
+DELETE FROM status_card WHERE id >= @Delete;
+DELETE FROM status_card_has_final_state WHERE id >= @Delete;
+DELETE FROM status_request WHERE id >= @Delete;
+DELETE FROM status_transaction_approve_request WHERE id >= @Delete;
+DELETE FROM status_transaction_log WHERE id >= @Delete;
 DELETE FROM street_type WHERE id >= @Delete;
+DELETE FROM top_up_country WHERE id >= @Delete;
+DELETE FROM transaction WHERE id >= @Delete;
+DELETE FROM transaction_approve_request WHERE id >= @Delete;
+DELETE FROM transaction_log WHERE id >= @Delete;
 DELETE FROM transaction_source WHERE id >= @Delete;
 DELETE FROM transaction_type WHERE id >= @Delete;
-DELETE FROM country WHERE id >= @Delete;
-DELETE FROM state WHERE id >= @Delete;
-DELETE FROM city WHERE id >= @Delete;
+DELETE FROM user WHERE id >= @Delete;
+DELETE FROM user_has_bank WHERE id >= @Delete;
+DELETE FROM user_has_card WHERE id >= @Delete;
+DELETE FROM user_has_country WHERE id >= @Delete;
+DELETE FROM user_has_product WHERE id >= @Delete;
+DELETE FROM user_has_profile WHERE id >= @Delete;
+DELETE FROM validation_collection WHERE id >= @Delete;
+DELETE FROM withdrawal WHERE id >= @Delete;
+DELETE FROM withdrawal_type WHERE id >= @Delete;
+DELETE FROM zip_zone WHERE id >= @Delete;
+
+ALTER TABLE account_bank AUTO_INCREMENT = 1;
+ALTER TABLE account_type_bank AUTO_INCREMENT = 1;
+ALTER TABLE address AUTO_INCREMENT = 1;
+ALTER TABLE address_type AUTO_INCREMENT = 1;
+ALTER TABLE affiliation_request AUTO_INCREMENT = 1;
+ALTER TABLE audit AUTO_INCREMENT = 1;
+ALTER TABLE audit_action AUTO_INCREMENT = 1;
+ALTER TABLE balance_history AUTO_INCREMENT = 1;
+ALTER TABLE bank AUTO_INCREMENT = 1;
+ALTER TABLE bank_has_product AUTO_INCREMENT = 1;
+ALTER TABLE bank_operation AUTO_INCREMENT = 1;
+ALTER TABLE bank_operation_mode AUTO_INCREMENT = 1;
+ALTER TABLE bank_operation_type AUTO_INCREMENT = 1;
+ALTER TABLE business_affiliation_request AUTO_INCREMENT = 1;
+ALTER TABLE business_category AUTO_INCREMENT = 1;
+ALTER TABLE business_has_product AUTO_INCREMENT = 1;
+ALTER TABLE business_service_type AUTO_INCREMENT = 1;
+ALTER TABLE business_sub_category AUTO_INCREMENT = 1;
+ALTER TABLE business_type AUTO_INCREMENT = 1;
+ALTER TABLE calendar_days AUTO_INCREMENT = 1;
+ALTER TABLE card AUTO_INCREMENT = 1;
+ALTER TABLE category AUTO_INCREMENT = 1;
+ALTER TABLE category_data AUTO_INCREMENT = 1;
+ALTER TABLE city AUTO_INCREMENT = 1;
+ALTER TABLE civil_status AUTO_INCREMENT = 1;
+ALTER TABLE classification_preference AUTO_INCREMENT = 1;
+ALTER TABLE close AUTO_INCREMENT = 1;
+ALTER TABLE code AUTO_INCREMENT = 1;
+ALTER TABLE code_error_transaction_log AUTO_INCREMENT = 1;
+ALTER TABLE collections_request AUTO_INCREMENT = 1;
+ALTER TABLE collection_type AUTO_INCREMENT = 1;
+ALTER TABLE comercial_agency AUTO_INCREMENT = 1;
+ALTER TABLE commission AUTO_INCREMENT = 1;
+ALTER TABLE commission_item AUTO_INCREMENT = 1;
+ALTER TABLE country AUTO_INCREMENT = 1;
+ALTER TABLE county AUTO_INCREMENT = 1;
+ALTER TABLE creditcard_type AUTO_INCREMENT = 1;
+ALTER TABLE cumplimient AUTO_INCREMENT = 1;
+ALTER TABLE cumplimient_status AUTO_INCREMENT = 1;
+ALTER TABLE currency AUTO_INCREMENT = 1;
+ALTER TABLE daily_closing AUTO_INCREMENT = 1;
+ALTER TABLE documents_person_type AUTO_INCREMENT = 1;
+ALTER TABLE document_type AUTO_INCREMENT = 1;
+ALTER TABLE edification_type AUTO_INCREMENT = 1;
+ALTER TABLE employed_position AUTO_INCREMENT = 1;
+ALTER TABLE employee AUTO_INCREMENT = 1;
+ALTER TABLE enterprise AUTO_INCREMENT = 1;
+ALTER TABLE event AUTO_INCREMENT = 1;
+ALTER TABLE exchange_detail AUTO_INCREMENT = 1;
+ALTER TABLE exchange_rate AUTO_INCREMENT = 1;
+ALTER TABLE language AUTO_INCREMENT = 1;
+ALTER TABLE legal_person AUTO_INCREMENT = 1;
+ALTER TABLE legal_representative AUTO_INCREMENT = 1;
+ALTER TABLE natural_person AUTO_INCREMENT = 1;
+ALTER TABLE origin_application AUTO_INCREMENT = 1;
+ALTER TABLE parameter_type AUTO_INCREMENT = 1;
+ALTER TABLE password_change_request AUTO_INCREMENT = 1;
+ALTER TABLE payment_info AUTO_INCREMENT = 1;
+ALTER TABLE payment_integration_type AUTO_INCREMENT = 1;
+ALTER TABLE payment_patner AUTO_INCREMENT = 1;
+ALTER TABLE payment_type AUTO_INCREMENT = 1;
+ALTER TABLE period AUTO_INCREMENT = 1;
+ALTER TABLE person AUTO_INCREMENT = 1;
+ALTER TABLE person_classification AUTO_INCREMENT = 1;
+ALTER TABLE person_has_address AUTO_INCREMENT = 1;
+ALTER TABLE person_type AUTO_INCREMENT = 1;
+ALTER TABLE phone_person AUTO_INCREMENT = 1;
+ALTER TABLE phone_type AUTO_INCREMENT = 1;
+ALTER TABLE preference AUTO_INCREMENT = 1;
+ALTER TABLE preference_classification AUTO_INCREMENT = 1;
+ALTER TABLE preference_control AUTO_INCREMENT = 1;
+ALTER TABLE preference_field AUTO_INCREMENT = 1;
+ALTER TABLE preference_field_data AUTO_INCREMENT = 1;
+ALTER TABLE preference_type AUTO_INCREMENT = 1;
+ALTER TABLE preference_value AUTO_INCREMENT = 1;
+ALTER TABLE product AUTO_INCREMENT = 1;
+ALTER TABLE product_data AUTO_INCREMENT = 1;
+ALTER TABLE product_has_provider AUTO_INCREMENT = 1;
+ALTER TABLE product_integration_type AUTO_INCREMENT = 1;
+ALTER TABLE profession AUTO_INCREMENT = 1;
+ALTER TABLE profile AUTO_INCREMENT = 1;
+ALTER TABLE profile_data AUTO_INCREMENT = 1;
+ALTER TABLE promotion AUTO_INCREMENT = 1;
+ALTER TABLE promotion_data AUTO_INCREMENT = 1;
+ALTER TABLE promotion_item AUTO_INCREMENT = 1;
+ALTER TABLE promotion_notification AUTO_INCREMENT = 1;
+ALTER TABLE provider AUTO_INCREMENT = 1;
+ALTER TABLE report AUTO_INCREMENT = 1;
+ALTER TABLE report_has_profile AUTO_INCREMENT = 1;
+ALTER TABLE report_parameter AUTO_INCREMENT = 1;
+ALTER TABLE report_type AUTO_INCREMENT = 1;
+ALTER TABLE request_has_collection_request AUTO_INCREMENT = 1;
+ALTER TABLE request_type AUTO_INCREMENT = 1;
+ALTER TABLE review_affiliation_request AUTO_INCREMENT = 1;
+ALTER TABLE review_ofac AUTO_INCREMENT = 1;
+ALTER TABLE reviewType AUTO_INCREMENT = 1;
+ALTER TABLE sequences AUTO_INCREMENT = 1;
+ALTER TABLE sms AUTO_INCREMENT = 1;
+ALTER TABLE sms_provider AUTO_INCREMENT = 1;
+ALTER TABLE state AUTO_INCREMENT = 1;
+ALTER TABLE status_account_bank AUTO_INCREMENT = 1;
+ALTER TABLE status_applicant AUTO_INCREMENT = 1;
+ALTER TABLE status_bank_operation AUTO_INCREMENT = 1;
+ALTER TABLE status_business_affiliation_has_final_state AUTO_INCREMENT = 1;
+ALTER TABLE status_card AUTO_INCREMENT = 1;
+ALTER TABLE status_card_has_final_state AUTO_INCREMENT = 1;
+ALTER TABLE status_request AUTO_INCREMENT = 1;
+ALTER TABLE status_transaction_approve_request AUTO_INCREMENT = 1;
+ALTER TABLE status_transaction_log AUTO_INCREMENT = 1;
+ALTER TABLE street_type AUTO_INCREMENT = 1;
+ALTER TABLE top_up_country AUTO_INCREMENT = 1;
+ALTER TABLE transaction AUTO_INCREMENT = 1;
+ALTER TABLE transaction_approve_request AUTO_INCREMENT = 1;
+ALTER TABLE transaction_log AUTO_INCREMENT = 1;
+ALTER TABLE transaction_source AUTO_INCREMENT = 1;
+ALTER TABLE transaction_type AUTO_INCREMENT = 1;
+ALTER TABLE user AUTO_INCREMENT = 1;
+ALTER TABLE user_has_bank AUTO_INCREMENT = 1;
+ALTER TABLE user_has_card AUTO_INCREMENT = 1;
+ALTER TABLE user_has_country AUTO_INCREMENT = 1;
+ALTER TABLE user_has_product AUTO_INCREMENT = 1;
+ALTER TABLE user_has_profile AUTO_INCREMENT = 1;
+ALTER TABLE validation_collection AUTO_INCREMENT = 1;
+ALTER TABLE withdrawal AUTO_INCREMENT = 1;
+ALTER TABLE withdrawal_type AUTO_INCREMENT = 1;
+ALTER TABLE zip_zone AUTO_INCREMENT = 1;
 
 -- Tabla account_type_bank
 INSERT INTO `alodigaWallet`.`account_type_bank` (`id`, `description`, `code`) VALUES ('1', 'Cuenta Corriente', 'CTACOR');
@@ -89,8 +312,8 @@ INSERT INTO `alodigaWallet`.`event` (`id`, `name`, `description`) VALUES ('4', '
 INSERT INTO `alodigaWallet`.`event` (`id`, `name`, `description`) VALUES ('5', 'web_services_call', 'web_services_call');
 
 -- Tabla language
-INSERT INTO `alodigaWallet`.`language` (`id`, `iso`, `description`, `code`, `enabled`) VALUES ('1', 'en', 'ENGLISH', 'ENGLI', '1');
-INSERT INTO `alodigaWallet`.`language` (`id`, `iso`, `description`, `code`, `enabled`) VALUES ('2', 'es', 'SPANISH', 'SPANI', '1');
+INSERT INTO `alodigaWallet`.`language` (`id`, `iso`, `description`, `enabled`) VALUES ('1', 'en', 'ENGLISH', '1');
+INSERT INTO `alodigaWallet`.`language` (`id`, `iso`, `description`, `enabled`) VALUES ('2', 'es', 'SPANISH', '1');
 
 -- Tabla origin_application
 INSERT INTO `alodigaWallet`.`origin_application` (`id`, `name`, `code`) VALUES ('1', 'AlodigaWallet App', 'AWAAPP');
@@ -125,12 +348,11 @@ INSERT INTO `alodigaWallet`.`phone_type` (`id`, `description`) VALUES ('3', 'OFF
 INSERT INTO `alodigaWallet`.`phone_type` (`id`, `description`) VALUES ('4', 'FIJO');
 
 -- Tabla preference_classification
-INSERT INTO `alodigaWallet`.`preference_classification` (`id`, `name`, `code`, `enabled`) VALUES ('1', 'cliente', 'CLIEN', '1');
-INSERT INTO `alodigaWallet`.`preference_classification` (`id`, `name`, `code`, `enabled`) VALUES ('2', 'negocio', 'NEGOC', '1');
+INSERT INTO `alodigaWallet`.`preference_classification` (`id`, `name`, `enabled`) VALUES ('1', 'cliente','1');
+INSERT INTO `alodigaWallet`.`preference_classification` (`id`, `name`, `enabled`) VALUES ('2', 'negocio','1');
 
 -- Tabla profile
 INSERT INTO `alodigaWallet`.`profile` (`id`, `name`, `enabled`) VALUES ('1', 'Administrator', '1');
-
 
 -- Tabla profile_data
 INSERT INTO `alodigaWallet`.`profile_data` (`id`, `profileId`, `languageId`, `alias`, `description` ) VALUES ('1', '1', '1', 'Administrator', 'Administrator');
@@ -158,15 +380,15 @@ INSERT INTO `alodigaWallet`.`status_account_bank` (`id`, `description`, `code`) 
 INSERT INTO `alodigaWallet`.`status_account_bank` (`id`, `description`, `code`) VALUES ('2', 'INACTIVA', 'INACTI');
 INSERT INTO `alodigaWallet`.`status_account_bank` (`id`, `description`, `code`) VALUES ('3', 'BLOQUEADA', 'BLOQUE');
 
--- Tabla status_business_affiliation_request
-INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('1', 'PENDIENTE', 'PENDIE');
-INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('2', 'RECAUDOS COMPLETOS', 'RECCOM');
-INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('3', 'RECAUDOS INCOMPLETOS', 'RECINC');
-INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('4', 'PENDIENTE LISTA NEGRA', 'PELINE');
-INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('5', 'APROBADA LISTA NEGRA', 'APLINE');
-INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('6', 'APROBADA', 'APROBA');
-INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('7', 'RECHAZADA', 'RECHAZ');
-INSERT INTO `alodigaWallet`.`status_business_affiliation_request` (`id`, `description`, `code`) VALUES ('8', 'RECAUDOS SIN APROBAR', 'RSA');
+-- Tabla status_request
+INSERT INTO `alodigaWallet`.`status_request` (`id`, `description`, `code`) VALUES ('1', 'PENDIENTE', 'PENDIE');
+INSERT INTO `alodigaWallet`.`status_request` (`id`, `description`, `code`) VALUES ('2', 'RECAUDOS COMPLETOS', 'RECCOM');
+INSERT INTO `alodigaWallet`.`status_request` (`id`, `description`, `code`) VALUES ('3', 'RECAUDOS INCOMPLETOS', 'RECINC');
+INSERT INTO `alodigaWallet`.`status_request` (`id`, `description`, `code`) VALUES ('4', 'PENDIENTE LISTA NEGRA', 'PELINE');
+INSERT INTO `alodigaWallet`.`status_request` (`id`, `description`, `code`) VALUES ('5', 'APROBADA LISTA NEGRA', 'APLINE');
+INSERT INTO `alodigaWallet`.`status_request` (`id`, `description`, `code`) VALUES ('6', 'APROBADA', 'APROBA');
+INSERT INTO `alodigaWallet`.`status_request` (`id`, `description`, `code`) VALUES ('7', 'RECHAZADA', 'RECHAZ');
+INSERT INTO `alodigaWallet`.`status_request` (`id`, `description`, `code`) VALUES ('8', 'RECAUDOS SIN APROBAR', 'RSA');
 
 -- Tabla status_applicant
 INSERT INTO `alodigaWallet`.`status_applicant` (`description`, `code`) VALUES ('ACTIVO', 'ACTIVO');
@@ -670,7 +892,6 @@ INSERT INTO `alodigaWallet`.`city` (`stateId`, `name`) VALUES
 ('24', 'San Carlos del Zulia'),
 ('24', 'Santa Rita'),
 ('24', 'Villa del Rosario');
-
 
 -- Tabla city
 -- MEXICO
@@ -4475,7 +4696,7 @@ INSERT INTO `alodigaWallet`.`comercial_agency` (`name`, `cityId`) VALUES ('CCT',
 INSERT INTO `alodigaWallet`.`person_type` (`description`, `countryId`, `originApplicationId`, `indNaturalPerson`) VALUES ('Persona Natural', '1', '2', '1');
 
 -- Tabla documents_person_type
-INSERT INTO `alodigaWallet`.`pdocuments_person_type` (`description`,`personTypeId`,`codeIdentification`,) VALUES ('Cedula de Identidad Venezolano', '1', 'CI');
+INSERT INTO `alodigaWallet`.`documents_person_type` (`description`,`personTypeId`,`codeIdentification`) VALUES ('Cedula de Identidad Venezolano', '1', 'CI');
 
 -- Tabla person
 INSERT INTO `alodigaWallet`.`person` (`email`, `personTypeId`, `personClassificationId`, `countryId`, `createDate`) VALUES ('jgomez@alodiga.com', '1', '3', '1', '2020-10-28 12:09:22');

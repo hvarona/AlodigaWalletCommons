@@ -283,7 +283,7 @@ public class Constants {
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_COMPLET= "RECCOM";
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_INCOMPLET= "RECINC";
     public static final String STATUS_BUSINESS_AFFILIATION_REQUEST_PENDING= "PENDIE";
-    public static final String ORIGIN_APPLICATION_PORTAL_NEGOCIOS_CODE= "PORNEG";
+    public static final String ORIGIN_APPLICATION_PORTAL_NEGOCIOS_CODE= "BUSPOR";
     public static final String ORIGIN_APPLICATION_APP_CODE= "AWAAPP";
     public static final String DOCUMENT_TYPE_BUSSINES_AFILIATION_CODE= "BUAFRQ";
     public static final String DOCUMENT_TYPE_USER_REGISTER_AFILIATION_CODE= "USREAR";    

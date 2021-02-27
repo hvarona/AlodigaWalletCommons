@@ -215,7 +215,10 @@ public interface UtilsEJB extends WalletGenericEJB {
     public CollectionType searchCollectionType(String description) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     public List<CollectionType> getSearchCollectionType(String name) throws EmptyListException, GeneralException, NullParameterException;
-
+    
+    public List<CollectionType> getSearchCollectionTypeByOriginAplication(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
+    
+    
     //BusinessCategory
     public List<BusinessCategory> getBusinessCategory(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
@@ -297,18 +300,14 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     //AffiliationRequest
     public List<AffiliationRequest> getAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public AffiliationRequest loadAffiliationRequest(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
     public AffiliationRequest saveAffiliationRequest(AffiliationRequest affiliationRequest) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
     public List<AffiliationRequest> searchAffiliationRequestByParams(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;
-    
     public List<AffiliationRequest> getAffiliationRequestByRequestByType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
     public List<AffiliationRequest> getAffiliationRequestByUserByType(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;
-    
     public List<AffiliationRequest> getAffiliationRequestByPerson(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;
+    public List<AffiliationRequest> getAffiliationRequestByLegalPerson(EJBRequest request) throws GeneralException, NullParameterException, EmptyListException;
+    public Long haveAffiliationRequestByUser(Long userId) throws GeneralException, NullParameterException;
     
     //ReviewAffiliationRequest
     public List<ReviewAffiliationRequest> getReviewAffiliationRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;

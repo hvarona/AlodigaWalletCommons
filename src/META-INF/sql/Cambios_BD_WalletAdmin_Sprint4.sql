@@ -1457,3 +1457,9 @@ ADD COLUMN `isUsePrepaidCard` TINYINT(1) NULL AFTER `isDefaultProduct`;
 -- Fecha: 02/12/2020
 ALTER TABLE `alodigaWallet`.`collection_type` 
 ADD COLUMN `orden` INT NULL AFTER `personTypeId`;
+
+-- Agregar campo code_iso3 en tabla country
+-- author: Jesús Gómez
+-- Fecha: 14/12/2020
+ALTER TABLE `alodigaWallet`.`country` 
+ADD COLUMN `code_iso3` INT NULL AFTER `code`;
