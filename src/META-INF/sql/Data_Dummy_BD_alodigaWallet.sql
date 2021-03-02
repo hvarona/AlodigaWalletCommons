@@ -773,3 +773,11 @@ INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `docume
 -- author: Jorge Pinto
 -- Fecha: 30/12/2020
 INSERT INTO `alodigaWallet`.`status_bank_operation` (`description`, `code`, `createDate`) VALUES ('PENDIENTE', 'PENDIE', '2020-11-30 09:49:20');
+
+insert into sequences (initialValue, currentValue, documentTypeId, originApplicationId) values (1,1,8,1);
+
+insert into sequences (initialValue,currentValue,documentTypeId,originApplicationId) (select 1,1,dt.id,1 from document_type dt where id not in (select documentTypeId from sequences where originApplicationId = 1));
+
+insert into sequences (initialValue,currentValue,documentTypeId,originApplicationId) (select 1,1,dt.id,2 from document_type dt where id not in (select documentTypeId from sequences where originApplicationId = 2));
+
+insert into sequences (initialValue,currentValue,documentTypeId,originApplicationId) (select 1,1,dt.id,3 from document_type dt where id not in (select documentTypeId from sequences where originApplicationId = 3));
