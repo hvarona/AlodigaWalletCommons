@@ -1463,3 +1463,10 @@ ADD COLUMN `orden` INT NULL AFTER `personTypeId`;
 -- Fecha: 14/12/2020
 ALTER TABLE `alodigaWallet`.`country` 
 ADD COLUMN `code_iso3` INT NULL AFTER `code`;
+
+ALTER TABLE `alodigaWallet`.`natural_person` 
+CHANGE COLUMN `gender` `gender` VARCHAR(1) NULL;
+
+ALTER TABLE `alodigaWallet`.`natural_person` 
+CHANGE COLUMN `identificationNumber` `identificationNumber` VARCHAR(40) NULL ,
+CHANGE COLUMN `dueDateDocumentIdentification` `dueDateDocumentIdentification` DATE NULL ;
