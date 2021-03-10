@@ -7,6 +7,7 @@ package com.alodiga.wallet.common.model;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -46,7 +47,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "NaturalPerson.findByPlaceBirth", query = "SELECT n FROM NaturalPerson n WHERE n.placeBirth = :placeBirth"),
     @NamedQuery(name = "NaturalPerson.findByDateBirth", query = "SELECT n FROM NaturalPerson n WHERE n.dateBirth = :dateBirth"),
     @NamedQuery(name = "NaturalPerson.findByCreateDate", query = "SELECT n FROM NaturalPerson n WHERE n.createDate = :createDate"),
-    @NamedQuery(name = "NaturalPerson.findByUpdateDate", query = "SELECT n FROM NaturalPerson n WHERE n.updateDate = :updateDate")})
+    @NamedQuery(name = "NaturalPerson.findByUpdateDate", query = "SELECT n FROM NaturalPerson n WHERE n.updateDate = :updateDate"),
+    @NamedQuery(name = QueryConstants.NATURAL_PERSON_BY_PERSON, query = "SELECT n FROM NaturalPerson n WHERE n.personId.id = :personId")})
+
 public class NaturalPerson extends AbstractWalletEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
