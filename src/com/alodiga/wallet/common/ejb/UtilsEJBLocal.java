@@ -109,6 +109,9 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public List<Bank> getSearchBank(String name) throws EmptyListException, GeneralException, NullParameterException;
     public List<Bank> searchBankByCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
     
+    //AccountBank
+    public Long validateAccountBankExistsBD(Long userId, Long bankId, String accountNumber) throws GeneralException, NullParameterException;
+    
     //ExchangeRate
     public List<ExchangeRate> getExchangeRate(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public ExchangeRate loadExchangeRate(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
@@ -250,6 +253,7 @@ public interface UtilsEJBLocal extends WalletGenericEJB {
     public List<ReviewOfac> getReviewOfacByRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
     public ReviewOfac loadReviewOfac(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
     public ReviewOfac saveReviewOfac(ReviewOfac reviewOfac) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public Long haveReviewOFACByPerson(Long personId) throws GeneralException, NullParameterException;
 
     //StatusCard
     public List<StatusCard> getStatusCard(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;

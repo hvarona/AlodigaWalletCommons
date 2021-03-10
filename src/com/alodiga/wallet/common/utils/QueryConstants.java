@@ -46,6 +46,7 @@ public class QueryConstants {
     public static final String BUSINESS_SERVICE_TYPE_BY_BUSINESS_TYPE = "businessServiceTypeByBusinessType";
     public static final String TRANSACTION_APPROVE_REQUEST_BY_STATUS = "transactionApproveRequestByStatus";
     public static final String AFFILIATION_REQUEST_BY_REQUEST_TYPE_ID = "affiliationRequestByRequestTypeId";
+    public static final String VALIDATE_ACCOUNT_BANK_EXISTS_BD = "validateAccountBankExistsBD";
     public static final String AFFILIATION_REQUEST_BY_LEGAL_PERSON = "affiliationRequestByLegalPerson";
     public static final String CODE_BY_STATUS = "codeByStatus";
     public static final String PERSON_CLASSIFICATION_BY_CODE = "personClassificationByCode";
@@ -224,6 +225,7 @@ public class QueryConstants {
     public static final String PREFERENCE_TYPE_BY_TYPE ="preferenceTypeByType";
     public static final String PARAM_REQUEST_TYPE ="requestTypeId";
     public static final String PERSON_CLASSIFICATION_BY_ID = "personClassificationById";
+    public static final String NATURAL_PERSON_BY_PERSON = "naturalPersonByPerson";
     public static final String PARAM_PERSON_CLASSIFICATION_ID = "personClassificationId";
     public static final String PARAM_NAME = "name";
     public static final String PARAM_STATUS_APPLICANT_ID = "statusApplicantId";

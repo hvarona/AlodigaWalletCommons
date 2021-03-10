@@ -1464,9 +1464,19 @@ ADD COLUMN `orden` INT NULL AFTER `personTypeId`;
 ALTER TABLE `alodigaWallet`.`country` 
 ADD COLUMN `code_iso3` INT NULL AFTER `code`;
 
+-- Colocar los siguientes campos para que acepten NULL en la tablas person y natural_person
+-- author: Jesús Gómez
+-- Fecha: 28/02/2021
 ALTER TABLE `alodigaWallet`.`natural_person` 
 CHANGE COLUMN `gender` `gender` VARCHAR(1) NULL;
 
 ALTER TABLE `alodigaWallet`.`natural_person` 
 CHANGE COLUMN `identificationNumber` `identificationNumber` VARCHAR(40) NULL ,
 CHANGE COLUMN `dueDateDocumentIdentification` `dueDateDocumentIdentification` DATE NULL ;
+
+-- Crea índice para que la cuenta para un banco y usuario no se pueda duplicar
+-- author: Jesús Gómez
+-- Fecha: 04/03/2021
+ALTER TABLE `alodigaWallet`.`account_bank` 
+ADD INDEX `fk_accountNumber_Bank_User_idx` (`UnifiedRegistryId` ASC, `accountNumber` ASC, `bankId` ASC),
+DROP INDEX `fk_account_bank_by_bank_idx` ;
