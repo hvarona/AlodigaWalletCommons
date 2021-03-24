@@ -83,7 +83,7 @@ public class User extends AbstractWalletEntity implements Serializable {
     private boolean enabled;    
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<UserHasProfile> userHasProfile;
-        @Basic(optional = false)
+    @Basic(optional = false)
     @Size(min = 1, max = 40)
     @Column(name = "identificationNumber")
     private String identificationNumber;
