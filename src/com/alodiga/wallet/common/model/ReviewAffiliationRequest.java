@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ReviewsAffiliationRequest.findByIndApproved", query = "SELECT r FROM ReviewAffiliationRequest r WHERE r.indApproved = :indApproved"),
     @NamedQuery(name = "ReviewAffiliationRequest.findByCreateDate", query = "SELECT r FROM ReviewAffiliationRequest r WHERE r.createDate = :createDate"),
     @NamedQuery(name = "ReviewAffiliationRequest.findByUpdateDate", query = "SELECT r FROM ReviewAffiliationRequest r WHERE r.updateDate = :updateDate"),
-    @NamedQuery(name = QueryConstants.REVIEW_REQUEST_BY_REQUEST, query = "SELECT r FROM ReviewAffiliationRequest r where r.affiliationRequestId.id = :businessAffiliationRequestId AND r.reviewTypeId.id = :reviewTypeId")})
+    @NamedQuery(name = QueryConstants.REVIEW_REQUEST_BY_REQUEST, query = "SELECT r FROM ReviewAffiliationRequest r where r.affiliationRequestId.id = :affiliationRequestId AND r.reviewTypeId.id = :reviewTypeId")})
 
 public class ReviewAffiliationRequest extends AbstractWalletEntity implements Serializable {
 
