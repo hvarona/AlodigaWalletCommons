@@ -72,51 +72,34 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     //Country
     public List<Country> getCountries(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public List<Country> getCountries() throws EmptyListException, GeneralException, NullParameterException;
-
     public Country loadCountry(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
     public Country loadCountryByName(String name) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
     public Country searchCountry(String name) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
     public Country saveCountry(Country country) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
     public Country loadCountryByShortName(String referenceCode) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
     public List<Country> getSearchCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
-   
     public List<Country> getValidateCountryByCode(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
     public List<Country> getValidateCountryByName(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
    
     //Currency
     public List<Currency> getCurrency(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public List<Currency> getCurrencies() throws EmptyListException, GeneralException, NullParameterException;
-
     public List<Currency> getSearchCurrency(String name) throws EmptyListException, GeneralException, NullParameterException;
-
     public Currency loadCurrency(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
     public Currency saveCurrency(Currency currency) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //Language
     public List<Language> getLanguages() throws EmptyListException, GeneralException, NullParameterException;
-
     public Language loadLanguage(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //Period
     public List<Period> getPeriods() throws EmptyListException, GeneralException, NullParameterException;
-
     public Period loadPeriod(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
     public Period loadperiod(Period period) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //State
     public List<State> getStateByCountry(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public State loadState(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //SMS
@@ -124,53 +107,34 @@ public interface UtilsEJB extends WalletGenericEJB {
 
     //Bank
     public List<Bank> getBank(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public Bank loadBank(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
     public Bank saveBank(Bank bank) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
     public List<Bank> getSearchBank(String name) throws EmptyListException, GeneralException, NullParameterException;
-    
     public List<Bank> searchBankByCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
+    
+    //AccountBank
+    public Long validateAccountBankExistsBD(Long userId, Long bankId, String accountNumber) throws GeneralException, NullParameterException;
     
     //ExchangeRate
     public List<ExchangeRate> getExchangeRate(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public ExchangeRate loadExchangeRate(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
-    public ExchangeRate saveExchangeRate(ExchangeRate exchangeRate) throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+    public ExchangeRate saveExchangeRate(ExchangeRate exchangeRate) throws RegisterNotFoundException, NullParameterException, GeneralException; 
     public List<ExchangeRate> getExchangeRateByProductAndEndingDate(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
-
-
     public ExchangeRate getExchangeRateByBeginningDate(Product productId,Date creationDate) throws EmptyListException, GeneralException, NullParameterException, RegisterNotFoundException;
-
-    
-    
 
     //Transaction
     public List<Transaction> getTransaction(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public List<Transaction> getTransactionByDates(Date beginningDate, Date endingDate) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
-
     public List<Transaction> getTransactionByBeginningDate(Date beginningDate) throws EmptyListException, GeneralException, NullParameterException;
-
-    public List<Transaction> getTransactionByBeginningDateAndOriginTransaccion(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
-    public List<Transaction> getTransactionByDatesAndOrigin(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;
-    
+    public List<Transaction> getTransactionByBeginningDateAndOriginTransaccion(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;  
+    public List<Transaction> getTransactionByDatesAndOrigin(EJBRequest request) throws GeneralException, RegisterNotFoundException, NullParameterException, EmptyListException;   
     public Transaction loadTransaction(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
     public Transaction saveTransaction(Transaction transaction) throws RegisterNotFoundException, NullParameterException, GeneralException;
 
     //BankOperation
     public List<BankOperation> getBankOperationsByParams(EJBRequest request) throws NullParameterException, GeneralException, EmptyListException;
-
     public List<BankOperationType> getBankOperationTypes(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public List<BankOperationMode> getBankOperationModes(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public List<BankOperation> getBankOperations(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
 
     //Commission
@@ -337,24 +301,18 @@ public interface UtilsEJB extends WalletGenericEJB {
     public StatusRequest loadStatusBusinessAffiliationRequestByCode(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException, EmptyListException;
     
     //PersonType
-    public PersonType savePersonType (PersonType personType)  throws RegisterNotFoundException, NullParameterException, GeneralException;
-    
+    public PersonType savePersonType (PersonType personType)  throws RegisterNotFoundException, NullParameterException, GeneralException; 
     public List<PersonType> getPersonType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
     public List<PersonType> getPersonTypeByCountryByIndNaturalPerson(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
     public List<PersonType> getPersonTypeByCountryByOriginApplication(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-    
     public List<PersonType> getSearchPersonTypeByCountry(String name) throws EmptyListException, GeneralException, NullParameterException;
     
     //ReviewOfac
     public List<ReviewOfac> getReviewOfac(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public List<ReviewOfac> getReviewOfacByRequest(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;
-
     public ReviewOfac loadReviewOfac(EJBRequest request) throws RegisterNotFoundException, NullParameterException, GeneralException;
-
     public ReviewOfac saveReviewOfac(ReviewOfac reviewOfac) throws RegisterNotFoundException, NullParameterException, GeneralException;
+    public Long haveReviewOFACByPerson(Long personId) throws GeneralException, NullParameterException;
 
     //ReviewType
     public List<ReviewType> getReviewType(EJBRequest request) throws EmptyListException, GeneralException, NullParameterException;

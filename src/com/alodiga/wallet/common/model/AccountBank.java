@@ -30,6 +30,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 import com.alodiga.wallet.common.exception.TableNotFoundException;
 import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
+import com.alodiga.wallet.common.utils.QueryConstants;
 
 /**
  *

@@ -6,7 +6,7 @@
 package com.alodiga.wallet.common.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,25 +16,26 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import com.alodiga.wallet.common.exception.TableNotFoundException;
-import com.alodiga.wallet.common.genericEJB.AbstractWalletEntity;
-import com.alodiga.wallet.common.model.BusinessHasProduct;
 
 /**
  *
- * @author usuario
+ * @author jose
  */
 @Entity
 @Table(name = "business_has_product")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BusinessHasProduct.findAll", query = "SELECT u FROM BusinessHasProduct u"),
-    @NamedQuery(name = "BusinessHasProduct.findById", query = "SELECT u FROM BusinessHasProduct u WHERE u.id = :id"),
-    @NamedQuery(name = "BusinessHasProduct.findByProductId", query = "SELECT u FROM BusinessHasProduct u WHERE u.productId = :productId"),
-    @NamedQuery(name = "BusinessHasProduct.findByBusinessIdAllProduct", query = "SELECT u FROM BusinessHasProduct u WHERE u.businessId = :businessId"),
-    @NamedQuery(name = "BusinessHasProduct.findByBusinessId", query = "SELECT u FROM BusinessHasProduct u WHERE u.businessId = :businessId AND u.productId = 3")})
-public class BusinessHasProduct extends AbstractWalletEntity implements Serializable {
+    @NamedQuery(name = "BusinessHasProduct.findAll", query = "SELECT b FROM BusinessHasProduct b")
+    , @NamedQuery(name = "BusinessHasProduct.findById", query = "SELECT b FROM BusinessHasProduct b WHERE b.id = :id")
+    , @NamedQuery(name = "BusinessHasProduct.findByProductId", query = "SELECT b FROM BusinessHasProduct b WHERE b.productId = :productId")
+    , @NamedQuery(name = "BusinessHasProduct.findByBusinessId", query = "SELECT b FROM BusinessHasProduct b WHERE b.businessId = :businessId")
+    , @NamedQuery(name = "BusinessHasProduct.findByBeginningDate", query = "SELECT b FROM BusinessHasProduct b WHERE b.beginningDate = :beginningDate")
+    , @NamedQuery(name = "BusinessHasProduct.findByEndingDate", query = "SELECT b FROM BusinessHasProduct b WHERE b.endingDate = :endingDate")})
+public class BusinessHasProduct implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,14 +43,22 @@ public class BusinessHasProduct extends AbstractWalletEntity implements Serializ
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    private Timestamp beginningDate;
-    private Timestamp endingDate;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "productId")
     private long productId;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "businessId")
     private long businessId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "beginningDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date beginningDate;
+    @Column(name = "endingDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endingDate;
 
     public BusinessHasProduct() {
     }
@@ -58,10 +67,11 @@ public class BusinessHasProduct extends AbstractWalletEntity implements Serializ
         this.id = id;
     }
 
-    public BusinessHasProduct(Long id, long productId, long businessId) {
+    public BusinessHasProduct(Long id, long productId, long businessId, Date beginningDate) {
         this.id = id;
         this.productId = productId;
         this.businessId = businessId;
+        this.beginningDate = beginningDate;
     }
 
     public Long getId() {
@@ -81,14 +91,30 @@ public class BusinessHasProduct extends AbstractWalletEntity implements Serializ
     }
 
     public long getBusinessId() {
-		return businessId;
-	}
+        return businessId;
+    }
 
-	public void setBusinessId(long businessId) {
-		this.businessId = businessId;
-	}
+    public void setBusinessId(long businessId) {
+        this.businessId = businessId;
+    }
 
-	@Override
+    public Date getBeginningDate() {
+        return beginningDate;
+    }
+
+    public void setBeginningDate(Date beginningDate) {
+        this.beginningDate = beginningDate;
+    }
+
+    public Date getEndingDate() {
+        return endingDate;
+    }
+
+    public void setEndingDate(Date endingDate) {
+        this.endingDate = endingDate;
+    }
+
+    @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
@@ -110,32 +136,7 @@ public class BusinessHasProduct extends AbstractWalletEntity implements Serializ
 
     @Override
     public String toString() {
-        return "com.alodiga.wallet.model.UserHasProduct[ id=" + id + " ]";
+        return "com.alodiga.wallet.common.model.BusinessHasProduct[ id=" + id + " ]";
     }
     
-    public Timestamp getBeginningDate() {
-        return beginningDate;
-}
-
-    public void setBeginningDate(Timestamp beginningDate) {
-        this.beginningDate = beginningDate;
-    }
-
-    public Timestamp getEndingDate() {
-        return endingDate;
-    }
-
-    public void setEndingDate(Timestamp endingDate) {
-        this.endingDate = endingDate;
-    }
-    
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
 }

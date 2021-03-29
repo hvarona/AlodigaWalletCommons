@@ -773,3 +773,132 @@ INSERT INTO `alodigaWallet`.`sequences` (`initialValue`, `currentValue`, `docume
 -- author: Jorge Pinto
 -- Fecha: 30/12/2020
 INSERT INTO `alodigaWallet`.`status_bank_operation` (`description`, `code`, `createDate`) VALUES ('PENDIENTE', 'PENDIE', '2020-11-30 09:49:20');
+
+
+insert into sequences (initialValue, currentValue, documentTypeId, originApplicationId) values (1,1,8,1);
+
+-- Insert para las secuencias
+-- author: Henry Varona
+-- Fecha: 01/03/2021
+insert into sequences (initialValue,currentValue,documentTypeId,originApplicationId) (select 1,1,dt.id,1 from document_type dt where id not in (select documentTypeId from sequences where originApplicationId = 1));
+insert into sequences (initialValue,currentValue,documentTypeId,originApplicationId) (select 1,1,dt.id,2 from document_type dt where id not in (select documentTypeId from sequences where originApplicationId = 2));
+insert into sequences (initialValue,currentValue,documentTypeId,originApplicationId) (select 1,1,dt.id,3 from document_type dt where id not in (select documentTypeId from sequences where originApplicationId = 3));
+
+-- Eliminar data en BD servidor de desarrollo
+-- author: Jesús Gómez
+-- Fecha: 03/03/2021
+-- Afiliación Usuarios
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='14';
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='15';
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='16';
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='17';
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='18';
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='19';
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='20';
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='21';
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='22';
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='28';
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='29';
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='32';
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='27';
+
+DELETE FROM `alodigaWallet`.`phone_person` WHERE `id`='44';
+DELETE FROM `alodigaWallet`.`phone_person` WHERE `id`='45';
+DELETE FROM `alodigaWallet`.`phone_person` WHERE `id`='46';
+DELETE FROM `alodigaWallet`.`phone_person` WHERE `id`='47';
+DELETE FROM `alodigaWallet`.`phone_person` WHERE `id`='52';
+
+DELETE FROM `alodigaWallet`.`person_has_address` WHERE `id`='37';
+DELETE FROM `alodigaWallet`.`person_has_address` WHERE `id`='38';
+DELETE FROM `alodigaWallet`.`person_has_address` WHERE `id`='30';
+DELETE FROM `alodigaWallet`.`person_has_address` WHERE `id`='31';
+DELETE FROM `alodigaWallet`.`person_has_address` WHERE `id`='32';
+DELETE FROM `alodigaWallet`.`person_has_address` WHERE `id`='36';
+
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='42';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='64';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='65';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='66';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='67';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='68';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='69';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='70';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='71';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='72';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='73';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='74';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='75';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='76';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='77';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='78';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='83';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='84';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='85';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='89';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='90';
+
+-- Afiliación Negocios
+DELETE FROM `alodigaWallet`.`legal_person` WHERE `id`='17';
+DELETE FROM `alodigaWallet`.`legal_person` WHERE `id`='18';
+DELETE FROM `alodigaWallet`.`legal_person` WHERE `id`='19';
+DELETE FROM `alodigaWallet`.`legal_person` WHERE `id`='20';
+
+DELETE FROM `alodigaWallet`.`natural_person` WHERE `id`='9';
+
+DELETE FROM `alodigaWallet`.`person_has_address` WHERE `id`='26';
+DELETE FROM `alodigaWallet`.`person_has_address` WHERE `id`='27';
+DELETE FROM `alodigaWallet`.`person_has_address` WHERE `id`='28';
+DELETE FROM `alodigaWallet`.`person_has_address` WHERE `id`='29';
+
+DELETE FROM `alodigaWallet`.`phone_person` WHERE `id`='33';
+DELETE FROM `alodigaWallet`.`phone_person` WHERE `id`='34';
+DELETE FROM `alodigaWallet`.`phone_person` WHERE `id`='35';
+DELETE FROM `alodigaWallet`.`phone_person` WHERE `id`='36';
+
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='1';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='2';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='9';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='10';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='11';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='12';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='13';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='14';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='15';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='16';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='17';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='18';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='19';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='20';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='21';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='22';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='23';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='24';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='25';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='26';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='27';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='29';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='30';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='31';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='33';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='35';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='37';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='38';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='39';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='43';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='45';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='47';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='49';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='28';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='32';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='34';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='36';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='40';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='44';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='46';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='48';
+DELETE FROM `alodigaWallet`.`person` WHERE `id`='50';
+
+DELETE FROM `alodigaWallet`.`legal_representative` WHERE `id`='15';
+DELETE FROM `alodigaWallet`.`legal_representative` WHERE `id`='16';
+DELETE FROM `alodigaWallet`.`legal_representative` WHERE `id`='17';
+DELETE FROM `alodigaWallet`.`legal_representative` WHERE `id`='18';
